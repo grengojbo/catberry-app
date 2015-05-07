@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = HelloWorld;
+module.exports = SectionMain;
 
 /*
  * This is a Catberry Cat-component file.
@@ -9,10 +9,10 @@ module.exports = HelloWorld;
  */
 
 /**
- * Creates new instance of "hello-world" component.
+ * Creates new instance of "section-main" component.
  * @constructor
  */
-function HelloWorld() {
+function SectionMain() {
 
 }
 
@@ -20,6 +20,6 @@ function HelloWorld() {
  * Gets data for template.
  * @returns {Promise<Object>} Promise for data.
  */
-HelloWorld.prototype.render = function () {
+SectionMain.prototype.render = function () {
 	return this.$context.getStoreData();
 };

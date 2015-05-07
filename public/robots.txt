@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://catberry.org/public/sitemap.xml
+Sitemap: http://localhost/sitemap.xml

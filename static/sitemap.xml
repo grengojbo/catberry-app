@@ -5,22 +5,22 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-  <loc>http://catberry.org/</loc>
+  <loc>http://localhost/</loc>
   <changefreq>daily</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://catberry.org/main</loc>
+  <loc>http://catberry.org/about</loc>
   <changefreq>daily</changefreq>
   <priority>0.50</priority>
 </url>
 <url>
-  <loc>http://catberry.org/overview</loc>
+  <loc>http://localhost/news</loc>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>
 <url>
-  <loc>http://catberry.org/documentation</loc>
+  <loc>http://localhost/contact</loc>
   <changefreq>daily</changefreq>
   <priority>0.90</priority>
 </url>

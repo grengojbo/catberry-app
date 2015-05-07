@@ -10,14 +10,17 @@ module.exports = Pages;
 
 var ALLOWED_PAGES = {
 		home: true,
-		overview: true,
-		documentation: true
+		about: true,
+		news: true,
+		contact: false
 	},
 	DEFAULT_PAGE = 'home';
 
 var PAGES = {
 	home: 'Home Page',
-	about: 'About Catberry Framework',
+	about: 'About',
+	news: 'News',
+	contact: 'Contats',
 	commits: 'Commits to Catberry Framework repository',
 	search: 'Search in Catberry\'s code'
 };
@@ -51,28 +54,32 @@ Pages.prototype.$lifetime = 60000;
  */
 Pages.prototype.load = function () {
 	var currentPage = this.$context.state.page;
+	// console.log(this.$context.state);
 	if (!currentPage) {
 		currentPage = DEFAULT_PAGE;
 		// return this.$context.redirect('/about');
 	}
 	currentPage = currentPage.toLowerCase();
+	console.log('-> currentPage: ' + currentPage);
 	if (!ALLOWED_PAGES.hasOwnProperty(currentPage)) {
 		currentPage = DEFAULT_PAGE;
-	}
-	if (!PAGES.hasOwnProperty(currentPage)) {
-		currentPage = DEFAULT_PAGE;
-		// throw new Error(currentPage + ' page not found');
 	}
 	var result = {
 		title: this._config.title,
 		subtitle: PAGES[currentPage],
-		current: currentPage,
-		isActive: {}
+		currentPage: currentPage,
+		activePages: {},
+		isMenu: {},
+		names: PAGES
 	};
-	Object.keys(PAGES)
+	Object.keys(ALLOWED_PAGES)
 		.forEach(function (page) {
-			result.isActive[page] = (currentPage === page);
+			result.activePages[page] = (currentPage === page);
+			if(ALLOWED_PAGES[page]) {
+				result.isMenu[page] = true;
+				// console.log(page);
+			}
 		});
-
+	// console.log(result);
 	return result;
 };

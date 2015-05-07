@@ -30,11 +30,12 @@
 
 'use strict';
 
-module.exports = Footer;
+module.exports = Pages;
 
 var util = require('util'),
 	ComponentBase = require('../../lib/ComponentBase');
-util.inherits(Footer, ComponentBase);
+
+util.inherits(Pages, ComponentBase);
 
 /*
  * This is a Catberry Cat-component file.
@@ -43,11 +44,11 @@ util.inherits(Footer, ComponentBase);
  */
 
 /**
- * Creates new instance of the "footer" component.
+ * Creates new instance of the "pages" component.
  * @extends ComponentBase
  * @constructor
  */
-function Footer() {
+function Pages() {
 	ComponentBase.call(this);
 }
 
@@ -57,22 +58,12 @@ function Footer() {
  * @returns {Promise<Object>|Object|null|undefined} Data context
  * for template engine.
  */
-Footer.prototype.render = function () {
-	var l10n = this.$context.locator.resolve('localizationProvider'),
-		context = this.localizeContext();
-  var self = this;
-  return this.$context.getStoreData()
-    .then(function (pages) {
-      context.copyrightText = util.format(
-		    l10n.get(context.locale, 'COPYRIGHTS'),
-		    (new Date()).getFullYear()
-      );
-      context.isShow = true;
-      // console.log('-----> pages.currentPage: ' + pages.currentPage);
-      if (pages.currentPage === 'news') {
-        context.isShow = false;
-      };
-      // console.log(context);
-      return context;
-    });
+Pages.prototype.render = function () {
+	var self = this;
+	return this.$context.getStoreData()
+		.then(function (pages) {
+      console.log('--> Pages / render');
+      console.log(pages);
+			return self.localizeContext(pages);
+		});
 };

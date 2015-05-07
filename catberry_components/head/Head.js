@@ -43,15 +43,13 @@ Head.prototype.render = function () {
   socialLogo.path = '/assets/head/images/social-logo.png';
   return this.$context.getStoreData()
     .then(function (pages) {
-      console.log('------------> ' + pages.currentPage);
-      // TODO: неработает Pages
+      console.log('------------> Head / pages.currentPage: ' + pages.currentPage);
+      console.log(pages);
       return self.localizeContext({
         socialLogo: socialLogo,
         location: location,
-        pageTitleKey: pages.currentPage !== 'home' ?
-          'PAGE_TITLE_' + pages.currentPage : null
-        // pageTitleKey: pages.currentPage !== 'home' ?
-          // 'PAGE_TITLE_' + pages.currentPage.toUpperCase() : null
+        page: pages,
+        pageTitleKey: pages.currentPage !== 'home' ? 'PAGE_TITLE_' + pages.currentPage.toUpperCase() : null
       });
     });
 };

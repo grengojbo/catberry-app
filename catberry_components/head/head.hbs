@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{title}} ::: {{subtitle}}</title>
+<title>{{page.title}} ::: {{page.subtitle}}</title>
 <meta name="description" content="{{l10n "DESCRIPTION"}}">
 <meta name="keywords" content="{{l10n "KEYWORDS"}}">
 {{!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -10,25 +10,29 @@
 <!-- Begin Twitter summary card -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@jbokiev" />
-<meta name="twitter:title" content="{{title}}" />
+<meta name="twitter:title" content="{{page.title}}" />
 <meta name="twitter:description" content="{{l10n "DESCRIPTION"}}" />
 <meta name="twitter:image" content="{{socialLogo}}" />
 <meta name="twitter:url" content="{{location}}" />
 <!-- End Twitter summary card-->
 
 <!-- Begin Open Graph markup -->
-<meta property="og:title" content="{{title}}" />
+<meta property="og:title" content="{{page.title}}" />
 <meta property="og:description" content="{{l10n "DESCRIPTION"}}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{location}}" />
 <meta property="og:image" content="{{socialLogo}}" />
 
-<link rel="stylesheet" href="static/semantic-ui/semantic.min.css">
+{{#unless page.activePages.home}}
+<link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
+{{else}}
+<link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
+{{/unless}}
 {{#if isMobile}}
 <!-- Mobile head -->
 {{/if}}
 <!-- End Open Graph markup -->
-{{!-- <script src="/l10n.js"></script> --}}
+<script src="/l10n.js"></script>
 <script src="/bundle.js"></script>
 
 <link rel="shortcut icon" href="/favicon.ico">
