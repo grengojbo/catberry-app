@@ -8,13 +8,21 @@ module.exports = Pages;
  * https://github.com/catberry/catberry/blob/master/docs/index.md#stores
  */
 
+var DEFAULT_PAGE = 'home';
+
 var ALLOWED_PAGES = {
-		home: true,
-		about: true,
-		news: true,
-		contact: false
-	},
-	DEFAULT_PAGE = 'home';
+	home: true,
+	about: true,
+	news: true,
+	contact: false
+};
+
+var TEMPLATE_PAGES = {
+  home: 'home',
+	about: 'content',
+	news: 'news',
+	contact: 'content'
+};
 
 var PAGES = {
 	home: 'Home Page',
@@ -68,6 +76,7 @@ Pages.prototype.load = function () {
 		title: this._config.title,
 		subtitle: PAGES[currentPage],
 		currentPage: currentPage,
+		templatePage: TEMPLATE_PAGES,
 		activePages: {},
 		isMenu: {},
 		names: PAGES
