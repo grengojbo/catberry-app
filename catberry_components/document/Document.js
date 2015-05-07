@@ -2,6 +2,11 @@
 
 module.exports = Document;
 
+var util = require('util'),
+  ComponentBase = require('../../lib/ComponentBase');
+
+util.inherits(Document, ComponentBase);
+
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
@@ -13,5 +18,5 @@ module.exports = Document;
  * @constructor
  */
 function Document() {
-
+  ComponentBase.call(this);
 }
