@@ -10,5 +10,8 @@
 // https://github.com/catberry/catberry/blob/master/docs/index.md#routing
 
 module.exports = [
+  // '/:filter[TodoList,Filters]'
+  // '/:page[Pages]',
+  // '/:page[Pages]?query=:query[commits/Search]'
 	'/'
 ];
