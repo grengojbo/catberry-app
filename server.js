@@ -12,7 +12,8 @@ var http = require('http'),
 	util = require('util'),
 	path = require('path'),
 	publicPath = path.join(__dirname, 'public'),
-	connect = require('connect'),
+	// connect = require('connect'),
+	connect = require('express'),
 	config = require('./config/environment.json'),
 	templateEngine = require('catberry-handlebars'),
 	l10n = require('catberry-l10n'),
@@ -32,7 +33,16 @@ l10n.register(cat.locator);
 localizationHelper.register(cat.locator);
 
 var serveStatic = require('serve-static');
-app.use(serveStatic(publicPath));
+// app.use(serveStatic(publicPath));
+app.use('/public', serveStatic(publicPath));
+app.use('/robots.txt', serveStatic(path.join(publicPath, 'robots.txt')));
+app.use('/favicon.ico', serveStatic(path.join(publicPath, 'favicon.ico')));
+
+// var gitHubClient = cat.locator.resolveInstance(GitHubClient, config);
+// app.use('/public/html/github', gitHubClient.getMiddleware());
+
+var localizationLoader = cat.locator.resolve('localizationLoader');
+app.use(localizationLoader.getMiddleware());
 
 app.use(cat.getMiddleware());
 
