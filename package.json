@@ -1,54 +1,55 @@
 {
-	"name": "catberry-app",
-	"version": "0.0.1",
-	"description": "Empty project based on Catberry Framework",
-	"homepage": "https://github.com/grengojbo/catberry-app",
-	"keywords": [
-		"isomorphic", "catberry"
-	],
-	"bugs": {
-		"url": "https://github.com/grengojbo/catberry-app/issues",
-		"email": "oleg.dolya@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/grengojbo/catberry-app.git"
-	},
-	"author": {
-		"name": "Oleg Dolya",
-		"email": "oleg.dolya@gmail.com"
-	},
-	"main": "./server.js",
-	"browser": {
-		"./config/environment.js": "./config/browser.js"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"catberry": "^5.0.5",
-		"catberry-assets": "^1.0.2",
-		"catberry-handlebars": "^1.0.4",
-		"catberry-l10n": "^4.0.0",
-		"catberry-l10n-handlebars-helper": "^1.0.2",
-		"connect": "^3.0.0",
+  "name": "catberry-app",
+  "version": "0.0.1",
+  "description": "Empty project based on Catberry Framework",
+  "homepage": "https://github.com/grengojbo/catberry-app",
+  "keywords": [
+    "isomorphic",
+    "catberry"
+  ],
+  "bugs": {
+    "url": "https://github.com/grengojbo/catberry-app/issues",
+    "email": "oleg.dolya@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grengojbo/catberry-app.git"
+  },
+  "author": {
+    "name": "Oleg Dolya",
+    "email": "oleg.dolya@gmail.com"
+  },
+  "main": "./server.js",
+  "browser": {
+    "./config/environment.js": "./config/browser.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "catberry": "^5.0.5",
+    "catberry-assets": "^1.0.2",
+    "catberry-handlebars": "^1.0.4",
+    "catberry-l10n": "^4.0.0",
+    "catberry-l10n-handlebars-helper": "^1.0.2",
+    "connect": "^3.0.0",
+    "errorhandler": "^1.0.0",
+    "express": "^4.12.3",
     "gulp": "^3.8.11",
-		"errorhandler": "^1.0.0",
-		"serve-static": "^1.0.0"
-	},
-	"devDependencies": {
-		"jscs": "~1.6.2",
-		"jshint": "^2.6.0"
-	},
-	"engines": {
-		"node": ">=0.12"
-	},
-	"scripts": {
-		"start": "npm run release",
-		"release": "node ./build.js release && ./node_modules/.bin/gulp && node ./server.js release $PORT",
-		"debug": "node ./build.js & ./node_modules/.bin/gulp && node ./server.js",
+    "serve-static": "^1.0.0"
+  },
+  "devDependencies": {
+    "jscs": "~1.6.2",
+    "jshint": "^2.6.0"
+  },
+  "engines": {
+    "node": ">=0.12"
+  },
+  "scripts": {
+    "start": "npm run release",
+    "release": "node ./build.js release && ./node_modules/.bin/gulp && node ./server.js release $PORT",
+    "debug": "node ./build.js & ./node_modules/.bin/gulp && node ./server.js",
     "lint": "./node_modules/.bin/jshint ./ && ./node_modules/.bin/jscs ./",
-		"debug-win": "start /B node ./build.js && start /B node ./server.js",
+    "debug-win": "start /B node ./build.js && start /B node ./server.js",
     "test-lint": "npm run lint",
-		"test": "make"
-	}
+    "test": "make"
+  }
 }
-
