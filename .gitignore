@@ -1,6 +1,24 @@
+# general
+*.orig
+.idea
+.DS_Store
+.DS_Store?
+*~
+.sass-cache
+*.sublime-project
+*.db
+*.sqlite
+temp/
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
 # Logs
 logs
 *.log
+npm-debug.log
 
 # Runtime data
 pids
@@ -25,3 +43,16 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
+
+# build
+__BrowserBundle.js
+build/tmp
+build/dist
+src/tmp/
+public/tmp/
+src/index.html
+example/
+#public/bundle.js
+
+# other
+src/static/vendor
