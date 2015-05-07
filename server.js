@@ -17,7 +17,7 @@ var http = require('http'),
 	templateEngine = require('catberry-handlebars'),
 	l10n = require('catberry-l10n'),
 	localizationHelper = require('catberry-l10n-handlebars-helper'),
-	GitHubClient = require('./lib/GitHubClient'),
+	// GitHubClient = require('./lib/GitHubClient'),
 	cat = catberry.create(config),
 	app = connect();
 
