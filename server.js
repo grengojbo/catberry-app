@@ -22,7 +22,7 @@ var http = require('http'),
 	cat = catberry.create(config),
 	app = connect();
 
-var READY_MESSAGE = 'Ready to handle incoming requests on port %d';
+var READY_MESSAGE = 'START App >>> Ready to handle incoming requests on port: %d publicPath: ' + publicPath;
 
 config.publicPath = publicPath;
 config.server.port = port || config.server.port || 3000;
@@ -33,8 +33,8 @@ l10n.register(cat.locator);
 localizationHelper.register(cat.locator);
 
 var serveStatic = require('serve-static');
-// app.use(serveStatic(publicPath));
-app.use('/public', serveStatic(publicPath));
+app.use(serveStatic(publicPath));
+// app.use('/public', serveStatic(publicPath));
 app.use('/robots.txt', serveStatic(path.join(publicPath, 'robots.txt')));
 app.use('/favicon.ico', serveStatic(path.join(publicPath, 'favicon.ico')));
 
@@ -52,7 +52,6 @@ app.use(errorhandler());
 cat.events.on('ready', function () {
 	var logger = cat.locator.resolve('logger');
 	logger.info(util.format(READY_MESSAGE, config.server.port));
-	logger.info("START App >>> publicPath: " + publicPath)
 });
 
 http

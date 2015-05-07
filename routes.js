@@ -11,7 +11,7 @@
 
 module.exports = [
   // '/:filter[TodoList,Filters]'
-  // '/:page[Pages]',
+  '/:page[Pages]'
   // '/:page[Pages]?query=:query[commits/Search]'
-	'/'
+	// '/'
 ];

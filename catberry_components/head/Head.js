@@ -2,6 +2,11 @@
 
 module.exports = Head;
 
+var util = require('util'),
+  ComponentBase = require('../../lib/ComponentBase');
+
+util.inherits(Head, ComponentBase);
+
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
@@ -15,6 +20,7 @@ module.exports = Head;
  */
 function Head($config) {
 	this._config = $config;
+  ComponentBase.call(this);
 }
 
 /**
@@ -29,5 +35,23 @@ Head.prototype._config = null;
  * @returns {Object} Data object.
  */
 Head.prototype.render = function () {
-	return this._config;
+  var self = this,
+    location = this.$context.location.clone(),
+    socialLogo = this.$context.location.clone();
+  location.scheme = 'http';
+  socialLogo.scheme = location.scheme;
+  socialLogo.path = '/assets/head/images/social-logo.png';
+  return this.$context.getStoreData()
+    .then(function (pages) {
+      console.log('------------> ' + pages.currentPage);
+      // TODO: неработает Pages
+      return self.localizeContext({
+        socialLogo: socialLogo,
+        location: location,
+        pageTitleKey: pages.currentPage !== 'home' ?
+          'PAGE_TITLE_' + pages.currentPage : null
+        // pageTitleKey: pages.currentPage !== 'home' ?
+          // 'PAGE_TITLE_' + pages.currentPage.toUpperCase() : null
+      });
+    });
 };
