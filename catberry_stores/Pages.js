@@ -20,14 +20,14 @@ var ALLOWED_PAGES = {
 var TEMPLATE_PAGES = {
   home: 'home',
 	about: 'content',
-	news: 'news',
+	news: 'articles-list',
 	contact: 'content'
 };
 
 var STORE_PAGES = {
   home: 'Main',
 	about: 'Contents',
-	news: 'Contents',
+	news: 'articles/List',
 	contact: 'Contents'
 };
 
