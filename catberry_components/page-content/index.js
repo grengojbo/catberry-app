@@ -2,6 +2,11 @@
 
 module.exports = PageContent;
 
+var util = require('util'),
+  ComponentBase = require('../../lib/ComponentBase');
+
+util.inherits(PageContent, ComponentBase);
+
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
@@ -13,7 +18,7 @@ module.exports = PageContent;
  * @constructor
  */
 function PageContent() {
-
+  ComponentBase.call(this);
 }
 
 /**
@@ -23,7 +28,7 @@ function PageContent() {
  * for template engine.
  */
 PageContent.prototype.render = function () {
-
+  return this.$context.getStoreData();
 };
 
 /**
@@ -31,15 +36,15 @@ PageContent.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-PageContent.prototype.bind = function () {
-
-};
+// PageContent.prototype.bind = function () {
+//
+// };
 
 /**
  * Does cleaning for everything that have NOT been set by .bind() method.
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-PageContent.prototype.unbind = function () {
+// PageContent.prototype.unbind = function () {
 
-};
+// };

@@ -20,4 +20,5 @@ util.inherits(PageHome, ComponentBase);
  */
 function PageHome() {
 	ComponentBase.call(this);
+  return this.$context.getStoreData();
 }

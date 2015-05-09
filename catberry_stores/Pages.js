@@ -24,6 +24,13 @@ var TEMPLATE_PAGES = {
 	contact: 'content'
 };
 
+var STORE_PAGES = {
+  home: 'Main',
+	about: 'Contents',
+	news: 'Contents',
+	contact: 'Contents'
+};
+
 var PAGES = {
 	home: 'Home Page',
 	about: 'About',
@@ -53,8 +60,8 @@ Pages.prototype._config = null;
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
  */
-Pages.prototype.$lifetime = 60000;
-// Pages.prototype.$lifetime = 3600000;
+Pages.prototype.$lifetime = 3600000;
+// Pages.prototype.$lifetime = 60000;
 
 /**
  * Loads data from remote source.
@@ -76,7 +83,8 @@ Pages.prototype.load = function () {
 		title: this._config.title,
 		subtitle: PAGES[currentPage],
 		currentPage: currentPage,
-		templatePage: TEMPLATE_PAGES,
+		templatePage: TEMPLATE_PAGES[currentPage],
+		storePage: STORE_PAGES[currentPage],
 		activePages: {},
 		isMenu: {},
 		names: PAGES
