@@ -35,10 +35,10 @@ PageContent.prototype.slug = null;
  * for template engine.
  */
 PageContent.prototype.render = function () {
-  console.log('---> PageContent / render');
+  // console.log('---> PageContent / render');
   // console.log(this.$context.attributes);
   // console.log('attribute.slug: ' + this.$context.attributes.slug);
-  console.log('---> slug: ' + this.slug);
+  // console.log('---> slug: ' + this.slug);
   return this.$context.getStoreData();
 };
 

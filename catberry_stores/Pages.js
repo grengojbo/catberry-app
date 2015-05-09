@@ -14,13 +14,15 @@ var ALLOWED_PAGES = {
 	home: true,
 	about: true,
 	news: true,
-	contact: false
+	gallery: false,
+	contact: true
 };
 
 var TEMPLATE_PAGES = {
   home: 'home',
 	about: 'content',
 	news: 'articles-list',
+	gallery: 'content',
 	contact: 'content'
 };
 
@@ -28,13 +30,15 @@ var STORE_PAGES = {
   home: 'Main',
 	about: 'Contents',
 	news: 'articles/List',
-	contact: 'Contents'
+	gallery: 'Contents',
+	contact: 'Documents'
 };
 
 var PAGES = {
 	home: 'Home Page',
 	about: 'About',
 	news: 'News',
+	gallery: 'Photo Gallery',
 	contact: 'Contats',
 	commits: 'Commits to Catberry Framework repository',
 	search: 'Search in Catberry\'s code'
