@@ -18,9 +18,16 @@ util.inherits(PageContent, ComponentBase);
  * @constructor
  */
 function PageContent() {
+  console.log('-> module [PageContent]');
+  // console.log(this.$context.attributes);
+  if (this.$context.attributes.slug) {
+    this.slug = this.$context.attributes.slug;
+    this.$context.sendAction('slug', this.slug);
+  };
   ComponentBase.call(this);
 }
 
+PageContent.prototype.slug = null;
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -28,6 +35,10 @@ function PageContent() {
  * for template engine.
  */
 PageContent.prototype.render = function () {
+  console.log('---> PageContent / render');
+  // console.log(this.$context.attributes);
+  // console.log('attribute.slug: ' + this.$context.attributes.slug);
+  console.log('---> slug: ' + this.slug);
   return this.$context.getStoreData();
 };
 

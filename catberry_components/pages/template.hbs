@@ -1,9 +1,9 @@
 <section class="catberry section">
 	<div class="ui basic placeholder segment">
   {{#if activePages.news}}
-		<cat-page-{{templatePage}} id="pages-current-{{currentPage}}"></cat-page-{{templatePage}}>
+		<cat-page-{{templatePage}} id="pages-current-{{currentPage}}" cat-store="{{storePage}}" aricle-category="2"></cat-page-{{templatePage}}>
   {{else}}
-    <cat-page-{{templatePage}} id="pages-current-{{currentPage}}"></cat-page-{{templatePage}}>
+    <cat-page-{{templatePage}} id="pages-current-{{currentPage}}" cat-store="{{storePage}}" slug="{{currentPage}}"></cat-page-{{templatePage}}>
   {{/if}}
 	</div>
 </section>

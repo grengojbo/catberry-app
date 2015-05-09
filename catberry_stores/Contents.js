@@ -19,6 +19,8 @@ function Contents($uhr, $config) {
   this._config = $config;
 }
 
+Contents.prototype.slug = null;
+
 /**
  * Current application config.
  * @type {Object}
@@ -46,6 +48,13 @@ Contents.prototype.$lifetime = 3600000;
 Contents.prototype.load = function () {
 	// Here you can do any HTTP requests using this._uhr.
 	// Please read details here https://github.com/catberry/catberry-uhr.
+  var data = {
+    contentPage: {}
+  };
+  // console.log('-> Contents / load');
+  // console.log('--> this.$context.state: ' + this.$context.state);
+  // console.log(this);
+  // console.log('------');
   return this._uhr.get(TEST_URL, {
     headers: {
       Accept: 'application/vnd.github.VERSION.html+json'
@@ -55,12 +64,19 @@ Contents.prototype.load = function () {
       if (result.status.code >= 400 && result.status.code < 600) {
         throw new Error(result.status.text);
       }
-      var data = {};
+      // console.log('-> Contents / load');
+      // console.log(result.content);
       data.contentPage.main = result.content;
-      console.log('-> Contents / load');
-      console.log(data);
+      // console.log('------');
+      // console.log(data);
       return data;
     });
+};
+
+Contents.prototype.handleSlug = function (slug) {
+  // this.slug
+  console.log('---> handleSlug <---', slug);
+  this.$context.changed();
 };
 
 /**
