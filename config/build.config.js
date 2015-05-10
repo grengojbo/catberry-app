@@ -13,6 +13,8 @@ module.exports = {
   tpl: 'src/**/*.tpl.html',
   mainScss: 'src/static/scss/main.scss',
   homeScss: 'src/static/scss/home.scss',
+  mobileScss: 'src/static/scss/mobile.scss',
+  srcScss: 'src/static/scss/',
   scss: 'src/static/scss/**/*.scss',
   fonts: '/static/fonts/*',
   html: ['src/templates/*.html', 'src/templates/**/*.dust'],

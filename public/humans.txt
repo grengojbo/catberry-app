@@ -1,0 +1,18 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Chef: Oleg Dolya
+    Contact: oleg.dolya [at] gmail.com
+    Twitter: @jbokiev
+    From: Kiev, Ukraine
+
+# THANKS
+
+    <name>
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3, FlexBox
+    Normalize.css, PureCSS, Catberry, AngularJS

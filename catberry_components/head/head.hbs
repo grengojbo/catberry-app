@@ -42,12 +42,23 @@
 -->
 
 {{#unless page.activePages.home}}
+<!-- Other Page -->
 <link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
+<!-- build:css /static/css/main.css -->
+<link rel="stylesheet" href="/tmp/css/main.css" />
+<!-- endbuild -->
 {{else}}
+<!-- Home Page -->
 <link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
+<!-- build:css /static/css/home.css -->
+<link rel="stylesheet" href="/tmp/css/home.css" />
+<!-- endbuild -->
 {{/unless}}
 {{#if isMobile}}
 <!-- Mobile head -->
+<!-- build:css /static/css/mobile.css -->
+<link rel="stylesheet" href="/tmp/css/mobile.css" />
+<!-- endbuild -->
 {{/if}}
 <!-- End Open Graph markup -->
 <script src="/l10n.js"></script>
