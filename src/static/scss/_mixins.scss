@@ -1,0 +1,135 @@
+//rem font-size with px fallback
+@mixin font-size( $value ) {
+  font-size: ( $value ) * 1px;
+  font-size: ( $value / $base-font-size ) * 1rem;
+}
+
+//box Sizing
+@mixin box-sizing ($type: border-box) {
+  //content-box | border-box | inherit
+  -webkit-box-sizing: $type;
+     -moz-box-sizing: $type;
+          box-sizing: $type;
+}
+@mixin border-box() {
+    @include box-sizing( border-box );
+}
+
+//reset border, margin, and padding
+@mixin box-reset() {
+  margin: 0;
+  padding: 0;
+  border: 0 none;
+}
+
+//px to rem sizing with px fallout
+@mixin font-size($size, $context: $base-root-size) {
+  font-size: $size + px;
+  font-size: ($size / $base-root-size) + rem;
+}
+
+//selection
+@mixin selection() {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+//placeholder
+@mixin placeholder() {
+  color: #999;
+}
+
+//vertical align (http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/)
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin keyframes($name) {
+  @-moz-keyframes    $name { @content; }
+  @-webkit-keyframes $name { @content; }
+}
+
+// .menu-main {
+//   float: left;
+//   width: 300px;
+
+//   // Для телефонов
+//   @include respond-to(smart)     { @include grid($grid-total-width); }
+//   @include respond-to(smart) { float: none; };
+//   // Для телефонов с широким экраном
+//   @include respond-to(wide-handhelds) { float: none; };
+//    @include respond-to(tablet-wide) { @include grid($grid-total-width);  }
+//   // Для планшетов
+//   @include respond-to(tablets) { width: 240px; };
+//    @include respond-to(tablet)    { @include grid($grid-total-width);  }
+//    @include respond-to(desktop)   { @include grid($grid-total-width);  }
+// }
+// https://gist.github.com/chriseppstein/1215856
+@mixin respond-to($media) {
+  @if $media == smart {
+    $grid-columns: 10;
+    $grid-gutter-width: 10px;
+    $grid-total-width: 310px;
+    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+    @media screen and (max-width: $break-smart) { @content; }
+  }
+  @else if $media == tablet {
+    $grid-columns: 10;
+    $grid-gutter-width: 10px;
+    $grid-total-width: 460px;
+    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+    @media screen and (min-width: $break-smart + 1) and (max-width: $break-tablet) { @content; }
+  }
+  @else if $media == tablet-wide {
+    $grid-columns: 12;
+    $grid-gutter-width: 10px;
+    $grid-total-width: 740px;
+    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+    @media screen and (min-width: $break-tablet + 1) and (max-width: $break-wide) { @content; }
+  }
+  @else if $media == desktop {
+    $grid-columns: 12;
+    $grid-gutter-width: 20px;
+    $grid-total-width: 980px;
+    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+    @media screen and (min-width: $break-wide + 1) { @content; }
+  }
+}
+// @mixin respond-to($media) {
+//   @if $media == handhelds {
+//     @media only screen and (max-width: 479px) { @content; }
+//   }
+//   @else if $media == wide-handhelds {
+//     @media only screen and (min-width: 480px) and (max-width: 767px) { @content; }
+//   }
+//   @else if $media == tablets {
+//     @media only screen and (min-width: 768px) and (max-width: 959px) { @content; }
+//   }
+// }
+
+// @include font-face("Open Sans Condensed", "Open Sans Cond Light", "OpenSans-CondensedLight", "open_sans_condensed_light", 800, "italic");
+@mixin font-face($style-name, $family-space, $family, $file, $fw:300, $fs:"normal") {
+  // $filepath: "../" + $static-path + "/fonts/" + $file;
+  $filepath: "../fonts/" + $file;
+  @font-face {
+      font-family: "#{$style-name}";
+      // src: url($filepath + ".eot");
+      // src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+      src: local($family-space), local($family), url($filepath + ".woff") format('woff');
+      font-weight: $fw;
+      font-style: $fs;
+  }
+}
+// h1 {
+//    @include font('OpenSansCondensed') { font-size: 200%};
+// }
+@mixin font($font, $style: normal, $weight: normal) {
+    font-family: $font, $default-fonts;
+    font-style:  $style;
+    font-weight: $weight;
+    @content;
+}

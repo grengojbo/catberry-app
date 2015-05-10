@@ -1,0 +1,54 @@
+// Base font size in used in _mixins.scss
+$base-root-size: 16;
+$default-fonts: sans-serif;
+$nav-fonts: ArialMT, Arial;
+
+//colors https://github.com/mrmrs/colors/blob/master/sass/_variables.scss
+$aqua: #7fdbff;
+$blue: #0074d9;
+$navy: #001f3f;
+$teal: #39cccc;
+$green: #2ecc40;
+$olive: #3d9970;
+$lime: #01ff70;
+
+// Warm
+$yellow: #ffdc00;
+$orange: #ff851b;
+$red: #EF413D;
+// $red: #ff4136;
+$fuchsia: #f012be;
+$purple: #b10dc9;
+$maroon: #85144b;
+
+// Gray Scale
+$white: #fff;
+$silver: #ddd;
+$gray: #aaa;
+$black: #111;
+
+$colors-blue: #3b5998;
+$colors-ligh-blue: #26c4f1;
+$colors-red: #ce2616;
+
+// Media
+$break-smart: 480px;
+$break-tablet: 768px;
+$break-wide: 1000px;
+
+// Base settings
+$color-bg: $white;
+$color-footer: #2e2e2e;
+$color: #292f33;
+$color-nav: #9B9B9B;
+$header-heigh: 36px;
+$max-width: 920px;
+$min-width: 430px;
+$opacity: 0.8;
+$banner-height: 580px;
+
+// Other settings
+$static-path: "static";
+
+$gallery-hor-width: 480px;
+$gallery-hor-height: 320px;

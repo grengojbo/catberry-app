@@ -1,0 +1,24 @@
+.ui.form input[type="text"],
+.ui.form input[type="email"],
+.ui.form input[type="date"],
+.ui.form input[type="password"],
+.ui.form input[type="number"],
+.ui.form input[type="url"],
+.ui.form input[type="tel"] {
+  // padding: 0.7em 0;
+  border-radius: 0;
+  box-shadow: 4px 0em 0em 0em #d95c5c inset;
+  .error {
+  border-radius: 0;
+  }
+}
+
+.ui.form {
+ .field {
+  margin: 0 2em 1em 0;
+  }
+}
+.prompt {
+  font-size: 0.8em;
+  color: $red;
+}

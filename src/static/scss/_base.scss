@@ -1,0 +1,134 @@
+/* Fonts
+   ========================================================================== */
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
+// @include font-face("Open Sans", "Open Sans", "OpenSans", "opensans-regular", "normal", "normal");
+// @include font-face("Open Sans", "Open Sans Italic", "OpenSans-Italic", "opensans-italic", "normal", "italic");
+
+// @include font-face("OpenSansCondensed", "Open Sans Cond Light", "OpenSans-CondensedLight", "open_sans_condensed_light", 300, "normal");
+// @include font-face("OpenSansCondensedBold", "Open Sans Condensed Bold", "OpenSans-CondensedBold", "opensans-condbold", 700, "normal");
+// @include font-face("OpenSansCondensedItalic", "Open Sans Cond Light Italic", "OpenSans-CondensedLightItalic", "opensans-condlightitalic", 300, "italic");
+
+
+/* Defaults  ========================================================================== */
+
+body {
+  // background: $fuchsia;
+  min-width: $min-width;
+  height: 100%;
+  background: $color-bg;
+  color: $color;
+  // margin: 0;
+  // padding: 0;
+  // -webkit-font-smoothing: subpixel-antialiased !important;
+  // -webkit-backface-visibility: hidden;
+  // -moz-backface-visibility:    hidden;
+  // -ms-backface-visibility:     hidden;
+}
+
+img.pure-img {
+  vertical-align: middle;
+  max-width: 60%;
+  display: inline;
+
+}
+code {
+  color: $red;
+
+}
+.pure-menu.pure-menu-horizontal {
+  background: $white;
+
+}
+.pure-menu {
+  font-size: 90%;
+  .pure-menu-heading {
+    margin-top: 2px;
+    border: 0;
+  }
+}
+a {
+  color: $blue;
+  text-decoration: none;
+  line-height: inherit;
+  &:focus,
+  &:hover {
+    color: darken($blue, 9);
+  }
+}
+a.pure-button:focus,
+a.pure-button:hover {
+  color: #fff;
+}
+pre {
+  code {
+    color: $black;
+    background-color: $silver;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $gray;
+    display: block;
+    padding: 0.5em;
+  }
+
+}
+.pure-button {
+  border-radius: 1px;
+}
+.bg-blue {
+  background: $colors-blue;
+  color: $white;
+}
+.bg-ligh-blue {
+  background: $colors-ligh-blue;
+  color: $white;
+}
+.bg-red {
+  background: $colors-red;
+  color: $white;
+}
+.bg-ist {
+  color: #000;
+  background: rgb(223, 117, 20);
+  width: 84px;
+}
+.line-first {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $gray;
+}
+.jbo-pr {
+  text-align: right;
+}
+.jbo-pl {
+  text-align: left;
+}
+.jbo-pj {
+  text-align: justify;
+}
+.img_left {
+    float: left;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    margin-top: 3px
+}
+.img_right {
+    margin-left: 14px;
+    margin-top: 3px;
+    margin-bottom: 14px;
+    float: right
+}
+
+.subscribe--error {
+  padding: 2px 5px 2px 5px;
+  margin: 0 1px 0 0;
+  width: 100%;
+}
+
+/* Header  ========================================================================== */
+header {
+  height: 50px;
+}
+/* Footer  ========================================================================== */
+footer {
+  margin-top: 40px;
+}

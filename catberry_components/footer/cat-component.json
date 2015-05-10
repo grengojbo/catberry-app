@@ -1,4 +1,4 @@
 {
 	"name": "footer",
-	"template": "./template.hbs"
+	"template": "./footer.hbs"
 }

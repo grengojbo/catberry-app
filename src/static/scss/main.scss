@@ -1,0 +1,17 @@
+/*
+inspired by:
+https://github.com/minamarkham/sassy-starter/
+https://github.com/kachunchau/smacss-boilerplate
+https://github.com/davidrapson/scss-toolkit
+*/
+@import 'settings', 'mixins', 'helpers';
+@import 'modules/island','modules/horizontal-list', 'modules/buttons';
+@import 'modules/modal';
+ // 'modules/loader';
+@import 'normalize', 'base';
+@import 'layouts/home', 'layouts/page', 'layouts/level', 'layouts/gallery', 'layouts/modal', 'states';
+@import 'modules/form', 'modules/button', 'modules/message', 'modules/image', 'modules/card';
+
+.conteiner--shops, .conteiner--stage, .conteiner--about, .conteiner--news, .conteiner--photogallery, .conteiner--contacts{
+  background-color: #fff;
+}
