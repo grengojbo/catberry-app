@@ -1,9 +1,11 @@
 {
 	"title": "Catberry Project",
-  "gitHubClient": {
+  "siteApiClient": {
     "host": "https://api.github.com",
-    "accessToken": "your secret token here"
+    "accessToken": "your secret token here",
+    "version": "v3"
   },
+  "siteUrl": "localhost",
   "l10n": {
     "defaultLocale": "ru",
     "cookie": {

@@ -52,7 +52,7 @@ src/tmp/
 public/tmp/
 src/index.html
 example/
-#public/bundle.js
+public/bundle.js
 
 # other
 src/static/vendor
