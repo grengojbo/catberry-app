@@ -17,7 +17,12 @@ clean:
 	find . -name "*.log" -type f -delete
 
 run:
-	npm run debug
+	@gulp build
+	@npm run debug
 
 install:
-	npm install
+	@git remote add skeleton https://github.com/grengojbo/catberry-app.git
+	@git fetch skeleton
+	@git merge skeleton/master
+	@npm install
+	@bower install

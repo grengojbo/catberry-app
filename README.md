@@ -34,7 +34,7 @@ git push -u origin master
 Делаем форк шаблона приложения, для удобства я использую [github/hub](https://github.com/github/hub).
 
 ```
-git remote add skeleton https://github.com/grengojbo/grengojbo-skeleton.git
+git remote add skeleton https://github.com/grengojbo/catberry-app.git
 git fetch skeleton
 git merge skeleton/master
 ```
