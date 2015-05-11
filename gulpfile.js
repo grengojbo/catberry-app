@@ -11,6 +11,12 @@ var sourcemaps = require('gulp-sourcemaps');
 
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
+
+gulp.task('clean:vendor', del.bind(null, [
+    path.join(config.assets, 'vendor', '**'),
+    path.join(config.assets, 'scss', '**')
+]));
+
 gulp.task('clean:tmp', del.bind(null, [
     path.join(config.tmp, 'scss'),
     path.join(config.tmp, 'vendor', '**'),
@@ -147,6 +153,6 @@ gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static', 'copy-static'], 'html:head', cb);
 });
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:home', 'copy-static'], 'copy:head', cb);
+  runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:home', 'copy-static', 'copy:head'], 'clean:vendor', cb);
 });
 // gulp.task('build', ['sassHome', 'sassMain', 'sassMobile', 'copy-static']);
