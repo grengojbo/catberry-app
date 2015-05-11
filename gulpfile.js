@@ -66,6 +66,12 @@ gulp.task('copy-static', function () {
     .pipe($.size({title: 'copy old static'}));
 });
 
+gulp.task('copy:head', function () {
+    return gulp.src(path.join(config.templates, 'head', '*.hbs'))
+        .pipe(gulp.dest(path.join(config.cat, 'head')))
+    .pipe($.size({title: 'copy head.hbs'}));
+});
+
 gulp.task('html:head', function() {
   var assets = $.useref.assets({searchPath: '{static,src,public}'});
 
@@ -82,7 +88,7 @@ gulp.task('html:head', function() {
     .pipe($.revReplace())
     // .pipe($.if('*.html', $.minifyHtml({empty: true})))
     // .pipe($.if(config.map, sourcemaps.write()))
-    .pipe(gulp.dest(config.cat))
+    .pipe(gulp.dest(config.distTmp))
     .pipe($.size({title: 'html head'}));
 });
 
@@ -97,6 +103,7 @@ gulp.task('html:head', function() {
 
 gulp.task('default', ['copy-static']);
 gulp.task('release', ['build', 'html:head']);
+gulp.task('server', ['build', 'copy:head']);
 gulp.task('build', ['clean'], function(cb) {
   runSequence(['sass:main', 'sass:mobile', 'sass:home', 'copy-static'], cb);
 });
