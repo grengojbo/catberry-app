@@ -46,8 +46,7 @@ node_modules
 
 # build
 __BrowserBundle.js
-build/tmp
-build/dist
+build
 src/tmp/
 public/tmp/
 src/index.html

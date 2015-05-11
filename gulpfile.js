@@ -11,6 +11,11 @@ var sourcemaps = require('gulp-sourcemaps');
 
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
+gulp.task('clean:tmp', del.bind(null, [
+    path.join(config.tmp, 'scss'),
+    path.join(config.assets, 'css', '{home,main,mobile}-*.css'),
+    path.join(config.distTmp, 'static', 'scss')
+]));
 
 gulp.task('sass:home', function() {
   return $.rubySass(config.homeScss, {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-home'})
@@ -54,10 +59,33 @@ gulp.task('sass:mobile', function() {
     .pipe($.size({title: 'sass mobile'}));
 });
 
+gulp.task('copy:tmp', function () {
+    return gulp.src(['!' + path.join('src', 'static', 'scss', '**'), path.join('src', 'static', '**')])
+        .pipe(gulp.dest(config.tmp))
+    .pipe($.size({title: 'copy tmp'}));
+});
+
 gulp.task('copy:static', function () {
-    return gulp.src(path.join('static', '**'))
-        .pipe(gulp.dest(config.dist))
+    return gulp.src(['!' + path.join('src', 'static', 'scss', '**'), path.join('src', 'static', '**')])
+        .pipe(gulp.dest(path.join(config.dist, 'static')))
     .pipe($.size({title: 'copy static'}));
+});
+gulp.task('copy:build', function () {
+    return gulp.src(['!' + path.join('src', 'static', 'scss', '**'), path.join('src', 'static', '**')])
+        .pipe(gulp.dest(path.join(config.distTmp, 'static')))
+    .pipe($.size({title: 'copy build'}));
+});
+
+gulp.task('copy:dist', ['clean:tmp'], function () {
+    return gulp.src(path.join(config.distTmp, 'static', '**'))
+        .pipe(gulp.dest(config.assets))
+    .pipe($.size({title: 'copy dist'}));
+});
+
+gulp.task('copy:css', ['sass:main', 'sass:mobile', 'sass:home'], function () {
+    return gulp.src(path.join(config.tmp, 'css', '**'))
+        .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
+    .pipe($.size({title: 'copy css'}));
 });
 
 gulp.task('copy-static', function () {
@@ -72,8 +100,14 @@ gulp.task('copy:head', function () {
     .pipe($.size({title: 'copy head.hbs'}));
 });
 
-gulp.task('html:head', function() {
-  var assets = $.useref.assets({searchPath: '{static,src,public}'});
+gulp.task('copy:head:dist', function () {
+    return gulp.src(path.join(config.distTmp, 'head.hbs'))
+        .pipe(gulp.dest(path.join(config.cat, 'head')))
+    .pipe($.size({title: 'copy head.hbs'}));
+});
+
+gulp.task('html:head', ['copy:css'], function() {
+  var assets = $.useref.assets({searchPath: '{build,static,src,public}'});
 
   return gulp.src(config.templates + '/head/head.hbs')
     // .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
@@ -102,9 +136,13 @@ gulp.task('html:head', function() {
 // });
 
 gulp.task('default', ['copy-static']);
-gulp.task('release', ['build', 'html:head']);
-gulp.task('server', ['build', 'copy:head']);
+gulp.task('release', ['build:release'], function(cb) {
+  runSequence(['clean:tmp', 'copy:head:dist'], 'copy:dist', cb);
+});
+gulp.task('build:release', ['clean'], function(cb) {
+  runSequence(['copy:build', 'copy:static', 'copy-static'], 'html:head', cb);
+});
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['sass:main', 'sass:mobile', 'sass:home', 'copy-static'], cb);
+  runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:home', 'copy-static'], 'copy:head', cb);
 });
 // gulp.task('build', ['sassHome', 'sassMain', 'sassMobile', 'copy-static']);

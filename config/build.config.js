@@ -7,7 +7,7 @@ module.exports = {
   proxy: 'http://localhost:5000',
   tmp: 'public/tmp',
   dist: 'public',
-  distTmp: 'build/dist',
+  distTmp: 'build',
   base: 'src',
   assetsSrc: 'src/assets/**/*',
   tpl: 'src/**/*.tpl.html',
