@@ -13,7 +13,11 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 gulp.task('clean:tmp', del.bind(null, [
     path.join(config.tmp, 'scss'),
+    path.join(config.tmp, 'vendor', '**'),
     path.join(config.assets, 'css', '{home,main,mobile}-*.css'),
+    path.join(config.assets, 'vendor', '**'),
+    path.join(config.assets, 'scss', '**'),
+    path.join(config.distTmp, 'static', 'vendor', '**'),
     path.join(config.distTmp, 'static', 'scss')
 ]));
 
