@@ -54,13 +54,49 @@ gulp.task('sass:mobile', function() {
     .pipe($.size({title: 'sass mobile'}));
 });
 
-gulp.task('copy-static', function () {
-	return gulp.src(path.join('static', '**'))
-		.pipe(gulp.dest(config.dist))
+gulp.task('copy:static', function () {
+    return gulp.src(path.join('static', '**'))
+        .pipe(gulp.dest(config.dist))
     .pipe($.size({title: 'copy static'}));
 });
 
+gulp.task('copy-static', function () {
+	return gulp.src(path.join('static', '**'))
+		.pipe(gulp.dest(config.dist))
+    .pipe($.size({title: 'copy old static'}));
+});
+
+gulp.task('html:head', function() {
+  var assets = $.useref.assets({searchPath: '{static,src,public}'});
+
+  return gulp.src(config.templates + '/head/head.hbs')
+    // .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
+    .pipe(assets)
+    // .pipe($.if(config.map, sourcemaps.init()))
+    // .pipe($.if('**/*main.js', $.uglify({mangle: false})))
+    .pipe($.if('*.css', $.csso()))
+    // .pipe($.if(['**/*main.js', '**/*main.css'], $.header(config.banner, {pkg: pkg})))
+    .pipe($.rev())
+    .pipe(assets.restore())
+    .pipe($.useref())
+    .pipe($.revReplace())
+    // .pipe($.if('*.html', $.minifyHtml({empty: true})))
+    // .pipe($.if(config.map, sourcemaps.write()))
+    .pipe(gulp.dest(config.cat))
+    .pipe($.size({title: 'html head'}));
+});
+
+// gulp.task('include', function() {
+//   gulp.src([config.templates + '/index.html'])
+//     .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
+//     .pipe(gulp.dest(config.base + '/'))
+//     .pipe($.size({
+//       title: 'include'
+//     }));
+// });
+
 gulp.task('default', ['copy-static']);
+gulp.task('release', ['build', 'html:head']);
 gulp.task('build', ['clean'], function(cb) {
   runSequence(['sass:main', 'sass:mobile', 'sass:home', 'copy-static'], cb);
 });

@@ -19,7 +19,7 @@ module.exports = {
   fonts: '/static/fonts/*',
   html: ['src/templates/*.html', 'src/templates/**/*.dust'],
   dust: 'src/templates/**/*.dust',
-  cat: 'catberry_modules',
+  cat: 'catberry_components',
   templates: 'src/templates',
   vendor: 'src/static/vendor/**',
   catberry: 'catberry_modules/**/*.js',
