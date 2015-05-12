@@ -20,14 +20,14 @@ GIT_COMMIT:="$(shell git rev-parse HEAD)"
 GIT_DIRTY:="$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)"
 
 help:
-	@echo "...............................................................\n"
-	@echo Project: $(PROJECT_NAME)
-	@echo version: $(VERSION)
-	@echo make install -
-	@echo make clean   -
-	@echo make run     -
-	@echo make release -
-	@echo make deploy -
+	@echo "..............................................................."
+	@echo "Project: $(PROJECT_NAME)"
+	@echo "version: $(VERSION)"
+	@echo "make install - Install npm and bower packages"
+	@echo "make clean   - Clean .orig, .log files"
+	@echo "make run     - Run project debug mode"
+	@echo "make release - Build and run release project"
+	@echo "make deploy  - Deploy current project (git push and ansible deploy)"
 	@echo "...............................................................\n"
 
 npm-test: lint
@@ -58,7 +58,7 @@ push:
 	@git ci -am "new release v$(VERSION) COMMIT: $(GIT_COMMIT)"
 	@git push
 
-deploy:
+deploy: push
 	@$(shell cd $(ANSIBLE_DIR) && ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml && cd $(CURRENT_DIR))
 
 run:
