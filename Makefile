@@ -1,8 +1,8 @@
 NAME:=example
 ACCOUNT="grengojbo"
+ANSIBLE_DIR="../../ansible"
 
 CURRENT_DIR:=$(CURDIR)
-ANSIBLE_DIR:="~/ansible"
 
 # Program version
 VERSION := $(shell cat VERSION)
@@ -39,11 +39,11 @@ config:
 	cp -nR ./configs_example/ ./configs/
 	echo "Configuration initialized in ./configs"
 
-build:
+builds:
 	@gulp release
 	@node ./build.js release
 
-release: build
+release: builds
 	@echo Release $(PROJECT_NAME) version: $(VERSION)
 	@node ./server.js release
 
@@ -58,15 +58,12 @@ push:
 	@git ci -am "new release v$(VERSION) COMMIT: $(GIT_COMMIT)"
 	@git push
 
-deploy: push
-	@cd ${ANSIBLE_DIR}
-	@ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml
-	@cd ${CURRENT_DIR}
+deploy:
+	@$(shell cd $(ANSIBLE_DIR) && ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml && cd $(CURRENT_DIR))
 
 run:
 	@gulp build
-	@node ./build.js
-	@node ./server.js
+	@npm run debug
 
 install:
 	@npm install

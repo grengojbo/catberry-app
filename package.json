@@ -57,8 +57,8 @@
   },
   "scripts": {
     "start": "npm run release",
-    "release": "node ./build.js release && node ./server.js release $PORT",
-    "debug": "node ./build.js && node ./server.js",
+    "release": "node ./build.js release && ./node_modules/.bin/gulp && node ./server.js release $PORT",
+    "debug": "node ./build.js & ./node_modules/.bin/gulp && node ./server.js",
     "lint": "./node_modules/.bin/jshint ./ && ./node_modules/.bin/jscs ./",
     "debug-win": "start /B node ./build.js && start /B node ./server.js",
     "test-lint": "npm run lint",
