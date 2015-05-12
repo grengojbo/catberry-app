@@ -10,11 +10,24 @@ https://github.com/davidrapson/scss-toolkit
 .home--bg {
   width: 100%;
   background: transparent url('../images/bg1.jpg') top center no-repeat fixed;
-  background-size: cover;
-  // position: absolute;
-  // top: 0;
+  // background-size: cover;
+  position: absolute;
+  top: 0;
   // left: 0;
   // z-index: -1;
-  // min-height: 708px;
+  min-height: 400px;
+  margin: 0;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
+}
+
+.ui.huge.message {
+  // font-size: 1.5em;
+  background: none;
+  color: $white;
+  margin-top: $header-heigh;
+  box-shadow: none;
+  // text-align: center;
+}
+.ui.huge.header {
+  color: $white;
 }

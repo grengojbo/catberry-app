@@ -44,7 +44,12 @@ body:before {
 .ui.segment {
   border-radius: 0;
 }
-
+.ui.grid {
+  margin: 0;
+}
+.padding-reset {
+  padding: 0px !important;
+}
 img.pure-img {
   vertical-align: middle;
   max-width: 60%;
