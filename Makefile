@@ -1,3 +1,34 @@
+NAME:=bobx
+ACCOUNT="grengojbo"
+
+CURRENT_DIR:=$(CURDIR)
+ANSIBLE_DIR:="~/ansible"
+
+# Program version
+VERSION := $(shell cat VERSION)
+
+# Project owner for bintray
+OWNER:=${ACCOUNT}
+
+# Project name for bintray
+PROJECT_NAME:=$(shell basename $(abspath ./))
+
+# Grab the current commit
+GIT_COMMIT:="$(shell git rev-parse HEAD)"
+
+# Check if there are uncommited changes
+GIT_DIRTY:="$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)"
+
+help:
+	@echo "...............................................................\n"
+	@echo $(PROJECT_NAME) version: $(VERSION)
+	@echo make install -
+	@echo make clean   -
+	@echo make run     -
+	@echo make release -
+	@echo make deploy -
+	@echo "...............................................................\n"
+
 npm-test: lint
 
 lint:
@@ -7,8 +38,13 @@ config:
 	cp -nR ./configs_example/ ./configs/
 	echo "Configuration initialized in ./configs"
 
-release:
-	node ./build.js release
+build:
+	@gulp release
+	@node ./build.js release
+
+release: build
+	@echo Release $(PROJECT_NAME) version: $(VERSION)
+	@node ./server.js release
 
 clean:
 	rm -rf coverage
@@ -16,13 +52,21 @@ clean:
 	find . -name "*.orig" -type f -delete
 	find . -name "*.log" -type f -delete
 
+deploy:
+	@cd ${ANSIBLE_DIR}
+	@ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml
+	@cd ${CURRENT_DIR}
+
 run:
 	@gulp build
-	@npm run debug
+	@node ./build.js
+	@node ./server.js
 
 install:
+	@npm install
+	@bower install
+
+skeleton:
 	@git remote add skeleton https://github.com/grengojbo/catberry-app.git
 	@git fetch skeleton
 	@git merge skeleton/master
-	@npm install
-	@bower install
