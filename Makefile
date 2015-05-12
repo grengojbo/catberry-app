@@ -1,4 +1,4 @@
-NAME:=bobx
+NAME:=example
 ACCOUNT="grengojbo"
 
 CURRENT_DIR:=$(CURDIR)
@@ -21,7 +21,8 @@ GIT_DIRTY:="$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || tru
 
 help:
 	@echo "...............................................................\n"
-	@echo $(PROJECT_NAME) version: $(VERSION)
+	@echo Project: $(PROJECT_NAME)
+	@echo version: $(VERSION)
 	@echo make install -
 	@echo make clean   -
 	@echo make run     -
@@ -52,7 +53,12 @@ clean:
 	find . -name "*.orig" -type f -delete
 	find . -name "*.log" -type f -delete
 
-deploy:
+push:
+	@git add -A
+	@git ci -am "new release v$(VERSION) COMMIT: $(GIT_COMMIT)"
+	@git push
+
+deploy: push
 	@cd ${ANSIBLE_DIR}
 	@ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml
 	@cd ${CURRENT_DIR}
