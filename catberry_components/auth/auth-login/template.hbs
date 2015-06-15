@@ -3,7 +3,7 @@
     <div class="eight wide column">
       <div class="ui left aligned segment">
         <h4 class="ui dividing header">{{l10n "LOGIN"}}</h4>
-        <form class="ui error form small" name="login">
+        <form class="ui error form small" name="login" role="login">
                         <div class="field">
                             <label for="username">{{l10n "USERNAME"}}:</label>
                             <div class="ui icon input">
@@ -20,6 +20,7 @@
                         </div>
                         <input type="submit" name="submit" class="ui inverted blue button" />
         </form>
+        <cat-loader id="login-progress"></cat-loader>
                 </div>
             </div>
     </div>

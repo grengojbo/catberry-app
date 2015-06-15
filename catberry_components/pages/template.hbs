@@ -1,6 +1,6 @@
 <section class="wrap section">
-{{#if activePages.account}}
-  <cat-auth-login id="auth-login"></cat-auth-login>
+{{#if activePages.login}}
+  <cat-auth-login id="auth-login" cat-store="auth/Login"></cat-auth-login>
 {{else}}
 	{{!-- <div class="ui basic placeholder segment"> --}}
   {{#if activePages.news}}
