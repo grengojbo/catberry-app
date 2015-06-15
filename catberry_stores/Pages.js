@@ -15,7 +15,8 @@ var ALLOWED_PAGES = {
 	about: true,
 	news: true,
 	gallery: false,
-	contact: true
+	contact: true,
+	account: true
 };
 
 var TEMPLATE_PAGES = {
@@ -23,7 +24,8 @@ var TEMPLATE_PAGES = {
 	about: 'content',
 	news: 'articles-list',
 	gallery: 'content',
-	contact: 'content'
+	contact: 'content',
+	account: 'content'
 };
 
 var STORE_PAGES = {
@@ -31,7 +33,8 @@ var STORE_PAGES = {
 	about: 'Contents',
 	news: 'articles/List',
 	gallery: 'Contents',
-	contact: 'Documents'
+	contact: 'Documents',
+	account: 'Documents'
 };
 
 var PAGES = {
@@ -41,7 +44,8 @@ var PAGES = {
 	gallery: 'Photo Gallery',
 	contact: 'Contats',
 	commits: 'Commits to Catberry Framework repository',
-	search: 'Search in Catberry\'s code'
+	search: 'Search in Catberry\'s code',
+	account: 'Login'
 };
 
 /**

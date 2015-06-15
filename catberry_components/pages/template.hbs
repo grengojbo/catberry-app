@@ -1,4 +1,7 @@
 <section class="wrap section">
+{{#if activePages.account}}
+  <cat-auth-login id="auth-login"></cat-auth-login>
+{{else}}
 	{{!-- <div class="ui basic placeholder segment"> --}}
   {{#if activePages.news}}
 		<cat-articles-list id="pages-articles-list" cat-store="{{storePage}}" category="2" limit="40"></cat-articles-list>
@@ -6,4 +9,5 @@
     <cat-page-{{templatePage}} id="pages-current-{{currentPage}}" cat-store="{{storePage}}" slug="{{currentPage}}"></cat-page-{{templatePage}}>
   {{/if}}
 	{{!-- </div> --}}
+{{/if}}
 </section>
