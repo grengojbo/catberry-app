@@ -100,7 +100,7 @@ Pages.prototype.load = function () {
 	currentPage = currentPage.toLowerCase();
 	console.log('-> currentPage: ' + currentPage);
 	// trace, info, warn, error, fatal
-	this._logger.info('----------------------- LOGGER ------');
+	// this._logger.info('----------------------- LOGGER ------');
 	if (!ALLOWED_PAGES.hasOwnProperty(currentPage)) {
 		currentPage = DEFAULT_PAGE;
 	}

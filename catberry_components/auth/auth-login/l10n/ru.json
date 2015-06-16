@@ -1,7 +1,7 @@
 {
-	"USERNAME": "Username or email",
-  "PASSWORD": "Password",
-  "LOGIN": "Log in",
-  "FORGOT_PASSWORD": "Forgot your password?",
-  "SIGNUP": "Need an account? Sign up free."
+	"USERNAME": "Имя пользователя или email",
+  "PASSWORD": "Пароль",
+  "LOGIN": "Войти",
+  "FORGOT_PASSWORD": "Забыли пароль?",
+  "SIGNUP": "Необходим аккаунт? Бесплатная регистрация."
 }
