@@ -4,21 +4,9 @@
       <div class="ui left aligned segment">
         <h4 class="ui dividing header">{{l10n "LOGIN"}}</h4>
         <form class="ui error form small" name="login" role="login">
-                        <div class="field">
-                            <label for="username">{{l10n "USERNAME"}}:</label>
-                            <div class="ui icon input">
-                                <input type="text" placeholder="{{l10n "USERNAME"}}" name="username" id="username" /> <i class="user icon"></i>
-
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="password">{{l10n "PASSWORD"}}:</label>
-                            <div class="ui icon input">
-                                <input type="password" placeholder="{{l10n "PASSWORD"}}" name="password" id="password" /> <i class="lock icon"></i>
-
-                            </div>
-                        </div>
-                        <input type="submit" name="submit" class="ui inverted blue button" />
+        <cat-input id="cat-input-login-username" autofocus required name="username" type="text" placeholder-key="PLACEHOLDER_USERNAME" label-key="USERNAME" tabindex="1" icon="user icon"></cat-input>
+        <cat-input id="cat-input-login-password" type="password" tabindex="2" placeholder-key="PLACEHOLDER_PASSWORD" label-key="PASSWORD" icon="lock icon"></cat-input>
+        <input type="submit" name="submit" class="ui inverted blue button" />
         </form>
         <cat-loader id="login-progress"></cat-loader>
                 </div>

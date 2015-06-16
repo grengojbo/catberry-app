@@ -1,6 +1,8 @@
 {
-	"USERNAME": "Имя пользователя или email",
+  "USERNAME": "Имя пользователя или email",
   "PASSWORD": "Пароль",
+  "PLACEHOLDER_USERNAME": "Введите имя пользователя или email",
+  "PLACEHOLDER_PASSWORD": "Введите пароль",
   "LOGIN": "Войти",
   "FORGOT_PASSWORD": "Забыли пароль?",
   "SIGNUP": "Необходим аккаунт? Бесплатная регистрация."
