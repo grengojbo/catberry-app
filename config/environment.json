@@ -12,9 +12,16 @@
       "path": "/"
     }
   },
+  "supportedLanguages": [
+    { "title": "Українська", "value": "uk" },
+    { "title": "Русский", "value": "ru" },
+    { "title": "English", "value": "en" }
+  ],
   "googleAnalytics": {
     "id": "UA-XXXXXXXX-X"
   },
+  "supportedThemes": [ "light", "dark" ],
+  "defaultTheme": "light",
   "server": {
     "port": 3000
   },

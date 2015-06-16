@@ -6,7 +6,7 @@
   {{#if activePages.news}}
 		<cat-articles-list id="pages-articles-list" cat-store="{{storePage}}" category="2" limit="40"></cat-articles-list>
   {{else}}
-    <cat-page-{{templatePage}} id="pages-current-{{currentPage}}" cat-store="{{storePage}}" slug="{{currentPage}}"></cat-page-{{templatePage}}>
+    <cat-{{templatePage}} id="pages-current-{{currentPage}}" cat-store="{{storePage}}" slug="{{currentPage}}"></cat-{{templatePage}}>
   {{/if}}
 	{{!-- </div> --}}
 {{/if}}

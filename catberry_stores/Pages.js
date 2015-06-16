@@ -22,11 +22,11 @@ var ALLOWED_PAGES = {
 };
 
 var TEMPLATE_PAGES = {
-  home: 'home',
-	about: 'content',
+  home: 'page-home',
+	about: 'page-content',
 	news: 'articles-list',
-	gallery: 'content',
-	contact: 'content',
+	gallery: 'page-content',
+	contact: 'page-content',
 	account: 'account',
 	login: 'auth-login',
 	logout: 'auth-logout'
@@ -61,8 +61,9 @@ var PAGES = {
  * @param {Object} $config Application config.
  * @constructor
  */
-function Pages($config) {
+function Pages($serviceLocator, $config) {
 	this._config = $config;
+	this._logger = $serviceLocator.resolve("logger");
 }
 
 /**
@@ -72,6 +73,12 @@ function Pages($config) {
  */
 Pages.prototype._config = null;
 
+/**
+ * Current application logger.
+ * @type {Object}
+ * @private
+ */
+Pages.prototype._logger = null;
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
@@ -92,6 +99,8 @@ Pages.prototype.load = function () {
 	}
 	currentPage = currentPage.toLowerCase();
 	console.log('-> currentPage: ' + currentPage);
+	// trace, info, warn, error, fatal
+	this._logger.info('----------------------- LOGGER ------');
 	if (!ALLOWED_PAGES.hasOwnProperty(currentPage)) {
 		currentPage = DEFAULT_PAGE;
 	}

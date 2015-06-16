@@ -3,7 +3,7 @@
 module.exports = Account;
 
 var util = require('util'),
-  ComponentBase = require('../../../lib/ComponentBase');
+  ComponentBase = require('../../lib/ComponentBase');
 
 util.inherits(Account, ComponentBase);
 
@@ -18,11 +18,22 @@ util.inherits(Account, ComponentBase);
  * @constructor
  */
 function Account($serviceLocator) {
-  ComponentBase.call(this);
-  if (this.$context.isBrowser) {
-    this._window = $serviceLocator.resolve('window');
+  console.log('-> Account');
+  if (this.isGuest) {
+    // this.$context.location
+    // this.$context.redirect('http://localhost:3000/login');
+    this.$context.redirect('/login');
+  } else {
+    ComponentBase.call(this);
+    if (this.$context.isBrowser) {
+      this._window = $serviceLocator.resolve('window');
+    }
+    console.log('this.$context.cookie:' + this.isGuest);
+    console.log(this.$context.cookie);
   }
 }
+
+Account.prototype.isGuest = true;
 
 Account.prototype._window = null;
 /**
@@ -32,9 +43,10 @@ Account.prototype._window = null;
  * for template engine.
  */
 Account.prototype.render = function () {
+  console.log('--> Account / render');
   return this.$context.getStoreData()
     .then(function (result) {
-      return {data: result};
+      return {result: result};
     });
 };
 
@@ -52,6 +64,6 @@ Account.prototype.bind = function () {
  * This method is optional.
  * @returns {Promise|undefined} Promise or nothing.
  */
-Account.prototype.unbind = function () {
+// Account.prototype.unbind = function () {
 
-};
+// };
