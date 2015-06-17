@@ -165,7 +165,16 @@ footer {
   height: $header-footer;
   clear:both;
 }
-
+/* Form  ========================================================================== */
+.ui.form .field {
+  margin: 1em 0em 1em;
+}
+.ui.form .field > label {
+  margin: 0em 0em 0.5rem 0em;
+}
+#cat-button-submit-login-element {
+  margin-top: 1em;
+}
 /* Auth  ========================================================================== */
 .parent {
   -webkit-transform-style: preserve-3d;
