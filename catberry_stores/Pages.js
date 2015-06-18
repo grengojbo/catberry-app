@@ -79,6 +79,7 @@ Pages.prototype._config = null;
  * @private
  */
 Pages.prototype._logger = null;
+
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.

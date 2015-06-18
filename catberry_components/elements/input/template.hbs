@@ -1,6 +1,7 @@
-<div class="field">
+<div class="field {{#if required }}required{{/if}} {{#if isError }}error{{/if}}">
   {{#if label }}<label for="{{name}}">{{label}}:</label>{{/if}}
   <div class="ui {{#if icon }}icon{{/if}} input">
-    <input type="{{type}}" {{#if placeholder }}placeholder="{{placeholder}}"{{/if}} {{#if name }}name="{{name}}"{{/if}} id="{{id}}" {{#if tabIndex }}tabindex="{{tabIndex}}"{{/if}} {{#if autofocus}}autofocus{{/if}} {{#if required }}required{{/if}} /> {{#if icon }}<i class="{{icon}}"></i>{{/if}}
+    <input type="{{type}}" {{#if placeholder }}placeholder="{{placeholder}}"{{/if}} {{#if name }}name="{{name}}"{{/if}} id="{{id}}" {{#if tabIndex }}tabindex="{{tabIndex}}"{{/if}} {{#if autofocus}}autofocus{{/if}} /> {{#if icon }}<i class="{{icon}}"></i>{{/if}}
   </div>
+  <div class="ui red pointing prompt label" style="display: none;"></div>
 </div>

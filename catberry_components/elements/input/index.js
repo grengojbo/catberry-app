@@ -6,7 +6,7 @@ var bh = require("../../../lib/helpers/browserHelper"),
     lh = require("../../../lib/helpers/l10nHelper"),
     elSelClass = ".js-input",
     isClosed = "is-closed",
-    errorClass = "error",
+    errorClass = ".mess-error",
     typeList = {
       text: "text",
       email: "email",
@@ -30,6 +30,8 @@ function Input() {
 
 }
 
+Input.prototype.isError = false;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -48,7 +50,7 @@ Input.prototype.render = function () {
     errorClass = a["error-class"],
     lp = lh.getLocalizationProvider(this.$context),
     curLocale = lh.getCurrentLocale(this.$context);
-  return{
+  var i = {
     name: a.name,
     type: typeKey,
     placeholder: placeholderKey?lp.get(curLocale,placeholderKey):null,
@@ -61,8 +63,11 @@ Input.prototype.render = function () {
     isCheckbox: typeKey===typeList.checkbox,
     isError: false,
     required: "required" in a,
-    id: a.id+"-element"
-  }
+    id: a.id+"-element",
+    idField: a.id+"-field"
+  };
+  console.log(i);
+  return i;
 };
 
 /**
@@ -86,23 +91,27 @@ Input.prototype.bind = function () {
 // Input.prototype.unbind = function () {
 // };
 
-Input.prototype.getValue=function(){
+Input.prototype.getValue = function(){
   return this.$context.element.querySelector("input").value
 };
 
-Input.prototype.setValue=function(val){
+Input.prototype.setValue = function(val){
   this.$context.element.querySelector("input").value=val
 };
 
-Input.prototype.clear=function(){
+Input.prototype.clear = function(){
   this.$context.element.querySelector("input").value=""
 };
 
-Input.prototype.focus=function(){
+Input.prototype.focus = function(){
   this.$context.element.querySelector("input").focus()
 };
 
-Input.prototype._handleTogglePassword=function(event){
+Input.prototype.setError = function(mess) {
+
+};
+
+Input.prototype._handleTogglePassword = function(event){
   event.preventDefault(),
   event.stopPropagation();
   var el=this.$context.element.querySelector(elSelClass);

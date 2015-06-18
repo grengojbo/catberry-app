@@ -3,10 +3,10 @@
     <div class="eight wide column">
       <div class="ui left aligned segment">
         <h4 class="ui dividing header">{{l10n "LOGIN"}}</h4>
-        <form class="ui error form small" name="login" role="login">
-        <cat-input id="cat-input-login-username" autofocus required name="username" type="text" placeholder-key="PLACEHOLDER_USERNAME" label-key="USERNAME" tabindex="1" icon="user icon"></cat-input>
-        <cat-input id="cat-input-login-password" type="password" tabindex="2" placeholder-key="PLACEHOLDER_PASSWORD" label-key="PASSWORD" icon="lock icon"></cat-input>
- <cat-button id="cat-button-submit-login" name="submit" type="submit" tabindex="3" placeholder-key="LOGIN" button-class="ui inverted blue button login--element"></cat-input>
+        <form class="ui error form small" name="login" role="login" action="authentication" method="POST">
+        <cat-input id="cat-input-login-username" autofocus required type="text" placeholder-key="PLACEHOLDER_USERNAME" label-key="USERNAME" tabindex="1" icon="user icon"></cat-input>
+        <cat-input id="cat-input-login-password" required type="password" tabindex="2" placeholder-key="PLACEHOLDER_PASSWORD" label-key="PASSWORD" icon="lock icon"></cat-input>
+        <cat-button id="cat-button-submit-login" disabled name="submit" type="submit" tabindex="3" placeholder-key="LOGIN" button-class="ui inverted blue button" ></cat-button>
         </form>
         <cat-loader id="login-progress"></cat-loader>
                 </div>

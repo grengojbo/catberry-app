@@ -2,7 +2,8 @@
 
 module.exports = Button;
 
-var lh = require("../../../lib/helpers/l10nHelper");
+var lh = require("../../../lib/helpers/l10nHelper"),
+    bh = require("../../../lib/helpers/browserHelper");
 
 /*
  * This is a Catberry Cat-component file.
@@ -35,20 +36,22 @@ Button.prototype.render=function(){
     typeBut = a.type,
     lp = lh.getLocalizationProvider(this.$context),
     curLocale = lh.getCurrentLocale(this.$context);
-  return{
+  var b = {
     name: a.name,
     label: label,
     placeholder: placeholderKey?lp.get(curLocale,placeholderKey):null,
     tabIndex: a.tabindex,
     icon: a.icon,
-    button: butStyle?false:true,
+    button: butStyle?true:false,
     href: href,
     butClass: butClass,
     disabled: "disabled" in a,
     isSubmitButton: "submit"===typeBut,
     type: typeBut,
     id: a.id+"-element"
-  }
+  };
+  console.log(b);
+  return b;
 };
 
 /**
@@ -70,9 +73,16 @@ Button.prototype.unbind = function () {
 };
 
 Button.prototype.enable=function(){
-  this.$context.element.querySelector("input").disabled=false;
+  var el = this.$context.element.querySelector("input");
+  el.disabled = false;
+  bh.removeClass(el, 'disabled');
 };
 
 Button.prototype.disable=function(){
-  this.$context.element.querySelector("input").disabled=true;
+  var el = this.$context.element.querySelector("input");
+  el.disabled = true;
+  bh.addClass(el, 'disabled');
+  // console.log('------------------- submit disable ------------');
+  // console.log(el);
+  // this.$context.element.querySelector("input").disabled=true;
 };
