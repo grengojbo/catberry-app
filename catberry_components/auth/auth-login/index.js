@@ -3,12 +3,13 @@
 module.exports = AuthLogin;
 
 var util = require('util'),
-  lh = require("../../../lib/helpers/l10nHelper"),
+  lh = require('../../../lib/helpers/l10nHelper'),
   ComponentBase = require('../../../lib/ComponentBase'),
   loginId = {
     username: 'cat-input-login-username',
     password: 'cat-input-login-password'
   },
+  messageId = 'cat-error-message-login',
   submitId = 'cat-button-submit-login';
 
 util.inherits(AuthLogin, ComponentBase);
@@ -95,9 +96,9 @@ AuthLogin.prototype.bind = function () {
 AuthLogin.prototype._handleValidateLogin = function () {
   this._logger.info('----------------- _handleValidateLogin -----------------');
   var submit = this.$context.getComponentById(submitId),
-    username = this.$context.getComponentById(loginId.username).getValue(),
-    password = this.$context.getComponentById(loginId.password).getValue();
-  if (password.length > 4 && username.length > 4) {
+    username = this.$context.getComponentById(loginId.username),
+    password = this.$context.getComponentById(loginId.password);
+  if (password.isValid() && username.isValid()) {
     submit.enable();
   } else {
     submit.disable();
@@ -115,12 +116,22 @@ AuthLogin.prototype._handleSubmitLogin = function (event) {
     curLocale = lh.getCurrentLocale(this.$context),
     username = this.$context.getComponentById(loginId.username),
     password = this.$context.getComponentById(loginId.password),
+    message = this.$context.getComponentById(messageId),
     submit = this.$context.getComponentById(submitId);
   this._logger.info('---> SubmitLogin --- username: '+username.getValue()+ ' password: ' + password.getValue());
   // this._logger.info('---> SubmitLogin --- password: ' + password.getValue());
   submit.disable();
-  // setTimeout(console.log('sleep'),10000);
-  // this.hideLoader();
+  if (username.getValue() === 'demo' && password.getValue() === 'demo') {
+  this._logger.info('---> User ' + username.getValue() + ' is login!');
+  } else {
+    self.hideLoader();
+    username.clear();
+    password.clear();
+    message.setText(lp.get(curLocale, 'ERROR_LOGIN'));
+    // message.setLabel(lp.get(curLocale, 'ERROR_LOGIN'));
+    message.show();
+    username.focus();
+  }
   // this.$context.redirect('/search?query=' + this.getQuery());
 };
 

@@ -92,23 +92,31 @@ Input.prototype.bind = function () {
 // };
 
 Input.prototype.getValue = function(){
-  return this.$context.element.querySelector("input").value
+  return this.$context.element.querySelector("input").value;
 };
 
 Input.prototype.setValue = function(val){
-  this.$context.element.querySelector("input").value=val
+  this.$context.element.querySelector("input").value=val;
 };
 
 Input.prototype.clear = function(){
-  this.$context.element.querySelector("input").value=""
+  this.$context.element.querySelector("input").value="";
 };
 
 Input.prototype.focus = function(){
-  this.$context.element.querySelector("input").focus()
+  this.$context.element.querySelector("input").focus();
 };
 
 Input.prototype.setError = function(mess) {
 
+};
+
+Input.prototype.isValid = function(){
+  var a = this.$context.attributes;
+  if (a['valid-min-len'] && this.getValue().length >= a['valid-min-len']) {
+    return true;
+  }
+  return false;
 };
 
 Input.prototype._handleTogglePassword = function(event){
