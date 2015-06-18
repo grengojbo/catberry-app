@@ -5,9 +5,9 @@
         <h4 class="ui dividing header">{{l10n "LOGIN"}}</h4>
         <cat-error-message id="cat-error-message-login" is-active="true" label-key="ERROR_MESSAGE" el-class="ui bottom attached error message" icon="icon help" button-close="close icon"></cat-error-message>
         <form class="ui error form small" name="login" role="login" action="authentication" method="POST">
-        <cat-input id="cat-input-login-username" autofocus required type="text" placeholder-key="PLACEHOLDER_USERNAME" label-key="USERNAME" tabindex="1" icon="user icon" valid-min-len="4"></cat-input>
-        <cat-input id="cat-input-login-password" required type="password" tabindex="2" placeholder-key="PLACEHOLDER_PASSWORD" label-key="PASSWORD" icon="lock icon" valid-min-len="4"></cat-input>
-        <cat-button id="cat-button-submit-login" disabled name="submit" type="submit" tabindex="3" placeholder-key="LOGIN" button-class="ui inverted blue button" ></cat-button>
+        <cat-input id="cat-input-login-username" autofocus required type="text" placeholder-key="PLACEHOLDER_USERNAME" label-key="USERNAME" tab-index="1" icon="user icon" valid-min-len="4"></cat-input>
+        <cat-input id="cat-input-login-password" required type="password" tab-index="2" placeholder-key="PLACEHOLDER_PASSWORD" label-key="PASSWORD" icon="lock icon" valid-min-len="4"></cat-input>
+        <cat-button id="cat-button-submit-login" disabled name="submit" type="submit" tab-index="3" placeholder-key="LOGIN" button-class="ui inverted blue button" ></cat-button>
         </form>
         <cat-loader id="login-progress"></cat-loader>
                 </div>
