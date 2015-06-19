@@ -11,5 +11,5 @@
 
 module.exports = [
   '/:page[Pages]',
-  '/:page[Pages]?referrer=:referrer[auth/AuthLogin]'
+  '/:page[Pages]?referrer=:referrer[auth/Login]'
 ];

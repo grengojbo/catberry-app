@@ -50,6 +50,10 @@ AuthLogin.prototype._config = null;
  */
 AuthLogin.prototype._logger = null;
 
+
+AuthLogin.prototype.setStore = function (key, val) {
+  this._window.localStorage.setItem(key, val);
+};
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -130,21 +134,34 @@ AuthLogin.prototype._handleSubmitLogin = function (event) {
   this._logger.info('---> SubmitLogin --- username: '+username.getValue()+ ' password: ' + password.getValue());
   // this._logger.info('---> SubmitLogin --- password: ' + password.getValue());
   submit.disable();
-  if (username.getValue() === 'demo' && password.getValue() === 'demo') {
-    this._logger.info('---> User ' + username.getValue() + ' is login!');
-    self.isGuest = false;
-    self._window.localStorage.setItem('token', 'sssssssssss');
-    self.$context.redirect(self.referrer);
-  } else {
-    self.hideLoader();
-    username.clear();
-    password.clear();
-    message.setText(lp.get(curLocale, 'ERROR_LOGIN'));
-    // message.setLabel(lp.get(curLocale, 'ERROR_LOGIN'));
-    message.show();
-    username.focus();
-  }
-  // this.$context.redirect('/search?query=' + this.getQuery());
+  this.$context.sendAction('sign-in', {username: username.getValue(), password: password.getValue()})
+    .then(function(result){
+      if (result.status === 'success') {
+        self._logger.info('---> User ' + username.getValue() + ' is login!');
+        // self._logger.info(result);
+        self.isGuest = false;
+        self.setStore('token', result.data.token);
+        // return void self.$context.redirect('/about');
+        self.$context.redirect(result.referrer);
+      } else {
+        self.hideLoader();
+        username.clear();
+        password.clear();
+        message.setText(lp.get(curLocale, 'ERROR_LOGIN'));
+        // message.setLabel(lp.get(curLocale, 'ERROR_LOGIN'));
+        message.show();
+        username.focus();
+      }
+    });
+    // .catch(function(data){
+    //   self.hideLoader();
+    //   username.clear();
+    //   password.clear();
+    //   message.setText(lp.get(curLocale, 'ERROR_LOGIN'));
+    //   // message.setLabel(lp.get(curLocale, 'ERROR_LOGIN'));
+    //   message.show();
+    //   username.focus();
+    // });
 };
 
 
