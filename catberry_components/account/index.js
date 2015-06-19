@@ -22,21 +22,27 @@ function Account($serviceLocator) {
   this._logger = $serviceLocator.resolve('logger');
   this._logger.info('-> Account');
   ComponentBase.call(this);
+  if (this.$context.isBrowser) {
+    this._window = $serviceLocator.resolve('window');
+
+    var token = this._window.localStorage.getItem('token');
+    if (token) {
+      this.isGuest = false;
+    }
+  }
+
   if (this.isGuest) {
     // this.$context.location
     // this.$context.redirect('http://localhost:3000/login');
-    this.$context.redirect('/login');
+    this.$context.redirect('/login?referrer=' + this.$context.location.path);
   } else {
-    if (this.$context.isBrowser) {
-      this._window = $serviceLocator.resolve('window');
-    }
     // this._logger.info('this.$context.cookie:' + this.isGuest);
     // this._logger.info(this.$context.cookie);
     this._logger.info(this.$context.location);
   }
 }
 
-Account.prototype.isGuest = false;
+// Account.prototype.isGuest = true;
 
 Account.prototype._window = null;
 

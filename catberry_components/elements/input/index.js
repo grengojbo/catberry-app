@@ -119,7 +119,7 @@ Input.prototype.setError = function(mess) {
 Input.prototype.isValid = function(){
   var a = this.$context.attributes;
   if (a['valid-min-len'] && a['valid-max-len']) {
-    if (this.getValue().length >= a['valid-min-len'] && this.getValue().length =< a['valid-max-len']) {
+    if (this.getValue().length >= a['valid-min-len'] && this.getValue().length <= a['valid-max-len']) {
       return true;
     }
   } else if (a['valid-min-len']) {
@@ -127,7 +127,7 @@ Input.prototype.isValid = function(){
       return true;
     }
   } else if (a['valid-max-len']) {
-    if (this.getValue().length =< a['valid-max-len']) {
+    if (this.getValue().length <= a['valid-max-len']) {
       return true;
     }
   }

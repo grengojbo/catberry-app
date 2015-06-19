@@ -32,6 +32,8 @@ function AuthLogin($serviceLocator, $config) {
   }
 }
 
+AuthLogin.prototype.referrer = '/account';
+
 AuthLogin.prototype._window = null;
 
 /**
@@ -55,6 +57,13 @@ AuthLogin.prototype._logger = null;
  * for template engine.
  */
 AuthLogin.prototype.render = function () {
+  // this.referrer = this.$context.referrer.path;
+  // if (this.$context.state.referrer) {
+    // this.referrer = this.$context.state.referrer;
+  // }
+  this._logger.info('isGuest: ' + this.isGuest);
+  this._logger.info('referrer: ' + this.referrer);
+  this._logger.info(this.$context);
   return this.$context.getStoreData()
     .then(function (result) {
       return {data: result};
@@ -122,7 +131,10 @@ AuthLogin.prototype._handleSubmitLogin = function (event) {
   // this._logger.info('---> SubmitLogin --- password: ' + password.getValue());
   submit.disable();
   if (username.getValue() === 'demo' && password.getValue() === 'demo') {
-  this._logger.info('---> User ' + username.getValue() + ' is login!');
+    this._logger.info('---> User ' + username.getValue() + ' is login!');
+    self.isGuest = false;
+    self._window.localStorage.setItem('token', 'sssssssssss');
+    self.$context.redirect(self.referrer);
   } else {
     self.hideLoader();
     username.clear();

@@ -10,5 +10,6 @@
 // https://github.com/catberry/catberry/blob/master/docs/index.md#routing
 
 module.exports = [
-  '/:page[Pages]'
+  '/:page[Pages]',
+  '/:page[Pages]?referrer=:referrer[auth/AuthLogin]'
 ];
