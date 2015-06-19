@@ -32,6 +32,8 @@ function Input() {
 
 Input.prototype.isError = false;
 
+Input.prototype.isIcon = false;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -45,23 +47,26 @@ Input.prototype.isError = false;
 Input.prototype.render = function () {
   var a = this.$context.attributes,
     typeKey = a.type||typeList.text,
-    placeholderKey = a["placeholder-key"],
-    labelKey = a["label-key"],
-    errorClass = a["error-class"],
+    placeholderKey = a['placeholder-key'],
+    labelKey = a['label-key'],
+    errorClass = a['error-class'],
+    tabIndex = a['tab-index'],
+    validPatternMessage = a['valid-pattern-message'],
     lp = lh.getLocalizationProvider(this.$context),
     curLocale = lh.getCurrentLocale(this.$context);
+  this.isError = a['is-error'];
   var i = {
     name: a.name,
     type: typeKey,
     placeholder: placeholderKey?lp.get(curLocale,placeholderKey):null,
-    tabIndex: a.tabindex,
+    tabIndex: tabIndex?tabIndex:false,
     autofocus: "autofocus" in a,
     label: labelKey?lp.get(curLocale,labelKey):null,
     icon: a.icon,
     locale: curLocale,
     isPassword: typeKey===typeList.password,
     isCheckbox: typeKey===typeList.checkbox,
-    isError: false,
+    isError: this.isError,
     required: "required" in a,
     id: a.id+"-element",
     idField: a.id+"-field"
@@ -113,8 +118,18 @@ Input.prototype.setError = function(mess) {
 
 Input.prototype.isValid = function(){
   var a = this.$context.attributes;
-  if (a['valid-min-len'] && this.getValue().length >= a['valid-min-len']) {
-    return true;
+  if (a['valid-min-len'] && a['valid-max-len']) {
+    if (this.getValue().length >= a['valid-min-len'] && this.getValue().length =< a['valid-max-len']) {
+      return true;
+    }
+  } else if (a['valid-min-len']) {
+    if (this.getValue().length >= a['valid-min-len']) {
+      return true;
+    }
+  } else if (a['valid-max-len']) {
+    if (this.getValue().length =< a['valid-max-len']) {
+      return true;
+    }
   }
   return false;
 };

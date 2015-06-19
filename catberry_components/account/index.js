@@ -18,24 +18,35 @@ util.inherits(Account, ComponentBase);
  * @constructor
  */
 function Account($serviceLocator) {
-  console.log('-> Account');
+  // console.log('-> Account');
+  this._logger = $serviceLocator.resolve('logger');
+  this._logger.info('-> Account');
+  ComponentBase.call(this);
   if (this.isGuest) {
     // this.$context.location
     // this.$context.redirect('http://localhost:3000/login');
     this.$context.redirect('/login');
   } else {
-    ComponentBase.call(this);
     if (this.$context.isBrowser) {
       this._window = $serviceLocator.resolve('window');
     }
-    console.log('this.$context.cookie:' + this.isGuest);
-    console.log(this.$context.cookie);
+    // this._logger.info('this.$context.cookie:' + this.isGuest);
+    // this._logger.info(this.$context.cookie);
+    this._logger.info(this.$context.location);
   }
 }
 
-Account.prototype.isGuest = true;
+Account.prototype.isGuest = false;
 
 Account.prototype._window = null;
+
+/**
+ * Current application logger.
+ * @type {Object}
+ * @private
+ */
+Account.prototype._logger = null;
+
 /**
  * Gets data context for template engine.
  * This method is optional.
