@@ -46,8 +46,8 @@ ErrorMessage.prototype.render = function () {
     icon: a.icon,
     id: a.id+'-element'
   };
-  console.log('----> ErrorMessage / render');
-  console.log(e);
+  // console.log('----> ErrorMessage / render');
+  // console.log(e);
   return e;
 };
 

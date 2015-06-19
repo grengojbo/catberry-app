@@ -66,7 +66,7 @@ Input.prototype.render = function () {
     id: a.id+"-element",
     idField: a.id+"-field"
   };
-  console.log(i);
+  // console.log(i);
   return i;
 };
 

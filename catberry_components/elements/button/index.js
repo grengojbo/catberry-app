@@ -50,7 +50,7 @@ Button.prototype.render=function(){
     type: typeBut,
     id: a.id+"-element"
   };
-  console.log(b);
+  // console.log(b);
   return b;
 };
 
