@@ -26,6 +26,7 @@ util.inherits(AuthLogin, ComponentBase);
  */
 function AuthLogin($serviceLocator, $config) {
   ComponentBase.call(this);
+  this._config = $config;
   this._logger = $serviceLocator.resolve("logger");
   if (this.$context.isBrowser) {
     this._window = $serviceLocator.resolve('window');
@@ -65,12 +66,14 @@ AuthLogin.prototype.render = function () {
   // if (this.$context.state.referrer) {
     // this.referrer = this.$context.state.referrer;
   // }
+  var self = this;
   this._logger.info('isGuest: ' + this.isGuest);
   this._logger.info('referrer: ' + this.referrer);
   this._logger.info(this.$context);
   return this.$context.getStoreData()
     .then(function (result) {
-      return {data: result};
+      // return {data: result};
+      return self.localizeContext(result);
     });
 };
 

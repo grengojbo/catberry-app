@@ -12,9 +12,23 @@ module.exports = AuthLogout;
  * Creates new instance of the "auth-logout" component.
  * @constructor
  */
-function AuthLogout() {
+function AuthLogout($serviceLocator, $config) {
+  // ComponentBase.call(this);
+  this._config = $config;
+  if (this.$context.isBrowser) {
+    this._window = $serviceLocator.resolve('window');
+  }
 
 }
+
+AuthLogout.prototype._window = null;
+
+/**
+ * Current application config.
+ * @type {Object}
+ * @private
+ */
+AuthLogout.prototype._config = null;
 
 /**
  * Gets data context for template engine.
@@ -23,7 +37,8 @@ function AuthLogout() {
  * for template engine.
  */
 AuthLogout.prototype.render = function () {
-
+  this._window.localStorage.clear();
+  this.$context.redirect(this._config.logOutRedirect);
 };
 
 /**
@@ -31,15 +46,17 @@ AuthLogout.prototype.render = function () {
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-AuthLogout.prototype.bind = function () {
+// AuthLogout.prototype.bind = function () {
+// return {
+//   click: {
+//     'a.#cat-logout': this._clickHandlerLogOut
+//   }
+//   };
+// };
 
-};
-
-/**
- * Does cleaning for everything that have NOT been set by .bind() method.
- * This method is optional.
- * @returns {Promise|undefined} Promise or nothing.
- */
-AuthLogout.prototype.unbind = function () {
-
-};
+// AuthLogout.prototype._clickHandlerLogOut = function (event) {
+//   event.preventDefault();
+//   event.stopPropagation();
+//   this._window.localStorage.clear();
+//   this.$context.redirect(this._config.logOutRedirect);
+// };

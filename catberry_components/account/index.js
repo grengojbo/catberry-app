@@ -60,10 +60,11 @@ Account.prototype._logger = null;
  * for template engine.
  */
 Account.prototype.render = function () {
-  console.log('--> Account / render');
+  // console.log('--> Account / render');
+  var self = this;
   return this.$context.getStoreData()
     .then(function (result) {
-      return {result: result};
+      return self.localizeContext(result);
     });
 };
 
