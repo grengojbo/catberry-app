@@ -128,6 +128,7 @@ AuthLogin.prototype._handleSubmitLogin = function (event) {
   this._logger.info('----------------- _handleSubmitLogin ----------------- ' + loginId.username);
   this._logger.info(this.$context);
   var self = this,
+    key = this._config.authorization.resourceServers.siteApiAsUser.endpoint.accessTokenName,
     lp = lh.getLocalizationProvider(this.$context),
     curLocale = lh.getCurrentLocale(this.$context),
     username = this.$context.getComponentById(loginId.username),

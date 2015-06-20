@@ -79,7 +79,7 @@ Account.prototype._logger = null;
  */
 Account.prototype.render = function () {
   // this.isAuthorized();
-  console.log('--> Account / render');
+  this._logger.info('--> Account | render');
   var self = this;
   return this.$context.getStoreData()
     .then(function (result) {

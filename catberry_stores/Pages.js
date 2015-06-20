@@ -100,13 +100,15 @@ Pages.prototype.$lifetime = 3600000;
 // Pages.prototype.$lifetime = 60000;
 
 Pages.prototype.isAuthorized = function () {
-  var key = this._config.authorization.resourceServers.siteApiAsUser.accessTokenName;
-  if (!bh.getStroreToken(key)) {
+  var key = this._config.authorization.resourceServers.siteApiAsUser.endpoint.accessTokenName;
+  if (bh.getStroreToken(key)) {
   	this.isGuest = false;
   	this.isUser = true;
+  	this._logger.info('----> Pages | isAuthorized ---- TRUE')
   } else {
   	this.isGuest = true;
   	this.isUser = false;
+  	this._logger.info('----> Pages | isAuthorized ---- FALSE')
   }
   this.$context.changed();
 };
@@ -133,6 +135,10 @@ Pages.prototype.load = function () {
 	if (PRIVATE_PAGES.hasOwnProperty(currentPage)) {
 		isPrivate = true;
 	}
+  if (this.$context.isBrowser) {
+  	this._logger.info('----> Pages | load | isBrowser --------');
+  	this.isAuthorized();
+  }
 
 	var result = {
 		title: this._config.title,

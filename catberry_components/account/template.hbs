@@ -1,9 +1,9 @@
+{{#if isUser }}
 <div class="ui page grid">
   <div class="wide left floated column">
     <h1>Добро пожаловать в Ваш личный кабинет</h1>
     <p><a href="/logout" id="cat-logout">{{{l10n "LOGOUT"}}}</a></p>
-    {{#if isGuest}}
-    <p>isGuest</p>
-    {{/if}}
+    <p>UserName: {{user.username}}</p>
   </div>
 </div>
+{{/if}}
