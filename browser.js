@@ -1,6 +1,7 @@
 'use strict';
 
-var catberry = require('catberry'),
+var OAuth2Client = require('catberry-oauth2-client'),
+  catberry = require('catberry'),
 	// this config will be replaced by `./config/browser.json` when building
 	// because of `browser` field in `package.json`
 	config = require('./config/environment.json'),
@@ -20,5 +21,7 @@ localizationHelper.register(cat.locator);
 // catberry_components/<name>/index.js
 // var $ = this.$context.locator.resolve('jquery');
 // $('.class').html('<div>Hello, World!</div>');
+
+OAuth2Client.register(cat.locator);
 
 cat.startWhenReady();

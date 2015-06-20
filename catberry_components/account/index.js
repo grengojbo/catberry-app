@@ -54,7 +54,10 @@ function Account($serviceLocator, $config) {
 Account.prototype._config = null;
 
 Account.prototype.isAuthorized = function () {
-  if (!bh.getStroreToken('token')) {
+  var key = this._config.authorization.resourceServers.siteApiAsUser.endpoint.accessTokenName;
+  this._logger.info('----- TOKEN key: ' + key);
+  // this._logger.info(this._config.authorization);
+  if (!bh.getStroreToken(key)) {
     this.$context.redirect('/login?referrer=' + this.$context.location.path);
   }
 };

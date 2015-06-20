@@ -2,7 +2,8 @@
 
 // require('newrelic');
 
-var catberry = require('catberry'),
+var OAuth2Client = require('catberry-oauth2-client'),
+	catberry = require('catberry'),
 	isRelease = process.argv.length >= 3 ?
 		process.argv[2] === 'release' : undefined,
 	port = process.argv.length >= 4 ?
@@ -43,6 +44,13 @@ app.use('/favicon.ico', serveStatic(path.join(publicPath, 'favicon.ico')));
 
 var localizationLoader = cat.locator.resolve('localizationLoader');
 app.use(localizationLoader.getMiddleware());
+
+// register all types of OAuth 2.0 client plugin
+OAuth2Client.register(cat.locator);
+// create factory instance with current configuration
+var OAuth2FlowFactory = cat.locator.resolve('oauth2FlowFactory');
+// add all endpoints required for OAuth 2.0 authorization to connect application
+OAuth2FlowFactory.addEndpoints(app);
 
 app.use(cat.getMiddleware());
 

@@ -6,6 +6,40 @@
     "accessToken": "your secret token here",
     "version": "v3"
   },
+  "authorization": {
+    "authServerUrl": "http://api.example.com/v1",
+    "clientId": "some_client_id",
+    "clientSecret": "some_client_secret",
+    "resourceServers": {
+      "siteApiAsGuest": {
+        "unsafeHTTPS": false,
+        "host": "http://api.example.com/v1",
+        "endpoint": {
+          "name": "auth/guest",
+          "accessTokenName": "__guest"
+        }
+      },
+      "siteApiAsUser": {
+        "unsafeHTTPS": false,
+        "host": "http://api.example.com/v1",
+        "endpoint": {
+          "name": "auth/user",
+          "accessTokenName": "token"
+        }
+      }
+    },
+    "endpoints": {
+      "auth/social": {
+        "grantType": "authorization_code",
+        "redirectUri": "https://oauth.mailer.life/auth",
+        "returnUri": "/",
+        "cookie":{
+          "accessTokenName": "ccat",
+          "refreshTokenName": "reccat"
+        }
+      }
+    }
+  },
   "siteUrl": "localhost",
   "logOutRedirect": "/",
   "loginRedirect": "/account",
@@ -14,6 +48,9 @@
     "cookie": {
       "path": "/"
     }
+  },
+  "application": {
+    "staticHost": "media.example.com"
   },
   "supportedLanguages": [
     { "title": "Українська", "value": "uk" },
@@ -32,5 +69,6 @@
     "watchInterval": 0
   },
   "componentsGlob": "catberry_components/**/cat-component.json",
-  "isRelease": true
+  "isRelease": true,
+  "isProductionEnvironment": true
 }

@@ -2,6 +2,7 @@
 
 module.exports = Pages;
 
+var bh = require("../lib/helpers/browserHelper");
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -68,6 +69,10 @@ var PAGES = {
 function Pages($serviceLocator, $config) {
 	this._config = $config;
 	this._logger = $serviceLocator.resolve("logger");
+  if (this.$context.isBrowser) {
+  	this._logger.info('----> Pages | isBrowser --------');
+  	this.isAuthorized();
+  }
 }
 
 /**
@@ -93,6 +98,18 @@ Pages.prototype.isUser = false;
  */
 Pages.prototype.$lifetime = 3600000;
 // Pages.prototype.$lifetime = 60000;
+
+Pages.prototype.isAuthorized = function () {
+  var key = this._config.authorization.resourceServers.siteApiAsUser.accessTokenName;
+  if (!bh.getStroreToken(key)) {
+  	this.isGuest = false;
+  	this.isUser = true;
+  } else {
+  	this.isGuest = true;
+  	this.isUser = false;
+  }
+  this.$context.changed();
+};
 
 /**
  * Loads data from remote source.
