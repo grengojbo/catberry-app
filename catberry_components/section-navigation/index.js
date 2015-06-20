@@ -65,6 +65,8 @@ SectionNavigation.prototype.render = function () {
 			// console.log('--> SectionNavigation / pages');
 			// console.log(pages);
 			var data = {};
+			data.isUser = pages.isUser;
+			data.isPrivate = pages.isPrivate;
 			data.pages = Object.keys(pages.isMenu)
 				.map(function (page) {
 					var result = {
