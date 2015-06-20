@@ -87,8 +87,8 @@ Documents.prototype.$lifetime = 3660000;
  * @returns {Promise<Object>|Object|null|undefined} Loaded data.
  */
 Documents.prototype.load = function () {
-  console.log('---> Documents / load');
-  console.log(this.$context);
+  // console.log('---> Documents / load');
+  // console.log(this.$context);
   var uri = this.$context.location.clone(),
     data = {
       contentPage: {}

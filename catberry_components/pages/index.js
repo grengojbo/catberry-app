@@ -93,6 +93,7 @@ Pages.prototype.getItem = function () {
       return self.localizeContext(pages);
     });
 };
+
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -104,28 +105,10 @@ Pages.prototype.render = function () {
   var self = this;
   return this.$context.getStoreData()
     .then(function (pages) {
-      // console.log('--> Pages / render');
-      // console.log(pages);
-
       var page = self.localizeContext(pages);
-      self._logger.info('------------- Pages / render [start]');
-      self._logger.trace(page);
-      self._logger.info('------------- Pages / render [end]');
+      // self._logger.info('------------- Pages / render [start]');
+      // self._logger.trace(page);
+      // self._logger.info('------------- Pages / render [end]');
       return page;
     });
-  // this.data = this.getItem();
-  // this._logger.info(this.data);
-  // if (!this.isAuthorized('token')) {
-  //   this.data.isGuest = true;
-  //   this.data.isUser = false;
-  //   if (this.data.isPrivate) {
-  //     this.$context.redirect('/login?referrer=' + this.data.currentPage);
-  //   } else {
-  //     return this.data;
-  //   }
-  // } else {
-  //     this.data.isGuest = false;
-  //     this.data.isUser = true;
-  //     return this.data;
-  // }
 };

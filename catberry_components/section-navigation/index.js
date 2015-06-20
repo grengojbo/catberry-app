@@ -62,8 +62,8 @@ SectionNavigation.prototype.render = function () {
 	var self = this;
 	return this.$context.getStoreData()
 		.then(function (pages) {
-			console.log('--> SectionNavigation / pages');
-			console.log(pages);
+			// console.log('--> SectionNavigation / pages');
+			// console.log(pages);
 			var data = {};
 			data.pages = Object.keys(pages.isMenu)
 				.map(function (page) {
@@ -80,8 +80,8 @@ SectionNavigation.prototype.render = function () {
 					};
 					return result;
 				});
-			console.log(data);
-			console.log('--> SectionNavigation / data');
+			// console.log(data);
+			// console.log('--> SectionNavigation / data');
 			return self.localizeContext(data);
 		});
 };

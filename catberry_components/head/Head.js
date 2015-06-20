@@ -43,8 +43,8 @@ Head.prototype.render = function () {
   socialLogo.path = '/assets/head/images/social-logo.png';
   return this.$context.getStoreData()
     .then(function (pages) {
-      console.log('------------> Head / pages.currentPage: ' + pages.currentPage);
-      console.log(pages);
+      // console.log('------------> Head / pages.currentPage: ' + pages.currentPage);
+      // console.log(pages);
       return self.localizeContext({
         socialLogo: socialLogo,
         location: location,

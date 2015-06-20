@@ -75,7 +75,7 @@ Contents.prototype.load = function () {
 
 Contents.prototype.handleSlug = function (slug) {
   // this.slug
-  console.log('---> handleSlug <---', slug);
+  // console.log('---> handleSlug <---', slug);
   this.$context.changed();
 };
 
