@@ -10,6 +10,10 @@ module.exports = Pages;
 
 var DEFAULT_PAGE = 'home';
 
+var PRIVATE_PAGES = {
+	account: true
+};
+
 var ALLOWED_PAGES = {
 	home: true,
 	about: true,
@@ -80,6 +84,9 @@ Pages.prototype._config = null;
  */
 Pages.prototype._logger = null;
 
+Pages.prototype.isGuest = true;
+
+Pages.prototype.isUser = false;
 /**
  * Current lifetime of data (in milliseconds) that is returned by this store.
  * @type {number} Lifetime in milliseconds.
@@ -93,6 +100,7 @@ Pages.prototype.$lifetime = 3600000;
  */
 Pages.prototype.load = function () {
 	var currentPage = this.$context.state.page;
+	var isPrivate = false;
 	// console.log(this.$context.state);
 	if (!currentPage) {
 		currentPage = DEFAULT_PAGE;
@@ -105,6 +113,10 @@ Pages.prototype.load = function () {
 	if (!ALLOWED_PAGES.hasOwnProperty(currentPage)) {
 		currentPage = DEFAULT_PAGE;
 	}
+	if (PRIVATE_PAGES.hasOwnProperty(currentPage)) {
+		isPrivate = true;
+	}
+
 	var result = {
 		title: this._config.title,
 		subtitle: PAGES[currentPage],
@@ -113,6 +125,9 @@ Pages.prototype.load = function () {
 		storePage: STORE_PAGES[currentPage],
 		activePages: {},
 		isMenu: {},
+		isPrivate: isPrivate,
+		isGuest: this.isGuest,
+		isUser: this.isUser,
 		names: PAGES
 	};
 	Object.keys(ALLOWED_PAGES)

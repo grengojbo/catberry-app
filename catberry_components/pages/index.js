@@ -48,10 +48,51 @@ util.inherits(Pages, ComponentBase);
  * @extends ComponentBase
  * @constructor
  */
-function Pages() {
+function Pages($serviceLocator, $config) {
 	ComponentBase.call(this);
+  this._config = $config;
+  this._logger = $serviceLocator.resolve("logger");
+  if (this.$context.isBrowser) {
+    this._window = $serviceLocator.resolve('window');
+  }
+  this._logger.info('------------- Pages ----------');
 }
 
+Pages.prototype._window = null;
+
+/**
+ * Current application config.
+ * @type {Object}
+ * @private
+ */
+Pages.prototype._config = null;
+
+/**
+ * Current application logger.
+ * @type {Object}
+ * @private
+ */
+Pages.prototype._logger = null;
+
+Pages.prototype.data = null;
+
+Pages.prototype.isAuthorized = function (key) {
+  var token = this._window.localStorage.getItem(key);
+  if (token) {
+    return true;
+  }
+  return false;
+};
+
+Pages.prototype.getItem = function () {
+  var self = this;
+  return this.$context.getStoreData()
+    .then(function (pages) {
+      // console.log('--> Pages / render');
+      // console.log(pages);
+      return self.localizeContext(pages);
+    });
+};
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -59,11 +100,32 @@ function Pages() {
  * for template engine.
  */
 Pages.prototype.render = function () {
-	var self = this;
-	return this.$context.getStoreData()
-		.then(function (pages) {
-      console.log('--> Pages / render');
-      console.log(pages);
-			return self.localizeContext(pages);
-		});
+  this._logger.info('------------- Pages / render ----------');
+  var self = this;
+  return this.$context.getStoreData()
+    .then(function (pages) {
+      // console.log('--> Pages / render');
+      // console.log(pages);
+
+      var page = self.localizeContext(pages);
+      self._logger.info('------------- Pages / render [start]');
+      self._logger.trace(page);
+      self._logger.info('------------- Pages / render [end]');
+      return page;
+    });
+  // this.data = this.getItem();
+  // this._logger.info(this.data);
+  // if (!this.isAuthorized('token')) {
+  //   this.data.isGuest = true;
+  //   this.data.isUser = false;
+  //   if (this.data.isPrivate) {
+  //     this.$context.redirect('/login?referrer=' + this.data.currentPage);
+  //   } else {
+  //     return this.data;
+  //   }
+  // } else {
+  //     this.data.isGuest = false;
+  //     this.data.isUser = true;
+  //     return this.data;
+  // }
 };

@@ -3,6 +3,7 @@
 module.exports = Account;
 
 var util = require('util'),
+  bh = require("../../lib/helpers/browserHelper"),
   ComponentBase = require('../../lib/ComponentBase');
 
 util.inherits(Account, ComponentBase);
@@ -17,32 +18,46 @@ util.inherits(Account, ComponentBase);
  * Creates new instance of the "account" component.
  * @constructor
  */
-function Account($serviceLocator) {
+function Account($serviceLocator, $config) {
   // console.log('-> Account');
+  this._config = $config;
   this._logger = $serviceLocator.resolve('logger');
   this._logger.info('-> Account');
   ComponentBase.call(this);
   if (this.$context.isBrowser) {
     this._window = $serviceLocator.resolve('window');
 
-    var token = this._window.localStorage.getItem('token');
-    if (token) {
-      this.isGuest = false;
-    }
+    // var token = this._window.localStorage.getItem('token');
+    // if (token) {
+    //   this.isGuest = false;
+    // }
+    this.isAuthorized();
   }
 
-  if (this.isGuest) {
-    // this.$context.location
-    // this.$context.redirect('http://localhost:3000/login');
-    this.$context.redirect('/login?referrer=' + this.$context.location.path);
-  } else {
-    // this._logger.info('this.$context.cookie:' + this.isGuest);
-    // this._logger.info(this.$context.cookie);
-    this._logger.info(this.$context.location);
-  }
+  // if (this.isGuest) {
+  // if (!bh.getStroreToken('token')) {
+  //   // this.$context.location
+  //   // this.$context.redirect('http://localhost:3000/login');
+    // this.$context.redirect('/login?referrer=' + this.$context.location.path);
+  // } else {
+  //   // this._logger.info('this.$context.cookie:' + this.isGuest);
+  //   // this._logger.info(this.$context.cookie);
+  //   this._logger.info(this.$context.location);
+  // }
 }
 
-// Account.prototype.isGuest = true;
+/**
+ * Current application config.
+ * @type {Object}
+ * @private
+ */
+Account.prototype._config = null;
+
+Account.prototype.isAuthorized = function () {
+  if (!bh.getStroreToken('token')) {
+    this.$context.redirect('/login?referrer=' + this.$context.location.path);
+  }
+};
 
 Account.prototype._window = null;
 
@@ -60,7 +75,8 @@ Account.prototype._logger = null;
  * for template engine.
  */
 Account.prototype.render = function () {
-  // console.log('--> Account / render');
+  // this.isAuthorized();
+  console.log('--> Account / render');
   var self = this;
   return this.$context.getStoreData()
     .then(function (result) {
