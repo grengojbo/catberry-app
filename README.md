@@ -59,6 +59,8 @@ bower install
 npm install newrelic --save
 ```
 
+Измените [robots.txt](./static/robots.txt),  sitemap.xml в [server.js](./server.js).
+
 В терминале запустите задачу **gult** и работайте в вашем любимом редакторе например [SublimeText3](http://www.sublimetext.com/3).
 
 ```

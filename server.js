@@ -20,6 +20,7 @@ var http = require('http'),
 	l10n = require('catberry-l10n'),
 	localizationHelper = require('catberry-l10n-handlebars-helper'),
 	// GitHubClient = require('./lib/GitHubClient'),
+	sm = require('sitemap'),
 	cat = catberry.create(config),
 	app = connect();
 
@@ -33,11 +34,29 @@ templateEngine.register(cat.locator);
 l10n.register(cat.locator);
 localizationHelper.register(cat.locator);
 
+var sitemap = sm.createSitemap ({
+      hostname:  config.siteUrl || 'http://localhost',
+      cacheTime: 60000000,        // 600 sec - cache purge period
+      urls: [
+        { url: '/', changefreq: 'weekly', priority: 1.0 },
+        { url: '/about', changefreq: 'weekly', priority: 0.5 },
+        { url: '/news',  changefreq: 'weekly', priority: 0.9 }
+      ]
+});
+
+app.get('/sitemap.xml', function(req, res) {
+	sitemap.toXML(function(xml) {
+		res.header('Content-Type', 'application/xml');
+		res.send(xml);
+	});
+});
+
 var serveStatic = require('serve-static');
 app.use(serveStatic(publicPath));
 // app.use('/public', serveStatic(publicPath));
 app.use('/robots.txt', serveStatic(path.join(publicPath, 'robots.txt')));
 app.use('/favicon.ico', serveStatic(path.join(publicPath, 'favicon.ico')));
+// app.use('/favicon.png', serveStatic(path.join(publicPath, 'favicon.png')));
 
 // var gitHubClient = cat.locator.resolveInstance(GitHubClient, config);
 // app.use('/public/html/github', gitHubClient.getMiddleware());
@@ -56,6 +75,7 @@ app.use(cat.getMiddleware());
 
 var errorhandler = require('errorhandler');
 app.use(errorhandler());
+
 
 cat.events.on('ready', function () {
 	var logger = cat.locator.resolve('logger');

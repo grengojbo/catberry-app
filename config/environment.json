@@ -40,7 +40,7 @@
       }
     }
   },
-  "siteUrl": "localhost",
+  "siteUrl": "http://localhost:3000",
   "logOutRedirect": "/",
   "loginRedirect": "/account",
   "l10n": {
