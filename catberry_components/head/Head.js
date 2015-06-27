@@ -30,6 +30,8 @@ function Head($config) {
  */
 Head.prototype._config = null;
 
+Head.prototype.googleSiteVerification = null;
+
 /**
  * Gets data for template.
  * @returns {Object} Data object.
@@ -41,6 +43,9 @@ Head.prototype.render = function () {
   location.scheme = 'http';
   socialLogo.scheme = location.scheme;
   socialLogo.path = '/assets/head/images/social-logo.png';
+  if (this._config.googleSiteVerification.content && this._config.googleSiteVerification.content !== 'none') {
+    this.googleSiteVerification = this._config.googleSiteVerification.content;
+  }
   return this.$context.getStoreData()
     .then(function (pages) {
       // console.log('------------> Head / pages.currentPage: ' + pages.currentPage);
@@ -49,6 +54,7 @@ Head.prototype.render = function () {
         socialLogo: socialLogo,
         location: location,
         page: pages,
+        googleSiteVerification: self.googleSiteVerification,
         pageTitleKey: pages.currentPage !== 'home' ? 'PAGE_TITLE_' + pages.currentPage.toUpperCase() : null
       });
     });
