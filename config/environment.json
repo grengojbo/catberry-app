@@ -60,6 +60,9 @@
   "googleAnalytics": {
     "id": "UA-XXXXXXXX-X"
   },
+  "googleSiteVerification": {
+    "content": "none"
+  },
   "supportedThemes": [ "light", "dark" ],
   "defaultTheme": "light",
   "server": {
@@ -70,5 +73,5 @@
   },
   "componentsGlob": "catberry_components/**/cat-component.json",
   "isRelease": true,
-  "isProductionEnvironment": true
+  "isProductionEnvironment": false
 }

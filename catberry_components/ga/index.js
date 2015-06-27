@@ -44,9 +44,18 @@ module.exports = Ga;
  * @constructor
  */
 function Ga($config) {
+	var self = this;
 	this._config = $config.googleAnalytics || {};
 	if (this.$context.isBrowser) {
 		this._window = this.$context.locator.resolve('window');
+		this.$context.on('componentRendered', function (event) {
+			if (event.name === 'head') {
+				setTimeout(function(){
+					self._window.ga('send', 'pageview', self.handlePageView());
+				}, 0);
+			}
+		});
+		this.trackErrors();
 	}
 }
 
@@ -69,45 +78,52 @@ Ga.prototype._window = null;
  * @type {boolean}
  * @private
  */
-Ga.prototype._isInitialized = false;
+// Ga.prototype._isInitialized = false;
+
+Ga.prototype.render = function () {
+	return {
+		id: this._config.id,
+		pageview: this.handlePageView()
+	};
+};
 
 /**
  * Returns event binding settings for the component.
  * This method is optional.
  * @returns {Promise<Object>|Object|null|undefined} Binding settings.
  */
-Ga.prototype.bind = function () {
-	if (!this._config.id || typeof(this._window.ga) !== 'function') {
-		return;
-	}
-	if (this._isInitialized) {
-		return;
-	}
-	this._isInitialized = true;
-	this._window = this.$context.locator.resolve('window');
-	this._window.ga('create', this._config.id || null, 'auto');
-	this._window.ga('send', 'pageview', getLocation(this.$context));
-	this.trackPages();
-	this.trackErrors();
-};
+// Ga.prototype.bind = function () {
+// 	if (!this._config.id || typeof(this._window.ga) !== 'function') {
+// 		console.log('------------------------ [Ga] bind ------> first exit');
+// 		return;
+// 	}
+// 	if (this._isInitialized) {
+// 		console.log('------------------------ [Ga] bind ------> last exit');
+// 		return;
+// 	}
+// 	this._isInitialized = true;
+// 	this._window = this.$context.locator.resolve('window');
+// 	// this._window.ga('create', this._config.id || null, 'auto');
+// 	// this._window.ga('send', 'pageview', getLocation(this.$context));
+// };
 
 /**
  * Tracks pages.
  */
-Ga.prototype.trackPages = function () {
-	if (typeof(this._window.ga) !== 'function') {
-		return;
-	}
+// Ga.prototype.trackPages = function () {
+// 	if (typeof(this._window.ga) !== 'function') {
+// 		return;
+// 	}
 
-	var self = this;
-	// track pages
-	this.$context.on('componentRendered', function (event) {
-		if (event.name !== 'head') {
-			return;
-		}
-		self._window.ga('send', 'pageview', getLocation(event.context));
-	});
-};
+// 	var self = this;
+// 	// track pages
+// 	this.$context.on('componentRendered', function (event) {
+// 		if (event.name !== 'head') {
+// 			return;
+// 		}
+// 		self._window.ga('send', 'pageview', getLocation(event.context));
+// 	});
+// };
 
 /**
  * Tracks errors.
@@ -120,15 +136,22 @@ Ga.prototype.trackErrors = function () {
 	});
 };
 
+Ga.prototype.handlePageView=function(){
+	var location=this.$context.location.clone();
+	location.scheme=null;
+	location.authority=null;
+	return location.toString();
+};
+
 /**
  * Gets location for analytics.
  * @param {Object} context Component context.
  * @returns {string} URL.
  */
-function getLocation(context) {
-	var location = context.location.clone();
-	location.scheme = null;
-	location.authority = null;
+// function getLocation(context) {
+// 	var location = context.location.clone();
+// 	location.scheme = null;
+// 	location.authority = null;
 
-	return location.toString();
-}
+// 	return location.toString();
+// }

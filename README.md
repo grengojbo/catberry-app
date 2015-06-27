@@ -92,6 +92,27 @@ To start in `release` mode:
 npm start
 ```
 
+## Используем Handlebars
+
+```
+var viewData = {
+    itemSize: 20,
+    items: [
+        'Zimbabwe', 'dog', 'falafel'
+    ]
+};
+{{#each items}}
+    <div style="font-size:{{../itemSize}}px">{{this}}</div>
+{{/each}}
+```
+
+## Наброски
+
+```
+this._logger.info(util.format('----------- [%s] %s --->', '', ''));
+this._logger.info(util.format('----------- [%s] %s --->', 'ComponentName', 'FunctionName'));
+```
+
 ## Contribution
 If you have found a bug, please create pull request with [mocha](https://www.npmjs.org/package/mocha) 
 unit-test which reproduces it or describe all details in an issue if you can not
