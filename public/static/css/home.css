@@ -158,7 +158,12 @@ hr {
 /* Fonts
    ========================================================================== */
 /* Defaults  ========================================================================== */
-/* line 14, src/static/scss/_base.scss */
+/* line 13, src/static/scss/_base.scss */
+html {
+  height: 100%;
+}
+
+/* line 16, src/static/scss/_base.scss */
 body {
   min-width: 430px;
   height: 100%;
@@ -166,51 +171,88 @@ body {
   color: #292f33;
 }
 
-/* line 28, src/static/scss/_base.scss */
+/* line 29, src/static/scss/_base.scss */
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+}
+
+/* line 37, src/static/scss/_base.scss */
+.wrap {
+  min-height: 100%;
+  margin-top: -24px;
+  margin-bottom: 46px;
+}
+
+/* line 45, src/static/scss/_base.scss */
+.ui.segment {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* line 49, src/static/scss/_base.scss */
+.ui.segment.border {
+  box-shadow: 0 0 0 1px rgba(39, 41, 43, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* line 52, src/static/scss/_base.scss */
+.ui.grid {
+  margin: 0;
+}
+
+/* line 55, src/static/scss/_base.scss */
+.padding-reset {
+  padding: 0px !important;
+}
+
+/* line 58, src/static/scss/_base.scss */
 img.pure-img {
   vertical-align: middle;
   max-width: 60%;
   display: inline;
 }
 
-/* line 34, src/static/scss/_base.scss */
+/* line 64, src/static/scss/_base.scss */
 code {
   color: #EF413D;
 }
 
-/* line 38, src/static/scss/_base.scss */
+/* line 68, src/static/scss/_base.scss */
 .pure-menu.pure-menu-horizontal {
   background: #fff;
 }
 
-/* line 42, src/static/scss/_base.scss */
+/* line 72, src/static/scss/_base.scss */
 .pure-menu {
   font-size: 90%;
 }
-/* line 44, src/static/scss/_base.scss */
+/* line 74, src/static/scss/_base.scss */
 .pure-menu .pure-menu-heading {
   margin-top: 2px;
   border: 0;
 }
 
-/* line 49, src/static/scss/_base.scss */
+/* line 79, src/static/scss/_base.scss */
 a {
   color: #0074d9;
   text-decoration: none;
   line-height: inherit;
 }
-/* line 53, src/static/scss/_base.scss */
+/* line 83, src/static/scss/_base.scss */
 a:focus, a:hover {
   color: #005bab;
 }
 
-/* line 58, src/static/scss/_base.scss */
+/* line 88, src/static/scss/_base.scss */
 a.pure-button:focus,
 a.pure-button:hover {
   color: #fff;
 }
 
-/* line 63, src/static/scss/_base.scss */
+/* line 93, src/static/scss/_base.scss */
 pre code {
   color: #111;
   background-color: #ddd;
@@ -221,59 +263,59 @@ pre code {
   padding: 0.5em;
 }
 
-/* line 74, src/static/scss/_base.scss */
+/* line 104, src/static/scss/_base.scss */
 .pure-button {
   border-radius: 1px;
 }
 
-/* line 77, src/static/scss/_base.scss */
+/* line 107, src/static/scss/_base.scss */
 .bg-blue {
   background: #3b5998;
   color: #fff;
 }
 
-/* line 81, src/static/scss/_base.scss */
+/* line 111, src/static/scss/_base.scss */
 .bg-ligh-blue {
   background: #26c4f1;
   color: #fff;
 }
 
-/* line 85, src/static/scss/_base.scss */
+/* line 115, src/static/scss/_base.scss */
 .bg-red {
   background: #ce2616;
   color: #fff;
 }
 
-/* line 89, src/static/scss/_base.scss */
+/* line 119, src/static/scss/_base.scss */
 .bg-ist {
   color: #000;
   background: #df7514;
   width: 84px;
 }
 
-/* line 94, src/static/scss/_base.scss */
+/* line 124, src/static/scss/_base.scss */
 .line-first {
   padding-bottom: 5px;
   margin-bottom: 10px;
   border-bottom: 1px solid #aaa;
 }
 
-/* line 99, src/static/scss/_base.scss */
+/* line 129, src/static/scss/_base.scss */
 .jbo-pr {
   text-align: right;
 }
 
-/* line 102, src/static/scss/_base.scss */
+/* line 132, src/static/scss/_base.scss */
 .jbo-pl {
   text-align: left;
 }
 
-/* line 105, src/static/scss/_base.scss */
+/* line 135, src/static/scss/_base.scss */
 .jbo-pj {
   text-align: justify;
 }
 
-/* line 108, src/static/scss/_base.scss */
+/* line 138, src/static/scss/_base.scss */
 .img_left {
   float: left;
   margin-right: 14px;
@@ -281,7 +323,7 @@ pre code {
   margin-top: 3px;
 }
 
-/* line 114, src/static/scss/_base.scss */
+/* line 144, src/static/scss/_base.scss */
 .img_right {
   margin-left: 14px;
   margin-top: 3px;
@@ -289,7 +331,7 @@ pre code {
   float: right;
 }
 
-/* line 121, src/static/scss/_base.scss */
+/* line 151, src/static/scss/_base.scss */
 .subscribe--error {
   padding: 2px 5px 2px 5px;
   margin: 0 1px 0 0;
@@ -297,15 +339,74 @@ pre code {
 }
 
 /* Header  ========================================================================== */
-/* line 128, src/static/scss/_base.scss */
+/* line 158, src/static/scss/_base.scss */
 header {
-  height: 50px;
+  height: 40px;
 }
 
 /* Footer  ========================================================================== */
-/* line 132, src/static/scss/_base.scss */
+/* line 162, src/static/scss/_base.scss */
 footer {
+  margin-top: -46px;
+  position: relative;
+  height: 46px;
+  clear: both;
+}
+
+/* Form  ========================================================================== */
+/* line 169, src/static/scss/_base.scss */
+.ui.form .field {
+  margin: 1em 0em 1em;
+}
+
+/* line 172, src/static/scss/_base.scss */
+.ui.form .field > label {
+  margin: 0em 0em 0.5rem 0em;
+}
+
+/* line 175, src/static/scss/_base.scss */
+#cat-button-submit-login-element {
+  margin-top: 1em;
+}
+
+/* Auth  ========================================================================== */
+/* line 179, src/static/scss/_base.scss */
+.parent {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* line 184, src/static/scss/_base.scss */
+.child {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+/* line 10, src/static/scss/home.scss */
+.home--bg {
+  width: 100%;
+  background: transparent url("../images/bg1.jpg") top center no-repeat fixed;
+  position: absolute;
+  top: 0;
+  min-height: 400px;
+  margin: 0;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
+}
+
+/* line 23, src/static/scss/home.scss */
+.ui.huge.message {
+  background: none;
+  color: #fff;
   margin-top: 40px;
+  box-shadow: none;
+}
+
+/* line 31, src/static/scss/home.scss */
+.ui.huge.header {
+  color: #fff;
 }
 
 

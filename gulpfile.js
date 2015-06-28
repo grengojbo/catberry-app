@@ -24,11 +24,12 @@ gulp.task('clean:tmp', del.bind(null, [
     path.join(config.assets, 'css', '{home,main,mobile}-*.css'),
     path.join(config.assets, 'vendor', '**'),
     path.join(config.assets, 'scss', '**'),
+    path.join(config.assets, 'images', '**'),
     path.join(config.distTmp, 'static', 'vendor', '**'),
     path.join(config.distTmp, 'static', 'scss')
 ]));
 
-gulp.task('images', function() {
+gulp.task('images', ['copy:dist'], function() {
   return gulp.src(config.base + config.images)
     .pipe($.imagemin({
       progressive: true,
@@ -101,7 +102,7 @@ gulp.task('copy:build', function () {
 });
 
 gulp.task('copy:dist', ['clean:tmp'], function () {
-    return gulp.src(path.join(config.distTmp, 'static', '**'))
+    return gulp.src(['!' + path.join('src', 'static', 'images', '**'), path.join(config.distTmp, 'static', '**')])
         .pipe(gulp.dest(config.assets))
     .pipe($.size({title: 'copy dist'}));
 });
@@ -161,7 +162,7 @@ gulp.task('html:head', ['copy:css'], function() {
 
 gulp.task('default', ['copy-static']);
 gulp.task('release', ['build:release'], function(cb) {
-  runSequence(['clean:tmp', 'copy:head:dist'], 'copy:dist', cb);
+  runSequence(['clean:tmp', 'copy:head:dist'], 'images', cb);
 });
 gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static', 'copy-static'], 'html:head', cb);
