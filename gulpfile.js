@@ -8,6 +8,7 @@ var runSequence = require('run-sequence');
 var pkg = require('./package');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
+var pngquant = require('imagemin-pngquant');
 
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
@@ -26,6 +27,19 @@ gulp.task('clean:tmp', del.bind(null, [
     path.join(config.distTmp, 'static', 'vendor', '**'),
     path.join(config.distTmp, 'static', 'scss')
 ]));
+
+gulp.task('images', function() {
+  return gulp.src(config.base + config.images)
+    .pipe($.imagemin({
+      progressive: true,
+      interlaced: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
+    }))
+    // .pipe(gulp.dest(config.tmp + '/images'))
+    .pipe(gulp.dest(config.assets + '/images'))
+    .pipe($.size({title: 'images'}));
+});
 
 gulp.task('sass:home', function() {
   return $.rubySass(config.homeScss, {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-home'})

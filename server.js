@@ -4,10 +4,8 @@
 
 var OAuth2Client = require('catberry-oauth2-client'),
 	catberry = require('catberry'),
-	isRelease = process.argv.length >= 3 ?
-		process.argv[2] === 'release' : undefined,
-	port = process.argv.length >= 4 ?
-		Number(process.argv[3]) : undefined;
+	isRelease = process.argv.length >= 3 ? process.argv[2] === 'release' : undefined,
+	port = process.argv.length >= 4 ? Number(process.argv[3]) : undefined;
 
 var http = require('http'),
 	util = require('util'),
@@ -24,11 +22,11 @@ var http = require('http'),
 	cat = catberry.create(config),
 	app = connect();
 
-var READY_MESSAGE = 'START App  (isRelease: %s) >>> Ready to handle incoming requests on port: %d publicPath: %s';
-
 config.publicPath = publicPath;
 config.server.port = port || config.server.port || 3000;
 config.isRelease = isRelease === undefined ? config.isRelease : isRelease;
+
+var READY_MESSAGE = 'START App >>> Ready to handle incoming requests on port: %d | isRelease: ' + config.isRelease;
 
 templateEngine.register(cat.locator);
 l10n.register(cat.locator);
@@ -79,7 +77,7 @@ app.use(errorhandler());
 
 cat.events.on('ready', function () {
 	var logger = cat.locator.resolve('logger');
-	logger.info(util.format(READY_MESSAGE, isRelease, config.server.port, publicPath));
+	logger.info(util.format(READY_MESSAGE, config.server.port));
 });
 
 http
