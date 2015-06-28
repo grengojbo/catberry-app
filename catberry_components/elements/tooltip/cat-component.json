@@ -1,0 +1,5 @@
+{
+	"name": "tooltip",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
