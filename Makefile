@@ -28,6 +28,7 @@ help:
 	@echo "make lint    - Run jshint and jscs"
 	@echo "make csscomb - CSScomb > CSS coding style formatter"
 	@echo "make run     - Run project debug mode"
+	@echo "make index   - Optimize index page"
 	@echo "make release - Build and run release project"
 	@echo "make deploy  - Deploy current project (git push and ansible deploy)"
 	@echo "...............................................................\n"
@@ -89,3 +90,6 @@ skeleton:
 
 csscomb:
 	@csscomb src/static/scss -c config/.csscomb.json
+
+index:
+	@curl http://localhost:3000/ > src/index.html
