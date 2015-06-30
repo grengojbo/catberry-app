@@ -1,61 +1,79 @@
 //rem font-size with px fallback
-@mixin font-size( $value ) {
-  font-size: ( $value ) * 1px;
-  font-size: ( $value / $base-font-size ) * 1rem;
+@mixin font-size( $value )
+{
+    font-size: ( $value ) * 1px;
+    font-size: ( $value / $base-font-size ) * 1rem;
 }
 
 //box Sizing
-@mixin box-sizing ($type: border-box) {
-  //content-box | border-box | inherit
-  -webkit-box-sizing: $type;
-     -moz-box-sizing: $type;
-          box-sizing: $type;
+@mixin box-sizing ($type: border-box)
+{
+    //content-box | border-box | inherit
+    -webkit-box-sizing: $type;
+       -moz-box-sizing: $type;
+            box-sizing: $type;
 }
-@mixin border-box() {
+@mixin border-box()
+{
     @include box-sizing( border-box );
 }
 
 //reset border, margin, and padding
-@mixin box-reset() {
-  margin: 0;
-  padding: 0;
-  border: 0 none;
+@mixin box-reset()
+{
+    margin: 0;
+    padding: 0;
+
+    border: 0 none;
 }
 
 //px to rem sizing with px fallout
-@mixin font-size($size, $context: $base-root-size) {
-  font-size: $size + px;
-  font-size: ($size / $base-root-size) + rem;
+@mixin font-size($size, $context: $base-root-size)
+{
+    font-size: $size + px;
+    font-size: ($size / $base-root-size) + rem;
 }
 
 //selection
-@mixin selection() {
-  background: #b3d4fc;
-  text-shadow: none;
+@mixin selection()
+{
+    background: #b3d4fc;
+    text-shadow: none;
 }
 
 //placeholder
-@mixin placeholder() {
-  color: #999;
+@mixin placeholder()
+{
+    color: #999;
 }
 
 //vertical align (http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/)
-@mixin vertical-align {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+@mixin vertical-align
+{
+    position: relative;
+    top: 50%;
+
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
 }
-@mixin parent-element {
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+@mixin parent-element
+{
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
 }
 
-@mixin keyframes($name) {
-  @-moz-keyframes    $name { @content; }
-  @-webkit-keyframes $name { @content; }
+@mixin keyframes($name)
+{
+    @-moz-keyframes    $name
+    {
+        @content;
+    }
+    @-webkit-keyframes $name
+    {
+        @content;
+    }
 }
 
 // .menu-main {
@@ -74,35 +92,52 @@
 //    @include respond-to(desktop)   { @include grid($grid-total-width);  }
 // }
 // https://gist.github.com/chriseppstein/1215856
-@mixin respond-to($media) {
-  @if $media == smart {
-    $grid-columns: 10;
-    $grid-gutter-width: 10px;
-    $grid-total-width: 310px;
-    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
-    @media screen and (max-width: $break-smart) { @content; }
-  }
-  @else if $media == tablet {
-    $grid-columns: 10;
-    $grid-gutter-width: 10px;
-    $grid-total-width: 460px;
-    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
-    @media screen and (min-width: $break-smart + 1) and (max-width: $break-tablet) { @content; }
-  }
-  @else if $media == tablet-wide {
-    $grid-columns: 12;
-    $grid-gutter-width: 10px;
-    $grid-total-width: 740px;
-    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
-    @media screen and (min-width: $break-tablet + 1) and (max-width: $break-wide) { @content; }
-  }
-  @else if $media == desktop {
-    $grid-columns: 12;
-    $grid-gutter-width: 20px;
-    $grid-total-width: 980px;
-    $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
-    @media screen and (min-width: $break-wide + 1) { @content; }
-  }
+@mixin respond-to($media)
+{
+    @if $media == smart
+    {
+        $grid-columns: 10;
+        $grid-gutter-width: 10px;
+        $grid-total-width: 310px;
+        $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+        @media screen and (max-width: $break-smart)
+        {
+            @content;
+        }
+    }
+    @else if $media == tablet
+    {
+        $grid-columns: 10;
+        $grid-gutter-width: 10px;
+        $grid-total-width: 460px;
+        $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+        @media screen and (min-width: $break-smart + 1) and (max-width: $break-tablet)
+        {
+            @content;
+        }
+    }
+    @else if $media == tablet-wide
+    {
+        $grid-columns: 12;
+        $grid-gutter-width: 10px;
+        $grid-total-width: 740px;
+        $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+        @media screen and (min-width: $break-tablet + 1) and (max-width: $break-wide)
+        {
+            @content;
+        }
+    }
+    @else if $media == desktop
+    {
+        $grid-columns: 12;
+        $grid-gutter-width: 20px;
+        $grid-total-width: 980px;
+        $grid-col-width: ( ($grid-total-width - $grid-gutter-width) / $grid-columns) - $grid-gutter-width;
+        @media screen and (min-width: $break-wide + 1)
+        {
+            @content;
+        }
+    }
 }
 // @mixin respond-to($media) {
 //   @if $media == handhelds {
@@ -117,23 +152,26 @@
 // }
 
 // @include font-face("Open Sans Condensed", "Open Sans Cond Light", "OpenSans-CondensedLight", "open_sans_condensed_light", 800, "italic");
-@mixin font-face($style-name, $family-space, $family, $file, $fw:300, $fs:"normal") {
-  // $filepath: "../" + $static-path + "/fonts/" + $file;
-  $filepath: "../fonts/" + $file;
-  @font-face {
-      font-family: "#{$style-name}";
-      src: local($family-space), local($family), url($filepath + ".woff") format('woff');
-      font-weight: $fw;
-      font-style: $fs;
-  }
+@mixin font-face($style-name, $family-space, $family, $file, $fw: 300, $fs:'normal')
+{
+    // $filepath: "../" + $static-path + "/fonts/" + $file;
+    $filepath: '../fonts/' + $file;
+    @font-face
+    {
+        font-family: "#{$style-name}";
+        // src: local($family-space), local($family), url($filepath + ".woff") format('woff');
+        font-weight: $fw;
+        font-style: $fs;
+    }
 }
 
 // h1 {
 //    @include font('OpenSansCondensed') { font-size: 200%};
 // }
-@mixin font($font, $style: normal, $weight: normal) {
+@mixin font($font, $style: normal, $weight: normal)
+{
     font-family: $font, $default-fonts;
-    font-style:  $style;
     font-weight: $weight;
+    font-style: $style;
     @content;
 }
