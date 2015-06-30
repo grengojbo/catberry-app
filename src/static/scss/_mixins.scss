@@ -158,8 +158,8 @@
     $filepath: '../fonts/' + $file;
     @font-face
     {
-        font-family: "#{$style-name}";
-        // src: local($family-space), local($family), url($filepath + ".woff") format('woff');
+        font-family: '#{$style-name}';
+        src: local($family-space), local($family), url('../fonts/' + $file + '.woff') format('woff');
         font-weight: $fw;
         font-style: $fs;
     }
