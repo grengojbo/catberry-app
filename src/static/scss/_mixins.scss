@@ -154,14 +154,13 @@
 // @include font-face("Open Sans Condensed", "Open Sans Cond Light", "OpenSans-CondensedLight", "open_sans_condensed_light", 800, "italic");
 @mixin font-face($style-name, $family-space, $family, $file, $fw: 300, $fs:'normal')
 {
-    // $filepath: "../" + $static-path + "/fonts/" + $file;
-    $filepath: '../fonts/' + $file;
     @font-face
     {
         font-family: '#{$style-name}';
-        src: local($family-space), local($family), url('../fonts/' + $file + '.woff') format('woff');
         font-weight: $fw;
         font-style: $fs;
+
+        src: local($family-space), local($family), url('../fonts/#{$file}.woff') format('woff');
     }
 }
 
