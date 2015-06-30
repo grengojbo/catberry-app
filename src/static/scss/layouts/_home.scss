@@ -1,11 +1,15 @@
-.home--bg {
-  width: 100%;
-  background: transparent url('../images/bg1.jpg') top center no-repeat fixed;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  min-height: 708px;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
+.home--bg
+{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 708px;
+
+    background: transparent url('../images/bg1.jpg') top center no-repeat fixed;
+    background-size: cover;
+
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
 }

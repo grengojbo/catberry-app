@@ -15,7 +15,7 @@ $lime: #01ff70;
 // Warm
 $yellow: #ffdc00;
 $orange: #ff851b;
-$red: #EF413D;
+$red: #ef413d;
 // $red: #ff4136;
 $fuchsia: #f012be;
 $purple: #b10dc9;
@@ -40,16 +40,16 @@ $break-wide: 1000px;
 $color-bg: $white;
 $color-footer: #2e2e2e;
 $color: #292f33;
-$color-nav: #9B9B9B;
+$color-nav: #9b9b9b;
 $header-heigh: 40px;
 $header-footer: 46px;
 $max-width: 920px;
 $min-width: 430px;
-$opacity: 0.8;
+$opacity: .8;
 $banner-height: 580px;
 
 // Other settings
-$static-path: "static";
+$static-path: 'static';
 
 $gallery-hor-width: 480px;
 $gallery-hor-height: 320px;
@@ -62,5 +62,5 @@ $pswp__placeholder-color: #222 !default;
 $pswp__box-sizing-border-box: true !default; // disable .pswp * { box-sizing:border-box } (in case you already have it in your site css)
 $pswp__root-z-index: 1500 !default;
 $pswp__assets-path: '/assets/photoswipe/images/' !default; // path to skin assets folder (preloader, PNG and SVG sprite)
-$pswp__error-text-color: #CCC !default; // "Image not loaded" text color
+$pswp__error-text-color: #ccc !default; // "Image not loaded" text color
 $pswp__include-minimal-style: true !default;

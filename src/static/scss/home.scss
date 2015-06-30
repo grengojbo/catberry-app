@@ -7,27 +7,34 @@ https://github.com/davidrapson/scss-toolkit
 @import 'settings', 'mixins', 'helpers';
 @import 'normalize', 'base';
 
-.home--bg {
-  width: 100%;
-  background: transparent url('../images/bg1.jpg') top center no-repeat fixed;
-  // background-size: cover;
-  position: absolute;
-  top: 0;
-  // left: 0;
-  // z-index: -1;
-  min-height: 400px;
-  margin: 0;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
+.home--bg
+{
+    // background-size: cover;
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    // left: 0;
+    // z-index: -1;
+    min-height: 400px;
+    margin: 0;
+
+    background: transparent url('../images/bg1.jpg') top center no-repeat fixed;
+
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
 }
 
-.ui.huge.message {
-  // font-size: 1.5em;
-  background: none;
-  color: $white;
-  margin-top: $header-heigh;
-  box-shadow: none;
-  // text-align: center;
+.ui.huge.message
+{
+    margin-top: $header-heigh;
+
+    color: $white;
+    // font-size: 1.5em;
+    background: none;
+    box-shadow: none;
+    // text-align: center;
 }
-.ui.huge.header {
-  color: $white;
+.ui.huge.header
+{
+    color: $white;
 }

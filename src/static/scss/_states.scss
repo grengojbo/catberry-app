@@ -1,75 +1,104 @@
 //states here
-footer {
-  a {
-    color: $white;
-    &:focus,
-    &:hover {
-      color: darken($white, 5);
+footer
+{
+    a
+    {
+        color: $white;
+        &:focus,
+        &:hover
+        {
+            color: darken($white, 5);
+        }
     }
-  }
 }
 
-@include respond-to(tablet-wide) {
-  .grid-itm-3 {
-    flex-basis: calc(33.33% - 10px);
-    margin: 0 5px 10px;
-  }
-  .grid-itm-2 {
-    // padding-left: 10px;
-    // flex-basis: 100%;
-    h3, p {
-      margin-left: 10px;
-      margin-right: 10px;
+@include respond-to(tablet-wide)
+{
+    .grid-itm-3
+    {
+        margin: 0 5px 10px;
+
+        flex-basis: calc(33.33% - 10px);
     }
-    background: $yellow;
-  }
+    .grid-itm-2
+    {
+        background: $yellow;
+        // padding-left: 10px;
+        // flex-basis: 100%;
+        h3,
+        p
+        {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
 };
 
-@include respond-to(tablet) {
-  .grid-itm-3 {
-    flex-basis: calc(33.33% - 10px);
-    margin: 0 5px 10px;
-  }
-  .grid-itm-2 {
-    // padding-left: 10px;
-    flex-basis: 100%;
-    h3, p {
-      margin-left: 10px;
-      margin-right: 10px;
+@include respond-to(tablet)
+{
+    .grid-itm-3
+    {
+        margin: 0 5px 10px;
+
+        flex-basis: calc(33.33% - 10px);
     }
-    background: $red;
-  }
+    .grid-itm-2
+    {
+        background: $red;
+        // padding-left: 10px;
+
+        flex-basis: 100%;
+        h3,
+        p
+        {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
 };
 
-@include respond-to(smart) {
-  .banner {
-    margin-bottom: 0;
-  }
-  .grid-itm-3 {
-    flex-basis: 100%;
-    margin: 0;
-  }
-  .grid-itm-2 {
-    // margin: 0 0 20px;
-    // padding-left: 10px;
-    flex-basis: 100%;
-    h3, p {
-      margin-left: 10px;
-      margin-right: 10px;
+@include respond-to(smart)
+{
+    .banner
+    {
+        margin-bottom: 0;
     }
-    background: $blue;
-  }
-  .box-base {
-    h2 {
-      padding: 0;
+    .grid-itm-3
+    {
+        margin: 0;
+
+        flex-basis: 100%;
     }
-    .pricing-table-price {
-      font-size: 3em;
-     span {
-        font-size: 0.4em;
-        padding-bottom: 0;
-        font-weight: 400;
-      }
+    .grid-itm-2
+    {
+        background: $blue;
+        // margin: 0 0 20px;
+        // padding-left: 10px;
+
+        flex-basis: 100%;
+        h3,
+        p
+        {
+            margin-right: 10px;
+            margin-left: 10px;
+        }
     }
-  }
+    .box-base
+    {
+        h2
+        {
+            padding: 0;
+        }
+        .pricing-table-price
+        {
+            font-size: 3em;
+            span
+            {
+                font-size: .4em;
+                font-weight: 400;
+
+                padding-bottom: 0;
+            }
+        }
+    }
 };

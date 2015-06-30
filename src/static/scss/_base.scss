@@ -10,179 +10,229 @@
 
 
 /* Defaults  ========================================================================== */
-html {
-  height: 100%;
+html
+{
+    height: 100%;
 }
-body {
-  // background: $fuchsia;
-  min-width: $min-width;
-  height: 100%;
-  background: $color-bg;
-  color: $color;
-  // margin: 0;
-  // padding: 0;
-  // -webkit-font-smoothing: subpixel-antialiased !important;
-  // -webkit-backface-visibility: hidden;
-  // -moz-backface-visibility:    hidden;
-  // -ms-backface-visibility:     hidden;
+body
+{
+    // background: $fuchsia;
+    min-width: $min-width;
+    height: 100%;
+
+    color: $color;
+    background: $color-bg;
+    // margin: 0;
+    // padding: 0;
+    // -webkit-font-smoothing: subpixel-antialiased !important;
+    // -webkit-backface-visibility: hidden;
+    // -moz-backface-visibility:    hidden;
+    // -ms-backface-visibility:     hidden;
 }
-body:before {
-  content:"";
-  height:100%;
-  float:left;
-  width:0;
-  margin-top:-32767px;
+body:before
+{
+    float: left;
+
+    width: 0;
+    height: 100%;
+    margin-top: -32767px;
+
+    content: '';
 }
 
-.wrap {
-  min-height: 100%;
-  // padding: 0px 0 0px 0;
-  margin-top: -24px;
-  margin-bottom: $header-footer;
-  // margin-bottom: -$header-footer - 14px;
+.wrap
+{
+    min-height: 100%;
+    // padding: 0px 0 0px 0;
+    margin-top: -24px;
+    margin-bottom: $header-footer;
+    // margin-bottom: -$header-footer - 14px;
 }
 
-.ui.segment {
-  border-radius: 0;
-  box-shadow: none;
+.ui.segment
+{
+    border-radius: 0;
+    box-shadow: none;
 }
-.ui.segment.border {
-box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+.ui.segment.border
+{
+    box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
 }
-.ui.grid {
-  margin: 0;
+.ui.grid
+{
+    margin: 0;
 }
-.padding-reset {
-  padding: 0px !important;
+.padding-reset
+{
+    padding: 0 !important;
 }
-img.pure-img {
-  vertical-align: middle;
-  max-width: 60%;
-  display: inline;
+img.pure-img
+{
+    display: inline;
 
-}
-code {
-  color: $red;
+    max-width: 60%;
 
+    vertical-align: middle;
 }
-.pure-menu.pure-menu-horizontal {
-  background: $white;
+code
+{
+    color: $red;
+}
+.pure-menu.pure-menu-horizontal
+{
+    background: $white;
+}
+.pure-menu
+{
+    font-size: 90%;
+    .pure-menu-heading
+    {
+        margin-top: 2px;
 
+        border: 0;
+    }
 }
-.pure-menu {
-  font-size: 90%;
-  .pure-menu-heading {
-    margin-top: 2px;
-    border: 0;
-  }
-}
-a {
-  color: $blue;
-  text-decoration: none;
-  line-height: inherit;
-  &:focus,
-  &:hover {
-    color: darken($blue, 9);
-  }
+a
+{
+    line-height: inherit;
+
+    text-decoration: none;
+
+    color: $blue;
+    &:focus,
+    &:hover
+    {
+        color: darken($blue, 9);
+    }
 }
 a.pure-button:focus,
-a.pure-button:hover {
-  color: #fff;
+a.pure-button:hover
+{
+    color: #fff;
 }
-pre {
-  code {
-    color: $black;
-    background-color: $silver;
-    border-width: 1px;
-    border-style: solid;
-    border-color: $gray;
-    display: block;
-    padding: 0.5em;
-  }
+pre
+{
+    code
+    {
+        display: block;
 
+        padding: .5em;
+
+        color: $black;
+        border-width: 1px;
+        border-style: solid;
+        border-color: $gray;
+        background-color: $silver;
+    }
 }
-.pure-button {
-  border-radius: 1px;
+.pure-button
+{
+    border-radius: 1px;
 }
-.bg-blue {
-  background: $colors-blue;
-  color: $white;
+.bg-blue
+{
+    color: $white;
+    background: $colors-blue;
 }
-.bg-ligh-blue {
-  background: $colors-ligh-blue;
-  color: $white;
+.bg-ligh-blue
+{
+    color: $white;
+    background: $colors-ligh-blue;
 }
-.bg-red {
-  background: $colors-red;
-  color: $white;
+.bg-red
+{
+    color: $white;
+    background: $colors-red;
 }
-.bg-ist {
-  color: #000;
-  background: rgb(223, 117, 20);
-  width: 84px;
+.bg-ist
+{
+    width: 84px;
+
+    color: #000;
+    background: rgb(223, 117, 20);
 }
-.line-first {
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid $gray;
+.line-first
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid $gray;
 }
-.jbo-pr {
-  text-align: right;
+.jbo-pr
+{
+    text-align: right;
 }
-.jbo-pl {
-  text-align: left;
+.jbo-pl
+{
+    text-align: left;
 }
-.jbo-pj {
-  text-align: justify;
+.jbo-pj
+{
+    text-align: justify;
 }
-.img_left {
+.img_left
+{
     float: left;
+
+    margin-top: 3px;
     margin-right: 14px;
     margin-bottom: 14px;
-    margin-top: 3px
 }
-.img_right {
-    margin-left: 14px;
+.img_right
+{
+    float: right;
+
     margin-top: 3px;
     margin-bottom: 14px;
-    float: right
+    margin-left: 14px;
 }
 
-.subscribe--error {
-  padding: 2px 5px 2px 5px;
-  margin: 0 1px 0 0;
-  width: 100%;
+.subscribe--error
+{
+    width: 100%;
+    margin: 0 1px 0 0;
+    padding: 2px 5px 2px 5px;
 }
 
 /* Header  ========================================================================== */
-header {
-  height: $header-heigh;
+header
+{
+    height: $header-heigh;
 }
 /* Footer  ========================================================================== */
-footer {
-  margin-top: -$header-footer;
-  position: relative;
-  height: $header-footer;
-  clear:both;
+footer
+{
+    position: relative;
+
+    clear: both;
+
+    height: $header-footer;
+    margin-top: -$header-footer;
 }
 /* Form  ========================================================================== */
-.ui.form .field {
-  margin: 1em 0em 1em;
+.ui.form .field
+{
+    margin: 1em 0 1em;
 }
-.ui.form .field > label {
-  margin: 0em 0em 0.5rem 0em;
+.ui.form .field > label
+{
+    margin: 0 0 .5rem 0;
 }
-#cat-button-submit-login-element {
-  margin-top: 1em;
+#cat-button-submit-login-element
+{
+    margin-top: 1em;
 }
 /* Auth  ========================================================================== */
-.parent {
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+.parent
+{
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
 }
-.child {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+.child
+{
+    position: relative;
+    top: 50%;
+
+    transform: translateY(-50%);
 }
