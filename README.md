@@ -110,6 +110,8 @@ var viewData = {
 {{#each items}}
     <div style="font-size:{{../itemSize}}px">{{this}}</div>
 {{/each}}
+
+<i class="{{#is type 'music'}}music{{else}}film{{/is}}"></i>
 ```
 
 ## Наброски

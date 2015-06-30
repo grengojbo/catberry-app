@@ -13,6 +13,10 @@ var pngquant = require('imagemin-pngquant');
 var rename = require("gulp-rename");
 var replace = require('gulp-replace-task');
 
+var hbAttrWrapOpen = /\{\{#[^}]+\}\}/;
+var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
+var hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
+
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 
@@ -139,6 +143,7 @@ gulp.task('sass:mobile', function() {
     .pipe($.size({title: 'sass mobile'}));
 });
 
+// TODO: delete
 gulp.task('sass:photoswipe', function() {
   return $.rubySass(path.join('src', 'static', 'scss', 'photoswipe.scss'), {sourcemap: false, lineNumbers: true, style: 'expanded', container: 'sass-photoswipe'})
     .on('error', function(err) {
@@ -176,6 +181,7 @@ gulp.task('copy:static', function () {
         .pipe(gulp.dest(path.join(config.dist, 'static')))
     .pipe($.size({title: 'copy static'}));
 });
+
 gulp.task('copy:build', function () {
     return gulp.src(['!' + path.join('src', 'static', 'scss', '**'), path.join('src', 'static', '**')])
         .pipe(gulp.dest(path.join(config.distTmp, 'static')))
@@ -224,6 +230,7 @@ gulp.task('html:head', ['copy:css'], function() {
 
   return gulp.src(config.templates + '/head/head.hbs')
     // .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
+    // .pipe($.debug({minimal: false}))
     .pipe(assets)
     // .pipe($.if(config.map, sourcemaps.init()))
     // .pipe($.if('**/*main.js', $.uglify({mangle: false})))
@@ -233,6 +240,9 @@ gulp.task('html:head', ['copy:css'], function() {
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.revReplace())
+    // https://github.com/kangax/html-minifier
+    // https://github.com/kangax/html-minifier/wiki/Minifying-Handlebars-templates
+    // .pipe($.if(config.htmlmin, $.htmlmin({ customAttrSurround: [hbAttrWrapPair], collapseWhitespace: config.html.collapseWhitespace, removeComments: config.html.removeComments})))
     // .pipe($.if('*.html', $.minifyHtml({empty: true})))
     // .pipe($.if(config.map, sourcemaps.write()))
     .pipe(gulp.dest(config.distTmp))

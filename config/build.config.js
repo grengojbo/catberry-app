@@ -17,7 +17,7 @@ module.exports = {
   srcScss: 'src/static/scss/',
   scss: 'src/static/scss/**/*.scss',
   fonts: '/static/fonts/*',
-  html: ['src/templates/*.html', 'src/templates/**/*.dust'],
+  // html: ['src/templates/*.html', 'src/templates/**/*.dust'],
   dust: 'src/templates/**/*.dust',
   cat: 'catberry_components',
   templates: 'src/templates',
@@ -32,6 +32,11 @@ module.exports = {
   headSrc: 'src/templates/main/placeholders/head.dust',
   assets: 'public/static',
   images: '/static/images/**/*',
+  htmlmin: false,
+  html: {
+    collapseWhitespace: false,
+    removeComments: true
+  },
   banner: ['/**',
     ' * <%= pkg.name %> - <%= pkg.description %>',
     ' * @version v<%= pkg.version %>',
