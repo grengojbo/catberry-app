@@ -71,6 +71,8 @@ deploy: push
 	@$(shell cd $(ANSIBLE_DIR) && ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml && cd $(CURRENT_DIR))
 
 run:
+	@sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
+	@sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
 	@gulp build
 	@npm run debug
 

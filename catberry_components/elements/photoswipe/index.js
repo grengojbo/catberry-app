@@ -119,7 +119,7 @@ Photoswipe.prototype.render = function () {
     lp = lh.getLocalizationProvider(this.$context),
     curLocale = lh.getCurrentLocale(this.$context);
 
-  this.isShow = true;
+  // this.isShow = true;
   var result = {
     id: 'gal',
     isShow: this.isShow,

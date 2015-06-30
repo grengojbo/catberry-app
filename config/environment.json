@@ -76,6 +76,11 @@
     "watchInterval": 0
   },
   "assets": {
+    "postcssConfig": {
+      "filters": {
+        "oldIE": false
+      }
+    },
     "enableCssStructureMinimization": true
   },
   "componentsGlob": "catberry_components/**/cat-component.json",

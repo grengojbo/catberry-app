@@ -7,7 +7,8 @@
 ```
 $ sudo brew install --HEAD hub
 $ sudo gem install sass
-$ sudo npm -g install gulp bower
+$ sudo npm install -g gulp bower
+$ sudo npm install -g csscomb catberry-cli
 ```
 
 Создаем проект с .
@@ -59,7 +60,7 @@ bower install
 npm install newrelic --save
 ```
 
-Измените [robots.txt](./static/robots.txt),  sitemap.xml в [server.js](./server.js).
+Измените [robots.txt](./static/robots.txt).
 
 В терминале запустите задачу **gult** и работайте в вашем любимом редакторе например [SublimeText3](http://www.sublimetext.com/3).
 

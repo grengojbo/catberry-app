@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('./config/build.config.js');
+var catConfig = require('./config/environment.json');
 var gulp = require('gulp'),
 	path = require('path');
 var $ = require('gulp-load-plugins')();
@@ -43,6 +44,7 @@ gulp.task('images', ['copy:dist'], function() {
     .pipe($.size({title: 'images'}));
 });
 
+// TODO: delete
 gulp.task('sass:home', function() {
   return $.rubySass(config.homeScss, {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-home'})
     .on('error', function(err) {
@@ -57,6 +59,7 @@ gulp.task('sass:home', function() {
     .pipe($.size({title: 'sass home'}));
 });
 
+// TODO: delete
 gulp.task('sass:main', function() {
   return $.rubySass(config.mainScss, {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-main'})
     .on('error', function(err) {
@@ -71,6 +74,7 @@ gulp.task('sass:main', function() {
     .pipe($.size({title: 'sass main'}));
 });
 
+// TODO: delete
 gulp.task('sass:mobile', function() {
   return $.rubySass(config.mobileScss, {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-mobile'})
     .on('error', function(err) {
@@ -93,10 +97,21 @@ gulp.task('sass:photoswipe', function() {
     .pipe($.autoprefixer())
     // .pipe(sourcemaps.write())
     // .pipe(sourcemaps.write('/', {includeContent: false, sourceRoot: config.mobileScss}))
-    .pipe(rename('photoswipe.less'))
-    .pipe(gulp.dest(path.join('catberry_components', 'elements', 'photoswipe', 'assets', 'less')))
-    // .pipe(gulp.dest(path.join('catberry_components', 'elements', 'photoswipe', 'assets', 'css')))
+    .pipe(rename('styles.css'))
+    // .pipe(gulp.dest(path.join('catberry_components', 'elements', 'photoswipe', 'assets', 'less')))
+    .pipe(gulp.dest(path.join('catberry_components', 'elements', 'photoswipe', 'assets', 'css')))
     .pipe($.size({title: 'sass photoswipe'}));
+});
+
+gulp.task('sass:dev', function() {
+  return $.rubySass(path.join('src', 'static', 'scss'), {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-devv'})
+    .on('error', function(err) {
+      console.log(err.message);
+    })
+    .pipe($.autoprefixer())
+    .pipe(sourcemaps.write('/', {includeContent: false, sourceRoot: path.join('src', 'static', 'scss')}))
+    .pipe(gulp.dest(path.join(config.tmp, 'css')))
+    .pipe($.size({title: 'sass dev'}));
 });
 
 
@@ -123,19 +138,26 @@ gulp.task('copy:dist', ['clean:tmp'], function () {
     .pipe($.size({title: 'copy dist'}));
 });
 
-gulp.task('copy:css', ['sass:main', 'sass:mobile', 'sass:home'], function () {
+gulp.task('copy:css', ['sass:dev'], function () {
     return gulp.src(path.join(config.tmp, 'css', '**'))
         .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
     .pipe($.size({title: 'copy css'}));
 });
 
+gulp.task('copy:dev', ['sass:dev'], function () {
+    return gulp.src(path.join(config.tmp, 'css', '**'))
+        .pipe(gulp.dest(path.join(config.assets, 'css')))
+    .pipe($.size({title: 'copy css'}));
+});
+
+// TODO: delete
 gulp.task('copy-static', function () {
 	return gulp.src(path.join('static', '**'))
 		.pipe(gulp.dest(config.dist))
     .pipe($.size({title: 'copy old static'}));
 });
 
-gulp.task('copy:head', function () {
+gulp.task('copy:head', ['copy:dev'], function () {
     return gulp.src(path.join(config.templates, 'head', '*.hbs'))
         .pipe(gulp.dest(path.join(config.cat, 'head')))
     .pipe($.size({title: 'copy head.hbs'}));
@@ -176,14 +198,15 @@ gulp.task('html:head', ['copy:css'], function() {
 //     }));
 // });
 
-gulp.task('default', ['copy-static']);
+gulp.task('default', ['build']);
 gulp.task('release', ['build:release'], function(cb) {
   runSequence(['clean:tmp', 'copy:head:dist'], 'images', cb);
 });
 gulp.task('build:release', ['clean'], function(cb) {
-  runSequence(['copy:build', 'copy:static', 'copy-static'], 'html:head', cb);
+  runSequence(['copy:build', 'copy:static'], 'html:head', cb);
 });
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:photoswipe', 'sass:home', 'copy-static', 'copy:head'], 'clean:vendor', cb);
+  // runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:photoswipe', 'sass:home', 'copy-static', 'copy:head'], 'clean:vendor', cb);
+  runSequence(['copy:tmp', 'copy:static', 'copy:head'], 'clean:vendor', cb);
 });
 // gulp.task('build', ['sassHome', 'sassMain', 'sassMobile', 'copy-static']);
