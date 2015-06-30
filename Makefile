@@ -25,6 +25,7 @@ help:
 	@echo "version: $(VERSION)"
 	@echo "make install - Install npm and bower packages"
 	@echo "make clean   - Clean .orig, .log files"
+	@echo "make lint    - Run jshint and jscs"
 	@echo "make run     - Run project debug mode"
 	@echo "make release - Build and run release project"
 	@echo "make deploy  - Deploy current project (git push and ansible deploy)"
@@ -41,11 +42,19 @@ config:
 
 builds:
 	@gulp release
+	@sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
+	@sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
 	@node ./build.js release
 
-release: builds
+release:
 	@echo Release $(PROJECT_NAME) version: $(VERSION)
+	@gulp release
+	@sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
+	@sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
+	@node ./build.js release
 	@node ./server.js release
+	@sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
+	@sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
 
 clean:
 	rm -rf coverage

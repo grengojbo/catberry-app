@@ -68,10 +68,17 @@
   "server": {
     "port": 3000
   },
-  "assets": {
+  "assetsExample": {
+    "componentAssetsDir": "static",
+    "destinationComponentsDir": "static",
+    "cdnPath": "/static/",
+    "enableCssStructureMinimization": true,
     "watchInterval": 0
   },
+  "assets": {
+    "enableCssStructureMinimization": true
+  },
   "componentsGlob": "catberry_components/**/cat-component.json",
-  "isRelease": true,
+  "isRelease": false,
   "isProductionEnvironment": false
 }

@@ -1,3 +1,4 @@
 User-agent: *
+Host: example.com
 Disallow: /account
 Sitemap: http://localhost/sitemap.xml

@@ -9,6 +9,7 @@ var pkg = require('./package');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var pngquant = require('imagemin-pngquant');
+var rename = require("gulp-rename");
 
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
@@ -83,6 +84,21 @@ gulp.task('sass:mobile', function() {
     .pipe(gulp.dest(config.tmp + '/css'))
     .pipe($.size({title: 'sass mobile'}));
 });
+
+gulp.task('sass:photoswipe', function() {
+  return $.rubySass(path.join('src', 'static', 'scss', 'photoswipe.scss'), {sourcemap: false, lineNumbers: true, style: 'expanded', container: 'sass-photoswipe'})
+    .on('error', function(err) {
+      console.log(err.message);
+    })
+    .pipe($.autoprefixer())
+    // .pipe(sourcemaps.write())
+    // .pipe(sourcemaps.write('/', {includeContent: false, sourceRoot: config.mobileScss}))
+    .pipe(rename('photoswipe.less'))
+    .pipe(gulp.dest(path.join('catberry_components', 'elements', 'photoswipe', 'assets', 'less')))
+    // .pipe(gulp.dest(path.join('catberry_components', 'elements', 'photoswipe', 'assets', 'css')))
+    .pipe($.size({title: 'sass photoswipe'}));
+});
+
 
 gulp.task('copy:tmp', function () {
     return gulp.src(['!' + path.join('src', 'static', 'scss', '**'), path.join('src', 'static', '**')])
@@ -168,6 +184,6 @@ gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static', 'copy-static'], 'html:head', cb);
 });
 gulp.task('build', ['clean'], function(cb) {
-  runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:home', 'copy-static', 'copy:head'], 'clean:vendor', cb);
+  runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:photoswipe', 'sass:home', 'copy-static', 'copy:head'], 'clean:vendor', cb);
 });
 // gulp.task('build', ['sassHome', 'sassMain', 'sassMobile', 'copy-static']);

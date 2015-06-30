@@ -47,6 +47,11 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+@mixin parent-element {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
 
 @mixin keyframes($name) {
   @-moz-keyframes    $name { @content; }
