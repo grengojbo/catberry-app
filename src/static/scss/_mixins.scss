@@ -122,13 +122,12 @@
   $filepath: "../fonts/" + $file;
   @font-face {
       font-family: "#{$style-name}";
-      // src: url($filepath + ".eot");
-      // src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
       src: local($family-space), local($family), url($filepath + ".woff") format('woff');
       font-weight: $fw;
       font-style: $fs;
   }
 }
+
 // h1 {
 //    @include font('OpenSansCondensed') { font-size: 200%};
 // }

@@ -15,36 +15,42 @@
             Button
 *******************************/
 
-.ui.button {
-  cursor: pointer;
-  display: inline-block;
-  min-height: 1em;
-  outline: none;
-  border: none;
-  vertical-align: baseline;
-  background-color: #ffffff;
-  color: #212121;
-  font-family: Arial, sans-serif;
-  margin: 0em 0.25em 0em 0em;
-  padding: 0.8em 0.8em 0.8em;
-  text-transform: none;
-  text-shadow: none;
-  font-weight: normal;
-  line-height: 1;
-  font-style: normal;
-  text-align: center;
-  text-decoration: none;
-  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.02));
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.02));
-  border-radius: 0.15384615em;
-  box-shadow: 0px 0px 0px 1px #dddddd, 0px 0px 0px 0px transparent;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-          transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  -webkit-tap-highlight-color: transparent;
+.ui.button
+{
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+
+    display: inline-block;
+
+    min-height: 1em;
+    margin: 0 .25em 0 0;
+    padding: .8em .8em .8em;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -webkit-transition: opacity .3s ease, background-color .3s ease, color .3s ease, box-shadow .3s ease, background .3s ease;
+            transition: opacity .3s ease, background-color .3s ease, color .3s ease, box-shadow .3s ease, background .3s ease;
+    text-align: center;
+    vertical-align: baseline;
+    text-decoration: none;
+    text-transform: none;
+
+    color: #212121;
+    border: none;
+    border-radius: .15384615em;
+    outline: none;
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .02));
+    background-image:         linear-gradient(transparent, rgba(0, 0, 0, .02));
+    box-shadow: 0 0 0 1px #ddd, 0 0 0 0 transparent;
+    text-shadow: none;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -57,28 +63,32 @@
       Hover
 ---------------*/
 
-.ui.button:hover {
-  background-color: #ffffff;
-  background-image: none;
-  box-shadow: 0px 0px 0px 1px #dddddd, 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.8);
+.ui.button:hover
+{
+    color: rgba(0, 0, 0, .8);
+    background-color: #fff;
+    background-image: none;
+    box-shadow: 0 0 0 1px #ddd, 0 2px 3px 0 rgba(0, 0, 0, .2);
 }
-.ui.button:hover .icon {
-  opacity: 0.85;
+.ui.button:hover .icon
+{
+    opacity: .85;
 }
 
 /*--------------
       Focus
 ---------------*/
 
-.ui.button:focus {
-  background-color: '';
-  background-image: '';
-  box-shadow: 0px 0px 0px 1px #dddddd, 0px 0px 1px rgba(81, 167, 232, 0.8) inset, 0px 0px 3px 2px rgba(81, 167, 232, 0.8);
-  color: rgba(0, 0, 0, 0.8);
+.ui.button:focus
+{
+    color: rgba(0, 0, 0, .8);
+    background-color: '';
+    background-image: '';
+    box-shadow: 0 0 0 1px #ddd, 0 0 1px rgba(81, 167, 232, .8) inset, 0 0 3px 2px rgba(81, 167, 232, .8);
 }
-.ui.button:focus .icon {
-  opacity: 0.85;
+.ui.button:focus .icon
+{
+    opacity: .85;
 }
 
 /*--------------
@@ -86,32 +96,36 @@
 ---------------*/
 
 .ui.button:active,
-.ui.active.button:active {
-  background-color: #ffffff;
-  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04));
-  background-image: linear-gradient(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04));
-  color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0px 0px 0px 1px #dddddd;
+.ui.active.button:active
+{
+    color: rgba(0, 0, 0, .8);
+    background-color: #fff;
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, .04), rgba(0, 0, 0, .04));
+    background-image:         linear-gradient(rgba(0, 0, 0, .04), rgba(0, 0, 0, .04));
+    box-shadow: 0 0 0 1px #ddd;
 }
 
 /*--------------
      Active
 ---------------*/
 
-.ui.active.button {
-  background-color: #f0f0f0;
-  background-image: none;
-  box-shadow: 0px 0px 0px 1px #dddddd;
-  color: rgba(0, 0, 0, 0.8);
+.ui.active.button
+{
+    color: rgba(0, 0, 0, .8);
+    background-color: #f0f0f0;
+    background-image: none;
+    box-shadow: 0 0 0 1px #ddd;
 }
-.ui.button.active:hover {
-  background-color: #f0f0f0;
-  background-image: none;
-  color: rgba(0, 0, 0, 0.8);
+.ui.button.active:hover
+{
+    color: rgba(0, 0, 0, .8);
+    background-color: #f0f0f0;
+    background-image: none;
 }
-.ui.button.active:active {
-  background-color: #f0f0f0;
-  background-image: none;
+.ui.button.active:active
+{
+    background-color: #f0f0f0;
+    background-image: none;
 }
 
 /*--------------
@@ -120,73 +134,94 @@
 
 
 /* Specificity hack */
-.ui.loading.loading.loading.loading.loading.loading.button {
-  position: relative;
-  cursor: default;
-  point-events: none;
-  text-shadow: none !important;
-  color: transparent !important;
-  -webkit-transition: all 0s linear;
-          transition: all 0s linear;
+.ui.loading.loading.loading.loading.loading.loading.button
+{
+    position: relative;
+
+    cursor: default;
+    -webkit-transition: all 0s linear;
+            transition: all 0s linear;
+
+    color: transparent !important;
+    text-shadow: none !important;
+
+    point-events: none;
 }
-.ui.loading.button:before {
-  position: absolute;
-  content: '';
-  top: 50%;
-  left: 50%;
-  margin: -0.64285em 0em 0em -0.64285em;
-  width: 1.2857em;
-  height: 1.2857em;
-  border-radius: 500rem;
-  border: 0.2em solid rgba(0, 0, 0, 0.15);
+.ui.loading.button:before
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 1.2857em;
+    height: 1.2857em;
+    margin: -.64285em 0 0 -.64285em;
+
+    content: '';
+
+    border: .2em solid rgba(0, 0, 0, .15);
+    border-radius: 500rem;
 }
-.ui.loading.button:after {
-  position: absolute;
-  content: '';
-  top: 50%;
-  left: 50%;
-  margin: -0.64285em 0em 0em -0.64285em;
-  width: 1.2857em;
-  height: 1.2857em;
-  -webkit-animation: button-spin 0.6s linear;
-          animation: button-spin 0.6s linear;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  border-radius: 500rem;
-  border-color: #ffffff transparent transparent;
-  border-style: solid;
-  border-width: 0.2em;
-  box-shadow: 0px 0px 0px 1px transparent;
+.ui.loading.button:after
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 1.2857em;
+    height: 1.2857em;
+    margin: -.64285em 0 0 -.64285em;
+
+    content: '';
+    -webkit-animation: button-spin .6s linear;
+            animation: button-spin .6s linear;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+
+    border-width: .2em;
+    border-style: solid;
+    border-color: #fff transparent transparent;
+    border-radius: 500rem;
+    box-shadow: 0 0 0 1px transparent;
 }
-.ui.labeled.icon.loading.button .icon {
-  background-color: transparent;
-  box-shadow: none;
+.ui.labeled.icon.loading.button .icon
+{
+    background-color: transparent;
+    box-shadow: none;
 }
-@-webkit-keyframes button-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+@-webkit-keyframes button-spin
+{
+    from
+    {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to
+    {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
 }
-@keyframes button-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+@keyframes button-spin
+{
+    from
+    {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to
+    {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
 }
-.ui.basic.loading.button:not(.inverted):before {
-  border-color: rgba(0, 0, 0, 0.1);
+.ui.basic.loading.button:not(.inverted):before
+{
+    border-color: rgba(0, 0, 0, .1);
 }
-.ui.basic.loading.button:not(.inverted):after {
-  border-top-color: #aaaaaa;
+.ui.basic.loading.button:not(.inverted):after
+{
+    border-top-color: #aaa;
 }
 
 /*-------------------
@@ -196,14 +231,16 @@
 .ui.buttons .disabled.button,
 .ui.disabled.button,
 .ui.disabled.button:hover,
-.ui.disabled.button.active {
-  cursor: default;
-  background-color: #dcddde !important;
-  color: rgba(0, 0, 0, 0.4) !important;
-  opacity: 0.3 !important;
-  background-image: none !important;
-  box-shadow: none !important;
-  pointer-events: none;
+.ui.disabled.button.active
+{
+    cursor: default;
+    pointer-events: none;
+
+    opacity: .3 !important;
+    color: rgba(0, 0, 0, .4) !important;
+    background-color: #dcddde !important;
+    background-image: none !important;
+    box-shadow: none !important;
 }
 
 
@@ -216,113 +253,147 @@
        Animated
 --------------------*/
 
-.ui.animated.button {
-  position: relative;
-  overflow: hidden;
-  padding-right: 0em !important;
+.ui.animated.button
+{
+    position: relative;
+
+    overflow: hidden;
+
+    padding-right: 0 !important;
 }
-.ui.animated.button .content {
-  will-change: transform, opacity;
+.ui.animated.button .content
+{
+    will-change: transform, opacity;
 }
-.ui.animated.button .visible.content {
-  position: relative;
-  margin-right: 0.8em;
+.ui.animated.button .visible.content
+{
+    position: relative;
+
+    margin-right: .8em;
 }
-.ui.animated.button .hidden.content {
-  position: absolute;
-  width: 100%;
+.ui.animated.button .hidden.content
+{
+    position: absolute;
+
+    width: 100%;
 }
 
 /* Horizontal */
 .ui.animated.button .visible.content,
-.ui.animated.button .hidden.content {
-  -webkit-transition: right 0.3s ease 0s;
-          transition: right 0.3s ease 0s;
+.ui.animated.button .hidden.content
+{
+    -webkit-transition: right .3s ease 0s;
+            transition: right .3s ease 0s;
 }
-.ui.animated.button .visible.content {
-  left: auto;
-  right: 0%;
+.ui.animated.button .visible.content
+{
+    right: 0;
+    left: auto;
 }
-.ui.animated.button .hidden.content {
-  top: 50%;
-  left: auto;
-  right: -100%;
-  margin-top: -0.5em;
+.ui.animated.button .hidden.content
+{
+    top: 50%;
+    right: -100%;
+    left: auto;
+
+    margin-top: -.5em;
 }
-.ui.animated.button:hover .visible.content {
-  left: auto;
-  right: 200%;
+.ui.animated.button:hover .visible.content
+{
+    right: 200%;
+    left: auto;
 }
-.ui.animated.button:hover .hidden.content {
-  left: auto;
-  right: 0%;
+.ui.animated.button:hover .hidden.content
+{
+    right: 0;
+    left: auto;
 }
 
 /* Vertical */
 .ui.vertical.animated.button .visible.content,
-.ui.vertical.animated.button .hidden.content {
-  -webkit-transition: top 0.3s ease, -webkit-transform 0.3s ease;
-          transition: top 0.3s ease, transform 0.3s ease;
+.ui.vertical.animated.button .hidden.content
+{
+    -webkit-transition: top .3s ease, -webkit-transform .3s ease;
+            transition: top .3s ease, transform .3s ease;
 }
-.ui.vertical.animated.button .visible.content {
-  -webkit-transform: translateY(0%);
-      -ms-transform: translateY(0%);
-          transform: translateY(0%);
-  right: auto;
+.ui.vertical.animated.button .visible.content
+{
+    right: auto;
+
+    -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+            transform: translateY(0%);
 }
-.ui.vertical.animated.button .hidden.content {
-  top: -50%;
-  left: 0%;
-  right: auto;
+.ui.vertical.animated.button .hidden.content
+{
+    top: -50%;
+    right: auto;
+    left: 0;
 }
-.ui.vertical.animated.button:hover .visible.content {
-  -webkit-transform: translateY(200%);
-      -ms-transform: translateY(200%);
-          transform: translateY(200%);
-  right: auto;
+.ui.vertical.animated.button:hover .visible.content
+{
+    right: auto;
+
+    -webkit-transform: translateY(200%);
+        -ms-transform: translateY(200%);
+            transform: translateY(200%);
 }
-.ui.vertical.animated.button:hover .hidden.content {
-  top: 50%;
-  right: auto;
+.ui.vertical.animated.button:hover .hidden.content
+{
+    top: 50%;
+    right: auto;
 }
 
 /* Fade */
 .ui.fade.animated.button .visible.content,
-.ui.fade.animated.button .hidden.content {
-  -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
-          transition: opacity 0.3s ease, transform 0.3s ease;
+.ui.fade.animated.button .hidden.content
+{
+    -webkit-transition: opacity .3s ease, -webkit-transform .3s ease;
+            transition: opacity .3s ease, transform .3s ease;
 }
-.ui.fade.animated.button .visible.content {
-  left: auto;
-  right: auto;
-  opacity: 1;
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
+.ui.fade.animated.button .visible.content
+{
+    right: auto;
+    left: auto;
+
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+
+    opacity: 1;
 }
-.ui.fade.animated.button .hidden.content {
-  opacity: 0;
-  left: 0%;
-  right: auto;
-  -webkit-transform: scale(1.5);
-      -ms-transform: scale(1.5);
-          transform: scale(1.5);
+.ui.fade.animated.button .hidden.content
+{
+    right: auto;
+    left: 0;
+
+    -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+            transform: scale(1.5);
+
+    opacity: 0;
 }
-.ui.fade.animated.button:hover .visible.content {
-  left: auto;
-  right: auto;
-  opacity: 0;
-  -webkit-transform: scale(0.75);
-      -ms-transform: scale(0.75);
-          transform: scale(0.75);
+.ui.fade.animated.button:hover .visible.content
+{
+    right: auto;
+    left: auto;
+
+    -webkit-transform: scale(.75);
+        -ms-transform: scale(.75);
+            transform: scale(.75);
+
+    opacity: 0;
 }
-.ui.fade.animated.button:hover .hidden.content {
-  left: 0%;
-  right: auto;
-  opacity: 1;
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1);
+.ui.fade.animated.button:hover .hidden.content
+{
+    right: auto;
+    left: 0;
+
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+
+    opacity: 1;
 }
 
 /*-------------------
@@ -519,16 +590,20 @@
      Icon
 ---------------*/
 
-.ui.button > .icon {
-  opacity: 0.8;
-  margin: 0em 0.4em 0em -0.2em;
-  -webkit-transition: opacity 0.2s ease;
-          transition: opacity 0.2s ease;
-  vertical-align: baseline;
-  color: '';
+.ui.button > .icon
+{
+    margin: 0 .4em 0 -.2em;
+
+    -webkit-transition: opacity .2s ease;
+            transition: opacity .2s ease;
+    vertical-align: baseline;
+
+    opacity: .8;
+    color: '';
 }
-.ui.button > .right.icon {
-  margin: 0em -0.2em 0em 0.4em;
+.ui.button > .right.icon
+{
+    margin: 0 -.2em 0 .4em;
 }
 
 
@@ -541,17 +616,21 @@
        Floated
 --------------------*/
 
-.ui[class*="left floated"].buttons,
-.ui[class*="left floated"].button {
-  float: left;
-  margin-left: 0em;
-  margin-right: 0.25em;
+.ui[class*='left floated'].buttons,
+.ui[class*='left floated'].button
+{
+    float: left;
+
+    margin-right: .25em;
+    margin-left: 0;
 }
-.ui[class*="right floated"].buttons,
-.ui[class*="right floated"].button {
-  float: right;
-  margin-right: 0em;
-  margin-left: 0.25em;
+.ui[class*='right floated'].buttons,
+.ui[class*='right floated'].button
+{
+    float: right;
+
+    margin-right: 0;
+    margin-left: .25em;
 }
 
 /*-------------------
@@ -559,16 +638,19 @@
 --------------------*/
 
 .ui.compact.buttons .button,
-.ui.compact.button {
-  padding: 0.6em 0.6em 0.6em;
+.ui.compact.button
+{
+    padding: .6em .6em .6em;
 }
 .ui.compact.icon.buttons .button,
-.ui.compact.icon.button {
-  padding: 0.6em 0.6em 0.6em;
+.ui.compact.icon.button
+{
+    padding: .6em .6em .6em;
 }
 .ui.compact.labeled.icon.buttons .button,
-.ui.compact.labeled.icon.button {
-  padding: 0.6em 2.6em 0.6em;
+.ui.compact.labeled.icon.button
+{
+    padding: .6em 2.6em .6em;
 }
 
 /*-------------------
@@ -577,43 +659,51 @@
 
 .ui.mini.buttons .button,
 .ui.mini.buttons .or,
-.ui.mini.button {
-  font-size: 0.71428571rem;
+.ui.mini.button
+{
+    font-size: .71428571rem;
 }
 .ui.tiny.buttons .button,
 .ui.tiny.buttons .or,
-.ui.tiny.button {
-  font-size: 0.85714286rem;
+.ui.tiny.button
+{
+    font-size: .85714286rem;
 }
 .ui.small.buttons .button,
 .ui.small.buttons .or,
-.ui.small.button {
-  font-size: 0.92857143rem;
+.ui.small.button
+{
+    font-size: .92857143rem;
 }
 .ui.buttons .button,
 .ui.buttons .or,
-.ui.button {
-  font-size: 13px;
+.ui.button
+{
+    font-size: 13px;
 }
 .ui.large.buttons .button,
 .ui.large.buttons .or,
-.ui.large.button {
-  font-size: 1.14285714rem;
+.ui.large.button
+{
+    font-size: 1.14285714rem;
 }
 .ui.big.buttons .button,
 .ui.big.buttons .or,
-.ui.big.button {
-  font-size: 1.28571429rem;
+.ui.big.button
+{
+    font-size: 1.28571429rem;
 }
 .ui.huge.buttons .button,
 .ui.huge.buttons .or,
-.ui.huge.button {
-  font-size: 1.42857143rem;
+.ui.huge.button
+{
+    font-size: 1.42857143rem;
 }
 .ui.massive.buttons .button,
 .ui.massive.buttons .or,
-.ui.massive.button {
-  font-size: 1.71428571rem;
+.ui.massive.button
+{
+    font-size: 1.71428571rem;
 }
 
 /*--------------
@@ -621,14 +711,18 @@
 ---------------*/
 
 .ui.icon.buttons .button,
-.ui.icon.button {
-  padding: 0.8em 0.8em 0.8em;
+.ui.icon.button
+{
+    padding: .8em .8em .8em;
 }
 .ui.icon.buttons .button > .icon,
-.ui.icon.button > .icon {
-  opacity: 0.9;
-  margin: 0em;
-  vertical-align: top;
+.ui.icon.button > .icon
+{
+    margin: 0;
+
+    vertical-align: top;
+
+    opacity: .9;
 }
 
 /*-------------------
@@ -636,56 +730,68 @@
 --------------------*/
 
 .ui.basic.buttons .button,
-.ui.basic.button {
-  background: transparent !important;
-  background-image: none;
-  color: #212121 !important;
-  font-weight: normal;
-  border-radius: 0px;
-  text-transform: none;
-  text-shadow: none !important;
-  box-shadow: 0px 0px 0px 0px rgba(39, 41, 43, 0.15) inset;
+.ui.basic.button
+{
+    font-weight: normal;
+
+    text-transform: none;
+
+    color: #212121 !important;
+    border-radius: 0;
+    background: transparent !important;
+    background-image: none;
+    box-shadow: 0 0 0 0 rgba(39, 41, 43, .15) inset;
+    text-shadow: none !important;
 }
-.ui.basic.buttons {
-  box-shadow: 0px 0px 0px 1px rgba(39, 41, 43, 0.15);
-  border-radius: 0.15384615em;
+.ui.basic.buttons
+{
+    border-radius: .15384615em;
+    box-shadow: 0 0 0 1px rgba(39, 41, 43, .15);
 }
-.ui.basic.buttons .button {
-  border-radius: 0em;
+.ui.basic.buttons .button
+{
+    border-radius: 0;
 }
 .ui.basic.buttons .button:hover,
-.ui.basic.button:hover {
-  background: #ffffff !important;
-  color: rgba(0, 0, 0, 0.8) !important;
-  box-shadow: 0px 0px 0px 1px #dddddd, 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+.ui.basic.button:hover
+{
+    color: rgba(0, 0, 0, .8) !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 1px #ddd, 0 2px 3px 0 rgba(0, 0, 0, .2);
 }
 .ui.basic.buttons .button:active,
-.ui.basic.button:active {
-  background: #ffffff !important;
-  color: rgba(0, 0, 0, 0.8) !important;
-  box-shadow: 0px 0px 0px 1px #dddddd;
+.ui.basic.button:active
+{
+    color: rgba(0, 0, 0, .8) !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 1px #ddd;
 }
 .ui.basic.buttons .button.active,
-.ui.basic.button.active {
-  background: #ffffff !important;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) !important;
-  color: rgba(0, 0, 0, 0.8);
-  box-shadow: rgba(39, 41, 43, 0.3);
+.ui.basic.button.active
+{
+    color: rgba(0, 0, 0, .8);
+    background: #fff !important;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .2) !important;
+    box-shadow: rgba(39, 41, 43, .3);
 }
 .ui.basic.buttons .button.active:hover,
-.ui.basic.button.active:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+.ui.basic.button.active:hover
+{
+    background-color: rgba(0, 0, 0, .05);
 }
 
 /* Vertical */
-.ui.basic.buttons .button:hover {
-  box-shadow: 0px 0px 0px 1px #dddddd, 0px 2px 3px 0px rgba(0, 0, 0, 0.2) inset;
+.ui.basic.buttons .button:hover
+{
+    box-shadow: 0 0 0 1px #ddd, 0 2px 3px 0 rgba(0, 0, 0, .2) inset;
 }
-.ui.basic.buttons .button:active {
-  box-shadow: 0px 0px 0px 1px #dddddd inset;
+.ui.basic.buttons .button:active
+{
+    box-shadow: 0 0 0 1px #ddd inset;
 }
-.ui.basic.buttons .button.active {
-  box-shadow: rgba(39, 41, 43, 0.3) inset;
+.ui.basic.buttons .button.active
+{
+    box-shadow: rgba(39, 41, 43, .3) inset;
 }
 
 /* Standard Basic Inverted */
@@ -720,12 +826,14 @@
 // }
 
 /* Basic Group */
-.ui.basic.buttons .button {
-  border-left: 1px solid rgba(39, 41, 43, 0.15);
-  box-shadow: none;
+.ui.basic.buttons .button
+{
+    border-left: 1px solid rgba(39, 41, 43, .15);
+    box-shadow: none;
 }
-.ui.basic.vertical.buttons .button {
-  border-left: none;
+.ui.basic.vertical.buttons .button
+{
+    border-left: none;
 }
 
 /*--------------
@@ -733,80 +841,101 @@
 ---------------*/
 
 .ui.labeled.icon.buttons .button,
-.ui.labeled.icon.button {
-  position: relative;
-  padding-left: 2.8em !important;
-  padding-right: 0.8em !important;
+.ui.labeled.icon.button
+{
+    position: relative;
+
+    padding-right: .8em !important;
+    padding-left: 2.8em !important;
 }
 
 /* Left Labeled */
 .ui.labeled.icon.buttons > .button > .icon,
-.ui.labeled.icon.button > .icon {
-  position: absolute;
-  width: 2em;
-  height: 100%;
-  background-color: transparent;
-  text-align: center;
-  color: '';
-  border-radius: 0.15384615em 0px 0px 0.15384615em;
-  line-height: 1;
-  box-shadow: -1px 0px 0px 0px transparent inset;
+.ui.labeled.icon.button > .icon
+{
+    line-height: 1;
+
+    position: absolute;
+
+    width: 2em;
+    height: 100%;
+
+    text-align: center;
+
+    color: '';
+    border-radius: .15384615em 0 0 .15384615em;
+    background-color: transparent;
+    box-shadow: -1px 0 0 0 transparent inset;
 }
 
 /* Left Labeled */
 .ui.labeled.icon.buttons > .button > .icon,
-.ui.labeled.icon.button > .icon {
-  top: 0em;
-  left: 0em;
+.ui.labeled.icon.button > .icon
+{
+    top: 0;
+    left: 0;
 }
 
 /* Right Labeled */
-.ui[class*="right labeled"].icon.button {
-  padding-right: 2.8em !important;
-  padding-left: 0.8em !important;
+.ui[class*='right labeled'].icon.button
+{
+    padding-right: 2.8em !important;
+    padding-left: .8em !important;
 }
-.ui[class*="right labeled"].icon.button > .icon {
-  left: auto;
-  right: 0em;
-  border-radius: 0em 0.15384615em 0.15384615em 0em;
-  box-shadow: 1px 0px 0px 0px transparent inset;
+.ui[class*='right labeled'].icon.button > .icon
+{
+    right: 0;
+    left: auto;
+
+    border-radius: 0 .15384615em .15384615em 0;
+    box-shadow: 1px 0 0 0 transparent inset;
 }
 .ui.labeled.icon.buttons > .button > .icon:before,
 .ui.labeled.icon.button > .icon:before,
 .ui.labeled.icon.buttons > .button > .icon:after,
-.ui.labeled.icon.button > .icon:after {
-  display: block;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  text-align: center;
-  margin-top: -0.5em;
+.ui.labeled.icon.button > .icon:after
+{
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 100%;
+    margin-top: -.5em;
+
+    text-align: center;
 }
-.ui.labeled.icon.buttons .button > .icon {
-  border-radius: 0em;
+.ui.labeled.icon.buttons .button > .icon
+{
+    border-radius: 0;
 }
-.ui.labeled.icon.buttons .button:first-child > .icon {
-  border-top-left-radius: 0.15384615em;
-  border-bottom-left-radius: 0.15384615em;
+.ui.labeled.icon.buttons .button:first-child > .icon
+{
+    border-top-left-radius: .15384615em;
+    border-bottom-left-radius: .15384615em;
 }
-.ui.labeled.icon.buttons .button:last-child > .icon {
-  border-top-right-radius: 0.15384615em;
-  border-bottom-right-radius: 0.15384615em;
+.ui.labeled.icon.buttons .button:last-child > .icon
+{
+    border-top-right-radius: .15384615em;
+    border-bottom-right-radius: .15384615em;
 }
-.ui.vertical.labeled.icon.buttons .button:first-child > .icon {
-  border-radius: 0em;
-  border-top-left-radius: 0.15384615em;
+.ui.vertical.labeled.icon.buttons .button:first-child > .icon
+{
+    border-radius: 0;
+    border-top-left-radius: .15384615em;
 }
-.ui.vertical.labeled.icon.buttons .button:last-child > .icon {
-  border-radius: 0em;
-  border-bottom-left-radius: 0.15384615em;
+.ui.vertical.labeled.icon.buttons .button:last-child > .icon
+{
+    border-radius: 0;
+    border-bottom-left-radius: .15384615em;
 }
 
 /* Fluid Labeled */
-.ui.fluid[class*="left labeled"].icon.button,
-.ui.fluid[class*="right labeled"].icon.button {
-  padding-left: 0.8em !important;
-  padding-right: 0.8em !important;
+.ui.fluid[class*='left labeled'].icon.button,
+.ui.fluid[class*='right labeled'].icon.button
+{
+    padding-right: .8em !important;
+    padding-left: .8em !important;
 }
 
 /*--------------
@@ -1825,62 +1954,72 @@
 // /*--- Red ---*/
 
 .ui.red.buttons .button,
-.ui.red.button {
-  background-color: #D83C3C;
-  color: #ffffff;
-  text-shadow: none;
-  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+.ui.red.button
+{
+    color: #fff;
+    background-color: #d83c3c;
+    background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .05));
+    background-image:         linear-gradient(transparent, rgba(0, 0, 0, .05));
+    text-shadow: none;
 }
-.ui.red.button {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) inset;
+.ui.red.button
+{
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .2) inset;
 }
 .ui.red.buttons .button:hover,
-.ui.red.button:hover {
-  background-color: #f55145;
-  color: #ffffff;
-  text-shadow: none;
+.ui.red.button:hover
+{
+    color: #fff;
+    background-color: #f55145;
+    text-shadow: none;
 }
 .ui.red.buttons .button:active,
-.ui.red.button:active {
-  background-color: #f22314;
-  color: #ffffff;
-  text-shadow: none;
+.ui.red.button:active
+{
+    color: #fff;
+    background-color: #f22314;
+    text-shadow: none;
 }
 .ui.red.buttons .button.active,
 .ui.red.buttons .button.active:active,
 .ui.red.button.active,
-.ui.red.button .button.active:active {
-  background-color: #f32c1e;
-  color: #ffffff;
-  text-shadow: none;
+.ui.red.button .button.active:active
+{
+    color: #fff;
+    background-color: #f32c1e;
+    text-shadow: none;
 }
 
 // /* Basic */
 .ui.basic.red.buttons .button,
-.ui.basic.red.button {
-  box-shadow: 0px 0px 0px 1px rgba(39, 41, 43, 0.15) inset !important;
-  color: #212121 !important;
+.ui.basic.red.button
+{
+    color: #212121 !important;
+    box-shadow: 0 0 0 1px rgba(39, 41, 43, .15) inset !important;
 }
 .ui.basic.red.buttons .button:hover,
-.ui.basic.red.button:hover {
-  background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #f55145 inset !important;
-  color: #f55145 !important;
+.ui.basic.red.button:hover
+{
+    color: #f55145 !important;
+    background: transparent !important;
+    box-shadow: 0 0 0 1px #f55145 inset !important;
 }
 .ui.basic.red.buttons .button:active,
-.ui.basic.red.button:active {
-  box-shadow: 0px 0px 0px 1px #f22314 inset !important;
-  color: #f22314 !important;
+.ui.basic.red.button:active
+{
+    color: #f22314 !important;
+    box-shadow: 0 0 0 1px #f22314 inset !important;
 }
 .ui.basic.red.buttons .button.active,
-.ui.basic.red.button.active {
-  background: transparent !important;
-  box-shadow: 0px 0px 0px 1px #f22314 inset !important;
-  color: #f22314 !important;
+.ui.basic.red.button.active
+{
+    color: #f22314 !important;
+    background: transparent !important;
+    box-shadow: 0 0 0 1px #f22314 inset !important;
 }
-.ui.buttons > .basic.red.button:not(:first-child) {
-  margin-left: -1px;
+.ui.buttons > .basic.red.button:not(:first-child)
+{
+    margin-left: -1px;
 }
 
 // /* Inverted */
@@ -2169,33 +2308,38 @@
 // --------------------*/
 
 .ui.primary.buttons .button,
-.ui.primary.button {
-  background-color: #4184f3;
-  color: #ffffff;
-  text-shadow: none;
-  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+.ui.primary.button
+{
+    color: #fff;
+    background-color: #4184f3;
+    background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .05));
+    background-image:         linear-gradient(transparent, rgba(0, 0, 0, .05));
+    text-shadow: none;
 }
-.ui.primary.button {
-  box-shadow: 0px 0px 0px 1px #0157e4 inset;
+.ui.primary.button
+{
+    box-shadow: 0 0 0 1px #0157e4 inset;
 }
 .ui.primary.buttons .button:hover,
-.ui.primary.button:hover {
-  background-color: #4f8df4;
-  color: #ffffff;
-  text-shadow: none;
+.ui.primary.button:hover
+{
+    color: #fff;
+    background-color: #4f8df4;
+    text-shadow: none;
 }
 .ui.primary.buttons .button:active,
-.ui.primary.button:active {
-  background-color: #1f6ef1;
-  color: #ffffff;
-  text-shadow: none;
+.ui.primary.button:active
+{
+    color: #fff;
+    background-color: #1f6ef1;
+    text-shadow: none;
 }
 .ui.primary.buttons .active.button,
-.ui.primary.button.active {
-  background-color: #2974f1;
-  color: #ffffff;
-  text-shadow: none;
+.ui.primary.button.active
+{
+    color: #fff;
+    background-color: #2974f1;
+    text-shadow: none;
 }
 
 // /*-------------------
@@ -2203,33 +2347,38 @@
 // --------------------*/
 
 .ui.secondary.buttons .button,
-.ui.secondary.button {
-  background-color: #eeeeee;
-  color: #212121;
-  text-shadow: none;
-  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.02));
-  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.02));
+.ui.secondary.button
+{
+    color: #212121;
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .02));
+    background-image:         linear-gradient(transparent, rgba(0, 0, 0, .02));
+    text-shadow: none;
 }
-.ui.secondary.button {
-  box-shadow: 0px 0px 0px 1px #dddddd;
+.ui.secondary.button
+{
+    box-shadow: 0 0 0 1px #ddd;
 }
 .ui.secondary.buttons .button:hover,
-.ui.secondary.button:hover {
-  background-color: #f6f6f6;
-  color: #212121;
-  text-shadow: none;
+.ui.secondary.button:hover
+{
+    color: #212121;
+    background-color: #f6f6f6;
+    text-shadow: none;
 }
 .ui.secondary.buttons .button:active,
-.ui.secondary.button:active {
-  background-color: #dcdcdc;
-  color: #212121;
-  text-shadow: none;
+.ui.secondary.button:active
+{
+    color: #212121;
+    background-color: #dcdcdc;
+    text-shadow: none;
 }
 .ui.secondary.buttons .active.button,
-.ui.secondary.button.active {
-  background-color: #e1e1e1;
-  color: #212121;
-  text-shadow: none;
+.ui.secondary.button.active
+{
+    color: #212121;
+    background-color: #e1e1e1;
+    text-shadow: none;
 }
 
 // /*---------------
@@ -2383,22 +2532,26 @@
 //   margin-bottom: 0px;
 //   border-radius: 0px 0px 0.15384615em 0.15384615em;
 // }
-.ui.button {
-  min-width: 72px;
+.ui.button
+{
+    min-width: 72px;
 }
-.ui.primary.button:hover, .ui.red.button:hover {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3) inset, 0px 2px 3px 0px rgba(0, 0, 0, 0.35) !important;
+.ui.primary.button:hover,
+.ui.red.button:hover
+{
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .3) inset, 0 2px 3px 0 rgba(0, 0, 0, .35) !important;
 }
-.ui.secondary.button:hover {
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) inset, 0px 2px 3px 0px rgba(0, 0, 0, 0.3) !important;
+.ui.secondary.button:hover
+{
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .2) inset, 0 2px 3px 0 rgba(0, 0, 0, .3) !important;
 }
 .ui.buttons > .button:hover,
-.ui.buttons > .button.active {
-  position: static !important;
+.ui.buttons > .button.active
+{
+    position: static !important;
 }
 
 
 // /*******************************
 //          Site Overrides
 // *******************************/
-

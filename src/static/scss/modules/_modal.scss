@@ -24,11 +24,12 @@
 @import 'modal-stretch';
 @import 'modal-maxwidth';
 
-.modal--show {
-  @extend %modal;
-  @extend %modal-theme;
-
+.modal--show
+{
+    @extend %modal;
+    @extend %modal-theme;
 }
-.modal-close {
-  cursor: pointer;
+.modal-close
+{
+    cursor: pointer;
 }

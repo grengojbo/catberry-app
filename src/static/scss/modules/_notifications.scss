@@ -1,64 +1,85 @@
-.ns-box {
-  position: fixed;
-  background: rgba(42,45,50,0.85);
-  /*padding: 20px 20px 20px 10px;*/
-  line-height: 1.4;
-  z-index: 1000;
-  pointer-events: none;
-  color: rgba(250,251,255,0.95);
-  font-size: 90%;
-  font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
-  a {
-    color: inherit;
-    opacity: 0.7;
-    font-weight: 700;
-    &:hover,
-    &:focus {
-      opacity: 1;
+.ns-box
+{
+    font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 90%;
+    /*padding: 20px 20px 20px 10px;*/
+    line-height: 1.4;
+
+    position: fixed;
+    z-index: 1000;
+
+    pointer-events: none;
+
+    color: rgba(250,251,255,.95);
+    background: rgba(42,45,50,.85);
+    a
+    {
+        font-weight: 700;
+
+        opacity: .7;
+        color: inherit;
+        &:hover,
+        &:focus
+        {
+            opacity: 1;
+        }
     }
-  }
-  p {
-    margin: 0;
-  }
-  /*display: flex;*/
+    p
+    {
+        margin: 0;
+    }
+    /*display: flex;*/
 }
 
-.ns-box.ns-show {
-  pointer-events: auto;
+.ns-box.ns-show
+{
+    pointer-events: auto;
 }
 
 .ns-box
 .ns-box.ns-show,
-.ns-box.ns-visible {
-  pointer-events: auto;
+.ns-box.ns-visible
+{
+    pointer-events: auto;
 }
 
-.ns-close {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 4px;
-  top: 4px;
-  overflow: hidden;
-  text-indent: 100%;
-  cursor: pointer;
-  backface-visibility: hidden;
-  &:hover,
-  &:focus {
-    outline: none;
-  }
-  &::before,
-  &::after {
-    content: '';
+.ns-close
+{
     position: absolute;
-    width: 3px;
-    height: 60%;
-    top: 50%;
-    left: 50%;
-    background: #6e6e6e;
-  }
-  &:hover::before,
-  &:hover::after {
-    background: #fff;
-  }
+    top: 4px;
+    right: 4px;
+
+    overflow: hidden;
+
+    width: 20px;
+    height: 20px;
+
+    cursor: pointer;
+    text-indent: 100%;
+
+    backface-visibility: hidden;
+    &:hover,
+    &:focus
+    {
+        outline: none;
+    }
+    &::before,
+    &::after
+    {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        width: 3px;
+        height: 60%;
+
+        content: '';
+
+        background: #6e6e6e;
+    }
+    &:hover::before,
+    &:hover::after
+    {
+        background: #fff;
+    }
 }

@@ -2,16 +2,19 @@
  * Island module that adds padding.
 */
 
-.island {
-  padding: 1em;
-
+.island
+{
+    padding: 1em;
 }
-.island3 {
-  padding: 3em;
-
+.island3
+{
+    padding: 3em;
 }
-.island-panel {
-  background-color: $silver;
-  padding: 2em;
-  @include font-size(20);
+.island-panel
+{
+    padding: 2em;
+
+    background-color: $silver;
+
+    @include font-size(20);
 }

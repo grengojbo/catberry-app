@@ -15,21 +15,30 @@
              Image
 *******************************/
 
-.ui.image {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 100%;
-  background-color: transparent;
+.ui.image
+{
+    position: relative;
+
+    display: inline-block;
+
+    max-width: 100%;
+
+    vertical-align: middle;
+
+    background-color: transparent;
 }
-img.ui.image {
-  display: block;
-  background: none;
+img.ui.image
+{
+    display: block;
+
+    background: none;
 }
-.ui.image img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.ui.image img
+{
+    display: block;
+
+    max-width: 100%;
+    height: auto;
 }
 
 
@@ -37,9 +46,11 @@ img.ui.image {
             States
 *******************************/
 
-.ui.disabled.image {
-  cursor: default;
-  opacity: 0.3;
+.ui.disabled.image
+{
+    cursor: default;
+
+    opacity: .3;
 }
 
 
@@ -53,8 +64,9 @@ img.ui.image {
 ---------------*/
 
 .ui.inline.image,
-.ui.inline.image img {
-  display: inline-block;
+.ui.inline.image img
+{
+    display: inline-block;
 }
 
 /*------------------
@@ -63,21 +75,27 @@ img.ui.image {
 
 .ui.top.aligned.images .image,
 .ui.top.aligned.image,
-.ui.top.aligned.image img {
-  display: inline-block;
-  vertical-align: top;
+.ui.top.aligned.image img
+{
+    display: inline-block;
+
+    vertical-align: top;
 }
 .ui.middle.aligned.images .image,
 .ui.middle.aligned.image,
-.ui.middle.aligned.image img {
-  display: inline-block;
-  vertical-align: middle;
+.ui.middle.aligned.image img
+{
+    display: inline-block;
+
+    vertical-align: middle;
 }
 .ui.bottom.aligned.images .image,
 .ui.bottom.aligned.image,
-.ui.bottom.aligned.image img {
-  display: inline-block;
-  vertical-align: bottom;
+.ui.bottom.aligned.image img
+{
+    display: inline-block;
+
+    vertical-align: bottom;
 }
 
 /*--------------
@@ -87,8 +105,9 @@ img.ui.image {
 .ui.rounded.images .image,
 .ui.rounded.images img,
 .ui.rounded.image img,
-.ui.rounded.image {
-  border-radius: 0.3125em;
+.ui.rounded.image
+{
+    border-radius: .3125em;
 }
 
 /*--------------
@@ -98,8 +117,9 @@ img.ui.image {
 .ui.bordered.images .image,
 .ui.bordered.images img,
 .ui.bordered.image img,
-img.ui.bordered.image {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+img.ui.bordered.image
+{
+    border: 1px solid rgba(0, 0, 0, .1);
 }
 
 /*--------------
@@ -107,14 +127,16 @@ img.ui.bordered.image {
 ---------------*/
 
 .ui.circular.images,
-.ui.circular.image {
-  overflow: hidden;
+.ui.circular.image
+{
+    overflow: hidden;
 }
 .ui.circular.images .image,
 .ui.circular.images img,
 .ui.circular.image img,
-.ui.circular.image {
-  border-radius: 500rem;
+.ui.circular.image
+{
+    border-radius: 500rem;
 }
 
 /*--------------
@@ -124,9 +146,11 @@ img.ui.bordered.image {
 .ui.fluid.images,
 .ui.fluid.image,
 .ui.fluid.images img,
-.ui.fluid.image img {
-  display: block;
-  width: 100%;
+.ui.fluid.image img
+{
+    display: block;
+
+    width: 100%;
 }
 
 /*--------------
@@ -136,12 +160,15 @@ img.ui.bordered.image {
 .ui.avatar.images .image,
 .ui.avatar.images img,
 .ui.avatar.image img,
-.ui.avatar.image {
-  margin-right: 0.25em;
-  display: inline-block;
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 500rem;
+.ui.avatar.image
+{
+    display: inline-block;
+
+    width: 2.5em;
+    height: 2.5em;
+    margin-right: .25em;
+
+    border-radius: 500rem;
 }
 
 /*-------------------
@@ -149,26 +176,32 @@ img.ui.bordered.image {
 --------------------*/
 
 .ui.floated.image,
-.ui.floated.images {
-  float: left;
-  margin-right: 1em;
-  margin-bottom: 1em;
+.ui.floated.images
+{
+    float: left;
+
+    margin-right: 1em;
+    margin-bottom: 1em;
 }
 .ui.right.floated.images,
-.ui.right.floated.image {
-  float: right;
-  margin-right: 0em;
-  margin-bottom: 1em;
-  margin-left: 1em;
+.ui.right.floated.image
+{
+    float: right;
+
+    margin-right: 0;
+    margin-bottom: 1em;
+    margin-left: 1em;
 }
 .ui.floated.images:last-child,
-.ui.floated.image:last-child {
-  margin-bottom: 0em;
+.ui.floated.image:last-child
+{
+    margin-bottom: 0;
 }
 .ui.centered.images,
-.ui.centered.image {
-  margin-left: auto;
-  margin-right: auto;
+.ui.centered.image
+{
+    margin-right: auto;
+    margin-left: auto;
 }
 
 /*--------------
@@ -177,51 +210,67 @@ img.ui.bordered.image {
 
 .ui.mini.images .image,
 .ui.mini.images img,
-.ui.mini.image {
-  width: 20px;
-  font-size: 0.71428571rem;
+.ui.mini.image
+{
+    font-size: .71428571rem;
+
+    width: 20px;
 }
 .ui.tiny.images .image,
 .ui.tiny.images img,
-.ui.tiny.image {
-  width: 80px;
-  font-size: 0.85714286rem;
+.ui.tiny.image
+{
+    font-size: .85714286rem;
+
+    width: 80px;
 }
 .ui.small.images .image,
 .ui.small.images img,
-.ui.small.image {
-  width: 150px;
-  font-size: 0.92857143rem;
+.ui.small.image
+{
+    font-size: .92857143rem;
+
+    width: 150px;
 }
 .ui.medium.images .image,
 .ui.medium.images img,
-.ui.medium.image {
-  width: 300px;
-  font-size: 1rem;
+.ui.medium.image
+{
+    font-size: 1rem;
+
+    width: 300px;
 }
 .ui.large.images .image,
 .ui.large.images img,
-.ui.large.image {
-  width: 450px;
-  font-size: 1.14285714rem;
+.ui.large.image
+{
+    font-size: 1.14285714rem;
+
+    width: 450px;
 }
 .ui.big.images .image,
 .ui.big.images img,
-.ui.big.image {
-  width: 600px;
-  font-size: 1.28571429rem;
+.ui.big.image
+{
+    font-size: 1.28571429rem;
+
+    width: 600px;
 }
 .ui.huge.images .image,
 .ui.huge.images img,
-.ui.huge.image {
-  width: 800px;
-  font-size: 1.42857143rem;
+.ui.huge.image
+{
+    font-size: 1.42857143rem;
+
+    width: 800px;
 }
 .ui.massive.images .image,
 .ui.massive.images img,
-.ui.massive.image {
-  width: 960px;
-  font-size: 1.71428571rem;
+.ui.massive.image
+{
+    font-size: 1.71428571rem;
+
+    width: 960px;
 }
 
 
@@ -229,14 +278,18 @@ img.ui.bordered.image {
               Groups
 *******************************/
 
-.ui.images {
-  font-size: 0em;
-  margin: 0em -0.25rem 0rem;
+.ui.images
+{
+    font-size: 0;
+
+    margin: 0 -.25rem 0rem;
 }
 .ui.images .image,
-.ui.images img {
-  display: inline-block;
-  margin: 0em 0.25rem 0.5rem;
+.ui.images img
+{
+    display: inline-block;
+
+    margin: 0 .25rem .5rem;
 }
 
 
@@ -249,4 +302,3 @@ img.ui.bordered.image {
 /*******************************
          Site Overrides
 *******************************/
-
