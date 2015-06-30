@@ -1,0 +1,4 @@
+User-agent: *
+Host: @@domain
+Disallow: /account
+Sitemap: @@url/sitemap.xml

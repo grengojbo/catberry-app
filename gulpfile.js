@@ -11,6 +11,7 @@ var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var pngquant = require('imagemin-pngquant');
 var rename = require("gulp-rename");
+var replace = require('gulp-replace-task');
 
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
@@ -30,6 +31,55 @@ gulp.task('clean:tmp', del.bind(null, [
     path.join(config.distTmp, 'static', 'vendor', '**'),
     path.join(config.distTmp, 'static', 'scss')
 ]));
+
+gulp.task('replace:version', function() {
+  var file = 'VERSION';
+  return gulp.src(path.join(config.templates, file))
+    .pipe(replace({
+      patterns: [
+        {
+          match: 'version',
+          replacement: pkg.version
+        }
+      ]
+    }))
+    .pipe(gulp.dest('.'))
+    .pipe($.size({title: 'replace: '+file+' | version: '+pkg.version}));
+});
+
+gulp.task('replace:humans', function() {
+  var file = 'humans.txt';
+  return gulp.src(path.join(config.templates, file))
+    .pipe(replace({
+      patterns: [
+        {
+          match: 'author',
+          replacement: pkg.author.name
+        }
+      ]
+    }))
+    .pipe(gulp.dest(config.dist))
+    .pipe($.size({title: 'replace: '+file}));
+});
+
+gulp.task('replace:robots', function() {
+  var file = 'robots.txt';
+  return gulp.src(path.join(config.templates, file))
+    .pipe(replace({
+      patterns: [
+        {
+          match: 'domain',
+          replacement: catConfig.domain
+        },
+        {
+          match: 'url',
+          replacement: catConfig.siteUrl
+        }
+      ]
+    }))
+    .pipe(gulp.dest(config.dist))
+    .pipe($.size({title: 'replace: '+file}));
+});
 
 gulp.task('images', ['copy:dist'], function() {
   return gulp.src(config.base + config.images)
@@ -199,8 +249,10 @@ gulp.task('html:head', ['copy:css'], function() {
 // });
 
 gulp.task('default', ['build']);
+gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
+
 gulp.task('release', ['build:release'], function(cb) {
-  runSequence(['clean:tmp', 'copy:head:dist'], 'images', cb);
+  runSequence(['clean:tmp', 'copy:head:dist', 'replaces'], 'images', cb);
 });
 gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static'], 'html:head', cb);

@@ -1,6 +1,6 @@
 {
   "name": "catberry-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Empty project based on Catberry Framework",
   "homepage": "https://github.com/grengojbo/catberry-app",
   "keywords": [
@@ -49,6 +49,7 @@
     "gulp-if": "^1.2.5",
     "gulp-imagemin": "^2.3.0",
     "gulp-rename": "^1.2.2",
+    "gulp-replace-task": "^0.2.1",
     "gulp-rev": "^3.0.1",
     "gulp-rev-replace": "^0.4.0",
     "gulp-ruby-sass": "^1.0.5",

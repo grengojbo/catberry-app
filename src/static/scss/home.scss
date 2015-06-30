@@ -7,6 +7,10 @@ https://github.com/davidrapson/scss-toolkit
 @import 'settings', 'mixins', 'helpers';
 @import 'normalize', 'base';
 
+.loading {
+    @include loading;
+}
+
 .home--bg
 {
     // background-size: cover;

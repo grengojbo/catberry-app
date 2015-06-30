@@ -1387,6 +1387,13 @@ footer {
           transform: translateY(-50%);
 }
 
+/* line 10, src/static/scss/main.scss */
+.loading {
+  min-height: 36px;
+  min-width: 36px;
+  background: url("../img/loader.svg") no-repeat center;
+}
+
 
 
 /*# sourceMappingURL=/main.css.map */

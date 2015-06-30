@@ -386,6 +386,13 @@ footer {
 }
 
 /* line 10, src/static/scss/home.scss */
+.loading {
+  min-height: 36px;
+  min-width: 36px;
+  background: url("../img/loader.svg") no-repeat center;
+}
+
+/* line 14, src/static/scss/home.scss */
 .home--bg {
   position: absolute;
   top: 0;
@@ -396,7 +403,7 @@ footer {
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
 }
 
-/* line 27, src/static/scss/home.scss */
+/* line 31, src/static/scss/home.scss */
 .ui.huge.message {
   margin-top: 40px;
   color: #fff;
@@ -404,7 +411,7 @@ footer {
   box-shadow: none;
 }
 
-/* line 37, src/static/scss/home.scss */
+/* line 41, src/static/scss/home.scss */
 .ui.huge.header {
   color: #fff;
 }

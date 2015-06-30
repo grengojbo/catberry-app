@@ -1,5 +1,5 @@
 {
-  "domain": ".example.com",
+  "domain": "example.com",
 	"title": "Catberry Project",
   "siteApiClient": {
     "host": "https://api.github.com",

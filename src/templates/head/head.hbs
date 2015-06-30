@@ -29,7 +29,7 @@
 <!-- End Open Graph markup -->
 
 {{!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> --}}
-<link href="/static/css/loader.css" rel="stylesheet">
+{{!-- <link href="/static/css/loader.css" rel="stylesheet"> --}}
 <!--
 <meta property="fb:app_id" content="180444840287"/>
 <meta property="fb:admins" content="1360179707">
@@ -42,25 +42,25 @@
 <meta name="msapplication-TileImage" content="http://newrelic.com/assets/newrelic/logo_NR-fb.png">
 -->
 
+<link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
 {{#unless page.activePages.home}}
 <!-- Other Page -->
-<link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
 <!-- build:css /static/css/main.css -->
 <link rel="stylesheet" href="/tmp/css/main.css" />
 <!-- endbuild -->
 {{else}}
-<!-- Home Page -->
-<link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
-<!-- build:css /static/css/home.css -->
-<link rel="stylesheet" href="/tmp/css/home.css" />
-<!-- endbuild -->
-{{/unless}}
 {{#if isMobile}}
 <!-- Mobile head -->
 <!-- build:css /static/css/mobile.css -->
 <link rel="stylesheet" href="/tmp/css/mobile.css" />
 <!-- endbuild -->
+{{else}}
+<!-- Home Page -->
+<!-- build:css /static/css/home.css -->
+<link rel="stylesheet" href="/tmp/css/home.css" />
+<!-- endbuild -->
 {{/if}}
+{{/unless}}
 
 <link rel="shortcut icon" href="/favicon.ico">
 {{#if googleSiteVerification}}

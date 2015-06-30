@@ -60,10 +60,13 @@ bower install
 npm install newrelic --save
 ```
 
-Измените [robots.txt](./static/robots.txt).
+### Работа с шаблонами 
+
+**НЕМЕНЯЙТЕ:** @@string
+
+Редактируйте файлы [robots.txt](./src/templates/robots.txt), [humans.txt](./src/templates/humans.txt) в директории **/src/templates/**. 
 
 В терминале запустите задачу **gult** и работайте в вашем любимом редакторе например [SublimeText3](http://www.sublimetext.com/3).
-
 ```
 gulp build
 ...

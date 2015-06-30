@@ -1,4 +1,4 @@
 User-agent: *
 Host: example.com
 Disallow: /account
-Sitemap: http://localhost/sitemap.xml
+Sitemap: http://localhost:3000/sitemap.xml
