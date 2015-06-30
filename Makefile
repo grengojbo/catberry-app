@@ -26,6 +26,7 @@ help:
 	@echo "make install - Install npm and bower packages"
 	@echo "make clean   - Clean .orig, .log files"
 	@echo "make lint    - Run jshint and jscs"
+	@echo "make csscomb - CSScomb > CSS coding style formatter"
 	@echo "make run     - Run project debug mode"
 	@echo "make release - Build and run release project"
 	@echo "make deploy  - Deploy current project (git push and ansible deploy)"
@@ -77,6 +78,7 @@ run:
 	@npm run debug
 
 install:
+	@#cd config/ && wget https://raw.githubusercontent.com/csscomb/csscomb.js/master/config/csscomb.json && mv csscomb.json .csscomb.json && cd ../
 	@npm install
 	@bower install
 
@@ -84,3 +86,6 @@ skeleton:
 	@git remote add skeleton https://github.com/grengojbo/catberry-app.git
 	@git fetch skeleton
 	@git merge skeleton/master
+
+csscomb:
+	@csscomb src/static/scss -c config/.csscomb.json
