@@ -1,64 +1,64 @@
 /*! PhotoSwipe main CSS by Dmitry Semenov | photoswipe.com | MIT license */
-/* line 6, src/static/scss/_helpers.scss */
+/* line 7, src/static/scss/_helpers.scss */
 .text-center {
   text-align: center;
 }
 
-/* line 25, src/static/scss/_helpers.scss */
+/* line 32, src/static/scss/_helpers.scss */
 .show {
   display: block !important;
 }
 
-/* line 28, src/static/scss/_helpers.scss */
+/* line 36, src/static/scss/_helpers.scss */
 .hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* line 32, src/static/scss/_helpers.scss */
+/* line 41, src/static/scss/_helpers.scss */
 .invisible {
   visibility: hidden;
 }
 
 /* line 15, src/static/scss/photoswipe.scss */
 .pswp {
-  display: none;
   position: absolute;
+  z-index: 1500;
+  top: 0;
+  left: 0;
+  display: none;
+  overflow: hidden;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  overflow: hidden;
+  outline: none;
   -ms-touch-action: none;
   touch-action: none;
-  z-index: 1500;
   -webkit-text-size-adjust: 100%;
   -webkit-backface-visibility: hidden;
-  outline: none;
 }
-/* line 32, src/static/scss/photoswipe.scss */
+/* line 38, src/static/scss/photoswipe.scss */
 .pswp * {
   box-sizing: border-box;
 }
-/* line 37, src/static/scss/photoswipe.scss */
+/* line 44, src/static/scss/photoswipe.scss */
 .pswp img {
   max-width: none;
 }
 
-/* line 43, src/static/scss/photoswipe.scss */
+/* line 51, src/static/scss/photoswipe.scss */
 .pswp--animate_opacity {
-  opacity: 0.001;
-  will-change: opacity;
   -webkit-transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
           transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
+  opacity: .001;
+  will-change: opacity;
 }
 
-/* line 51, src/static/scss/photoswipe.scss */
+/* line 62, src/static/scss/photoswipe.scss */
 .pswp--open {
   display: block;
 }
 
-/* line 55, src/static/scss/photoswipe.scss */
+/* line 67, src/static/scss/photoswipe.scss */
 .pswp--zoom-allowed .pswp__img {
   /* autoprefixer: off */
   cursor: -webkit-zoom-in;
@@ -66,7 +66,7 @@
   cursor: zoom-in;
 }
 
-/* line 62, src/static/scss/photoswipe.scss */
+/* line 75, src/static/scss/photoswipe.scss */
 .pswp--zoomed-in .pswp__img {
   /* autoprefixer: off */
   cursor: -webkit-grab;
@@ -74,7 +74,7 @@
   cursor: grab;
 }
 
-/* line 69, src/static/scss/photoswipe.scss */
+/* line 83, src/static/scss/photoswipe.scss */
 .pswp--dragging .pswp__img {
   /* autoprefixer: off */
   cursor: -webkit-grabbing;
@@ -82,49 +82,49 @@
   cursor: grabbing;
 }
 
-/* line 78, src/static/scss/photoswipe.scss */
+/* line 93, src/static/scss/photoswipe.scss */
 .pswp__bg {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: #000;
   opacity: 0;
+  background: #000;
   -webkit-backface-visibility: hidden;
   will-change: opacity;
 }
 
-/* line 90, src/static/scss/photoswipe.scss */
+/* line 109, src/static/scss/photoswipe.scss */
 .pswp__scroll-wrap {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
   will-change: transform;
 }
 
-/* line 100, src/static/scss/photoswipe.scss */
+/* line 122, src/static/scss/photoswipe.scss */
 .pswp__container,
 .pswp__zoom-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   -ms-touch-action: none;
   touch-action: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 
-/* line 114, src/static/scss/photoswipe.scss */
+/* line 136, src/static/scss/photoswipe.scss */
 .parent-element {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-/* line 120, src/static/scss/photoswipe.scss */
+/* line 143, src/static/scss/photoswipe.scss */
 .vertical-align {
   position: relative;
   top: 50%;
@@ -133,7 +133,7 @@
   transform: translateY(-50%);
 }
 
-/* line 129, src/static/scss/photoswipe.scss */
+/* line 154, src/static/scss/photoswipe.scss */
 .pswp__container,
 .pswp__img {
   -webkit-user-select: none;
@@ -144,239 +144,239 @@
   -webkit-touch-callout: none;
 }
 
-/* line 138, src/static/scss/photoswipe.scss */
+/* line 165, src/static/scss/photoswipe.scss */
 .pswp__zoom-wrap {
   position: absolute;
   width: 100%;
+  -webkit-transition: -webkit-transform 333ms cubic-bezier(0.4, 0, 0.22, 1);
+          transition: transform 333ms cubic-bezier(0.4, 0, 0.22, 1);
   -webkit-transform-origin: left top;
   -ms-transform-origin: left top;
   transform-origin: left top;
-  -webkit-transition: -webkit-transform 333ms cubic-bezier(0.4, 0, 0.22, 1);
-          transition: transform 333ms cubic-bezier(0.4, 0, 0.22, 1);
 }
 
-/* line 149, src/static/scss/photoswipe.scss */
+/* line 179, src/static/scss/photoswipe.scss */
 .pswp__bg {
-  will-change: opacity;
   -webkit-transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
           transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
+  will-change: opacity;
 }
 
-/* line 156, src/static/scss/photoswipe.scss */
+/* line 189, src/static/scss/photoswipe.scss */
 .pswp--animated-in .pswp__bg,
 .pswp--animated-in .pswp__zoom-wrap {
   -webkit-transition: none;
   transition: none;
 }
 
-/* line 163, src/static/scss/photoswipe.scss */
+/* line 197, src/static/scss/photoswipe.scss */
 .pswp__container,
 .pswp__zoom-wrap {
   -webkit-backface-visibility: hidden;
   will-change: transform;
 }
 
-/* line 169, src/static/scss/photoswipe.scss */
+/* line 204, src/static/scss/photoswipe.scss */
 .pswp__item {
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
+  right: 0;
   bottom: 0;
+  left: 0;
   overflow: hidden;
 }
 
-/* line 178, src/static/scss/photoswipe.scss */
+/* line 215, src/static/scss/photoswipe.scss */
 .pswp__img {
   position: absolute;
   width: auto;
   height: auto;
-  -webkit-transition: opacity 0.15s;
-          transition: opacity 0.15s;
+  -webkit-transition: opacity .15s;
+          transition: opacity .15s;
 }
 
-/* line 187, src/static/scss/photoswipe.scss */
+/* line 227, src/static/scss/photoswipe.scss */
 .pswp__img--placeholder {
   -webkit-backface-visibility: hidden;
 }
 
-/* line 193, src/static/scss/photoswipe.scss */
+/* line 234, src/static/scss/photoswipe.scss */
 .pswp__img--placeholder--blank {
   background: #222;
 }
 
-/* line 197, src/static/scss/photoswipe.scss */
+/* line 239, src/static/scss/photoswipe.scss */
 .pswp--ie .pswp__img {
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
 }
 
-/* line 206, src/static/scss/photoswipe.scss */
+/* line 250, src/static/scss/photoswipe.scss */
 .pswp__error-msg {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
   font-size: 14px;
   line-height: 16px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
   margin-top: -8px;
-  color: #CCC;
+  text-align: center;
+  color: #ccc;
 }
 
-/* line 218, src/static/scss/photoswipe.scss */
+/* line 267, src/static/scss/photoswipe.scss */
 .pswp__error-msg a {
-  color: #CCC;
   text-decoration: underline;
+  color: #ccc;
 }
 
-/* line 233, src/static/scss/photoswipe.scss */
+/* line 284, src/static/scss/photoswipe.scss */
 .pswp__button {
+  position: relative;
+  display: block;
+  float: right;
+  overflow: visible;
   width: 44px;
   height: 44px;
-  position: relative;
-  background: none;
-  cursor: pointer;
-  overflow: visible;
-  -webkit-appearance: none;
-  display: block;
-  border: 0;
-  padding: 0;
   margin: 0;
-  float: right;
-  opacity: 0.75;
-  -webkit-transition: opacity 0.2s;
-          transition: opacity 0.2s;
+  padding: 0;
+  cursor: pointer;
+  -webkit-transition: opacity .2s;
+          transition: opacity .2s;
+  opacity: .75;
+  border: 0;
+  background: none;
   box-shadow: none;
+  -webkit-appearance: none;
 }
-/* line 250, src/static/scss/photoswipe.scss */
+/* line 307, src/static/scss/photoswipe.scss */
 .pswp__button:focus, .pswp__button:hover {
   opacity: 1;
 }
-/* line 255, src/static/scss/photoswipe.scss */
+/* line 313, src/static/scss/photoswipe.scss */
 .pswp__button:active {
+  opacity: .9;
   outline: none;
-  opacity: 0.9;
 }
-/* line 260, src/static/scss/photoswipe.scss */
+/* line 319, src/static/scss/photoswipe.scss */
 .pswp__button::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
 
-/* line 267, src/static/scss/photoswipe.scss */
+/* line 328, src/static/scss/photoswipe.scss */
 .pswp__ui--over-close .pswp__button--close {
   opacity: 1;
 }
 
-/* line 271, src/static/scss/photoswipe.scss */
+/* line 333, src/static/scss/photoswipe.scss */
 .pswp__button,
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
-  background: url(/assets/photoswipe/images/default-skin.png) 0 0 no-repeat;
-  background-size: 264px 88px;
   width: 44px;
   height: 44px;
+  background: url(/assets/photoswipe/images/default-skin.png) 0 0 no-repeat;
+  background-size: 264px 88px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.1), (-webkit-min-device-pixel-ratio: 1.09375), (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
-  /* line 283, src/static/scss/photoswipe.scss */
+  /* line 347, src/static/scss/photoswipe.scss */
   .pswp--svg .pswp__button,
   .pswp--svg .pswp__button--arrow--left:before,
   .pswp--svg .pswp__button--arrow--right:before {
     background-image: url(/assets/photoswipe/images/default-skin.svg);
   }
 
-  /* line 289, src/static/scss/photoswipe.scss */
+  /* line 354, src/static/scss/photoswipe.scss */
   .pswp--svg .pswp__button--arrow--left,
   .pswp--svg .pswp__button--arrow--right {
     background: none;
   }
 }
-/* line 295, src/static/scss/photoswipe.scss */
+/* line 361, src/static/scss/photoswipe.scss */
 .pswp__button--close {
   background-position: 0 -44px;
 }
 
-/* line 299, src/static/scss/photoswipe.scss */
+/* line 366, src/static/scss/photoswipe.scss */
 .pswp__button--share {
   background-position: -44px -44px;
 }
 
-/* line 303, src/static/scss/photoswipe.scss */
+/* line 371, src/static/scss/photoswipe.scss */
 .pswp__button--fs {
   display: block;
 }
 
-/* line 312, src/static/scss/photoswipe.scss */
+/* line 381, src/static/scss/photoswipe.scss */
 .pswp--fs .pswp__button--fs {
   background-position: -44px 0;
 }
 
-/* line 316, src/static/scss/photoswipe.scss */
+/* line 386, src/static/scss/photoswipe.scss */
 .pswp__button--zoom {
-  background-position: -88px 0;
   display: block;
+  background-position: -88px 0;
 }
 
-/* line 325, src/static/scss/photoswipe.scss */
+/* line 396, src/static/scss/photoswipe.scss */
 .pswp--zoomed-in .pswp__button--zoom {
   background-position: -132px 0;
 }
 
-/* line 331, src/static/scss/photoswipe.scss */
+/* line 404, src/static/scss/photoswipe.scss */
 .pswp--touch .pswp__button--arrow--left,
 .pswp--touch .pswp__button--arrow--right {
   visibility: hidden;
 }
 
-/* line 339, src/static/scss/photoswipe.scss */
+/* line 413, src/static/scss/photoswipe.scss */
 .pswp__button--arrow--left,
 .pswp__button--arrow--right {
-  background: none;
+  position: absolute;
   top: 50%;
-  margin-top: -50px;
   width: 70px;
   height: 100px;
-  position: absolute;
+  margin-top: -50px;
+  background: none;
 }
 
-/* line 349, src/static/scss/photoswipe.scss */
+/* line 426, src/static/scss/photoswipe.scss */
 .pswp__button--arrow--left {
   left: 0;
 }
 
-/* line 353, src/static/scss/photoswipe.scss */
+/* line 431, src/static/scss/photoswipe.scss */
 .pswp__button--arrow--right {
   right: 0;
 }
 
-/* line 357, src/static/scss/photoswipe.scss */
+/* line 436, src/static/scss/photoswipe.scss */
 .pswp__button--arrow--left:before,
 .pswp__button--arrow--right:before {
-  content: '';
-  top: 35px;
-  background-color: rgba(0, 0, 0, 0.3);
-  height: 30px;
-  width: 32px;
   position: absolute;
+  top: 35px;
+  width: 32px;
+  height: 30px;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* line 367, src/static/scss/photoswipe.scss */
+/* line 450, src/static/scss/photoswipe.scss */
 .pswp__button--arrow--left:before {
   left: 6px;
   background-position: -138px -44px;
 }
 
-/* line 372, src/static/scss/photoswipe.scss */
+/* line 457, src/static/scss/photoswipe.scss */
 .pswp__button--arrow--right:before {
   right: 6px;
   background-position: -94px -44px;
 }
 
-/* line 384, src/static/scss/photoswipe.scss */
+/* line 471, src/static/scss/photoswipe.scss */
 .pswp__counter,
 .pswp__share-modal {
   -webkit-user-select: none;
@@ -385,263 +385,263 @@
       user-select: none;
 }
 
-/* line 391, src/static/scss/photoswipe.scss */
+/* line 479, src/static/scss/photoswipe.scss */
 .pswp__share-modal {
-  display: block;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  padding: 10px;
   position: absolute;
   z-index: 1600;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  -webkit-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
   opacity: 0;
-  -webkit-transition: opacity 0.25s ease-out;
-          transition: opacity 0.25s ease-out;
+  background: rgba(0, 0, 0, 0.5);
   -webkit-backface-visibility: hidden;
   will-change: opacity;
 }
 
-/* line 407, src/static/scss/photoswipe.scss */
+/* line 501, src/static/scss/photoswipe.scss */
 .pswp__share-modal--hidden {
   display: none;
 }
 
-/* line 411, src/static/scss/photoswipe.scss */
+/* line 506, src/static/scss/photoswipe.scss */
 .pswp__share-tooltip {
-  z-index: 1620;
   position: absolute;
-  background: #FFF;
+  z-index: 1620;
   top: 56px;
-  border-radius: 2px;
+  right: 44px;
   display: block;
   width: auto;
-  right: 44px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  -webkit-transition: -webkit-transform .25s;
+          transition: transform .25s;
   -webkit-transform: translateY(6px);
       -ms-transform: translateY(6px);
           transform: translateY(6px);
-  -webkit-transition: -webkit-transform 0.25s;
-          transition: transform 0.25s;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   -webkit-backface-visibility: hidden;
   will-change: transform;
 }
-/* line 426, src/static/scss/photoswipe.scss */
+/* line 527, src/static/scss/photoswipe.scss */
 .pswp__share-tooltip a {
-  display: block;
-  padding: 8px 12px;
-  color: #000;
-  text-decoration: none;
   font-size: 14px;
   line-height: 18px;
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #000;
 }
-/* line 434, src/static/scss/photoswipe.scss */
+/* line 540, src/static/scss/photoswipe.scss */
 .pswp__share-tooltip a:hover {
   text-decoration: none;
   color: #000;
 }
-/* line 440, src/static/scss/photoswipe.scss */
+/* line 548, src/static/scss/photoswipe.scss */
 .pswp__share-tooltip a:first-child {
   border-radius: 2px 2px 0 0;
 }
-/* line 444, src/static/scss/photoswipe.scss */
+/* line 553, src/static/scss/photoswipe.scss */
 .pswp__share-tooltip a:last-child {
   border-radius: 0 0 2px 2px;
 }
 
-/* line 450, src/static/scss/photoswipe.scss */
+/* line 560, src/static/scss/photoswipe.scss */
 .pswp__share-modal--fade-in {
   opacity: 1;
 }
-/* line 453, src/static/scss/photoswipe.scss */
+/* line 564, src/static/scss/photoswipe.scss */
 .pswp__share-modal--fade-in .pswp__share-tooltip {
   -webkit-transform: translateY(0);
       -ms-transform: translateY(0);
           transform: translateY(0);
 }
 
-/* line 459, src/static/scss/photoswipe.scss */
+/* line 571, src/static/scss/photoswipe.scss */
 .pswp--touch .pswp__share-tooltip a {
   padding: 16px 12px;
 }
 
-/* line 464, src/static/scss/photoswipe.scss */
+/* line 578, src/static/scss/photoswipe.scss */
 a.pswp__share--facebook:before {
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
   position: absolute;
   top: -12px;
   right: 15px;
+  display: block;
+  width: 0;
+  height: 0;
+  content: '';
+  pointer-events: none;
   border: 6px solid transparent;
-  border-bottom-color: #FFF;
+  border-bottom-color: #fff;
   -webkit-pointer-events: none;
   -moz-pointer-events: none;
-  pointer-events: none;
 }
-/* line 479, src/static/scss/photoswipe.scss */
+/* line 599, src/static/scss/photoswipe.scss */
 a.pswp__share--facebook:hover {
-  background: #3E5C9A;
-  color: #FFF;
+  color: #fff;
+  background: #3e5c9a;
 }
-/* line 483, src/static/scss/photoswipe.scss */
+/* line 604, src/static/scss/photoswipe.scss */
 a.pswp__share--facebook:hover:before {
-  border-bottom-color: #3E5C9A;
+  border-bottom-color: #3e5c9a;
 }
 
-/* line 490, src/static/scss/photoswipe.scss */
+/* line 613, src/static/scss/photoswipe.scss */
 a.pswp__share--twitter:hover {
-  background: #55ACEE;
-  color: #FFF;
+  color: #fff;
+  background: #55acee;
 }
 
-/* line 497, src/static/scss/photoswipe.scss */
+/* line 622, src/static/scss/photoswipe.scss */
 a.pswp__share--pinterest:hover {
-  background: #CCC;
-  color: #CE272D;
+  color: #ce272d;
+  background: #ccc;
 }
 
-/* line 504, src/static/scss/photoswipe.scss */
+/* line 631, src/static/scss/photoswipe.scss */
 a.pswp__share--download:hover {
-  background: #DDD;
+  background: #ddd;
 }
 
-/* line 516, src/static/scss/photoswipe.scss */
+/* line 644, src/static/scss/photoswipe.scss */
 .pswp__counter {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 44px;
   font-size: 13px;
   line-height: 44px;
-  color: #FFF;
-  opacity: 0.75;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 44px;
   padding: 0 10px;
+  opacity: .75;
+  color: #fff;
 }
 
-/* line 535, src/static/scss/photoswipe.scss */
+/* line 667, src/static/scss/photoswipe.scss */
 .pswp__caption {
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
   min-height: 44px;
 }
-/* line 542, src/static/scss/photoswipe.scss */
+/* line 676, src/static/scss/photoswipe.scss */
 .pswp__caption small {
   font-size: 11px;
-  color: #BBB;
+  color: #bbb;
 }
 
-/* line 548, src/static/scss/photoswipe.scss */
+/* line 684, src/static/scss/photoswipe.scss */
 .pswp__caption__center {
-  text-align: left;
+  font-size: 13px;
+  line-height: 20px;
   max-width: 420px;
   margin: 0 auto;
-  font-size: 13px;
   padding: 10px;
-  line-height: 20px;
-  color: #CCC;
+  text-align: left;
+  color: #ccc;
 }
 
-/* line 558, src/static/scss/photoswipe.scss */
+/* line 698, src/static/scss/photoswipe.scss */
 .pswp__caption--empty {
   display: none;
 }
 
-/* line 563, src/static/scss/photoswipe.scss */
+/* line 704, src/static/scss/photoswipe.scss */
 .pswp__caption--fake {
   visibility: hidden;
 }
 
-/* line 575, src/static/scss/photoswipe.scss */
+/* line 717, src/static/scss/photoswipe.scss */
 .pswp__preloader {
-  width: 44px;
-  height: 44px;
   position: absolute;
   top: 0;
   left: 50%;
+  width: 44px;
+  height: 44px;
   margin-left: -22px;
+  -webkit-transition: opacity .25s ease-out;
+          transition: opacity .25s ease-out;
   opacity: 0;
-  -webkit-transition: opacity 0.25s ease-out;
-          transition: opacity 0.25s ease-out;
   will-change: opacity;
 }
 
-/* line 587, src/static/scss/photoswipe.scss */
+/* line 734, src/static/scss/photoswipe.scss */
 .pswp__preloader__icn {
   width: 20px;
   height: 20px;
   margin: 12px;
 }
 
-/* line 593, src/static/scss/photoswipe.scss */
+/* line 741, src/static/scss/photoswipe.scss */
 .pswp__preloader--active {
   opacity: 1;
 }
-/* line 596, src/static/scss/photoswipe.scss */
+/* line 745, src/static/scss/photoswipe.scss */
 .pswp__preloader--active .pswp__preloader__icn {
   background: url(/assets/photoswipe/images/preloader.gif) 0 0 no-repeat;
 }
 
-/* line 603, src/static/scss/photoswipe.scss */
+/* line 754, src/static/scss/photoswipe.scss */
 .pswp--css_animation .pswp__preloader--active {
   opacity: 1;
 }
-/* line 606, src/static/scss/photoswipe.scss */
+/* line 758, src/static/scss/photoswipe.scss */
 .pswp--css_animation .pswp__preloader--active .pswp__preloader__icn {
   -webkit-animation: clockwise 500ms linear infinite;
           animation: clockwise 500ms linear infinite;
 }
-/* line 610, src/static/scss/photoswipe.scss */
+/* line 763, src/static/scss/photoswipe.scss */
 .pswp--css_animation .pswp__preloader--active .pswp__preloader__donut {
   -webkit-animation: donut-rotate 1000ms cubic-bezier(0.4, 0, 0.22, 1) infinite;
           animation: donut-rotate 1000ms cubic-bezier(0.4, 0, 0.22, 1) infinite;
 }
-/* line 615, src/static/scss/photoswipe.scss */
+/* line 769, src/static/scss/photoswipe.scss */
 .pswp--css_animation .pswp__preloader__icn {
-  background: none;
-  opacity: 0.75;
+  position: absolute;
+  top: 15px;
+  left: 15px;
   width: 14px;
   height: 14px;
-  position: absolute;
-  left: 15px;
-  top: 15px;
   margin: 0;
+  opacity: .75;
+  background: none;
 }
-/* line 628, src/static/scss/photoswipe.scss */
+/* line 785, src/static/scss/photoswipe.scss */
 .pswp--css_animation .pswp__preloader__cut {
   position: relative;
+  overflow: hidden;
   width: 7px;
   height: 14px;
-  overflow: hidden;
 }
-/* line 635, src/static/scss/photoswipe.scss */
+/* line 795, src/static/scss/photoswipe.scss */
 .pswp--css_animation .pswp__preloader__donut {
-  box-sizing: border-box;
-  width: 14px;
-  height: 14px;
-  border: 2px solid #FFF;
-  border-radius: 50%;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
   position: absolute;
   top: 0;
   left: 0;
-  background: none;
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
   margin: 0;
+  border: 2px solid #fff;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  background: none;
 }
 
 @media screen and (max-width: 1024px) {
-  /* line 652, src/static/scss/photoswipe.scss */
+  /* line 816, src/static/scss/photoswipe.scss */
   .pswp__preloader {
     position: relative;
-    left: auto;
     top: auto;
-    margin: 0;
+    left: auto;
     float: right;
+    margin: 0;
   }
 }
 @-webkit-keyframes clockwise {
@@ -692,83 +692,83 @@ a.pswp__share--download:hover {
             transform: rotate(0);
   }
 }
-/* line 680, src/static/scss/photoswipe.scss */
+/* line 864, src/static/scss/photoswipe.scss */
 .pswp__ui {
-  -webkit-font-smoothing: auto;
+  z-index: 1550;
   visibility: visible;
   opacity: 1;
-  z-index: 1550;
+  -webkit-font-smoothing: auto;
 }
 
-/* line 688, src/static/scss/photoswipe.scss */
+/* line 876, src/static/scss/photoswipe.scss */
 .pswp__top-bar {
   position: absolute;
-  left: 0;
   top: 0;
-  height: 44px;
+  left: 0;
   width: 100%;
+  height: 44px;
 }
 
-/* line 696, src/static/scss/photoswipe.scss */
+/* line 886, src/static/scss/photoswipe.scss */
 .pswp__caption,
 .pswp__top-bar,
 .pswp--has_mouse .pswp__button--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
-  -webkit-backface-visibility: hidden;
-  will-change: opacity;
   -webkit-transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
           transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
+  -webkit-backface-visibility: hidden;
+  will-change: opacity;
 }
 
-/* line 707, src/static/scss/photoswipe.scss */
+/* line 900, src/static/scss/photoswipe.scss */
 .pswp--has_mouse .pswp__button--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
   visibility: visible;
 }
 
-/* line 713, src/static/scss/photoswipe.scss */
+/* line 907, src/static/scss/photoswipe.scss */
 .pswp__top-bar,
 .pswp__caption {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* line 720, src/static/scss/photoswipe.scss */
+/* line 916, src/static/scss/photoswipe.scss */
 .pswp__ui--fit .pswp__top-bar,
 .pswp__ui--fit .pswp__caption {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* line 729, src/static/scss/photoswipe.scss */
+/* line 927, src/static/scss/photoswipe.scss */
 .pswp__ui--idle .pswp__top-bar {
   opacity: 0;
 }
-/* line 733, src/static/scss/photoswipe.scss */
+/* line 932, src/static/scss/photoswipe.scss */
 .pswp__ui--idle .pswp__button--arrow--left,
 .pswp__ui--idle .pswp__button--arrow--right {
   opacity: 0;
 }
 
-/* line 742, src/static/scss/photoswipe.scss */
+/* line 943, src/static/scss/photoswipe.scss */
 .pswp__ui--hidden .pswp__top-bar,
 .pswp__ui--hidden .pswp__caption,
 .pswp__ui--hidden .pswp__button--arrow--left,
 .pswp__ui--hidden .pswp__button--arrow--right {
-  opacity: 0.001;
+  opacity: .001;
 }
 
-/* line 753, src/static/scss/photoswipe.scss */
+/* line 956, src/static/scss/photoswipe.scss */
 .pswp__ui--one-slide .pswp__button--arrow--left,
 .pswp__ui--one-slide .pswp__button--arrow--right,
 .pswp__ui--one-slide .pswp__counter {
   display: none;
 }
 
-/* line 760, src/static/scss/photoswipe.scss */
+/* line 964, src/static/scss/photoswipe.scss */
 .pswp__element--disabled {
   display: none !important;
 }
 
-/* line 766, src/static/scss/photoswipe.scss */
+/* line 973, src/static/scss/photoswipe.scss */
 .pswp--minimal--dark .pswp__top-bar {
   background: none;
 }

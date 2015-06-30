@@ -4,23 +4,23 @@ https://github.com/minamarkham/sassy-starter/
 https://github.com/kachunchau/smacss-boilerplate
 https://github.com/davidrapson/scss-toolkit
 */
-/* line 6, src/static/scss/_helpers.scss */
+/* line 7, src/static/scss/_helpers.scss */
 .text-center {
   text-align: center;
 }
 
-/* line 25, src/static/scss/_helpers.scss */
+/* line 32, src/static/scss/_helpers.scss */
 .show {
   display: block !important;
 }
 
-/* line 28, src/static/scss/_helpers.scss */
+/* line 36, src/static/scss/_helpers.scss */
 .hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* line 32, src/static/scss/_helpers.scss */
+/* line 41, src/static/scss/_helpers.scss */
 .invisible {
   visibility: hidden;
 }
@@ -43,13 +43,13 @@ html {
 /**
  * Remove default margin.
  */
-/* line 16, src/static/scss/_normalize.scss */
+/* line 18, src/static/scss/_normalize.scss */
 body {
   margin: 0;
   padding: 0;
 }
 
-/* line 21, src/static/scss/_normalize.scss */
+/* line 24, src/static/scss/_normalize.scss */
 article,
 aside,
 details,
@@ -70,7 +70,7 @@ summary {
  * 1. Correct `inline-block` display not defined in IE 8/9.
  * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
  */
-/* line 42, src/static/scss/_normalize.scss */
+/* line 46, src/static/scss/_normalize.scss */
 audio,
 canvas,
 progress,
@@ -86,7 +86,7 @@ video {
 /**
  * Remove the gray background color from active links in IE 10.
  */
-/* line 57, src/static/scss/_normalize.scss */
+/* line 63, src/static/scss/_normalize.scss */
 a {
   background-color: transparent;
 }
@@ -94,7 +94,7 @@ a {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 65, src/static/scss/_normalize.scss */
+/* line 72, src/static/scss/_normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -105,7 +105,7 @@ a:hover {
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
-/* line 77, src/static/scss/_normalize.scss */
+/* line 85, src/static/scss/_normalize.scss */
 img {
   border: 0;
 }
@@ -113,24 +113,24 @@ img {
 /**
  * Correct overflow not hidden in IE 9/10/11.
  */
-/* line 85, src/static/scss/_normalize.scss */
+/* line 94, src/static/scss/_normalize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
 
-/* line 89, src/static/scss/_normalize.scss */
+/* line 99, src/static/scss/_normalize.scss */
 hr {
   box-sizing: content-box;
   height: 0;
 }
 
-/* line 94, src/static/scss/_normalize.scss */
+/* line 105, src/static/scss/_normalize.scss */
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
 }
 
-/* line 97, src/static/scss/_normalize.scss */
+/* line 109, src/static/scss/_normalize.scss */
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
@@ -140,17 +140,17 @@ hr {
   text-shadow: none;
 }
 
-/* line 100, src/static/scss/_normalize.scss */
+/* line 113, src/static/scss/_normalize.scss */
 ::-webkit-input-placeholder {
   color: #999;
 }
 
-/* line 104, src/static/scss/_normalize.scss */
+/* line 117, src/static/scss/_normalize.scss */
 ::-moz-placeholder {
   color: #999;
 }
 
-/* line 108, src/static/scss/_normalize.scss */
+/* line 121, src/static/scss/_normalize.scss */
 :-ms-input-placeholder {
   color: #999;
 }
@@ -163,220 +163,220 @@ html {
   height: 100%;
 }
 
-/* line 16, src/static/scss/_base.scss */
+/* line 17, src/static/scss/_base.scss */
 body {
   min-width: 430px;
   height: 100%;
-  background: #fff;
   color: #292f33;
+  background: #fff;
 }
 
-/* line 29, src/static/scss/_base.scss */
+/* line 32, src/static/scss/_base.scss */
 body:before {
-  content: "";
-  height: 100%;
   float: left;
   width: 0;
+  height: 100%;
   margin-top: -32767px;
+  content: '';
 }
 
-/* line 37, src/static/scss/_base.scss */
+/* line 43, src/static/scss/_base.scss */
 .wrap {
   min-height: 100%;
   margin-top: -24px;
   margin-bottom: 46px;
 }
 
-/* line 45, src/static/scss/_base.scss */
+/* line 52, src/static/scss/_base.scss */
 .ui.segment {
   border-radius: 0;
   box-shadow: none;
 }
 
-/* line 49, src/static/scss/_base.scss */
+/* line 57, src/static/scss/_base.scss */
 .ui.segment.border {
   box-shadow: 0 0 0 1px rgba(39, 41, 43, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-/* line 52, src/static/scss/_base.scss */
+/* line 61, src/static/scss/_base.scss */
 .ui.grid {
   margin: 0;
 }
 
-/* line 55, src/static/scss/_base.scss */
+/* line 65, src/static/scss/_base.scss */
 .padding-reset {
-  padding: 0px !important;
+  padding: 0 !important;
 }
 
-/* line 58, src/static/scss/_base.scss */
+/* line 69, src/static/scss/_base.scss */
 img.pure-img {
-  vertical-align: middle;
-  max-width: 60%;
   display: inline;
+  max-width: 60%;
+  vertical-align: middle;
 }
 
-/* line 64, src/static/scss/_base.scss */
+/* line 77, src/static/scss/_base.scss */
 code {
-  color: #EF413D;
+  color: #ef413d;
 }
 
-/* line 68, src/static/scss/_base.scss */
+/* line 81, src/static/scss/_base.scss */
 .pure-menu.pure-menu-horizontal {
   background: #fff;
 }
 
-/* line 72, src/static/scss/_base.scss */
+/* line 85, src/static/scss/_base.scss */
 .pure-menu {
   font-size: 90%;
 }
-/* line 74, src/static/scss/_base.scss */
+/* line 88, src/static/scss/_base.scss */
 .pure-menu .pure-menu-heading {
   margin-top: 2px;
   border: 0;
 }
 
-/* line 79, src/static/scss/_base.scss */
+/* line 95, src/static/scss/_base.scss */
 a {
-  color: #0074d9;
-  text-decoration: none;
   line-height: inherit;
+  text-decoration: none;
+  color: #0074d9;
 }
-/* line 83, src/static/scss/_base.scss */
+/* line 102, src/static/scss/_base.scss */
 a:focus, a:hover {
   color: #005bab;
 }
 
-/* line 88, src/static/scss/_base.scss */
+/* line 108, src/static/scss/_base.scss */
 a.pure-button:focus,
 a.pure-button:hover {
   color: #fff;
 }
 
-/* line 93, src/static/scss/_base.scss */
+/* line 115, src/static/scss/_base.scss */
 pre code {
+  display: block;
+  padding: .5em;
   color: #111;
-  background-color: #ddd;
   border-width: 1px;
   border-style: solid;
   border-color: #aaa;
-  display: block;
-  padding: 0.5em;
+  background-color: #ddd;
 }
 
-/* line 104, src/static/scss/_base.scss */
+/* line 128, src/static/scss/_base.scss */
 .pure-button {
   border-radius: 1px;
 }
 
-/* line 107, src/static/scss/_base.scss */
+/* line 132, src/static/scss/_base.scss */
 .bg-blue {
+  color: #fff;
   background: #3b5998;
-  color: #fff;
 }
 
-/* line 111, src/static/scss/_base.scss */
+/* line 137, src/static/scss/_base.scss */
 .bg-ligh-blue {
+  color: #fff;
   background: #26c4f1;
-  color: #fff;
 }
 
-/* line 115, src/static/scss/_base.scss */
+/* line 142, src/static/scss/_base.scss */
 .bg-red {
-  background: #ce2616;
   color: #fff;
+  background: #ce2616;
 }
 
-/* line 119, src/static/scss/_base.scss */
+/* line 147, src/static/scss/_base.scss */
 .bg-ist {
+  width: 84px;
   color: #000;
   background: #df7514;
-  width: 84px;
 }
 
-/* line 124, src/static/scss/_base.scss */
+/* line 154, src/static/scss/_base.scss */
 .line-first {
-  padding-bottom: 5px;
   margin-bottom: 10px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #aaa;
 }
 
-/* line 129, src/static/scss/_base.scss */
+/* line 161, src/static/scss/_base.scss */
 .jbo-pr {
   text-align: right;
 }
 
-/* line 132, src/static/scss/_base.scss */
+/* line 165, src/static/scss/_base.scss */
 .jbo-pl {
   text-align: left;
 }
 
-/* line 135, src/static/scss/_base.scss */
+/* line 169, src/static/scss/_base.scss */
 .jbo-pj {
   text-align: justify;
 }
 
-/* line 138, src/static/scss/_base.scss */
+/* line 173, src/static/scss/_base.scss */
 .img_left {
   float: left;
+  margin-top: 3px;
   margin-right: 14px;
   margin-bottom: 14px;
-  margin-top: 3px;
 }
 
-/* line 144, src/static/scss/_base.scss */
+/* line 181, src/static/scss/_base.scss */
 .img_right {
-  margin-left: 14px;
+  float: right;
   margin-top: 3px;
   margin-bottom: 14px;
-  float: right;
+  margin-left: 14px;
 }
 
-/* line 151, src/static/scss/_base.scss */
+/* line 190, src/static/scss/_base.scss */
 .subscribe--error {
-  padding: 2px 5px 2px 5px;
-  margin: 0 1px 0 0;
   width: 100%;
+  margin: 0 1px 0 0;
+  padding: 2px 5px 2px 5px;
 }
 
 /* Header  ========================================================================== */
-/* line 158, src/static/scss/_base.scss */
+/* line 198, src/static/scss/_base.scss */
 header {
   height: 40px;
 }
 
 /* Footer  ========================================================================== */
-/* line 162, src/static/scss/_base.scss */
+/* line 203, src/static/scss/_base.scss */
 footer {
-  margin-top: -46px;
   position: relative;
-  height: 46px;
   clear: both;
+  height: 46px;
+  margin-top: -46px;
 }
 
 /* Form  ========================================================================== */
-/* line 169, src/static/scss/_base.scss */
+/* line 213, src/static/scss/_base.scss */
 .ui.form .field {
-  margin: 1em 0em 1em;
+  margin: 1em 0 1em;
 }
 
-/* line 172, src/static/scss/_base.scss */
+/* line 217, src/static/scss/_base.scss */
 .ui.form .field > label {
-  margin: 0em 0em 0.5rem 0em;
+  margin: 0 0 .5rem 0;
 }
 
-/* line 175, src/static/scss/_base.scss */
+/* line 221, src/static/scss/_base.scss */
 #cat-button-submit-login-element {
   margin-top: 1em;
 }
 
 /* Auth  ========================================================================== */
-/* line 179, src/static/scss/_base.scss */
+/* line 226, src/static/scss/_base.scss */
 .parent {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-/* line 184, src/static/scss/_base.scss */
+/* line 232, src/static/scss/_base.scss */
 .child {
   position: relative;
   top: 50%;
@@ -387,24 +387,24 @@ footer {
 
 /* line 10, src/static/scss/home.scss */
 .home--bg {
-  width: 100%;
-  background: transparent url("../images/bg1.jpg") top center no-repeat fixed;
   position: absolute;
   top: 0;
+  width: 100%;
   min-height: 400px;
   margin: 0;
+  background: transparent url("../images/bg1.jpg") top center no-repeat fixed;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
 }
 
-/* line 23, src/static/scss/home.scss */
+/* line 27, src/static/scss/home.scss */
 .ui.huge.message {
-  background: none;
-  color: #fff;
   margin-top: 40px;
+  color: #fff;
+  background: none;
   box-shadow: none;
 }
 
-/* line 31, src/static/scss/home.scss */
+/* line 37, src/static/scss/home.scss */
 .ui.huge.header {
   color: #fff;
 }
