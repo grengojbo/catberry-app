@@ -2,13 +2,12 @@
 
 ## Приступая к работе для разработчика
 
-Необходимо установить [git](http://git-scm.com/downloads) [github/hub](https://github.com/github/hub) **node.js**. Then **sass**, **gulp** and **bower** if you haven't yet.
+Необходимо установить [git](http://git-scm.com/downloads) [github/hub](https://github.com/github/hub) **node.js**. Then **sass**, **gulp** and **bower**.
 
 ```
 $ sudo brew install --HEAD hub
 $ sudo gem install sass
-$ sudo npm install -g gulp bower
-$ sudo npm install -g csscomb catberry-cli
+$ sudo npm install -g gulp bower csscomb catberry-cli
 ```
 
 Создаем проект с .
@@ -40,11 +39,6 @@ git fetch skeleton
 git merge skeleton/master
 ```
 
-
-## Работа с вашей копией проекта
-
-Заменяем *grengojbo-skeleton* на имя вашего проекта -> *example-site* в файлах [package.json](./package.json) [bower.json](./bower.json). Редактируем описание вашего проекта в файде [package.json](./package.json).
-
 Это приложение показывает только "Hello, world!".
 
 В первую очередь необходимо установить зависимости для разработчика:
@@ -54,11 +48,53 @@ npm install
 bower install
 ```
 
+Если будете используеть [webpagetest](http://www.webpagetest.org) устанавливаете [grunt](http://gruntjs.com/getting-started).
+
+```
+$ sudo npm install -g grunt-cli
+```
+
 Если используете New Relic
 
 ```
 npm install newrelic --save
 ```
+
+## Работа с вашей копией проекта
+
+Заменяем *grengojbo-skeleton* на имя вашего проекта -> *example-site* в файлах [package.json](./package.json) [bower.json](./bower.json). 
+
+Редактируем описание вашего проекта в файде [package.json](./package.json). Обязательно меняем:
+
+```
+{
+  "name": "catberry-app",
+  "version": "0.1.1",
+  "description": "Empty project based on Catberry Framework",
+  "homepage": "https://github.com/grengojbo/catberry-app",
+  "keywords": [
+    "isomorphic",
+    "catberry"
+  ],
+  "bugs": {
+    "url": "https://github.com/grengojbo/catberry-app/issues",
+    "email": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/grengojbo/catberry-app.git"
+  },
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  ...
+}
+```
+
+Редактируем настройки для сборки проэкта [build.config.js](./config/build.config.js).
+
+Редактиркем настройки проэкта [environment.json](./config/environment.json), [browser.json](./config/browser.json)
 
 ### Работа с шаблонами 
 
@@ -66,11 +102,19 @@ npm install newrelic --save
 
 Редактируйте файлы [robots.txt](./src/templates/robots.txt), [humans.txt](./src/templates/humans.txt) в директории **/src/templates/**. 
 
+### Работа с шаблонами компонентов
+
+Некоторые шаблоны компонентов для production режима генерируются из директории **/src/templates/**:
+
+  - [head.hbs](./src/templates/head/head.hbs)
+  - [footer.hbs](./src/templates/footer/footer.hbs)
+  - [](.)
+
 В терминале запустите задачу **gult** и работайте в вашем любимом редакторе например [SublimeText3](http://www.sublimetext.com/3).
 ```
 gulp build
 ...
-20:39:39] Starting 'serve'...
+[20:39:39] Starting 'serve'...
 [20:39:42] Finished 'serve' after 2.51 s
 [20:39:42] Starting 'default'...
 [20:39:42] Finished 'default' after 13 μs

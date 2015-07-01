@@ -5,6 +5,11 @@ module.exports = {
   port: 3000,
   // map: true, // Generate source maps
   proxy: 'http://localhost:5000',
+  debug: true,
+  htmlmin: false,
+  dirs: 'fonts,js',
+  components: 'photoswipe',
+  revCss: 'home,main,mobile',
   tmp: 'public/tmp',
   dist: 'public',
   distTmp: 'build',
@@ -32,7 +37,6 @@ module.exports = {
   headSrc: 'src/templates/main/placeholders/head.dust',
   assets: 'public/static',
   images: '/static/images/**/*',
-  htmlmin: false,
   html: {
     collapseWhitespace: false,
     removeComments: true

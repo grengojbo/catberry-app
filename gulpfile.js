@@ -28,7 +28,7 @@ gulp.task('clean:vendor', del.bind(null, [
 gulp.task('clean:tmp', del.bind(null, [
     path.join(config.tmp, 'scss'),
     path.join(config.tmp, 'vendor', '**'),
-    path.join(config.assets, 'css', '{home,main,mobile}-*.css'),
+    path.join(config.assets, 'css', '{'+config.revCss+'}-*.css'),
     path.join(config.assets, 'vendor', '**'),
     path.join(config.assets, 'scss', '**'),
     path.join(config.assets, 'images', '**'),
@@ -85,7 +85,7 @@ gulp.task('replace:robots', function() {
     .pipe($.size({title: 'replace: '+file}));
 });
 
-gulp.task('images', ['copy:dist'], function() {
+gulp.task('images', function() {
   return gulp.src(config.base + config.images)
     .pipe($.imagemin({
       progressive: true,
@@ -188,15 +188,16 @@ gulp.task('copy:build', function () {
     .pipe($.size({title: 'copy build'}));
 });
 
-gulp.task('copy:dist', ['clean:tmp'], function () {
-    return gulp.src(['!' + path.join('src', 'static', 'images', '**'), path.join(config.distTmp, 'static', '**')])
-        .pipe(gulp.dest(config.assets))
+gulp.task('copy:dist', function () {
+  return gulp.src(config.distTmp+'/static/{'+config.dirs+'}/**')
+    .pipe($.if(config.debug, $.debug({title: 'copy-dist-debug'})))
+    .pipe(gulp.dest(config.assets))
     .pipe($.size({title: 'copy dist'}));
 });
 
 gulp.task('copy:css', ['sass:dev'], function () {
-    return gulp.src(path.join(config.tmp, 'css', '**'))
-        .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
+  return gulp.src(path.join(config.tmp, 'css', '**'))
+    .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
     .pipe($.size({title: 'copy css'}));
 });
 
@@ -220,8 +221,13 @@ gulp.task('copy:head', ['copy:dev'], function () {
 });
 
 gulp.task('copy:head:dist', function () {
-    return gulp.src(path.join(config.distTmp, 'head.hbs'))
-        .pipe(gulp.dest(path.join(config.cat, 'head')))
+  return gulp.src(path.join(config.distTmp, 'head.hbs'))
+    // https://github.com/kangax/html-minifier
+    // https://github.com/kangax/html-minifier/wiki/Minifying-Handlebars-templates
+    // .pipe($.if('*.html', $.minifyHtml({empty: true})))
+    .pipe($.if(config.htmlmin, $.htmlmin({ customAttrSurround: [hbAttrWrapPair], collapseWhitespace: config.html.collapseWhitespace, removeComments: config.html.removeComments})))
+    .pipe($.if(config.debug, $.debug({title: 'copy-head-dist-debug'})))
+    .pipe(gulp.dest(path.join(config.cat, 'head')))
     .pipe($.size({title: 'copy head.hbs'}));
 });
 
@@ -230,7 +236,6 @@ gulp.task('html:head', ['copy:css'], function() {
 
   return gulp.src(config.templates + '/head/head.hbs')
     // .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
-    // .pipe($.debug({minimal: false}))
     .pipe(assets)
     // .pipe($.if(config.map, sourcemaps.init()))
     // .pipe($.if('**/*main.js', $.uglify({mangle: false})))
@@ -240,14 +245,28 @@ gulp.task('html:head', ['copy:css'], function() {
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.revReplace())
-    // https://github.com/kangax/html-minifier
-    // https://github.com/kangax/html-minifier/wiki/Minifying-Handlebars-templates
-    // .pipe($.if(config.htmlmin, $.htmlmin({ customAttrSurround: [hbAttrWrapPair], collapseWhitespace: config.html.collapseWhitespace, removeComments: config.html.removeComments})))
-    // .pipe($.if('*.html', $.minifyHtml({empty: true})))
     // .pipe($.if(config.map, sourcemaps.write()))
+    .pipe($.if(config.debug, $.debug({title: 'html-head-debug'})))
     .pipe(gulp.dest(config.distTmp))
     .pipe($.size({title: 'html head'}));
 });
+
+gulp.task('css:components', function () {
+  return gulp.src(config.distTmp+'/static/css/'+config.components+'.css')
+    .pipe($.if('*.css', $.csso()))
+    .pipe($.if(config.debug, $.debug({title: 'css-components-debug'})))
+    .pipe(gulp.dest(path.join(config.assets, 'css')))
+    .pipe($.size({title: 'css components'}));
+});
+
+gulp.task('css:dist', function () {
+  return gulp.src(config.distTmp+'/static/css/{'+config.revCss+'}-*.css')
+    // .pipe($.if('*.css', $.csso()))
+    .pipe($.if(config.debug, $.debug({title: 'css-dist-debug'})))
+    .pipe(gulp.dest(path.join(config.assets, 'css')))
+    .pipe($.size({title: 'css dist'}));
+});
+
 
 // gulp.task('include', function() {
 //   gulp.src([config.templates + '/index.html'])
@@ -262,7 +281,7 @@ gulp.task('default', ['build']);
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
 gulp.task('release', ['build:release'], function(cb) {
-  runSequence(['clean:tmp', 'copy:head:dist', 'replaces'], 'images', cb);
+  runSequence(['clean:tmp', 'copy:head:dist', 'replaces', 'copy:dist', 'css:components', 'css:dist'], 'images', cb);
 });
 gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static'], 'html:head', cb);
