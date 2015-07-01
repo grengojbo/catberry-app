@@ -48,7 +48,7 @@ npm install
 bower install
 ```
 
-Если будете используеть [webpagetest](http://www.webpagetest.org) устанавливаете [grunt](http://gruntjs.com/getting-started).
+Если будете используеть [webpagetest](http://www.webpagetest.org) устанавливаете [grunt](http://gruntjs.com/getting-started). API key [webpagetest.org/getkey.php](https://www.webpagetest.org/getkey.php)
 
 ```
 $ sudo npm install -g grunt-cli
