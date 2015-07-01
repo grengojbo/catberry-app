@@ -50,7 +50,7 @@ builds:
 
 release:
 	@echo Release $(PROJECT_NAME) version: $(VERSION)
-	@gulp release
+	@gulp dist
 	@sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
 	@sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
 	@node ./build.js release

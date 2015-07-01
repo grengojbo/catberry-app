@@ -7,7 +7,7 @@ module.exports = {
   proxy: 'http://localhost:5000',
   debug: true,
   htmlmin: false,
-  dirs: 'fonts,js',
+  dirs: 'fonts,js,css',
   components: 'photoswipe',
   revCss: 'home,main,mobile',
   tpl: 'document,head,footer',

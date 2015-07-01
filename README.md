@@ -44,6 +44,10 @@ git merge skeleton/master
 В первую очередь необходимо установить зависимости для разработчика:
 
 ```
+make install
+```
+или
+```
 npm install
 bower install
 ```
@@ -140,6 +144,14 @@ To start in `release` mode:
 
 ```
 npm start
+```
+
+Bumping version number and tagging the repository with it. 
+
+```
+$ gulp patch     # makes v0.1.0 → v0.1.1
+$ gulp feature   # makes v0.1.1 → v0.2.0
+$ gulp release   # makes v0.2.1 → v1.0.0
 ```
 
 ## Используем Handlebars
