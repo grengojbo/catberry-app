@@ -1,19 +1,42 @@
 'use strict';
 
-var config = require('./config/build.config.js');
-var catConfig = require('./config/environment.json');
+// Using modules
+var os = require('os');
 var gulp = require('gulp'),
-	path = require('path');
+  path = require('path'),
+  runSequence = require('run-sequence'),
+  del = require('del'),
+  sourcemaps = require('gulp-sourcemaps'),
+  pngquant = require('imagemin-pngquant'),
+  rename = require("gulp-rename"),
+  replace = require('gulp-replace-task'),
+  tagVersion = require('gulp-tag-version'),
+  gls = require('gulp-live-server');
+
 var $ = require('gulp-load-plugins')();
-var runSequence = require('run-sequence');
-var pkg = require('./package');
-var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var pngquant = require('imagemin-pngquant');
-var rename = require("gulp-rename");
-var replace = require('gulp-replace-task');
-var tagVersion = require('gulp-tag-version');
-var gls = require('gulp-live-server');
+
+// Flags
+var useLiveReload = gutil.env.lr || false,
+    useTunnelToWeb = gutil.env.tunnel || false;
+
+// Configs
+var config = require('./config/build.config.js');
+  pkg = require('./package'),
+  catConfig = require('./config/environment.json'),
+  tarsConfig = require('./tars-config'),
+  browserSyncConfig = tarsConfig.browserSyncConfig,
+
+  // templaterName = require('./tars/helpers/templater-name-setter')(),
+  // templateExtension = 'jade',
+  cssPreprocExtension = tarsConfig.cssPreprocessor.toLowerCase(),
+
+  buildOptions = {},
+  watchOptions = {},
+
+  tasks = [],
+  userTasks = [],
+  watchers = [],
+  userWatchers = [];
 
 var hbAttrWrapOpen = /\{\{#[^}]+\}\}/;
 var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
