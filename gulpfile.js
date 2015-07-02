@@ -13,6 +13,7 @@ var pngquant = require('imagemin-pngquant');
 var rename = require("gulp-rename");
 var replace = require('gulp-replace-task');
 var tagVersion = require('gulp-tag-version');
+var gls = require('gulp-live-server');
 
 var hbAttrWrapOpen = /\{\{#[^}]+\}\}/;
 var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
@@ -234,6 +235,30 @@ gulp.task('css:dist', function () {
     .pipe($.size({title: 'css dist'}));
 });
 
+gulp.task('build:catberry', $.shell.task(['node ./build.js', './node_modules/.bin/gulp']));
+
+gulp.task('serve', ['build:catberry'], function() {
+  options = {
+    cwd: undefined
+  }
+  options.env = process.env;
+  options.env.NODE_ENV = 'development';
+  var server = gls('server.js', options);
+    //1. serve with default settings
+    // var server = gls.static(); //equals to gls.static('public', 3000);
+
+    //2. serve at custom port
+    // var server = gls.static('dist', 8888);
+
+    //3. serve multi folders
+    // var server = gls.static(['dist', '.tmp']);
+
+  server.start();
+    //use gulp.watch to trigger server actions(notify, start or stop)
+  gulp.watch(['static/**/*.css', 'static/**/*.html'], function () {
+    server.notify.apply(server, arguments);
+  });
+});
 
 gulp.task('default', ['build']);
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
