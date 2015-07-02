@@ -24,6 +24,10 @@
     }
 }
 
+%menu-icon {
+    content: '\2261';
+}
+
 .text-center
 {
     @extend %text-center;
