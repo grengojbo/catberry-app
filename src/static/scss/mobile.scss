@@ -7,6 +7,7 @@ https://github.com/davidrapson/scss-toolkit
 @import 'settings', 'mixins', 'helpers';
 @import 'normalize', 'layouts/base';
 
-.loading {
+.loading
+{
     @include loading;
 }

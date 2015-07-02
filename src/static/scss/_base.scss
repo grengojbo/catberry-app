@@ -1,12 +1,13 @@
 .ui
 {
-    &.segment {
-    border-radius: 0;
-    box-shadow: none;
-    &.border
+    &.segment
     {
-        box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
-    }
+        border-radius: 0;
+        box-shadow: none;
+        &.border
+        {
+            box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+        }
     }
 }
 .ui.grid

@@ -11,25 +11,25 @@ https://github.com/davidrapson/scss-toolkit
 
 /* line 27, src/static/scss/_helpers.scss */
 .menu--icon {
-  content: '\2261';
-  position: absolute;
-  right: .25em;
-  top: 0;
   font-size: 1.8em;
+  position: absolute;
+  top: 0;
+  right: .25em;
+  content: '\2261';
 }
 
-/* line 41, src/static/scss/_helpers.scss */
+/* line 44, src/static/scss/_helpers.scss */
 .show {
   display: block !important;
 }
 
-/* line 45, src/static/scss/_helpers.scss */
+/* line 48, src/static/scss/_helpers.scss */
 .hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* line 50, src/static/scss/_helpers.scss */
+/* line 53, src/static/scss/_helpers.scss */
 .invisible {
   visibility: hidden;
 }
@@ -1199,13 +1199,13 @@ body:before {
 }
 
 /* Header  ========================================================================== */
-/* line 56, src/static/scss/layouts/_base.scss */
+/* line 57, src/static/scss/layouts/_base.scss */
 header {
   height: 40px;
 }
 
 /* Footer  ========================================================================== */
-/* line 61, src/static/scss/layouts/_base.scss */
+/* line 62, src/static/scss/layouts/_base.scss */
 footer {
   position: relative;
   clear: both;
@@ -1218,66 +1218,66 @@ footer {
   border-radius: 0;
   box-shadow: none;
 }
-/* line 6, src/static/scss/_base.scss */
+/* line 7, src/static/scss/_base.scss */
 .ui.segment.border {
   box-shadow: 0 0 0 1px rgba(39, 41, 43, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-/* line 12, src/static/scss/_base.scss */
+/* line 13, src/static/scss/_base.scss */
 .ui.grid {
   margin: 0;
 }
 
-/* line 16, src/static/scss/_base.scss */
+/* line 17, src/static/scss/_base.scss */
 .padding-reset {
   padding: 0 !important;
 }
 
-/* line 20, src/static/scss/_base.scss */
+/* line 21, src/static/scss/_base.scss */
 img.pure-img {
   display: inline;
   max-width: 60%;
   vertical-align: middle;
 }
 
-/* line 28, src/static/scss/_base.scss */
+/* line 29, src/static/scss/_base.scss */
 code {
   color: #ef413d;
 }
 
-/* line 32, src/static/scss/_base.scss */
+/* line 33, src/static/scss/_base.scss */
 .pure-menu.pure-menu-horizontal {
   background: #fff;
 }
 
-/* line 36, src/static/scss/_base.scss */
+/* line 37, src/static/scss/_base.scss */
 .pure-menu {
   font-size: 90%;
 }
-/* line 39, src/static/scss/_base.scss */
+/* line 40, src/static/scss/_base.scss */
 .pure-menu .pure-menu-heading {
   margin-top: 2px;
   border: 0;
 }
 
-/* line 46, src/static/scss/_base.scss */
+/* line 47, src/static/scss/_base.scss */
 a {
   line-height: inherit;
   text-decoration: none;
   color: #0074d9;
 }
-/* line 53, src/static/scss/_base.scss */
+/* line 54, src/static/scss/_base.scss */
 a:focus, a:hover {
   color: #005bab;
 }
 
-/* line 59, src/static/scss/_base.scss */
+/* line 60, src/static/scss/_base.scss */
 a.pure-button:focus,
 a.pure-button:hover {
   color: #fff;
 }
 
-/* line 66, src/static/scss/_base.scss */
+/* line 67, src/static/scss/_base.scss */
 pre code {
   display: block;
   padding: .5em;
@@ -1288,59 +1288,59 @@ pre code {
   background-color: #ddd;
 }
 
-/* line 79, src/static/scss/_base.scss */
+/* line 80, src/static/scss/_base.scss */
 .pure-button {
   border-radius: 1px;
 }
 
-/* line 83, src/static/scss/_base.scss */
+/* line 84, src/static/scss/_base.scss */
 .bg-blue {
   color: #fff;
   background: #3b5998;
 }
 
-/* line 88, src/static/scss/_base.scss */
+/* line 89, src/static/scss/_base.scss */
 .bg-ligh-blue {
   color: #fff;
   background: #26c4f1;
 }
 
-/* line 93, src/static/scss/_base.scss */
+/* line 94, src/static/scss/_base.scss */
 .bg-red {
   color: #fff;
   background: #ce2616;
 }
 
-/* line 98, src/static/scss/_base.scss */
+/* line 99, src/static/scss/_base.scss */
 .bg-ist {
   width: 84px;
   color: #000;
   background: #df7514;
 }
 
-/* line 105, src/static/scss/_base.scss */
+/* line 106, src/static/scss/_base.scss */
 .line-first {
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid #aaa;
 }
 
-/* line 112, src/static/scss/_base.scss */
+/* line 113, src/static/scss/_base.scss */
 .jbo-pr {
   text-align: right;
 }
 
-/* line 116, src/static/scss/_base.scss */
+/* line 117, src/static/scss/_base.scss */
 .jbo-pl {
   text-align: left;
 }
 
-/* line 120, src/static/scss/_base.scss */
+/* line 121, src/static/scss/_base.scss */
 .jbo-pj {
   text-align: justify;
 }
 
-/* line 124, src/static/scss/_base.scss */
+/* line 125, src/static/scss/_base.scss */
 .img_left {
   float: left;
   margin-top: 3px;
@@ -1348,7 +1348,7 @@ pre code {
   margin-bottom: 14px;
 }
 
-/* line 132, src/static/scss/_base.scss */
+/* line 133, src/static/scss/_base.scss */
 .img_right {
   float: right;
   margin-top: 3px;
@@ -1356,7 +1356,7 @@ pre code {
   margin-left: 14px;
 }
 
-/* line 141, src/static/scss/_base.scss */
+/* line 142, src/static/scss/_base.scss */
 .subscribe--error {
   width: 100%;
   margin: 0 1px 0 0;
@@ -1364,29 +1364,29 @@ pre code {
 }
 
 /* Form  ========================================================================== */
-/* line 149, src/static/scss/_base.scss */
+/* line 150, src/static/scss/_base.scss */
 .ui.form .field {
   margin: 1em 0 1em;
 }
 
-/* line 153, src/static/scss/_base.scss */
+/* line 154, src/static/scss/_base.scss */
 .ui.form .field > label {
   margin: 0 0 .5rem 0;
 }
 
-/* line 157, src/static/scss/_base.scss */
+/* line 158, src/static/scss/_base.scss */
 #cat-button-submit-login-element {
   margin-top: 1em;
 }
 
 /* Auth  ========================================================================== */
-/* line 162, src/static/scss/_base.scss */
+/* line 163, src/static/scss/_base.scss */
 .parent {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-/* line 168, src/static/scss/_base.scss */
+/* line 169, src/static/scss/_base.scss */
 .child {
   position: relative;
   top: 50%;
@@ -1397,8 +1397,8 @@ pre code {
 
 /* line 10, src/static/scss/main.scss */
 .loading {
-  min-height: 36px;
   min-width: 36px;
+  min-height: 36px;
   background: url("../img/loader.svg") no-repeat center;
 }
 
