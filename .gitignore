@@ -48,6 +48,7 @@ node_modules
 __BrowserBundle.js
 build
 public/__csstime-tmp
+public/static/css/*.map
 src/tmp/
 public/tmp/
 example/
