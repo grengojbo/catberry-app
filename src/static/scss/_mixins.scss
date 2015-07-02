@@ -1,7 +1,9 @@
 // loading
-@mixin loading {
-    min-height: 36px;
+@mixin loading
+{
     min-width: 36px;
+    min-height: 36px;
+
     background: url('../img/loader.svg') no-repeat center;
 }
 

@@ -9,18 +9,27 @@ https://github.com/davidrapson/scss-toolkit
   text-align: center;
 }
 
-/* line 32, src/static/scss/_helpers.scss */
+/* line 27, src/static/scss/_helpers.scss */
+.menu--icon {
+  font-size: 1.8em;
+  position: absolute;
+  top: 0;
+  right: .25em;
+  content: '\2261';
+}
+
+/* line 44, src/static/scss/_helpers.scss */
 .show {
   display: block !important;
 }
 
-/* line 36, src/static/scss/_helpers.scss */
+/* line 48, src/static/scss/_helpers.scss */
 .hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* line 41, src/static/scss/_helpers.scss */
+/* line 53, src/static/scss/_helpers.scss */
 .invisible {
   visibility: hidden;
 }
@@ -158,20 +167,20 @@ hr {
 /* Fonts
    ========================================================================== */
 /* Defaults  ========================================================================== */
-/* line 13, src/static/scss/_base.scss */
+/* line 13, src/static/scss/layouts/_base.scss */
 html {
   height: 100%;
 }
 
-/* line 17, src/static/scss/_base.scss */
+/* line 17, src/static/scss/layouts/_base.scss */
 body {
-  min-width: 430px;
+  min-width: 320px;
   height: 100%;
   color: #292f33;
   background: #fff;
 }
 
-/* line 32, src/static/scss/_base.scss */
+/* line 32, src/static/scss/layouts/_base.scss */
 body:before {
   float: left;
   width: 0;
@@ -180,172 +189,21 @@ body:before {
   content: '';
 }
 
-/* line 43, src/static/scss/_base.scss */
+/* line 43, src/static/scss/layouts/_base.scss */
 .wrap {
   min-height: 100%;
   margin-top: -24px;
   margin-bottom: 46px;
 }
 
-/* line 52, src/static/scss/_base.scss */
-.ui.segment {
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* line 57, src/static/scss/_base.scss */
-.ui.segment.border {
-  box-shadow: 0 0 0 1px rgba(39, 41, 43, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-/* line 61, src/static/scss/_base.scss */
-.ui.grid {
-  margin: 0;
-}
-
-/* line 65, src/static/scss/_base.scss */
-.padding-reset {
-  padding: 0 !important;
-}
-
-/* line 69, src/static/scss/_base.scss */
-img.pure-img {
-  display: inline;
-  max-width: 60%;
-  vertical-align: middle;
-}
-
-/* line 77, src/static/scss/_base.scss */
-code {
-  color: #ef413d;
-}
-
-/* line 81, src/static/scss/_base.scss */
-.pure-menu.pure-menu-horizontal {
-  background: #fff;
-}
-
-/* line 85, src/static/scss/_base.scss */
-.pure-menu {
-  font-size: 90%;
-}
-/* line 88, src/static/scss/_base.scss */
-.pure-menu .pure-menu-heading {
-  margin-top: 2px;
-  border: 0;
-}
-
-/* line 95, src/static/scss/_base.scss */
-a {
-  line-height: inherit;
-  text-decoration: none;
-  color: #0074d9;
-}
-/* line 102, src/static/scss/_base.scss */
-a:focus, a:hover {
-  color: #005bab;
-}
-
-/* line 108, src/static/scss/_base.scss */
-a.pure-button:focus,
-a.pure-button:hover {
-  color: #fff;
-}
-
-/* line 115, src/static/scss/_base.scss */
-pre code {
-  display: block;
-  padding: .5em;
-  color: #111;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #aaa;
-  background-color: #ddd;
-}
-
-/* line 128, src/static/scss/_base.scss */
-.pure-button {
-  border-radius: 1px;
-}
-
-/* line 132, src/static/scss/_base.scss */
-.bg-blue {
-  color: #fff;
-  background: #3b5998;
-}
-
-/* line 137, src/static/scss/_base.scss */
-.bg-ligh-blue {
-  color: #fff;
-  background: #26c4f1;
-}
-
-/* line 142, src/static/scss/_base.scss */
-.bg-red {
-  color: #fff;
-  background: #ce2616;
-}
-
-/* line 147, src/static/scss/_base.scss */
-.bg-ist {
-  width: 84px;
-  color: #000;
-  background: #df7514;
-}
-
-/* line 154, src/static/scss/_base.scss */
-.line-first {
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #aaa;
-}
-
-/* line 161, src/static/scss/_base.scss */
-.jbo-pr {
-  text-align: right;
-}
-
-/* line 165, src/static/scss/_base.scss */
-.jbo-pl {
-  text-align: left;
-}
-
-/* line 169, src/static/scss/_base.scss */
-.jbo-pj {
-  text-align: justify;
-}
-
-/* line 173, src/static/scss/_base.scss */
-.img_left {
-  float: left;
-  margin-top: 3px;
-  margin-right: 14px;
-  margin-bottom: 14px;
-}
-
-/* line 181, src/static/scss/_base.scss */
-.img_right {
-  float: right;
-  margin-top: 3px;
-  margin-bottom: 14px;
-  margin-left: 14px;
-}
-
-/* line 190, src/static/scss/_base.scss */
-.subscribe--error {
-  width: 100%;
-  margin: 0 1px 0 0;
-  padding: 2px 5px 2px 5px;
-}
-
 /* Header  ========================================================================== */
-/* line 198, src/static/scss/_base.scss */
+/* line 57, src/static/scss/layouts/_base.scss */
 header {
   height: 40px;
 }
 
 /* Footer  ========================================================================== */
-/* line 203, src/static/scss/_base.scss */
+/* line 62, src/static/scss/layouts/_base.scss */
 footer {
   position: relative;
   clear: both;
@@ -353,42 +211,10 @@ footer {
   margin-top: -46px;
 }
 
-/* Form  ========================================================================== */
-/* line 213, src/static/scss/_base.scss */
-.ui.form .field {
-  margin: 1em 0 1em;
-}
-
-/* line 217, src/static/scss/_base.scss */
-.ui.form .field > label {
-  margin: 0 0 .5rem 0;
-}
-
-/* line 221, src/static/scss/_base.scss */
-#cat-button-submit-login-element {
-  margin-top: 1em;
-}
-
-/* Auth  ========================================================================== */
-/* line 226, src/static/scss/_base.scss */
-.parent {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
-/* line 232, src/static/scss/_base.scss */
-.child {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-
 /* line 10, src/static/scss/mobile.scss */
 .loading {
-  min-height: 36px;
   min-width: 36px;
+  min-height: 36px;
   background: url("../img/loader.svg") no-repeat center;
 }
 

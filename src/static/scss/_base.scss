@@ -1,62 +1,14 @@
-/* Fonts
-   ========================================================================== */
-// @import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
-// @include font-face("Open Sans", "Open Sans", "OpenSans", "opensans-regular", "normal", "normal");
-// @include font-face("Open Sans", "Open Sans Italic", "OpenSans-Italic", "opensans-italic", "normal", "italic");
-
-// @include font-face("OpenSansCondensed", "Open Sans Cond Light", "OpenSans-CondensedLight", "open_sans_condensed_light", 300, "normal");
-// @include font-face("OpenSansCondensedBold", "Open Sans Condensed Bold", "OpenSans-CondensedBold", "opensans-condbold", 700, "normal");
-// @include font-face("OpenSansCondensedItalic", "Open Sans Cond Light Italic", "OpenSans-CondensedLightItalic", "opensans-condlightitalic", 300, "italic");
-
-
-/* Defaults  ========================================================================== */
-html
+.ui
 {
-    height: 100%;
-}
-body
-{
-    // background: $fuchsia;
-    min-width: $min-width;
-    height: 100%;
-
-    color: $color;
-    background: $color-bg;
-    // margin: 0;
-    // padding: 0;
-    // -webkit-font-smoothing: subpixel-antialiased !important;
-    // -webkit-backface-visibility: hidden;
-    // -moz-backface-visibility:    hidden;
-    // -ms-backface-visibility:     hidden;
-}
-body:before
-{
-    float: left;
-
-    width: 0;
-    height: 100%;
-    margin-top: -32767px;
-
-    content: '';
-}
-
-.wrap
-{
-    min-height: 100%;
-    // padding: 0px 0 0px 0;
-    margin-top: -24px;
-    margin-bottom: $header-footer;
-    // margin-bottom: -$header-footer - 14px;
-}
-
-.ui.segment
-{
-    border-radius: 0;
-    box-shadow: none;
-}
-.ui.segment.border
-{
-    box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+    &.segment
+    {
+        border-radius: 0;
+        box-shadow: none;
+        &.border
+        {
+            box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
+        }
+    }
 }
 .ui.grid
 {
@@ -194,21 +146,6 @@ pre
     padding: 2px 5px 2px 5px;
 }
 
-/* Header  ========================================================================== */
-header
-{
-    height: $header-heigh;
-}
-/* Footer  ========================================================================== */
-footer
-{
-    position: relative;
-
-    clear: both;
-
-    height: $header-footer;
-    margin-top: -$header-footer;
-}
 /* Form  ========================================================================== */
 .ui.form .field
 {

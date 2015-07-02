@@ -9,18 +9,27 @@ https://github.com/davidrapson/scss-toolkit
   text-align: center;
 }
 
-/* line 32, src/static/scss/_helpers.scss */
+/* line 27, src/static/scss/_helpers.scss */
+.menu--icon {
+  font-size: 1.8em;
+  position: absolute;
+  top: 0;
+  right: .25em;
+  content: '\2261';
+}
+
+/* line 44, src/static/scss/_helpers.scss */
 .show {
   display: block !important;
 }
 
-/* line 36, src/static/scss/_helpers.scss */
+/* line 48, src/static/scss/_helpers.scss */
 .hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* line 41, src/static/scss/_helpers.scss */
+/* line 53, src/static/scss/_helpers.scss */
 .invisible {
   visibility: hidden;
 }
@@ -1160,20 +1169,20 @@ hr {
 /* Fonts
    ========================================================================== */
 /* Defaults  ========================================================================== */
-/* line 13, src/static/scss/_base.scss */
+/* line 13, src/static/scss/layouts/_base.scss */
 html {
   height: 100%;
 }
 
-/* line 17, src/static/scss/_base.scss */
+/* line 17, src/static/scss/layouts/_base.scss */
 body {
-  min-width: 430px;
+  min-width: 320px;
   height: 100%;
   color: #292f33;
   background: #fff;
 }
 
-/* line 32, src/static/scss/_base.scss */
+/* line 32, src/static/scss/layouts/_base.scss */
 body:before {
   float: left;
   width: 0;
@@ -1182,79 +1191,93 @@ body:before {
   content: '';
 }
 
-/* line 43, src/static/scss/_base.scss */
+/* line 43, src/static/scss/layouts/_base.scss */
 .wrap {
   min-height: 100%;
   margin-top: -24px;
   margin-bottom: 46px;
 }
 
-/* line 52, src/static/scss/_base.scss */
+/* Header  ========================================================================== */
+/* line 57, src/static/scss/layouts/_base.scss */
+header {
+  height: 40px;
+}
+
+/* Footer  ========================================================================== */
+/* line 62, src/static/scss/layouts/_base.scss */
+footer {
+  position: relative;
+  clear: both;
+  height: 46px;
+  margin-top: -46px;
+}
+
+/* line 3, src/static/scss/_base.scss */
 .ui.segment {
   border-radius: 0;
   box-shadow: none;
 }
-
-/* line 57, src/static/scss/_base.scss */
+/* line 7, src/static/scss/_base.scss */
 .ui.segment.border {
   box-shadow: 0 0 0 1px rgba(39, 41, 43, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-/* line 61, src/static/scss/_base.scss */
+/* line 13, src/static/scss/_base.scss */
 .ui.grid {
   margin: 0;
 }
 
-/* line 65, src/static/scss/_base.scss */
+/* line 17, src/static/scss/_base.scss */
 .padding-reset {
   padding: 0 !important;
 }
 
-/* line 69, src/static/scss/_base.scss */
+/* line 21, src/static/scss/_base.scss */
 img.pure-img {
   display: inline;
   max-width: 60%;
   vertical-align: middle;
 }
 
-/* line 77, src/static/scss/_base.scss */
+/* line 29, src/static/scss/_base.scss */
 code {
   color: #ef413d;
 }
 
-/* line 81, src/static/scss/_base.scss */
+/* line 33, src/static/scss/_base.scss */
 .pure-menu.pure-menu-horizontal {
   background: #fff;
 }
 
-/* line 85, src/static/scss/_base.scss */
+/* line 37, src/static/scss/_base.scss */
 .pure-menu {
   font-size: 90%;
 }
-/* line 88, src/static/scss/_base.scss */
+/* line 40, src/static/scss/_base.scss */
 .pure-menu .pure-menu-heading {
   margin-top: 2px;
   border: 0;
 }
 
-/* line 95, src/static/scss/_base.scss */
+/* line 47, src/static/scss/_base.scss */
 a {
   line-height: inherit;
   text-decoration: none;
   color: #0074d9;
 }
-/* line 102, src/static/scss/_base.scss */
+/* line 54, src/static/scss/_base.scss */
 a:focus, a:hover {
   color: #005bab;
 }
 
-/* line 108, src/static/scss/_base.scss */
+/* line 60, src/static/scss/_base.scss */
 a.pure-button:focus,
 a.pure-button:hover {
   color: #fff;
 }
 
-/* line 115, src/static/scss/_base.scss */
+/* line 67, src/static/scss/_base.scss */
 pre code {
   display: block;
   padding: .5em;
@@ -1265,59 +1288,59 @@ pre code {
   background-color: #ddd;
 }
 
-/* line 128, src/static/scss/_base.scss */
+/* line 80, src/static/scss/_base.scss */
 .pure-button {
   border-radius: 1px;
 }
 
-/* line 132, src/static/scss/_base.scss */
+/* line 84, src/static/scss/_base.scss */
 .bg-blue {
   color: #fff;
   background: #3b5998;
 }
 
-/* line 137, src/static/scss/_base.scss */
+/* line 89, src/static/scss/_base.scss */
 .bg-ligh-blue {
   color: #fff;
   background: #26c4f1;
 }
 
-/* line 142, src/static/scss/_base.scss */
+/* line 94, src/static/scss/_base.scss */
 .bg-red {
   color: #fff;
   background: #ce2616;
 }
 
-/* line 147, src/static/scss/_base.scss */
+/* line 99, src/static/scss/_base.scss */
 .bg-ist {
   width: 84px;
   color: #000;
   background: #df7514;
 }
 
-/* line 154, src/static/scss/_base.scss */
+/* line 106, src/static/scss/_base.scss */
 .line-first {
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid #aaa;
 }
 
-/* line 161, src/static/scss/_base.scss */
+/* line 113, src/static/scss/_base.scss */
 .jbo-pr {
   text-align: right;
 }
 
-/* line 165, src/static/scss/_base.scss */
+/* line 117, src/static/scss/_base.scss */
 .jbo-pl {
   text-align: left;
 }
 
-/* line 169, src/static/scss/_base.scss */
+/* line 121, src/static/scss/_base.scss */
 .jbo-pj {
   text-align: justify;
 }
 
-/* line 173, src/static/scss/_base.scss */
+/* line 125, src/static/scss/_base.scss */
 .img_left {
   float: left;
   margin-top: 3px;
@@ -1325,7 +1348,7 @@ pre code {
   margin-bottom: 14px;
 }
 
-/* line 181, src/static/scss/_base.scss */
+/* line 133, src/static/scss/_base.scss */
 .img_right {
   float: right;
   margin-top: 3px;
@@ -1333,52 +1356,37 @@ pre code {
   margin-left: 14px;
 }
 
-/* line 190, src/static/scss/_base.scss */
+/* line 142, src/static/scss/_base.scss */
 .subscribe--error {
   width: 100%;
   margin: 0 1px 0 0;
   padding: 2px 5px 2px 5px;
 }
 
-/* Header  ========================================================================== */
-/* line 198, src/static/scss/_base.scss */
-header {
-  height: 40px;
-}
-
-/* Footer  ========================================================================== */
-/* line 203, src/static/scss/_base.scss */
-footer {
-  position: relative;
-  clear: both;
-  height: 46px;
-  margin-top: -46px;
-}
-
 /* Form  ========================================================================== */
-/* line 213, src/static/scss/_base.scss */
+/* line 150, src/static/scss/_base.scss */
 .ui.form .field {
   margin: 1em 0 1em;
 }
 
-/* line 217, src/static/scss/_base.scss */
+/* line 154, src/static/scss/_base.scss */
 .ui.form .field > label {
   margin: 0 0 .5rem 0;
 }
 
-/* line 221, src/static/scss/_base.scss */
+/* line 158, src/static/scss/_base.scss */
 #cat-button-submit-login-element {
   margin-top: 1em;
 }
 
 /* Auth  ========================================================================== */
-/* line 226, src/static/scss/_base.scss */
+/* line 163, src/static/scss/_base.scss */
 .parent {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-/* line 232, src/static/scss/_base.scss */
+/* line 169, src/static/scss/_base.scss */
 .child {
   position: relative;
   top: 50%;
@@ -1389,8 +1397,8 @@ footer {
 
 /* line 10, src/static/scss/main.scss */
 .loading {
-  min-height: 36px;
   min-width: 36px;
+  min-height: 36px;
   background: url("../img/loader.svg") no-repeat center;
 }
 
