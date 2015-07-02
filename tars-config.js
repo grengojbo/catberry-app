@@ -258,7 +258,28 @@ var tarsConfig = {
          * 'img' by default
          * @type {String}
          */
-        imagesFolderName: 'images'
+        imagesFolderName: 'images',
+
+        /**
+         * Name of folder with public
+         * 'public' by default
+         * @type {String}
+         */
+        distFolderName: 'public',
+
+        /**
+         * Name of folder with build
+         * 'build' by default
+         * @type {String}
+         */
+        buildFolderName: 'build',
+
+        /**
+         * Name of folder with tmp
+         * 'tmp' by default
+         * @type {String}
+         */
+        tmpFolderName: 'tmp'
     }
 
     ////////////////////////////////////////////////////
