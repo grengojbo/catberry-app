@@ -97,10 +97,10 @@ var tarsConfig = {
     browserSyncConfig: {
 
         /**
-         * dir to serve files from
+         * proxy url
          * @type {String}
          */
-        server: './server.js',
+        proxy: 'localhost:3000',
 
         /**
          * dir to serve files from

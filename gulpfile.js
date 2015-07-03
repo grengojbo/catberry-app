@@ -13,12 +13,13 @@ var rename = require("gulp-rename");
 var replace = require('gulp-replace-task');
 var tagVersion = require('gulp-tag-version');
 var browserSync = require('browser-sync').create();
-
+var wait = require('gulp-wait');
 var gls = require('gulp-live-server');
 var $ = require('gulp-load-plugins')();
 
 // Flags
 var useLiveReload = gutil.env.lr || false,
+    useDebug = gutil.env.debug || false,
     useTunnelToWeb = gutil.env.tunnel || false;
 
 // Configs
@@ -49,6 +50,7 @@ if (tarsConfig.useBuildVersioning) {
     buildOptions.buildPath = tarsConfig.buildPath;
 }
 
+
 // Set template's extension
 if (templaterName === 'handlebars') {
     templateExtension = 'hbs';
@@ -66,11 +68,14 @@ if (gutil.env.release) {
     buildOptions.hash = '';
 }
 
+buildOptions.useDebug = useDebug;
+
 watchOptions = {
     cssPreprocExtension: cssPreprocExtension,
     templateExtension: templateExtension
 };
 
+var notifier = require('./tars/helpers/notifier');
 var hbAttrWrapOpen = /\{\{#[^}]+\}\}/;
 var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
 var hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
@@ -184,17 +189,17 @@ gulp.task('replace:robots', function() {
 //     .pipe($.size({title: 'images tmp'}));
 // });
 
-gulp.task('images:build', function() {
-  return gulp.src(config.base + config.images)
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest(path.join(config.distTmp, 'static', 'images')))
-    .pipe($.size({title: 'images build'}));
-});
+// gulp.task('images:build', function() {
+//   return gulp.src(config.base + config.images)
+//     .pipe($.imagemin({
+//       progressive: true,
+//       interlaced: true,
+//       svgoPlugins: [{removeViewBox: false}],
+//       use: [pngquant()]
+//     }))
+//     .pipe(gulp.dest(path.join(config.distTmp, 'static', 'images')))
+//     .pipe($.size({title: 'images build'}));
+// });
 
 // gulp.task('images:dist', function() {
 //   return gulp.src(config.base + config.images)
@@ -225,11 +230,11 @@ gulp.task('copy:tmp', function () {
     .pipe($.size({title: 'copy tmp'}));
 });
 
-gulp.task('copy:static', function () {
-    return gulp.src(path.join('static', '**'))
-        .pipe(gulp.dest(config.dist))
-    .pipe($.size({title: 'copy static'}));
-});
+// gulp.task('copy:static', function () {
+//     return gulp.src(path.join('static', '**'))
+//         .pipe(gulp.dest(config.dist))
+//     .pipe($.size({title: 'copy static'}));
+// });
 
 gulp.task('copy:build', function () {
   return gulp.src(config.base+'/static/{'+config.dirs+'}/**')
@@ -356,14 +361,12 @@ userTasks.forEach(function (file) {
 // Also could tunnel your markup to web, if you use flag --tunnel
 gulp.task('dev', ['build-dev'], function () {
 
-    if (useLiveReload || useTunnelToWeb) {
-        gulp.start('browsersync');
-    } else {
-        gulp.start('serve');
-    }
-
-    gulp.watch('public/bundle.js').on('change', browserSync.reload);
-
+  if (useLiveReload || useTunnelToWeb) {
+    gulp.start('run-server');
+    // gulp.watch('public/bundle.js').on('change', browserSync.reload);
+  } else {
+    gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Build development has been finished successfully!'));
+  }
     // SYSTEM WATCHERS
     // watchers = fileLoader('./tars/watchers');
 
@@ -397,7 +400,9 @@ gulp.task('build-dev', function (cb) {
     runSequence(
         'service:builder-start-screen',
         'service:clean',
-        ['copy:tmp', 'copy:static', 'images:tmp', 'images:dist', 'copy:dev'],
+        ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
+        // ['copy:tmp', 'copy:static', 'copy:dev'],
+        ['copy:other', 'copy:static', 'copy:dev'],
         'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [
@@ -413,7 +418,7 @@ gulp.task('build-dev', function (cb) {
         //     'other:move-misc-files', 'other:move-fonts', 'other:move-assets',
         //     'images:move-content-img', 'images:move-plugins-img', 'images:move-general-img'
         // ],
-        'catberry-build',
+        // 'catberry-build',
         cb
     );
 });
@@ -458,18 +463,30 @@ gulp.task('serve', function() {
   options.env = process.env;
   options.env.NODE_ENV = 'development';
   var server = gls('./server.js', options);
-
+  // setTimeout(function sleepServerFirst() {
   server.start();
+  // gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Server start'));
+  // }, 60000);
   gulp.watch(['static/**/*.css', 'static/**/*.html'], function () {
     server.notify.apply(server, arguments);
   });
 });
 
+gulp.task('sleep:build', function (cb) {
+  return gulp.src(['build.js'], { read: false })
+    .pipe(notifier('Wait build.js starting!'))
+    .pipe(wait(40000))
+    .pipe(notifier('Wait build.jss finished!'));
+});
+
+gulp.task('sleep:serve', function (cb) {
+  return gulp.src(['build.js'], { read: false })
+    .pipe(notifier('Wait Server starting!'))
+    .pipe(wait(12000))
+    .pipe(notifier('Wait Server finished!'));
+});
 // Task for starting browsersync module
-gulp.task('browsersync', ['serve'], function (cb) {
-
-  // setTimeout(function browsersyncFirst() {
-
+gulp.task('browsersync', function (cb) {
     browserSync.init({
         // server: {
             // baseDir: browserSyncConfig.baseDir
@@ -477,7 +494,7 @@ gulp.task('browsersync', ['serve'], function (cb) {
         // server: browserSyncConfig.server,
         // All of the following files will be watched
       // files: ['public/**/*.*'],
-        proxy: 'localhost:3000',
+        proxy: browserSyncConfig.proxy,
         logConnections: true,
         debugInfo: true,
         injectChanges: false,
@@ -486,13 +503,14 @@ gulp.task('browsersync', ['serve'], function (cb) {
         browser: browserSyncConfig.browser,
         // startPath: browserSyncConfig.startUrl,
         notify: browserSyncConfig.useNotifyInBrowser,
+        watchTask: true,
         tunnel: useTunnelToWeb
     });
-
-  // }, 10000);
-    cb(null);
 });
 
+gulp.task('run-server', function(cb) {
+  runSequence('catberry-build', 'sleep:build', 'serve', 'sleep:serve', 'browsersync', cb);
+});
 gulp.task('svg-actions', function (cb) {
     if (gutil.env.ie8) {
         runSequence(
@@ -521,7 +539,7 @@ gulp.task('compile-templates-with-data-reloading', function (cb) {
 /*********************/
 
 gulp.task('default', ['build']);
-gulp.task('test', ['images:dev']);
+gulp.task('test', ['copy:other']);
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
 gulp.task('dist', ['build:release'], function(cb) {
