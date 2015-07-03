@@ -12,8 +12,9 @@ var pngquant = require('imagemin-pngquant');
 var rename = require("gulp-rename");
 var replace = require('gulp-replace-task');
 var tagVersion = require('gulp-tag-version');
-var gls = require('gulp-live-server');
+var browserSync = require('browser-sync').create();
 
+var gls = require('gulp-live-server');
 var $ = require('gulp-load-plugins')();
 
 // Flags
@@ -171,17 +172,17 @@ gulp.task('replace:robots', function() {
     .pipe($.size({title: 'replace: '+file}));
 });
 
-gulp.task('images:tmp', function() {
-  return gulp.src(config.base + config.images)
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest(path.join(config.tmp, 'images')))
-    .pipe($.size({title: 'images tmp'}));
-});
+// gulp.task('images:tmp', function() {
+//   return gulp.src(config.base + config.images)
+//     .pipe($.imagemin({
+//       progressive: true,
+//       interlaced: true,
+//       svgoPlugins: [{removeViewBox: false}],
+//       use: [pngquant()]
+//     }))
+//     .pipe(gulp.dest(path.join(config.tmp, 'images')))
+//     .pipe($.size({title: 'images tmp'}));
+// });
 
 gulp.task('images:build', function() {
   return gulp.src(config.base + config.images)
@@ -195,17 +196,17 @@ gulp.task('images:build', function() {
     .pipe($.size({title: 'images build'}));
 });
 
-gulp.task('images:dist', function() {
-  return gulp.src(config.base + config.images)
-    .pipe($.imagemin({
-      progressive: true,
-      interlaced: true,
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest(path.join(config.assets, 'images')))
-    .pipe($.size({title: 'images dist'}));
-});
+// gulp.task('images:dist', function() {
+//   return gulp.src(config.base + config.images)
+//     .pipe($.imagemin({
+//       progressive: true,
+//       interlaced: true,
+//       svgoPlugins: [{removeViewBox: false}],
+//       use: [pngquant()]
+//     }))
+//     .pipe(gulp.dest(path.join(config.assets, 'images')))
+//     .pipe($.size({title: 'images dist'}));
+// });
 
 gulp.task('sass:dev', function() {
   return $.rubySass(path.join('src', 'static', 'scss'), {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-devv'})
@@ -356,9 +357,12 @@ userTasks.forEach(function (file) {
 gulp.task('dev', ['build-dev'], function () {
 
     if (useLiveReload || useTunnelToWeb) {
-        // gulp.start('browsersync');
+        gulp.start('browsersync');
+    } else {
         gulp.start('serve');
     }
+
+    gulp.watch('public/bundle.js').on('change', browserSync.reload);
 
     // SYSTEM WATCHERS
     // watchers = fileLoader('./tars/watchers');
@@ -454,20 +458,39 @@ gulp.task('serve', function() {
   options.env = process.env;
   options.env.NODE_ENV = 'development';
   var server = gls('./server.js', options);
-    //1. serve with default settings
-    // var server = gls.static(); //equals to gls.static('public', 3000);
-
-    //2. serve at custom port
-    // var server = gls.static('dist', 8888);
-
-    //3. serve multi folders
-    // var server = gls.static(['dist', '.tmp']);
 
   server.start();
-    //use gulp.watch to trigger server actions(notify, start or stop)
   gulp.watch(['static/**/*.css', 'static/**/*.html'], function () {
     server.notify.apply(server, arguments);
   });
+});
+
+// Task for starting browsersync module
+gulp.task('browsersync', ['serve'], function (cb) {
+
+  // setTimeout(function browsersyncFirst() {
+
+    browserSync.init({
+        // server: {
+            // baseDir: browserSyncConfig.baseDir
+        // },
+        // server: browserSyncConfig.server,
+        // All of the following files will be watched
+      // files: ['public/**/*.*'],
+        proxy: 'localhost:3000',
+        logConnections: true,
+        debugInfo: true,
+        injectChanges: false,
+        port: browserSyncConfig.port,
+        open: browserSyncConfig.open,
+        browser: browserSyncConfig.browser,
+        // startPath: browserSyncConfig.startUrl,
+        notify: browserSyncConfig.useNotifyInBrowser,
+        tunnel: useTunnelToWeb
+    });
+
+  // }, 10000);
+    cb(null);
 });
 
 gulp.task('svg-actions', function (cb) {
@@ -498,6 +521,7 @@ gulp.task('compile-templates-with-data-reloading', function (cb) {
 /*********************/
 
 gulp.task('default', ['build']);
+gulp.task('test', ['images:dev']);
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
 gulp.task('dist', ['build:release'], function(cb) {
@@ -507,7 +531,6 @@ gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static', 'images:build', 'images:dist', 'copy:css'], 'html:components', cb);
 });
 gulp.task('build', ['clean'], function(cb) {
-  // runSequence(['copy:tmp', 'copy:static', 'sass:main', 'sass:mobile', 'sass:photoswipe', 'sass:home', 'copy-static', 'copy:head'], 'clean:vendor', cb);
   runSequence(['copy:tmp', 'copy:static', 'images:tmp', 'images:dist', 'copy:dev'], 'copy:components', cb);
 });
 

@@ -17,23 +17,5 @@ var bg = require("gulp-bg");
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
-
     return gulp.task('catberry-build', bg('node', './build.js'));
-    // return gulp.task('catberry-build', /*['required-task-name'],*/ function (cb) {
-    //     return gulp.src('*.js', {read: false})
-    //         // Do stuff here
-    //         .on('error', notify.onError(function (error) {
-    //             return '\nAn error occurred while something.\nLook in the console for details.\n' + error;
-    //         }))
-    //         .pipe(shell(['node ./build.js']))
-    //         .pipe(
-    //             // You can change text of success message
-    //             notifier('Catberry build.js is finished')
-    //             // if you need notify after each file will be processed, you have to use
-    //             // notifier('Example task is finished', false)
-    //         );
-
-    //     // You can return callback, if you can't return pipe
-    //     // cb(null);
-    // });
 };

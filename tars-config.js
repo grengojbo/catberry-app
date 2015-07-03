@@ -100,6 +100,12 @@ var tarsConfig = {
          * dir to serve files from
          * @type {String}
          */
+        server: './server.js',
+
+        /**
+         * dir to serve files from
+         * @type {String}
+         */
         baseDir: './dev',
 
         /**
@@ -172,7 +178,7 @@ var tarsConfig = {
      * Could be like '../../../build' or absolute path
      * @type {String}
      */
-    buildPath: './builds/',
+    buildPath: './build/',
 
     /**
      * Use build versioning
@@ -273,6 +279,20 @@ var tarsConfig = {
          * @type {String}
          */
         buildFolderName: 'build',
+
+        /**
+         * Name of folder with src
+         * 'src' by default
+         * @type {String}
+        **/
+        srcFolderName: 'src',
+
+        /**
+         * Name of folder with dev
+         * 'dev' by default
+         * @type {String}
+         */
+        devFolderName: 'build',
 
         /**
          * Name of folder with tmp

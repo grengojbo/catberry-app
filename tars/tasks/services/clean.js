@@ -5,7 +5,7 @@ var tarsConfig = require('../../../tars-config');
 
 var pathsToDel = [
         path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.tmpFolderName),
-        tarsConfig.fs.buildFolderName,
+        tarsConfig.buildPath,
         './dev/',
         './.tmpTemplater/',
         './.tmpPreproc/'
