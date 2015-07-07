@@ -42,7 +42,7 @@ scssFilesToConcatinate.push(
     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'common.scss'),
     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'plugins', '**', '*.scss'),
     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'plugins', '**', '*.css'),
-    path.join(tarsConfig.fs.srcFolderName, 'modules', '*', '*.scss')
+    path.join(tarsConfig.fs.srcFolderName, tars.fs.componentFolderName, '*', '*.scss')
 );
 
 /**

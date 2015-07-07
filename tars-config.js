@@ -14,6 +14,12 @@ var tarsConfig = {
     autoprefixerConfig: ['> 1%', 'last 2 versions', 'opera 12.1', 'android 4'],
 
     /**
+     * Use compass CSS FrameWork
+     * @type {Boolean}
+     */
+    useCompass: true,
+
+    /**
      * Use svg images
      * @type {Boolean}
      */
@@ -270,6 +276,13 @@ var tarsConfig = {
          * @type {String}
          */
         staticFolderName: 'static',
+
+        /**
+         * Name of folder with component
+         * 'modules' by default
+         * @type {String}
+         */
+        componentFolderName: 'modules',
 
         /**
          * Name of folder with images

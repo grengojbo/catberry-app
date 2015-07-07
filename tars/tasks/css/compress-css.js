@@ -14,7 +14,7 @@ var path = require('path');
 module.exports = function (buildOptions) {
 
     return gulp.task('css:compress-css', function () {
-        return gulp.src(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css',*'.css'))
+        return gulp.src(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css', '*.css'))
             // @TODO: fix problems with cmq
             // .pipe(cmq())
             .pipe(csso())

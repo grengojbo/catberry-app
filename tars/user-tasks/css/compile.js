@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
+var size = require('gulp-size');
 var gutil = require('gulp-util');
 var gulpif = require('gulp-if');
 var autoprefixer = require('gulp-autoprefixer');
@@ -11,6 +12,7 @@ var tarsConfig = require('../../../tars-config');
 var notifier = require('../../helpers/notifier');
 var browserSync = require('browser-sync');
 var path = require('path');
+var debug = require('gulp-debug');
 
 var useAutoprefixer = false;
 var helperStream;
@@ -21,29 +23,29 @@ if (tarsConfig.autoprefixerConfig) {
     useAutoprefixer = true;
 }
 
-var scssFilesToConcatinate = [
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'normalize.scss'),
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'libraries', '**', '*.scss'),
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'libraries', '**', '*.css'),
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'mixins.scss'),
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'sprites-scss', 'sprite_96.scss')
-    ];
+// var scssFilesToConcatinate = [
+//         path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'normalize.scss'),
+//         path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'libraries', '**', '*.scss'),
+//         path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'libraries', '**', '*.css'),
+//         path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'mixins.scss'),
+//         path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'sprites-scss', 'sprite_96.scss')
+//     ];
 
-if (tarsConfig.useSVG) {
-    scssFilesToConcatinate.push(
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'sprites-scss', 'svg-sprite.scss')
-    );
-}
+// if (tarsConfig.useSVG) {
+//     scssFilesToConcatinate.push(
+//         path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'sprites-scss', 'svg-sprite.scss')
+//     );
+// }
 
-scssFilesToConcatinate.push(
-    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'fonts.scss'),
-    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'vars.scss'),
-    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'GUI.scss'),
-    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'common.scss'),
-    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'plugins', '**', '*.scss'),
-    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'plugins', '**', '*.css'),
-    path.join(tarsConfig.fs.srcFolderName, 'modules', '*', '*.scss')
-);
+// scssFilesToConcatinate.push(
+//     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'fonts.scss'),
+//     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'vars.scss'),
+//     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'GUI.scss'),
+//     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'common.scss'),
+//     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'plugins', '**', '*.scss'),
+//     path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'plugins', '**', '*.css'),
+//     path.join(tarsConfig.fs.srcFolderName, 'modules', '*', '*.scss')
+// );
 
 /**
  * Scss compilation
