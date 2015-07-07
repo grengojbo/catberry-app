@@ -177,64 +177,11 @@ gulp.task('replace:robots', function() {
     .pipe($.size({title: 'replace: '+file}));
 });
 
-// gulp.task('images:tmp', function() {
-//   return gulp.src(config.base + config.images)
-//     .pipe($.imagemin({
-//       progressive: true,
-//       interlaced: true,
-//       svgoPlugins: [{removeViewBox: false}],
-//       use: [pngquant()]
-//     }))
-//     .pipe(gulp.dest(path.join(config.tmp, 'images')))
-//     .pipe($.size({title: 'images tmp'}));
-// });
-
-// gulp.task('images:build', function() {
-//   return gulp.src(config.base + config.images)
-//     .pipe($.imagemin({
-//       progressive: true,
-//       interlaced: true,
-//       svgoPlugins: [{removeViewBox: false}],
-//       use: [pngquant()]
-//     }))
-//     .pipe(gulp.dest(path.join(config.distTmp, 'static', 'images')))
-//     .pipe($.size({title: 'images build'}));
-// });
-
-// gulp.task('images:dist', function() {
-//   return gulp.src(config.base + config.images)
-//     .pipe($.imagemin({
-//       progressive: true,
-//       interlaced: true,
-//       svgoPlugins: [{removeViewBox: false}],
-//       use: [pngquant()]
-//     }))
-//     .pipe(gulp.dest(path.join(config.assets, 'images')))
-//     .pipe($.size({title: 'images dist'}));
-// });
-
-gulp.task('sass:dev', function() {
-  return $.rubySass(path.join('src', 'static', 'scss'), {sourcemap: true, lineNumbers: true, style: 'expanded', container: 'sass-devv'})
-    .on('error', function(err) {
-      console.log(err.message);
-    })
-    .pipe($.autoprefixer())
-    .pipe(sourcemaps.write('/', {includeContent: false, sourceRoot: path.join('src', 'static', 'scss')}))
-    .pipe(gulp.dest(path.join(config.tmp, 'css')))
-    .pipe($.size({title: 'sass dev'}));
-});
-
 gulp.task('copy:tmp', function () {
   return gulp.src(config.base+'/static/{'+config.dirs+'}/**')
     .pipe(gulp.dest(config.tmp))
     .pipe($.size({title: 'copy tmp'}));
 });
-
-// gulp.task('copy:static', function () {
-//     return gulp.src(path.join('static', '**'))
-//         .pipe(gulp.dest(config.dist))
-//     .pipe($.size({title: 'copy static'}));
-// });
 
 gulp.task('copy:build', function () {
   return gulp.src(config.base+'/static/{'+config.dirs+'}/**')
@@ -252,12 +199,6 @@ gulp.task('copy:dist', function () {
 gulp.task('copy:css', ['sass:dev'], function () {
   return gulp.src(path.join(config.tmp, 'css', '**'))
     .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
-    .pipe($.size({title: 'copy css'}));
-});
-
-gulp.task('copy:dev', ['sass:dev'], function () {
-    return gulp.src(path.join(config.tmp, 'css', '**'))
-        .pipe(gulp.dest(path.join(config.assets, 'css')))
     .pipe($.size({title: 'copy css'}));
 });
 
@@ -402,7 +343,8 @@ gulp.task('build-dev', function (cb) {
         'service:clean',
         ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
         // ['copy:tmp', 'copy:static', 'copy:dev'],
-        ['copy:other', 'copy:static', 'copy:dev'],
+        'css:compile',
+        ['copy:other', 'copy:static'],
         'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [

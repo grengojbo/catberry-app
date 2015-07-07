@@ -217,6 +217,10 @@ var tarsConfig = {
      */
     waitCatberryServer: 12000,
 
+    catberry: {
+        componentJSON: 'cat-component.json'
+    },
+
     //////////////////////////////////////////////
     //////////////////////////////////////////////
 
