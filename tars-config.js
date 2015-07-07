@@ -199,6 +199,18 @@ var tarsConfig = {
      */
     ulimit: 4096,
 
+    /**
+     * Set wait Catberry build.js.
+     * @type {Number}
+     */
+    waitCatberryBuild: 40000,
+
+    /**
+     * Set wait Catberry start server.
+     * @type {Number}
+     */
+    waitCatberryServer: 12000,
+
     //////////////////////////////////////////////
     //////////////////////////////////////////////
 

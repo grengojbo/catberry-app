@@ -121,10 +121,10 @@ function inc(importance) {
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 
 // TODO delete
-gulp.task('clean:vendor', del.bind(null, [
-    path.join(config.assets, 'vendor', '**'),
-    path.join(config.assets, 'scss', '**')
-]));
+// gulp.task('clean:vendor', del.bind(null, [
+//     path.join(config.assets, 'vendor', '**'),
+//     path.join(config.assets, 'scss', '**')
+// ]));
 
 gulp.task('clean:tmp', del.bind(null, [config.tmp]));
 
@@ -475,14 +475,14 @@ gulp.task('serve', function() {
 gulp.task('sleep:build', function (cb) {
   return gulp.src(['build.js'], { read: false })
     .pipe(notifier('Wait build.js starting!'))
-    .pipe(wait(40000))
+    .pipe(wait(tarsConfig.waitCatberryBuild))
     .pipe(notifier('Wait build.jss finished!'));
 });
 
 gulp.task('sleep:serve', function (cb) {
   return gulp.src(['build.js'], { read: false })
     .pipe(notifier('Wait Server starting!'))
-    .pipe(wait(12000))
+    .pipe(wait(tarsConfig.waitCatberryServer))
     .pipe(notifier('Wait Server finished!'));
 });
 // Task for starting browsersync module
