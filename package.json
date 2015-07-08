@@ -87,8 +87,11 @@
     "gulp-zip": "^3.0.2",
     "gulp.spritesmith": "^3.8.2",
     "imagemin-pngquant": "^4.1.0",
+    "jshint-stylish": "^2.0.1",
     "mkdirp": "^0.5.1",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "readdir": "0.0.13",
+    "recursive-readdir": "^1.2.1"
   },
   "engines": {
     "node": ">=0.12"

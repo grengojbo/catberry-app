@@ -29,7 +29,7 @@ var tarsConfig = {
      * Use linting and hinting of js-files
      * @type {Boolean}
      */
-    useJsLintAndHint: true,
+    useJsLintAndHint: false,
 
     /**
      * Path-strings to js-files, which have to be included before modules' js-files
@@ -218,6 +218,8 @@ var tarsConfig = {
     waitCatberryServer: 12000,
 
     catberry: {
+        // exclude: 'articles,elements/error-message,elements/photoswipe',
+        exclude: false,
         componentJSON: 'cat-component.json'
     },
 
@@ -286,7 +288,7 @@ var tarsConfig = {
          * 'modules' by default
          * @type {String}
          */
-        componentFolderName: 'modules',
+        componentFolderName: 'catberry_components',
 
         /**
          * Name of folder with images

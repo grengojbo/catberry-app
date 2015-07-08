@@ -3,6 +3,8 @@ var notify = require('gulp-notify');
 var tarsConfig = require('../../tars-config');
 var modifyDate = require('./modify-date-formatter');
 var path = require('path');
+var recursive = require('recursive-readdir');
+var readDir = require('readdir');
 
 /**
  * Build application assets.
@@ -17,6 +19,15 @@ function catberryHelper (storeFinder, componentFinder) {
     // var self = this;
     // return componentFinder.find()
         // .then(function (components) {
+        // recursive(componentFinder, function (err, files) {
+        // Files is an array of filename
+        // console.log(files);
+        // });
+        var filesArray = readDir.readSync(componentFinder, ['cat-component.json']);
+        filesArray.forEach(function (component){
+            console.log('dir: '+ path.dirname(component));
+        });
+        // console.log(filesArray);
             var directories = {};
             config.componentJSON = tarsConfig.catberry.componentJSON || 'cat-component.json';
             config.destinationDir = tarsConfig.catberry.destinationDir || 'public';

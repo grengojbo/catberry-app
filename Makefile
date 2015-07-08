@@ -32,6 +32,7 @@ help:
 	@echo "make release - Build and run release project"
 	@echo "make deploy  - Deploy current project (git push and ansible deploy)"
 	@echo "...............................................................\n"
+	@exit 0
 
 npm-test: lint
 
@@ -78,6 +79,7 @@ run:
 	@gulp build
 	@npm run debug
 	# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
+	@exit 0
 
 install:
 	@#cd config/ && wget https://raw.githubusercontent.com/csscomb/csscomb.js/master/config/csscomb.json && mv csscomb.json .csscomb.json && cd ../

@@ -41,6 +41,7 @@ var config = require('./config/build.config.js'),
   watchers = [],
   userWatchers = [];
 
+buildOptions.production = true;
 // Generate build version
 if (tarsConfig.useBuildVersioning) {
     buildOptions.buildVersion = require('./tars/helpers/set-build-version')();
@@ -69,6 +70,7 @@ if (gutil.env.release) {
 }
 
 buildOptions.useDebug = useDebug;
+buildOptions.templateExtension = templateExtension;
 
 watchOptions = {
     cssPreprocExtension: cssPreprocExtension,
@@ -338,14 +340,16 @@ gulp.task('dev', ['build-dev'], function () {
 // Build dev-version (without watchers)
 // You can add your own tasks in queue
 gulp.task('build-dev', function (cb) {
-    runSequence(
-        'service:builder-start-screen',
-        'service:clean',
-        ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
-        // ['copy:tmp', 'copy:static', 'copy:dev'],
-        'css:compile',
-        ['copy:other', 'copy:static'],
-        'copy:components',
+  buildOptions.production = false;
+  runSequence(
+    'service:builder-start-screen',
+    ['service:clean', 'catberry:clean'],
+    ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
+    // ['copy:tmp', 'copy:static', 'copy:dev'],
+    'css:compile',
+    ['copy:other', 'copy:static'],
+    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js'],
+    // 'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [
         //     'css:make-sprite-for-svg', 'css:make-fallback-for-svg', 'css:make-sprite'
@@ -361,8 +365,8 @@ gulp.task('build-dev', function (cb) {
         //     'images:move-content-img', 'images:move-plugins-img', 'images:move-general-img'
         // ],
         // 'catberry-build',
-        cb
-    );
+    cb
+  );
 });
 
 // Build release version
@@ -481,7 +485,13 @@ gulp.task('compile-templates-with-data-reloading', function (cb) {
 /*********************/
 
 gulp.task('default', ['build']);
-gulp.task('test', ['catberry:dev']);
+
+// gulp.task('test', ['catberry:component-copy']);
+gulp.task('test', function(cb) {
+  buildOptions.production = false;
+  runSequence(['catberry:clean'], cb);
+});
+
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
 gulp.task('dist', ['build:release'], function(cb) {

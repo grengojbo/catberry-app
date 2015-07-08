@@ -1,16 +1,19 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var gulpif = require('gulp-if');
 var jshint = require('gulp-jshint');
 var cache = require('gulp-cached');
 var jscs = require('gulp-jscs');
 var notify = require('gulp-notify');
 var tarsConfig = require('../../../tars-config');
+// var debug = require('gulp-debug');
+var path = require('path');
 
 var jsPathsToLint = [
-                     './markup/modules/**/*.js',
-                     '!./markup/modules/**/_*.js',
-                     '!./markup/modules/**/data/data.js'
-                    ];
+    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '*.js'),
+    path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '_*.js'),
+    path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'data', 'data.js')
+];
 
 if (tarsConfig.lintJsCodeBeforeModules) {
     tarsConfig.jsPathsToConcatBeforeModulesJs.forEach(function (path) {
@@ -34,6 +37,7 @@ module.exports = function (buildOptions) {
         if (tarsConfig.useJsLintAndHint) {
             return gulp.src(jsPathsToLint)
                 .pipe(cache('hinting'))
+                // .pipe(debug({title: 'js:check'}))
                 .pipe(jshint())
                 .pipe(jshint.reporter('jshint-stylish'))
                 .pipe(jscs())

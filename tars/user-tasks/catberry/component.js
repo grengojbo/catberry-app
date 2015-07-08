@@ -20,7 +20,7 @@ var debug = require('gulp-debug');
  */
 module.exports = function (buildOptions) {
   return gulp.task('catberry:dev', function () {
-    var config = catberryHelper(false, 'catberry_components/**/cat-component.json');
-    return gutil.log(gutil.colors.red('Copy Cattberry component files'+ config));
+    var config = catberryHelper(false, 'src/catberry_components');
+    return gutil.log(gutil.colors.red('Copy Cattberry component files'));
   });
 };
