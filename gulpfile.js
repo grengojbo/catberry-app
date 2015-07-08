@@ -481,7 +481,7 @@ gulp.task('compile-templates-with-data-reloading', function (cb) {
 /*********************/
 
 gulp.task('default', ['build']);
-gulp.task('test', ['copy:other']);
+gulp.task('test', ['catberry:dev']);
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
 gulp.task('dist', ['build:release'], function(cb) {

@@ -1,0 +1,5 @@
+{
+	"name": "auth-logout",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
