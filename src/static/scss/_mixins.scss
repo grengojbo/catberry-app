@@ -183,3 +183,5 @@
     font-style: $style;
     @content;
 }
+
+@mixin ie6 { * html & { @content } }
