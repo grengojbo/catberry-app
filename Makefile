@@ -76,9 +76,10 @@ deploy: push
 run:
 	@sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
 	@sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
-	@gulp build
-	@npm run debug
+	# @gulp build
+	# @npm run debug
 	# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
+	@gulp dev --tunnel --lr
 	@exit 0
 
 install:

@@ -489,7 +489,7 @@ gulp.task('default', ['build']);
 // gulp.task('test', ['catberry:component-copy']);
 gulp.task('test', function(cb) {
   buildOptions.production = false;
-  runSequence(['catberry:clean'], cb);
+  runSequence(['catberry:assets'], cb);
 });
 
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
