@@ -220,6 +220,10 @@ var tarsConfig = {
     catberry: {
         // exclude: 'articles,elements/error-message,elements/photoswipe',
         exclude: false,
+        oldIE: false,
+        enableCssStructureMinimization: true,
+        destinationComponentsDir: 'assets',
+        cdnPath: '/assets/',
         componentJSON: 'cat-component.json'
     },
 
@@ -282,6 +286,13 @@ var tarsConfig = {
          * @type {String}
          */
         staticFolderName: 'static',
+
+        /**
+         * Name of folder with assets files, such *.css, *.js and so on
+         * 'assets' by default
+         * @type {String}
+         */
+        assetsFolderName: 'assets',
 
         /**
          * Name of folder with component

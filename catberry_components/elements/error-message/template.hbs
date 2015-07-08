@@ -1,0 +1,9 @@
+<div id="{{id}}" class="{{#if elClass }}{{elClass}}{{/if}} message--el" {{#if isActive }}style="display: none;"{{/if}}>
+  {{#if butClose}}<i class="{{butClose}} message--close"></i>{{/if}}
+{{#if label }}
+  <div class="header">{{#if icon }}<i class="{{icon}}"></i>{{/if}}{{label}}</div>
+  <p>{{message}}</p>
+{{else}}
+  <p>{{#if icon }}<i class="{{icon}}"></i>{{/if}}{{message}}</p>
+{{/if}}
+</div>

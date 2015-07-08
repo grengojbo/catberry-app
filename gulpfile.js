@@ -347,6 +347,7 @@ gulp.task('build-dev', function (cb) {
     ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
     // ['copy:tmp', 'copy:static', 'copy:dev'],
     'css:compile',
+    'catberry:assets',
     ['copy:other', 'copy:static'],
     ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js'],
     // 'copy:components',
@@ -457,6 +458,7 @@ gulp.task('browsersync', function (cb) {
 gulp.task('run-server', function(cb) {
   runSequence('catberry-build', 'sleep:build', 'serve', 'sleep:serve', 'browsersync', cb);
 });
+
 gulp.task('svg-actions', function (cb) {
     if (gutil.env.ie8) {
         runSequence(
@@ -488,7 +490,7 @@ gulp.task('default', ['build']);
 
 // gulp.task('test', ['catberry:component-copy']);
 gulp.task('test', function(cb) {
-  buildOptions.production = false;
+  // buildOptions.production = false;
   runSequence(['catberry:assets'], cb);
 });
 
