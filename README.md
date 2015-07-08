@@ -7,6 +7,7 @@
 ```
 $ sudo brew install --HEAD hub
 $ sudo gem install sass
+$ sudo gem install compass-core
 $ sudo npm install -g gulp bower csscomb catberry-cli
 ```
 

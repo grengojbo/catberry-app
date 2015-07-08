@@ -184,4 +184,42 @@
     @content;
 }
 
+@mixin nl
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    list-style-position: outside;
+
+    text-indent: 0;
+}
+
+@mixin cf
+{
+    &:before,
+    &:after
+    {
+        display: table;
+
+        content: '';
+    }
+
+    &:after
+    {
+        clear: both;
+    }
+
+    .lt-ie8 &
+    {
+        zoom: 1;
+    }
+}
+
+@mixin blocks-justify
+{
+    text-align: justify;
+    text-justify: newspaper;
+}
+
 @mixin ie6 { * html & { @content } }

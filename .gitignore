@@ -14,11 +14,15 @@ temp/
 .Trashes
 ehthumbs.db
 Thumbs.db
+.tmpTemplater
+.tmpPreproc
+/nbproject/*
 
 # Logs
 logs
 *.log
 npm-debug.log
+phantomjsdriver.log
 
 # Runtime data
 pids
@@ -48,11 +52,15 @@ node_modules
 __BrowserBundle.js
 build
 public/__csstime-tmp
+public/static/css/*.map
 src/tmp/
 public/tmp/
 example/
 public/bundle.js
 public/styles.css
+**/sprite_96.*
+**/svg-fallback-sprite.*
+**/svg-sprite.*
 
 # other
 src/static/vendor

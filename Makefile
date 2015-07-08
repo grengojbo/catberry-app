@@ -77,6 +77,7 @@ run:
 	@sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
 	@gulp build
 	@npm run debug
+	# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
 
 install:
 	@#cd config/ && wget https://raw.githubusercontent.com/csscomb/csscomb.js/master/config/csscomb.json && mv csscomb.json .csscomb.json && cd ../

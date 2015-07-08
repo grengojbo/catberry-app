@@ -229,15 +229,14 @@ footer {
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
 }
 
-/* line 32, src/static/scss/home.scss */
+/* line 37, src/static/scss/home.scss */
 .ui.huge.message {
   margin-top: 40px;
   color: #fff;
   background: none;
   box-shadow: none;
 }
-
-/* line 42, src/static/scss/home.scss */
+/* line 47, src/static/scss/home.scss */
 .ui.huge.header {
   color: #fff;
 }

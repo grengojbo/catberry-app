@@ -29,17 +29,24 @@ https://github.com/davidrapson/scss-toolkit
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/bg1.jpg');
 }
 
-.ui.huge.message
+// .ui.huge.message
+.ui
 {
-    margin-top: $header-heigh;
+    &.huge
+    {
+        &.message
+        {
+            margin-top: $header-heigh;
 
-    color: $white;
-    // font-size: 1.5em;
-    background: none;
-    box-shadow: none;
-    // text-align: center;
-}
-.ui.huge.header
-{
-    color: $white;
+            color: $white;
+            // font-size: 1.5em;
+            background: none;
+            box-shadow: none;
+            // text-align: center;
+        }
+        &.header
+        {
+            color: $white;
+        }
+    }
 }

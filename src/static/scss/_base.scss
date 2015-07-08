@@ -9,10 +9,10 @@
             box-shadow: 0 0 0 1px rgba(39,41,43,.15),0 1px 2px 0 rgba(0,0,0,.05);
         }
     }
-}
-.ui.grid
-{
-    margin: 0;
+    &.grid
+    {
+        margin: 0;
+    }
 }
 .padding-reset
 {
@@ -147,13 +147,19 @@ pre
 }
 
 /* Form  ========================================================================== */
-.ui.form .field
+.ui
 {
-    margin: 1em 0 1em;
-}
-.ui.form .field > label
-{
-    margin: 0 0 .5rem 0;
+    &.form
+    {
+        .field
+        {
+            margin: 1em 0 1em;
+        }
+        .field > label
+        {
+            margin: 0 0 .5rem 0;
+        }
+    }
 }
 #cat-button-submit-login-element
 {

@@ -1,0 +1,5 @@
+{
+	"name": "auth-login",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}
