@@ -10,6 +10,7 @@ var notify = require('gulp-notify');
 var tarsConfig = require('../../../tars-config');
 var debug = require('gulp-debug');
 var path = require('path');
+var fixmyjs = require("gulp-fixmyjs");
 
 var jsPathsToLint = [
   path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '*.js'),
@@ -41,11 +42,13 @@ module.exports = function (buildOptions) {
         .pipe(cache('hinting'))
         .pipe(jshint())
         // .pipe(jshint.reporter('jshint-stylish'))
-        // .pipe(jscs())
+        .pipe(jscs({
+          fix: true
+        }))
         // .on('error', notify.onError(function (error) {
         //   return 'An error occurred while checking js.\nLook in the console for details.\n';
         // }));
-        // .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName)))
+        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName)))
         .pipe(debug({
           title: 'js:check'
         }));
