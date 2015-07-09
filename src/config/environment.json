@@ -84,6 +84,6 @@
     "enableCssStructureMinimization": true
   },
   "componentsGlob": "catberry_components/**/cat-component.json",
-  "isRelease": false,
-  "isProductionEnvironment": false
+  "isRelease": @@isrelease,
+  "isProductionEnvironment": @@isproduction
 }

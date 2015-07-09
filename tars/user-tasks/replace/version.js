@@ -26,7 +26,7 @@ module.exports = function (buildOptions) {
                     }
                 ]
             }))
-            .pipe(gulp.dest(tarsConfig.fs.distFolderName))
+            .pipe(gulp.dest('./'))
             .pipe(gulpif(buildOptions.useDebug, debug({title: 'replace-' + file + '-debug'})))
             .pipe(size({title: 'replace: ' + file + ' | version: '+ pkg.version}));
             // .pipe(

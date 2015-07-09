@@ -67,6 +67,7 @@
     "gulp-jshint": "^1.11.2",
     "gulp-live-server": "0.0.21",
     "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace-task": "^0.2.1",
     "gulp-rev": "^5.1.0",

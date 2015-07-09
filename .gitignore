@@ -17,6 +17,7 @@ Thumbs.db
 .tmpTemplater
 .tmpPreproc
 /nbproject/*
+.dev
 
 # Logs
 logs

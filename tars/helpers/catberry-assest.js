@@ -43,6 +43,15 @@ var catberryHelper = {
         arg.dirname = dir;
         return arg;
     },
+    setBuildFileName: function (arg) {
+        var dir = [];
+        var res = arg.dirname;
+        dir = arg.dirname.split('/');
+        if (dir[1] !== undefined) {
+            res = dir[0]+'_'+dir[1];
+        }
+        return res;
+    },
     getConfig: function() {
 
     // var self = this;

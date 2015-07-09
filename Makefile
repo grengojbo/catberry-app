@@ -45,19 +45,19 @@ config:
 
 builds:
 	@gulp release
-	@sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
-	@sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
+	@#sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
+	@#sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
 	@node ./build.js release
 
 release:
 	@echo Release $(PROJECT_NAME) version: $(VERSION)
 	@gulp dist
-	@sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
-	@sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
+	@#sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
+	@#sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
 	@node ./build.js release
 	@node ./server.js release
-	@sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
-	@sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
+	@#sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
+	@#sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
 
 clean:
 	rm -rf coverage
@@ -74,11 +74,11 @@ deploy: push
 	@$(shell cd $(ANSIBLE_DIR) && ansible-playbook -i base.ini -e app_name=${NAME} -e app_type=nodejs deploy.yml && cd $(CURRENT_DIR))
 
 run:
-	@sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
-	@sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
-	# @gulp build
-	# @npm run debug
-	# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
+	@#sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
+	@#sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
+	@#gulp build
+	@#npm run debug
+	@# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
 	@gulp dev --tunnel --lr
 	@exit 0
 

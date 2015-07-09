@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var size = require('gulp-size');
-// var gutil = require('gulp-util');
 var gulpif = require('gulp-if');
 // var notify = require('gulp-notify');
 var tarsConfig = require('../../../tars-config');
@@ -8,12 +7,6 @@ var tarsConfig = require('../../../tars-config');
 var catberryHelper = require('../../helpers/catberry-assest');
 var path = require('path');
 var debug = require('gulp-debug');
-// var cache = require('gulp-cached');
-// var useref = require('gulp-useref');
-// var csso = require('gulp-csso');
-// var revReplace = require('gulp-rev-replace');
-// var filter = require('gulp-filter');
-// var rev = require('gulp-rev');
 var rename = require("gulp-rename");
 
 /**

@@ -281,6 +281,14 @@ gulp.task('dev', ['build-dev'], function () {
     // });
 });
 
+gulp.task('dist', ['build'], function () {
+  if (useLiveReload || useTunnelToWeb) {
+    gulp.start('run-release');
+  } else {
+    gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Build production has been finished successfully!'));
+  }
+});
+
 /****************/
 /* END WATCHERS */
 /****************/
@@ -295,6 +303,7 @@ gulp.task('build-dev', function (cb) {
   runSequence(
     'service:builder-start-screen',
     ['service:clean', 'catberry:clean'],
+    ['replace:browser', 'replace:environment'],
     ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
     // ['copy:tmp', 'copy:static', 'copy:dev'],
     'css:compile',
@@ -327,6 +336,7 @@ gulp.task('build', function () {
   runSequence(
     'service:builder-start-screen',
     ['service:clean', 'catberry:clean'],
+    ['replace:browser', 'replace:environment'],
     ['images:build', 'images:build-svg', 'images:copy-build'],
     'css:compile-build',
     'catberry:assets',
@@ -379,6 +389,16 @@ gulp.task('serve', function() {
   });
 });
 
+gulp.task('serve:release', function() {
+  var options = {
+    cwd: undefined
+  };
+  options.env = process.env;
+  options.env.NODE_ENV = 'production';
+  var server = gls(['./server.js', 'release'], options);
+  server.start();
+});
+
 gulp.task('sleep:build', function (cb) {
   return gulp.src(['build.js'], { read: false })
     .pipe(notifier('Wait build.js starting!'))
@@ -420,6 +440,10 @@ gulp.task('run-server', function(cb) {
   runSequence('catberry-build', 'sleep:build', 'serve', 'sleep:serve', 'browsersync', cb);
 });
 
+gulp.task('run-release', function(cb) {
+  runSequence('catberry-release', 'sleep:build', 'serve:release', 'sleep:serve', 'browsersync', cb);
+});
+
 gulp.task('svg-actions', function (cb) {
     if (gutil.env.ie8) {
         runSequence(
@@ -451,20 +475,20 @@ gulp.task('default', ['build']);
 
 // gulp.task('test', ['catberry:component-copy']);
 gulp.task('test', function(cb) {
-  // buildOptions.production = false;
-  runSequence(['replace:humans', 'replace:robots', 'replace:version'], cb);
+  buildOptions.production = false;
+  runSequence(['replace:browser', 'replace:environment'], cb);
 });
 
 // gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
-gulp.task('dist', ['build:release'], function(cb) {
-  runSequence(['clean:tmp', 'replaces', 'copy:dist', 'css:components', 'css:dist'], 'copy:components:dist', cb);
-});
-gulp.task('build:release', ['clean'], function(cb) {
-  runSequence(['copy:build', 'copy:static', 'images:build', 'images:dist', 'copy:css'], 'html:components', cb);
-});
+// gulp.task('dist', ['build:release'], function(cb) {
+//   runSequence(['clean:tmp', 'replaces', 'copy:dist', 'css:components', 'css:dist'], 'copy:components:dist', cb);
+// });
+// gulp.task('build:release', ['clean'], function(cb) {
+//   runSequence(['copy:build', 'copy:static', 'images:build', 'images:dist', 'copy:css'], 'html:components', cb);
+// });
 // TODO: delete
-gulp.task('build:old', ['clean'], function(cb) {
-  runSequence(['copy:tmp', 'copy:static', 'images:tmp', 'images:dist', 'copy:dev'], 'copy:components', cb);
-});
+// gulp.task('build:old', ['clean'], function(cb) {
+//   runSequence(['copy:tmp', 'copy:static', 'images:tmp', 'images:dist', 'copy:dev'], 'copy:components', cb);
+// });
 

@@ -220,6 +220,14 @@ var tarsConfig = {
     catberry: {
         // exclude: 'articles,elements/error-message,elements/photoswipe',
         exclude: false,
+        dev: {
+            levelsServer: "error,warn",
+            levelsBrowser: "error,warn"
+        },
+        prod: {
+            levelsServer: "error,warn",
+            levelsBrowser: "error,warn"
+        },
         oldIE: false,
         enableCssStructureMinimization: true,
         destinationComponentsDir: 'assets',
@@ -335,6 +343,13 @@ var tarsConfig = {
          * @type {String}
          */
         devFolderName: 'build',
+
+        /**
+         * Name of folder with config
+         * 'config' by default
+         * @type {String}
+         */
+        configFolderName: 'config',
 
         /**
          * Name of folder with templates
