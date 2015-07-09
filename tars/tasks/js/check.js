@@ -39,16 +39,18 @@ module.exports = function (buildOptions) {
   return gulp.task('js:check', function (cb) {
     if (tarsConfig.useJsLintAndHint) {
       return gulp.src(jsPathsToLint)
-        .pipe(cache('hinting'))
+        // .pipe(cache('hinting'))
         .pipe(jshint())
-        // .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(fixmyjs())
+        .pipe(jshint.reporter('jshint-stylish'))
         .pipe(jscs({
           fix: true
         }))
-        // .on('error', notify.onError(function (error) {
-        //   return 'An error occurred while checking js.\nLook in the console for details.\n';
-        // }));
+        .on('error', notify.onError(function (error) {
+          return 'An error occurred while checking js.\nLook in the console for details.\n';
+        }))
         .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName)))
+        // .pipe(gulp.dest('.dev'))
         .pipe(debug({
           title: 'js:check'
         }));
