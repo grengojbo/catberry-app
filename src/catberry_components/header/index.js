@@ -27,27 +27,20 @@
  * This license applies to all parts of catberry-homepage that are not
  * externally maintained libraries.
  */
-
 'use strict';
-
 module.exports = Header;
-
-var util = require('util'),
-	ComponentBase = require('../../lib/ComponentBase');
-
+var util = require('util'), ComponentBase = require('../../lib/ComponentBase');
 util.inherits(Header, ComponentBase);
-
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
  * https://github.com/catberry/catberry/blob/master/docs/index.md#cat-components
  */
-
 /**
  * Creates new instance of the "header" component.
  * @extends ComponentBase
  * @constructor
  */
 function Header() {
-	ComponentBase.call(this);
+  ComponentBase.call(this);
 }

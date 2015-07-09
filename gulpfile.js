@@ -7,10 +7,10 @@ var gutil = require('gulp-util');
 var path = require('path');
 var runSequence = require('run-sequence');
 var del = require('del');
-var sourcemaps = require('gulp-sourcemaps');
-var pngquant = require('imagemin-pngquant');
-var rename = require('gulp-rename');
-var replace = require('gulp-replace-task');
+// var sourcemaps = require('gulp-sourcemaps');
+// var pngquant = require('imagemin-pngquant');
+// var rename = require('gulp-rename');
+// var replace = require('gulp-replace-task');
 var tagVersion = require('gulp-tag-version');
 var browserSync = require('browser-sync').create();
 var wait = require('gulp-wait');
@@ -98,7 +98,9 @@ function inc(importance) {
   // get all the files to bump version in
   return gulp.src(['./package.json', './bower.json'])
     // bump the version number in those files
-    .pipe($.bump({type: importance}))
+    .pipe($.bump({
+      type: importance
+    }))
     // save it back to filesystem
     .pipe(gulp.dest('./'))
     // commit the changed version number
@@ -129,64 +131,64 @@ gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 
 gulp.task('clean:tmp', del.bind(null, [config.tmp]));
 
-gulp.task('copy:tmp', function () {
-  return gulp.src(config.base + '/static/{' + config.dirs + '}/**')
-    .pipe(gulp.dest(config.tmp))
-    .pipe($.size({ title: 'copy tmp' }));
-});
+// gulp.task('copy:tmp', function () {
+//   return gulp.src(config.base + '/static/{' + config.dirs + '}/**')
+//     .pipe(gulp.dest(config.tmp))
+//     .pipe($.size({title: 'copy tmp'}));
+// });
 
-gulp.task('copy:build', function () {
-  return gulp.src(config.base + '/static/{' + config.dirs + '}/**')
-    .pipe(gulp.dest(path.join(config.distTmp, 'static')))
-    .pipe($.size({title: 'copy build'}));
-});
+// gulp.task('copy:build', function () {
+//   return gulp.src(config.base + '/static/{' + config.dirs + '}/**')
+//     .pipe(gulp.dest(path.join(config.distTmp, 'static')))
+//     .pipe($.size({ title: 'copy build' }));
+// });
 
-gulp.task('copy:dist', function () {
-  return gulp.src(config.distTmp + '/static/{' + config.dirs + '}/**')
-    .pipe($.if(config.debug, $.debug({title: 'copy-dist-debug'})))
-    .pipe(gulp.dest(config.assets))
-    .pipe($.size({
-      title: 'copy dist'
-    }));
-});
+// gulp.task('copy:dist', function () {
+//   return gulp.src(config.distTmp + '/static/{' + config.dirs + '}/**')
+//     .pipe($.if(config.debug, $.debug({ title: 'copy-dist-debug' })))
+//     .pipe(gulp.dest(config.assets))
+//     .pipe($.size({
+//       title: 'copy dist'
+//     }));
+// });
 
-gulp.task('copy:css', ['sass:dev'], function () {
-  return gulp.src(path.join(config.tmp, 'css', '**'))
-    .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
-    .pipe($.size({title: 'copy css'}));
-});
+// gulp.task('copy:css', ['sass:dev'], function () {
+//   return gulp.src(path.join(config.tmp, 'css', '**'))
+//     .pipe(gulp.dest(path.join(config.distTmp, 'static', 'css')))
+//     .pipe($.size({ title: 'copy css' }));
+// });
 
-gulp.task('copy:components', function () {
-  return gulp.src(config.templates + '/{' + config.tpl + '}.hbs')
-    .pipe(rename(function (path) {
-      path.dirname += '/' + path.basename;
-      path.basename = 'template';
-    }))
-    .pipe($.if(config.debug, $.debug({title: 'copy-components-debug'})))
-    .pipe(gulp.dest(path.join(config.cat)))
-    .pipe($.size({title: 'copy components template.hbs'}));
-});
+// gulp.task('copy:components', function () {
+//   return gulp.src(config.templates + '/{' + config.tpl + '}.hbs')
+//     .pipe(rename(function (path) {
+//       path.dirname += '/' + path.basename;
+//       path.basename = 'template';
+//     }))
+//     .pipe($.if(config.debug, $.debug({ title: 'copy-components-debug' })))
+//     .pipe(gulp.dest(path.join(config.cat)))
+//     .pipe($.size({ title: 'copy components template.hbs' }));
+// });
 
-gulp.task('copy:components:dist', function () {
-  return gulp.src(config.distTmp + '/*.hbs')
-    // https://github.com/kangax/html-minifier
-    // https://github.com/kangax/html-minifier/wiki/Minifying-Handlebars-templates
-    // .pipe($.if('*.html', $.minifyHtml({empty: true})))
-    .pipe($.if(config.htmlmin, $.htmlmin({
-      customAttrSurround: [hbAttrWrapPair],
-      collapseWhitespace: config.html.collapseWhitespace,
-      removeComments: config.html.removeComments
-    })))
-    .pipe(rename(function (path) {
-      path.dirname += '/' + path.basename;
-      path.basename = 'template';
-    }))
-    .pipe($.if(config.debug, $.debug({title: 'copy-components-dist-debug'})))
-    .pipe(gulp.dest(config.cat))
-    .pipe($.size({
-      title: 'copy dist components template.hbs'
-    }));
-});
+// gulp.task('copy:components:dist', function () {
+//   return gulp.src(config.distTmp + '/*.hbs')
+//     // https://github.com/kangax/html-minifier
+//     // https://github.com/kangax/html-minifier/wiki/Minifying-Handlebars-templates
+//     // .pipe($.if('*.html', $.minifyHtml({empty: true})))
+//     .pipe($.if(config.htmlmin, $.htmlmin({
+//       customAttrSurround: [hbAttrWrapPair],
+//       collapseWhitespace: config.html.collapseWhitespace,
+//       removeComments: config.html.removeComments
+//     })))
+//     .pipe(rename(function (path) {
+//       path.dirname += '/' + path.basename;
+//       path.basename = 'template';
+//     }))
+//     .pipe($.if(config.debug, $.debug({ title: 'copy-components-dist-debug' })))
+//     .pipe(gulp.dest(config.cat))
+//     .pipe($.size({
+//       title: 'copy dist components template.hbs'
+//     }));
+// });
 
 // gulp.task('html:components', function() {
 //   var assets = $.useref.assets({searchPath: '{build,static,src,public}'});
@@ -202,23 +204,23 @@ gulp.task('copy:components:dist', function () {
 //     .pipe($.size({title: 'html components'}));
 // });
 
-gulp.task('css:components', function () {
-  return gulp.src(config.distTmp + '/static/css/' + config.components + '.css')
-    .pipe($.if('*.css', $.csso()))
-    .pipe($.if(config.debug, $.debug({title: 'css-components-debug'})))
-    .pipe(gulp.dest(path.join(config.assets, 'css')))
-    .pipe($.size({title: 'css components'}));
-});
+// gulp.task('css:components', function () {
+//   return gulp.src(config.distTmp + '/static/css/' + config.components + '.css')
+//     .pipe($.if('*.css', $.csso()))
+//     .pipe($.if(config.debug, $.debug({ title: 'css-components-debug' })))
+//     .pipe(gulp.dest(path.join(config.assets, 'css')))
+//     .pipe($.size({ title: 'css components' }));
+// });
 
-gulp.task('css:dist', function () {
-  return gulp.src(config.distTmp + '/static/css/{' + config.revCss + '}-*.css')
-    // .pipe($.if('*.css', $.csso()))
-    .pipe($.if(config.debug, $.debug({title: 'css-dist-debug'})))
-    .pipe(gulp.dest(path.join(config.assets, 'css')))
-    .pipe($.size({title: 'css dist'}));
-});
+// gulp.task('css:dist', function () {
+//   return gulp.src(config.distTmp + '/static/css/{' + config.revCss + '}-*.css')
+//     // .pipe($.if('*.css', $.csso()))
+//     .pipe($.if(config.debug, $.debug({ title: 'css-dist-debug' })))
+//     .pipe(gulp.dest(path.join(config.assets, 'css')))
+//     .pipe($.size({ title: 'css dist' }));
+// });
 
-gulp.task('build:catberry', $.shell.task(['node ./build.js', './node_modules/.bin/gulp']));
+// gulp.task('build:catberry', $.shell.task(['node ./build.js', './node_modules/.bin/gulp']));
 
 /*********/
 /* TASKS */
@@ -489,22 +491,13 @@ gulp.task('compile-templates-with-data-reloading', function (cb) {
 
 gulp.task('default', ['build']);
 
-// gulp.task('test', ['catberry:component-copy']);
 gulp.task('test', function (cb) {
   buildOptions.production = false;
   runSequence(['js:check'], cb);
 });
 
-// gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
-
-// gulp.task('dist', ['build:release'], function(cb) {
-//   runSequence(['clean:tmp', 'replaces', 'copy:dist', 'css:components', 'css:dist'], 'copy:components:dist', cb);
-// });
-// gulp.task('build:release', ['clean'], function(cb) {
-//   runSequence(['copy:build', 'copy:static', 'images:build', 'images:dist', 'copy:css'], 'html:components', cb);
-// });
-// TODO: delete
-// gulp.task('build:old', ['clean'], function(cb) {
-//   runSequence(['copy:tmp', 'copy:static', 'images:tmp', 'images:dist', 'copy:dev'], 'copy:components', cb);
-// });
+gulp.task('format', function (cb) {
+  buildOptions.production = false;
+  runSequence(['js:format'], cb);
+});
 
