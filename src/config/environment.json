@@ -1,0 +1,89 @@
+{
+  "domain": "example.com",
+	"title": "Catberry Project",
+  "siteApiClient": {
+    "host": "https://api.github.com",
+    "accessToken": "your secret token here",
+    "version": "v3"
+  },
+  "authorization": {
+    "authServerUrl": "http://api.example.com/v1",
+    "clientId": "some_client_id",
+    "clientSecret": "some_client_secret",
+    "resourceServers": {
+      "siteApiAsGuest": {
+        "unsafeHTTPS": false,
+        "host": "http://api.example.com/v1",
+        "endpoint": {
+          "name": "auth/guest",
+          "accessTokenName": "__guest"
+        }
+      },
+      "siteApiAsUser": {
+        "unsafeHTTPS": false,
+        "host": "http://api.example.com/v1",
+        "endpoint": {
+          "name": "auth/user",
+          "accessTokenName": "token"
+        }
+      }
+    },
+    "endpoints": {
+      "auth/social": {
+        "grantType": "authorization_code",
+        "redirectUri": "https://oauth.mailer.life/auth",
+        "returnUri": "/",
+        "cookie":{
+          "accessTokenName": "ccat",
+          "refreshTokenName": "reccat"
+        }
+      }
+    }
+  },
+  "siteUrl": "http://localhost:3000",
+  "logOutRedirect": "/",
+  "loginRedirect": "/account",
+  "l10n": {
+    "defaultLocale": "ru",
+    "cookie": {
+      "path": "/"
+    }
+  },
+  "application": {
+    "staticHost": "media.example.com"
+  },
+  "supportedLanguages": [
+    { "title": "Українська", "value": "uk" },
+    { "title": "Русский", "value": "ru" },
+    { "title": "English", "value": "en" }
+  ],
+  "googleAnalytics": {
+    "id": "UA-XXXXXXXX-X"
+  },
+  "googleSiteVerification": {
+    "content": "none"
+  },
+  "supportedThemes": [ "light", "dark" ],
+  "defaultTheme": "light",
+  "server": {
+    "port": 3000
+  },
+  "assetsExample": {
+    "componentAssetsDir": "static",
+    "destinationComponentsDir": "static",
+    "cdnPath": "/static/",
+    "enableCssStructureMinimization": true,
+    "watchInterval": 0
+  },
+  "assets": {
+    "postcssConfig": {
+      "filters": {
+        "oldIE": false
+      }
+    },
+    "enableCssStructureMinimization": true
+  },
+  "componentsGlob": "catberry_components/**/cat-component.json",
+  "isRelease": false,
+  "isProductionEnvironment": false
+}

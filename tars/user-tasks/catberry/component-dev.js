@@ -20,7 +20,7 @@ var cache = require('gulp-cached');
  */
 module.exports = function (buildOptions) {
   var libPaths = [
-    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '*.'+buildOptions.templateExtension)
+    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.'+buildOptions.templateExtension)
   ];
   if (tarsConfig.catberry.exclude) {
     tarsConfig.catberry.exclude.split(',').forEach(function (dir){

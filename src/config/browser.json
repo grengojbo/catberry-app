@@ -1,0 +1,17 @@
+{
+	"title": "Catberry Project",
+  "logger": {
+    "appenders": [
+      { "type": "console" }
+    ],
+    "levels": "error,warn"
+  },
+  "supportedLanguages": [
+    { "title": "Українська", "value": "uk" },
+    { "title": "Русский", "value": "ru" },
+    { "title": "English", "value": "en" }
+  ],
+  "supportedThemes": [ "light", "dark" ],
+  "defaultTheme": "light",
+  "isRelease": true
+}

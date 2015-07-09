@@ -25,8 +25,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "catberry": "^5.3.0",
-    "catberry-assets": "^1.0.3",
+    "catberry": "^5.4.1",
     "catberry-handlebars": "^1.0.6",
     "catberry-l10n": "^4.0.2",
     "catberry-l10n-handlebars-helper": "^1.0.3",

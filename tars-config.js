@@ -337,6 +337,13 @@ var tarsConfig = {
         devFolderName: 'build',
 
         /**
+         * Name of folder with templates
+         * 'templates' by default
+         * @type {String}
+         */
+        templatesFolderName: 'templates',
+
+        /**
          * Name of folder with tmp
          * 'tmp' by default
          * @type {String}

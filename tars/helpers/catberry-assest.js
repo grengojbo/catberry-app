@@ -33,6 +33,16 @@ var catberryHelper = {
         componentsRootDirs: [],
         components: []
     },
+    setDistFileName: function (arg) {
+        var dir = '/'+arg.basename;
+        var file = arg.basename.split('_');
+        if (file[1] !== undefined) {
+            dir = '/'+file[0]+'/'+file[1];
+        }
+        arg.basename = 'template';
+        arg.dirname = dir;
+        return arg;
+    },
     getConfig: function() {
 
     // var self = this;

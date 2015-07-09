@@ -130,55 +130,6 @@ gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 
 gulp.task('clean:tmp', del.bind(null, [config.tmp]));
 
-gulp.task('replace:version', function() {
-  var file = 'VERSION';
-  return gulp.src(path.join(config.templates, file))
-    .pipe(replace({
-      patterns: [
-        {
-          match: 'version',
-          replacement: pkg.version
-        }
-      ]
-    }))
-    .pipe(gulp.dest('.'))
-    .pipe($.size({title: 'replace: '+file+' | version: '+pkg.version}));
-});
-
-gulp.task('replace:humans', function() {
-  var file = 'humans.txt';
-  return gulp.src(path.join(config.templates, file))
-    .pipe(replace({
-      patterns: [
-        {
-          match: 'author',
-          replacement: pkg.author.name
-        }
-      ]
-    }))
-    .pipe(gulp.dest(config.dist))
-    .pipe($.size({title: 'replace: '+file}));
-});
-
-gulp.task('replace:robots', function() {
-  var file = 'robots.txt';
-  return gulp.src(path.join(config.templates, file))
-    .pipe(replace({
-      patterns: [
-        {
-          match: 'domain',
-          replacement: catConfig.domain
-        },
-        {
-          match: 'url',
-          replacement: catConfig.siteUrl
-        }
-      ]
-    }))
-    .pipe(gulp.dest(config.dist))
-    .pipe($.size({title: 'replace: '+file}));
-});
-
 gulp.task('copy:tmp', function () {
   return gulp.src(config.base+'/static/{'+config.dirs+'}/**')
     .pipe(gulp.dest(config.tmp))
@@ -230,19 +181,19 @@ gulp.task('copy:components:dist', function () {
     .pipe($.size({title: 'copy dist components template.hbs'}));
 });
 
-gulp.task('html:components', function() {
-  var assets = $.useref.assets({searchPath: '{build,static,src,public}'});
-  return gulp.src(config.templates+'/{'+config.tpl+'}.hbs')
-    .pipe(assets)
-    .pipe($.if('*.css', $.csso()))
-    .pipe($.rev())
-    .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.revReplace())
-    .pipe($.if(config.debug, $.debug({title: 'html-components-debug'})))
-    .pipe(gulp.dest(config.distTmp))
-    .pipe($.size({title: 'html components'}));
-});
+// gulp.task('html:components', function() {
+//   var assets = $.useref.assets({searchPath: '{build,static,src,public}'});
+//   return gulp.src(config.templates+'/{'+config.tpl+'}.hbs')
+//     .pipe(assets)
+//     .pipe($.if('*.css', $.csso()))
+//     .pipe($.rev())
+//     .pipe(assets.restore())
+//     .pipe($.useref())
+//     .pipe($.revReplace())
+//     .pipe($.if(config.debug, $.debug({title: 'html-components-debug'})))
+//     .pipe(gulp.dest(config.distTmp))
+//     .pipe($.size({title: 'html components'}));
+// });
 
 gulp.task('css:components', function () {
   return gulp.src(config.distTmp+'/static/css/'+config.components+'.css')
@@ -382,6 +333,8 @@ gulp.task('build', function () {
     ['copy:other', 'copy:static'],
     ['catberry:component-copy', 'catberry:strip-debug', 'html:build'],
     'html:catberry',
+    ['html:dist', 'css:dist'],
+    ['replace:humans', 'replace:robots', 'replace:version'],
         // [
         //     'html:minify-html', 'images:minify-raster-img'
         // ],
@@ -499,10 +452,10 @@ gulp.task('default', ['build']);
 // gulp.task('test', ['catberry:component-copy']);
 gulp.task('test', function(cb) {
   // buildOptions.production = false;
-  runSequence(['html:dist'], cb);
+  runSequence(['replace:humans', 'replace:robots', 'replace:version'], cb);
 });
 
-gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
+// gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
 
 gulp.task('dist', ['build:release'], function(cb) {
   runSequence(['clean:tmp', 'replaces', 'copy:dist', 'css:components', 'css:dist'], 'copy:components:dist', cb);
