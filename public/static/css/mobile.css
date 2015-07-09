@@ -1,0 +1,223 @@
+/*
+inspired by:
+https://github.com/minamarkham/sassy-starter/
+https://github.com/kachunchau/smacss-boilerplate
+https://github.com/davidrapson/scss-toolkit
+*/
+/* line 7, src/static/scss/_helpers.scss */
+.text-center {
+  text-align: center;
+}
+
+/* line 27, src/static/scss/_helpers.scss */
+.menu--icon {
+  font-size: 1.8em;
+  position: absolute;
+  top: 0;
+  right: .25em;
+  content: '\2261';
+}
+
+/* line 44, src/static/scss/_helpers.scss */
+.show {
+  display: block !important;
+}
+
+/* line 48, src/static/scss/_helpers.scss */
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* line 53, src/static/scss/_helpers.scss */
+.invisible {
+  visibility: hidden;
+}
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 7, src/static/scss/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 18, src/static/scss/_normalize.scss */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 24, src/static/scss/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+/* line 46, src/static/scss/_normalize.scss */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 63, src/static/scss/_normalize.scss */
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 72, src/static/scss/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+/* line 85, src/static/scss/_normalize.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+/* line 94, src/static/scss/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* line 99, src/static/scss/_normalize.scss */
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+/* line 105, src/static/scss/_normalize.scss */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/* line 109, src/static/scss/_normalize.scss */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/* line 113, src/static/scss/_normalize.scss */
+::-webkit-input-placeholder {
+  color: #999;
+}
+
+/* line 117, src/static/scss/_normalize.scss */
+::-moz-placeholder {
+  color: #999;
+}
+
+/* line 121, src/static/scss/_normalize.scss */
+:-ms-input-placeholder {
+  color: #999;
+}
+
+/* Fonts
+   ========================================================================== */
+/* Defaults  ========================================================================== */
+/* line 13, src/static/scss/layouts/_base.scss */
+html {
+  height: 100%;
+}
+
+/* line 17, src/static/scss/layouts/_base.scss */
+body {
+  min-width: 320px;
+  height: 100%;
+  color: #292f33;
+  background: #fff;
+}
+
+/* line 32, src/static/scss/layouts/_base.scss */
+body:before {
+  float: left;
+  width: 0;
+  height: 100%;
+  margin-top: -32767px;
+  content: '';
+}
+
+/* line 43, src/static/scss/layouts/_base.scss */
+.wrap {
+  min-height: 100%;
+  margin-top: -24px;
+  margin-bottom: 46px;
+}
+
+/* Header  ========================================================================== */
+/* line 57, src/static/scss/layouts/_base.scss */
+header {
+  height: 40px;
+}
+
+/* Footer  ========================================================================== */
+/* line 62, src/static/scss/layouts/_base.scss */
+footer {
+  position: relative;
+  clear: both;
+  height: 46px;
+  margin-top: -46px;
+}
+
+/* line 10, src/static/scss/mobile.scss */
+.loading {
+  min-width: 36px;
+  min-height: 36px;
+  background: url("../img/loader.svg") no-repeat center;
+}
+
+
+
+/*# sourceMappingURL=/mobile.css.map */

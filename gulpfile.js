@@ -9,7 +9,7 @@ var runSequence = require('run-sequence');
 var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
 var pngquant = require('imagemin-pngquant');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
 var replace = require('gulp-replace-task');
 var tagVersion = require('gulp-tag-version');
 var browserSync = require('browser-sync').create();
@@ -44,37 +44,36 @@ var config = require('./config/build.config.js'),
 buildOptions.production = true;
 // Generate build version
 if (tarsConfig.useBuildVersioning) {
-    buildOptions.buildVersion = require('./tars/helpers/set-build-version')();
-    buildOptions.buildPath = tarsConfig.buildPath + 'build' + buildOptions.buildVersion + '/';
+  buildOptions.buildVersion = require('./tars/helpers/set-build-version')();
+  buildOptions.buildPath = tarsConfig.buildPath + 'build' + buildOptions.buildVersion + '/';
 } else {
-    buildOptions.buildVersion = '';
-    buildOptions.buildPath = tarsConfig.buildPath;
+  buildOptions.buildVersion = '';
+  buildOptions.buildPath = tarsConfig.buildPath;
 }
-
 
 // Set template's extension
 if (templaterName === 'handlebars') {
-    templateExtension = 'hbs';
+  templateExtension = 'hbs';
 } else {
-    templateExtension = 'jade';
+  templateExtension = 'jade';
 }
 
 if (cssPreprocExtension === 'stylus') {
-    cssPreprocExtension = 'styl';
+  cssPreprocExtension = 'styl';
 }
 
 if (gutil.env.release) {
-    buildOptions.hash = Math.random().toString(36).substring(7);
+  buildOptions.hash = Math.random().toString(36).substring(7);
 } else {
-    buildOptions.hash = '';
+  buildOptions.hash = '';
 }
 
 buildOptions.useDebug = useDebug;
 buildOptions.templateExtension = templateExtension;
 
 watchOptions = {
-    cssPreprocExtension: cssPreprocExtension,
-    templateExtension: templateExtension
+  cssPreprocExtension: cssPreprocExtension,
+  templateExtension: templateExtension
 };
 
 var notifier = require('./tars/helpers/notifier');
@@ -89,7 +88,7 @@ var hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
 
 // Set ulimit to 4096 for *nix FS. It needs to work with big amount of files
 if (os.platform() !== 'win32') {
-    require('./tars/helpers/set-ulimit')();
+  require('./tars/helpers/set-ulimit')();
 }
 
 // Load files from dir recursively and synchronously
@@ -109,7 +108,7 @@ function inc(importance) {
     .pipe($.filter('package.json'))
     // **tag it in the repository**
     .pipe(tagVersion());
-};
+}
 
 /***************/
 /* END HELPERS */
@@ -131,22 +130,24 @@ gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 gulp.task('clean:tmp', del.bind(null, [config.tmp]));
 
 gulp.task('copy:tmp', function () {
-  return gulp.src(config.base+'/static/{'+config.dirs+'}/**')
+  return gulp.src(config.base + '/static/{' + config.dirs + '}/**')
     .pipe(gulp.dest(config.tmp))
-    .pipe($.size({title: 'copy tmp'}));
+    .pipe($.size({ title: 'copy tmp' }));
 });
 
 gulp.task('copy:build', function () {
-  return gulp.src(config.base+'/static/{'+config.dirs+'}/**')
+  return gulp.src(config.base + '/static/{' + config.dirs + '}/**')
     .pipe(gulp.dest(path.join(config.distTmp, 'static')))
     .pipe($.size({title: 'copy build'}));
 });
 
 gulp.task('copy:dist', function () {
-  return gulp.src(config.distTmp+'/static/{'+config.dirs+'}/**')
+  return gulp.src(config.distTmp + '/static/{' + config.dirs + '}/**')
     .pipe($.if(config.debug, $.debug({title: 'copy-dist-debug'})))
     .pipe(gulp.dest(config.assets))
-    .pipe($.size({title: 'copy dist'}));
+    .pipe($.size({
+      title: 'copy dist'
+    }));
 });
 
 gulp.task('copy:css', ['sass:dev'], function () {
@@ -156,9 +157,9 @@ gulp.task('copy:css', ['sass:dev'], function () {
 });
 
 gulp.task('copy:components', function () {
-  return gulp.src(config.templates+'/{'+config.tpl+'}.hbs')
+  return gulp.src(config.templates + '/{' + config.tpl + '}.hbs')
     .pipe(rename(function (path) {
-      path.dirname += '/'+path.basename;
+      path.dirname += '/' + path.basename;
       path.basename = 'template';
     }))
     .pipe($.if(config.debug, $.debug({title: 'copy-components-debug'})))
@@ -167,18 +168,24 @@ gulp.task('copy:components', function () {
 });
 
 gulp.task('copy:components:dist', function () {
-  return gulp.src(config.distTmp+'/*.hbs')
+  return gulp.src(config.distTmp + '/*.hbs')
     // https://github.com/kangax/html-minifier
     // https://github.com/kangax/html-minifier/wiki/Minifying-Handlebars-templates
     // .pipe($.if('*.html', $.minifyHtml({empty: true})))
-    .pipe($.if(config.htmlmin, $.htmlmin({ customAttrSurround: [hbAttrWrapPair], collapseWhitespace: config.html.collapseWhitespace, removeComments: config.html.removeComments})))
+    .pipe($.if(config.htmlmin, $.htmlmin({
+      customAttrSurround: [hbAttrWrapPair],
+      collapseWhitespace: config.html.collapseWhitespace,
+      removeComments: config.html.removeComments
+    })))
     .pipe(rename(function (path) {
-      path.dirname += '/'+path.basename;
+      path.dirname += '/' + path.basename;
       path.basename = 'template';
     }))
     .pipe($.if(config.debug, $.debug({title: 'copy-components-dist-debug'})))
     .pipe(gulp.dest(config.cat))
-    .pipe($.size({title: 'copy dist components template.hbs'}));
+    .pipe($.size({
+      title: 'copy dist components template.hbs'
+    }));
 });
 
 // gulp.task('html:components', function() {
@@ -196,7 +203,7 @@ gulp.task('copy:components:dist', function () {
 // });
 
 gulp.task('css:components', function () {
-  return gulp.src(config.distTmp+'/static/css/'+config.components+'.css')
+  return gulp.src(config.distTmp + '/static/css/' + config.components + '.css')
     .pipe($.if('*.css', $.csso()))
     .pipe($.if(config.debug, $.debug({title: 'css-components-debug'})))
     .pipe(gulp.dest(path.join(config.assets, 'css')))
@@ -204,7 +211,7 @@ gulp.task('css:components', function () {
 });
 
 gulp.task('css:dist', function () {
-  return gulp.src(config.distTmp+'/static/css/{'+config.revCss+'}-*.css')
+  return gulp.src(config.distTmp + '/static/css/{' + config.revCss + '}-*.css')
     // .pipe($.if('*.css', $.csso()))
     .pipe($.if(config.debug, $.debug({title: 'css-dist-debug'})))
     .pipe(gulp.dest(path.join(config.assets, 'css')))
@@ -212,7 +219,6 @@ gulp.task('css:dist', function () {
 });
 
 gulp.task('build:catberry', $.shell.task(['node ./build.js', './node_modules/.bin/gulp']));
-
 
 /*********/
 /* TASKS */
@@ -232,7 +238,7 @@ tasks = fileLoader('./tars/tasks');
 
 // require tasks
 tasks.forEach(function (file) {
-    require(file)(buildOptions);
+  require(file)(buildOptions);
 });
 
 // USER'S TASKS
@@ -240,7 +246,7 @@ userTasks = fileLoader('./tars/user-tasks');
 
 // require user-tasks
 userTasks.forEach(function (file) {
-    require(file)(buildOptions);
+  require(file)(buildOptions);
 });
 
 /*************/
@@ -261,24 +267,24 @@ gulp.task('dev', ['build-dev'], function () {
   } else {
     gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Build development has been finished successfully!'));
   }
-    // SYSTEM WATCHERS
-    // watchers = fileLoader('./tars/watchers');
+  // SYSTEM WATCHERS
+  // watchers = fileLoader('./tars/watchers');
 
-    // You could uncomment the row bellow, to see all required watchers in console
-    // console.log(watchers);
+  // You could uncomment the row bellow, to see all required watchers in console
+  // console.log(watchers);
 
-    // require watchers
-    // watchers.forEach(function (file) {
-    //     require(file)(watchOptions);
-    // });
+  // require watchers
+  // watchers.forEach(function (file) {
+  //     require(file)(watchOptions);
+  // });
 
-    // USER'S WATCHERS
-    // userWatchers = fileLoader('./tars/user-watchers');
+  // USER'S WATCHERS
+  // userWatchers = fileLoader('./tars/user-watchers');
 
-    // require user-watchers
-    // userWatchers.forEach(function (file) {
-    //     require(file)(watchOptions);
-    // });
+  // require user-watchers
+  // userWatchers.forEach(function (file) {
+  //     require(file)(watchOptions);
+  // });
 });
 
 gulp.task('dist', ['build'], function () {
@@ -361,9 +367,15 @@ gulp.task('build', function () {
   );
 });
 
-gulp.task('patch', function() { return inc('patch'); });
-gulp.task('feature', function() { return inc('minor'); });
-gulp.task('release', function() { return inc('major'); });
+gulp.task('patch', function () {
+  return inc('patch');
+});
+gulp.task('feature', function () {
+  return inc('minor');
+});
+gulp.task('release', function () {
+  return inc('major');
+});
 
 /******************/
 /* END MAIN TASKS */
@@ -373,7 +385,7 @@ gulp.task('release', function() { return inc('major'); });
 /* HELPERS TASKS */
 /*****************/
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
   var options = {
     cwd: undefined
   };
@@ -389,7 +401,7 @@ gulp.task('serve', function() {
   });
 });
 
-gulp.task('serve:release', function() {
+gulp.task('serve:release', function () {
   var options = {
     cwd: undefined
   };
@@ -400,14 +412,18 @@ gulp.task('serve:release', function() {
 });
 
 gulp.task('sleep:build', function (cb) {
-  return gulp.src(['build.js'], { read: false })
+  return gulp.src(['build.js'], {
+    read: false
+  })
     .pipe(notifier('Wait build.js starting!'))
     .pipe(wait(tarsConfig.waitCatberryBuild))
     .pipe(notifier('Wait build.jss finished!'));
 });
 
 gulp.task('sleep:serve', function (cb) {
-  return gulp.src(['build.js'], { read: false })
+  return gulp.src(['build.js'], {
+    read: false
+  })
     .pipe(notifier('Wait Server starting!'))
     .pipe(wait(tarsConfig.waitCatberryServer))
     .pipe(notifier('Wait Server finished!'));
@@ -415,56 +431,56 @@ gulp.task('sleep:serve', function (cb) {
 
 // Task for starting browsersync module
 gulp.task('browsersync', function (cb) {
-    browserSync.init({
-        // server: {
-            // baseDir: browserSyncConfig.baseDir
-        // },
-        // server: browserSyncConfig.server,
-        // All of the following files will be watched
-      // files: ['public/**/*.*'],
-        proxy: browserSyncConfig.proxy,
-        logConnections: true,
-        debugInfo: true,
-        injectChanges: false,
-        port: browserSyncConfig.port,
-        open: browserSyncConfig.open,
-        browser: browserSyncConfig.browser,
-        // startPath: browserSyncConfig.startUrl,
-        notify: browserSyncConfig.useNotifyInBrowser,
-        watchTask: true,
-        tunnel: useTunnelToWeb
-    });
+  browserSync.init({
+    // server: {
+    // baseDir: browserSyncConfig.baseDir
+    // },
+    // server: browserSyncConfig.server,
+    // All of the following files will be watched
+    // files: ['public/**/*.*'],
+    proxy: browserSyncConfig.proxy,
+    logConnections: true,
+    debugInfo: true,
+    injectChanges: false,
+    port: browserSyncConfig.port,
+    open: browserSyncConfig.open,
+    browser: browserSyncConfig.browser,
+    // startPath: browserSyncConfig.startUrl,
+    notify: browserSyncConfig.useNotifyInBrowser,
+    watchTask: true,
+    tunnel: useTunnelToWeb
+  });
 });
 
-gulp.task('run-server', function(cb) {
+gulp.task('run-server', function (cb) {
   runSequence('catberry-build', 'sleep:build', 'serve', 'sleep:serve', 'browsersync', cb);
 });
 
-gulp.task('run-release', function(cb) {
+gulp.task('run-release', function (cb) {
   runSequence('catberry-release', 'sleep:build', 'serve:release', 'sleep:serve', 'browsersync', cb);
 });
 
 gulp.task('svg-actions', function (cb) {
-    if (gutil.env.ie8) {
-        runSequence(
-            ['images:minify-svg', 'images:raster-svg'],
-            ['css:make-fallback-for-svg', 'css:make-sprite-for-svg'],
-            cb
-        );
-    } else {
-        runSequence(
-            'images:minify-svg',
-            'css:make-sprite-for-svg',
-            cb
-        );
-    }
+  if (gutil.env.ie8) {
+    runSequence(
+        ['images:minify-svg', 'images:raster-svg'],
+        ['css:make-fallback-for-svg', 'css:make-sprite-for-svg'],
+        cb
+    );
+  } else {
+    runSequence(
+        'images:minify-svg',
+        'css:make-sprite-for-svg',
+        cb
+    );
+  }
 });
 
 gulp.task('compile-templates-with-data-reloading', function (cb) {
-    runSequence(
-        'html:concat-modules-data',
-        'html:compile-templates',
-    cb);
+  runSequence(
+      'html:concat-modules-data',
+      'html:compile-templates',
+  cb);
 });
 
 /*********************/
@@ -474,9 +490,9 @@ gulp.task('compile-templates-with-data-reloading', function (cb) {
 gulp.task('default', ['build']);
 
 // gulp.task('test', ['catberry:component-copy']);
-gulp.task('test', function(cb) {
+gulp.task('test', function (cb) {
   buildOptions.production = false;
-  runSequence(['replace:browser', 'replace:environment'], cb);
+  runSequence(['js:check'], cb);
 });
 
 // gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);

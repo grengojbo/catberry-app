@@ -3,8 +3,8 @@
 module.exports = Photoswipe;
 
 var util = require('util'),
-  bh = require("../../../lib/helpers/browserHelper"),
-  lh = require("../../../lib/helpers/l10nHelper"),
+  bh = require('../../../lib/helpers/browserHelper'),
+  lh = require('../../../lib/helpers/l10nHelper'),
   pswpSel = '.pswp',
   captionSel = '.pswp__caption__center';
 
@@ -15,11 +15,11 @@ var util = require('util'),
  */
 
 /**
- * Creates new instance of the "photoswipe" component.
+ * Creates new instance of the 'photoswipe' component.
  * @constructor
  */
 function Photoswipe($serviceLocator) {
-  this._logger = $serviceLocator.resolve("logger");
+  this._logger = $serviceLocator.resolve('logger');
   if (this.$context.isBrowser) {
     this._window = $serviceLocator.resolve('window');
   }
@@ -54,7 +54,7 @@ Photoswipe.prototype.options = {
   escKey: false,
   animation: true,
   controlEl: true,
-  closeEl:true,
+  closeEl: true,
   captionEl: true,
   fullscreenEl: false,
   zoomEl: false,
@@ -69,7 +69,7 @@ Photoswipe.prototype.setOptions = function (option) {
 
 };
 
-Photoswipe.prototype.addClass = function(el) {
+Photoswipe.prototype.addClass = function (el) {
   if (!this.touch) {
     bh.addClass(el, 'pswp--notouch');
   }
@@ -85,7 +85,7 @@ Photoswipe.prototype.addClass = function(el) {
   }
 };
 
-Photoswipe.prototype.removeClass = function(el) {
+Photoswipe.prototype.removeClass = function (el) {
   if (!this.touch) {
     bh.removeClass(el, 'pswp--notouch');
   }
@@ -101,7 +101,7 @@ Photoswipe.prototype.removeClass = function(el) {
   }
 };
 
-Photoswipe.prototype.setCaption = function(mess){
+Photoswipe.prototype.setCaption = function (mess) {
   if (this.options.captionEl) {
     var text = this.$context.element.querySelector(captionSel);
     text.innerHTML = mess;
@@ -125,12 +125,12 @@ Photoswipe.prototype.render = function () {
     isShow: this.isShow,
     options: this.options,
     items: this.items,
-    transClose: lp.get(curLocale, "PSWP_CLOSE"),
-    transShare: lp.get(curLocale, "PSWP_SHARE"),
-    transToggle: lp.get(curLocale, "PSWP_TOGGLE"),
-    transZoom: lp.get(curLocale, "PSWP_ZOOM"),
-    transPrevious: lp.get(curLocale, "PSWP_PREVIOUS"),
-    transNext: lp.get(curLocale, "PSWP_NEXT"),
+    transClose: lp.get(curLocale, 'PSWP_CLOSE'),
+    transShare: lp.get(curLocale, 'PSWP_SHARE'),
+    transToggle: lp.get(curLocale, 'PSWP_TOGGLE'),
+    transZoom: lp.get(curLocale, 'PSWP_ZOOM'),
+    transPrevious: lp.get(curLocale, 'PSWP_PREVIOUS'),
+    transNext: lp.get(curLocale, 'PSWP_NEXT'),
     locale: curLocale
   };
   this._logger.info('---- [Photoswipe] render --->');
@@ -162,9 +162,9 @@ Photoswipe.prototype.unbind = function () {
  */
 Photoswipe.prototype.hide = function () {
   var el = this.$context.element.querySelector(pswpSel);
-   this.removeClass(el);
-   bh.removeClass(el, 'pswp--open');
-   bh.removeClass(el, 'pswp--visible');
+  this.removeClass(el);
+  bh.removeClass(el, 'pswp--open');
+  bh.removeClass(el, 'pswp--visible');
   // el.style.display = 'none';
 };
 
@@ -173,9 +173,9 @@ Photoswipe.prototype.hide = function () {
  */
 Photoswipe.prototype.show = function () {
   var el = this.$context.element.querySelector(pswpSel);
-   bh.addClass(el, 'pswp--open');
-   bh.addClass(el, 'pswp--visible');
-   this.addClass(el);
+  bh.addClass(el, 'pswp--open');
+  bh.addClass(el, 'pswp--visible');
+  this.addClass(el);
   // el.style.display = '';
   this.setCaption('какойто текст');
 };

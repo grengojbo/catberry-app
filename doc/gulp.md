@@ -8,6 +8,7 @@
  - [gulp-live-server](https://github.com/gimm/gulp-live-server) -запускает Express.js веб-сервер. 
  - [gulp-plumber](https://github.com/floatdrop/gulp-plumber) — ловим ошибки, чтобы не прервался watch
  - [gulp-bg](https://github.com/litek/gulp-bg) - Spawn a process in the background
+ - [fixmyjs](https://github.com/kirjs/gulp-fixmyjs) — автоматически исправляет простые ошибки в коде после линта выполненного на основе JSHint (gulp-jshint).
 
 
 [gulp-shell](https://github.com/sun-zheng-an/gulp-shell) — позволяет запускать Shell команды.

@@ -87,8 +87,8 @@ ErrorMessage.prototype._handleMessageClose = function(event){
   event.stopPropagation();
   // var el=this.$context.element.querySelector(elSelClass);
   var el=this.$context;
-  void 0;
-  void 0;
+  console.log('------------------- _handleMessageClose -------------------');
+  console.log(el);
   this.hide();
 };
 
