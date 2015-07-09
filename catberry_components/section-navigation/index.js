@@ -27,31 +27,23 @@
  * This license applies to all parts of catberry-homepage that are not
  * externally maintained libraries.
  */
-
 'use strict';
-
 module.exports = SectionNavigation;
-
-var util = require('util'),
-	ComponentBase = require('../../lib/ComponentBase');
-
+var util = require('util'), ComponentBase = require('../../lib/ComponentBase');
 util.inherits(SectionNavigation, ComponentBase);
-
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
  * https://github.com/catberry/catberry/blob/master/docs/index.md#cat-components
  */
-
 /**
  * Creates new instance of the "section-navigation" component.
  * @extends ComponentBase
  * @constructor
  */
 function SectionNavigation() {
-	ComponentBase.call(this);
+  ComponentBase.call(this);
 }
-
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -59,31 +51,29 @@ function SectionNavigation() {
  * for template engine.
  */
 SectionNavigation.prototype.render = function () {
-	var self = this;
-	return this.$context.getStoreData()
-		.then(function (pages) {
-			// console.log('--> SectionNavigation / pages');
-			// console.log(pages);
-			var data = {};
-			data.isUser = pages.isUser;
-			data.isPrivate = pages.isPrivate;
-			data.pages = Object.keys(pages.isMenu)
-				.map(function (page) {
-					var result = {
-						name: pages.names[page],
-						url: page,
-						pageTitleKey: 'PAGE_TITLE_' + page.toUpperCase(),
-						isActive: page === pages.currentPage
-					};
-					if (page === 'home') {
-						result.url = '/';
-					} else {
-						result.url = '/' + page;
-					};
-					return result;
-				});
-			// console.log(data);
-			// console.log('--> SectionNavigation / data');
-			return self.localizeContext(data);
-		});
+  var self = this;
+  return this.$context.getStoreData().then(function (pages) {
+    // console.log('--> SectionNavigation / pages');
+    // console.log(pages);
+    var data = {};
+    data.isUser = pages.isUser;
+    data.isPrivate = pages.isPrivate;
+    data.pages = Object.keys(pages.isMenu).map(function (page) {
+      var result = {
+        name: pages.names[page],
+        url: page,
+        pageTitleKey: 'PAGE_TITLE_' + page.toUpperCase(),
+        isActive: page === pages.currentPage
+      };
+      if (page === 'home') {
+        result.url = '/';
+      } else {
+        result.url = '/' + page;
+      }
+      return result;
+    });
+    // console.log(data);
+    // console.log('--> SectionNavigation / data');
+    return self.localizeContext(data);
+  });
 };

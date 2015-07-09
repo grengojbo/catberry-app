@@ -27,30 +27,23 @@
  * This license applies to all parts of catberry-homepage that are not
  * externally maintained libraries.
  */
-
 'use strict';
-
 module.exports = Footer;
-
-var util = require('util'),
-	ComponentBase = require('../../lib/ComponentBase');
+var util = require('util'), ComponentBase = require('../../lib/ComponentBase');
 util.inherits(Footer, ComponentBase);
-
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
  * https://github.com/catberry/catberry/blob/master/docs/index.md#cat-components
  */
-
 /**
  * Creates new instance of the "footer" component.
  * @extends ComponentBase
  * @constructor
  */
 function Footer() {
-	ComponentBase.call(this);
+  ComponentBase.call(this);
 }
-
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -58,21 +51,16 @@ function Footer() {
  * for template engine.
  */
 Footer.prototype.render = function () {
-	var l10n = this.$context.locator.resolve('localizationProvider'),
-		context = this.localizeContext();
+  var l10n = this.$context.locator.resolve('localizationProvider'), context = this.localizeContext();
   var self = this;
-  return this.$context.getStoreData()
-    .then(function (pages) {
-      context.copyrightText = util.format(
-		    l10n.get(context.locale, 'COPYRIGHTS'),
-		    (new Date()).getFullYear()
-      );
-      context.isShow = true;
-      // console.log('-----> pages.currentPage: ' + pages.currentPage);
-      if (pages.currentPage === 'news') {
-        context.isShow = false;
-      };
-      // console.log(context);
-      return context;
-    });
+  return this.$context.getStoreData().then(function (pages) {
+    context.copyrightText = util.format(l10n.get(context.locale, 'COPYRIGHTS'), new Date().getFullYear());
+    context.isShow = true;
+    // console.log('-----> pages.currentPage: ' + pages.currentPage);
+    if (pages.currentPage === 'news') {
+      context.isShow = false;
+    }
+    // console.log(context);
+    return context;
+  });
 };

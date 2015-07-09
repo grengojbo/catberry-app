@@ -14,18 +14,22 @@ var ifs = require('gulp-if');
  */
 module.exports = function (buildOptions) {
 
-    return gulp.task('css:dist', function (cb) {
-        return gulp.src(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css', '*-*.css'))
-            .pipe(cache('css-dist'))
+  return gulp.task('css:dist', function (cb) {
+    return gulp.src(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css', '*-*.css'))
+        .pipe(cache('css-dist'))
             .on('error', notify.onError(function (error) {
-                    return '\nAn error occurred while minifying raster css.\nLook in the console for details.\n' + error;
-                })
-            )
-            .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
-            .pipe(ifs(buildOptions.useDebug, debug({title: 'css-dist-debug'})))
-            .pipe(size({title: 'css-dist'}))
+              return '\nAn error occurred while minifying raster css.\nLook in the console for details.\n' + error;
+            })
+        )
+        .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
+            .pipe(ifs(buildOptions.useDebug, debug({
+              title: 'css-dist-debug'
+            })))
+            .pipe(size({
+              title: 'css-dist'
+            }))
             .pipe(
                 notifier('Copy css files.')
             );
-    });
+  });
 };

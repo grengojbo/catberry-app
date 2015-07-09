@@ -27,55 +27,43 @@
  * This license applies to all parts of catberry-homepage that are not
  * externally maintained libraries.
  */
-
 'use strict';
-
 module.exports = Pages;
-
-var util = require('util'),
-	ComponentBase = require('../../lib/ComponentBase');
-
+var util = require('util'), ComponentBase = require('../../lib/ComponentBase');
 util.inherits(Pages, ComponentBase);
-
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
  * https://github.com/catberry/catberry/blob/master/docs/index.md#cat-components
  */
-
 /**
  * Creates new instance of the "pages" component.
  * @extends ComponentBase
  * @constructor
  */
 function Pages($serviceLocator, $config) {
-	ComponentBase.call(this);
+  ComponentBase.call(this);
   this._config = $config;
-  this._logger = $serviceLocator.resolve("logger");
+  this._logger = $serviceLocator.resolve('logger');
   if (this.$context.isBrowser) {
     this._window = $serviceLocator.resolve('window');
   }
   this._logger.info('------------- Pages ----------');
 }
-
 Pages.prototype._window = null;
-
 /**
  * Current application config.
  * @type {Object}
  * @private
  */
 Pages.prototype._config = null;
-
 /**
  * Current application logger.
  * @type {Object}
  * @private
  */
 Pages.prototype._logger = null;
-
 Pages.prototype.data = null;
-
 Pages.prototype.isAuthorized = function (key) {
   var token = this._window.localStorage.getItem(key);
   if (token) {
@@ -83,17 +71,14 @@ Pages.prototype.isAuthorized = function (key) {
   }
   return false;
 };
-
 Pages.prototype.getItem = function () {
   var self = this;
-  return this.$context.getStoreData()
-    .then(function (pages) {
-      // console.log('--> Pages / render');
-      // console.log(pages);
-      return self.localizeContext(pages);
-    });
+  return this.$context.getStoreData().then(function (pages) {
+    // console.log('--> Pages / render');
+    // console.log(pages);
+    return self.localizeContext(pages);
+  });
 };
-
 /**
  * Gets data context for template engine.
  * This method is optional.
@@ -103,12 +88,11 @@ Pages.prototype.getItem = function () {
 Pages.prototype.render = function () {
   this._logger.info('------------- Pages / render ----------');
   var self = this;
-  return this.$context.getStoreData()
-    .then(function (pages) {
-      var page = self.localizeContext(pages);
-      // self._logger.info('------------- Pages / render [start]');
-      // self._logger.trace(page);
-      // self._logger.info('------------- Pages / render [end]');
-      return page;
-    });
+  return this.$context.getStoreData().then(function (pages) {
+    var page = self.localizeContext(pages);
+    // self._logger.info('------------- Pages / render [start]');
+    // self._logger.trace(page);
+    // self._logger.info('------------- Pages / render [end]');
+    return page;
+  });
 };
