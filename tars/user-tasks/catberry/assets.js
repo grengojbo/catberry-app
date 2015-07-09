@@ -1,20 +1,8 @@
 var gulp = require('gulp');
-// var size = require('gulp-size');
-// var gutil = require('gulp-util');
-// var gulpif = require('gulp-if');
-// var autoprefixer = require('gulp-autoprefixer');
-// var replace = require('gulp-replace-task');
-// var addsrc = require('gulp-add-src');
-// var notify = require('gulp-notify');
 var tarsConfig = require('../../../tars-config');
-// var notifier = require('../../helpers/notifier');
 var catberryHelper = require('../../helpers/catberry-assest');
-// var browserSync = require('browser-sync');
 var path = require('path');
-// var debug = require('gulp-debug');
-// var cache = require('gulp-cached');
 var readdirp = require('readdirp');
-// var fs = require("fs");
 var csstime = require('csstime-gulp-tasks');
 
 /**

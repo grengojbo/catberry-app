@@ -30,13 +30,13 @@ if (tarsConfig.autoprefixerConfig) {
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
-    return gulp.task('css:compile', function () {
+    return gulp.task('css:compile-build', function () {
         return sass(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss'),
                 {
                     sourcemap: true,
                     lineNumbers: true,
                     style: 'expanded',
-                    container: 'css:compile'
+                    container: 'css:compile-build'
                 }
             )
             .on('error', function(error) {
@@ -60,18 +60,17 @@ module.exports = function (buildOptions) {
                 includeContent: false,
                 sourceRoot: path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss')
             }))
-            .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.tmpFolderName, 'css')))
-            .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
+            .pipe(gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css')))
             .pipe(
                 gulpif(buildOptions.useDebug,
                     debug(
                         {
-                            title: 'css:compile'
+                            title: 'css:compile-build'
                         }
                     )
                 )
             )
-            .pipe(size({title: 'css:compile'}))
+            .pipe(size({title: 'css:compile-build'}))
             .pipe(browserSync.reload({ stream: true }))
             .pipe(
                 notifier('Scss-files\'ve been compiled')

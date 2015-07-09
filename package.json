@@ -70,7 +70,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace-task": "^0.2.1",
-    "gulp-rev": "^3.0.1",
+    "gulp-rev": "^5.1.0",
     "gulp-rev-replace": "^0.4.0",
     "gulp-ruby-sass": "^1.0.5",
     "gulp-sass": "^2.0.3",
@@ -91,9 +91,7 @@
     "jshint-stylish": "^2.0.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "readdir": "0.0.13",
     "readdirp": "^1.3.0",
-    "recursive-readdir": "^1.2.1",
     "through2": "^2.0.0"
   },
   "engines": {

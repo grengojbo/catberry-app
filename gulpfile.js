@@ -372,23 +372,30 @@ gulp.task('build-dev', function (cb) {
 
 // Build release version
 // Also you can add your own tasks in queue of build task
-gulp.task('build:new', function () {
-    runSequence(
-        'build-dev',
-        [
-            'html:minify-html', 'images:minify-raster-img'
-        ],
-        'service:pre-build',
-        [
-            'js:compress', 'css:compress-css'
-        ],
-        'service:zip-build',
-        function () {
-            console.log(gutil.colors.black.bold('\n------------------------------------------------------------'));
-            gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Release version have been created successfully!'));
-            console.log(gutil.colors.black.bold('------------------------------------------------------------\n'));
-        }
-    );
+gulp.task('build', function () {
+  runSequence(
+    'service:builder-start-screen',
+    ['service:clean', 'catberry:clean'],
+    ['images:build', 'images:build-svg', 'images:copy-build'],
+    'css:compile-build',
+    'catberry:assets',
+    ['copy:other', 'copy:static'],
+    ['catberry:component-copy', 'catberry:strip-debug', 'html:build'],
+    'html:catberry',
+        // [
+        //     'html:minify-html', 'images:minify-raster-img'
+        // ],
+        // 'service:pre-build',
+        // [
+        //     'js:compress', 'css:compress-css'
+        // ],
+        // 'service:zip-build',
+    function () {
+      console.log(gutil.colors.black.bold('\n------------------------------------------------------------'));
+      gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Release version have been created successfully!'));
+      console.log(gutil.colors.black.bold('------------------------------------------------------------\n'));
+    }
+  );
 });
 
 gulp.task('patch', function() { return inc('patch'); });
@@ -432,6 +439,7 @@ gulp.task('sleep:serve', function (cb) {
     .pipe(wait(tarsConfig.waitCatberryServer))
     .pipe(notifier('Wait Server finished!'));
 });
+
 // Task for starting browsersync module
 gulp.task('browsersync', function (cb) {
     browserSync.init({
@@ -491,7 +499,7 @@ gulp.task('default', ['build']);
 // gulp.task('test', ['catberry:component-copy']);
 gulp.task('test', function(cb) {
   // buildOptions.production = false;
-  runSequence(['catberry:assets'], cb);
+  runSequence(['html:dist'], cb);
 });
 
 gulp.task('replaces', ['replace:version', 'replace:robots', 'replace:humans']);
@@ -502,7 +510,8 @@ gulp.task('dist', ['build:release'], function(cb) {
 gulp.task('build:release', ['clean'], function(cb) {
   runSequence(['copy:build', 'copy:static', 'images:build', 'images:dist', 'copy:css'], 'html:components', cb);
 });
-gulp.task('build', ['clean'], function(cb) {
+// TODO: delete
+gulp.task('build:old', ['clean'], function(cb) {
   runSequence(['copy:tmp', 'copy:static', 'images:tmp', 'images:dist', 'copy:dev'], 'copy:components', cb);
 });
 

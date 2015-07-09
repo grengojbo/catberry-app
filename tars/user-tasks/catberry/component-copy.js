@@ -31,6 +31,7 @@ module.exports = function (buildOptions) {
     });
   }
   libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '*.'+buildOptions.templateExtension));
+  libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', tarsConfig.fs.assetsFolderName+'{,/**}'));
   // console.log(libPaths);
   return gulp.task('catberry:component-copy', function () {
     return gulp.src(libPaths)

@@ -43,7 +43,7 @@ module.exports = function (buildOptions) {
                     return '\nAn error occurred while minifying svg.\nLook in the console for details.\n' + error;
                 }))
                 .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, tarsConfig.fs.imagesFolderName)))
-                .pipe(gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.tmpFolderName, tarsConfig.fs.imagesFolderName)))
+                .pipe(gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, tarsConfig.fs.imagesFolderName)))
                 .pipe(ifs(buildOptions.useDebug, debug({title: 'images:build-svg-debug'})))
                 .pipe(size({title: 'images:build-svg'}))
                 .pipe(

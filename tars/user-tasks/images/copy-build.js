@@ -17,19 +17,19 @@ var ifs = require('gulp-if');
  */
 module.exports = function (buildOptions) {
 
-    return gulp.task('copy:other', function (cb) {
-        return gulp.src(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, '{font,fonts,js}**'))
-            .pipe(cache('copy-other'))
+    return gulp.task('images:copy-build', function (cb) {
+        return gulp.src(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, tarsConfig.fs.imagesFolderName, '**', '*.{gif,bmp,ico}'))
+            .pipe(cache('images-copy-other'))
             .on('error', notify.onError(function (error) {
                     return '\nAn error occurred while minifying raster images.\nLook in the console for details.\n' + error;
                 })
             )
-            .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName)))
-            .pipe(ifs(buildOptions.production, gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName))))
-            .pipe(ifs(buildOptions.useDebug, debug({title: 'copy:other-debug'})))
-            .pipe(size({title: 'copy:other'}))
+            .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, tarsConfig.fs.imagesFolderName)))
+            .pipe(gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, tarsConfig.fs.imagesFolderName)))
+            .pipe(ifs(buildOptions.useDebug, debug({title: 'images:copy-build-debug'})))
+            .pipe(size({title: 'images:copy-build'}))
             .pipe(
-                notifier('Copy other files')
+                notifier('Rastered images\'ve been copy')
             );
     });
 };

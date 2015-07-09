@@ -3,13 +3,13 @@ var del = require('del');
 var path = require('path');
 var tarsConfig = require('../../../tars-config');
 
-var pathsToDel = ['./.tmpJs/'];
 
 /**
  * Clean dev directory and cache
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
+    var pathsToDel = ['./public/__csstime-tmp'];
 
     if (tarsConfig.catberry.exclude) {
         tarsConfig.catberry.exclude.split(',').forEach(function (dir){

@@ -111,7 +111,7 @@ ArticlesList.prototype._handleScroll = function () {
  * @private
  */
 ArticlesList.prototype._loadMoreItems = function () {
-  console.log('---> _loadMoreItems <---'),
+  void 0,
   this.$context.sendAction('load-more');
 };
 

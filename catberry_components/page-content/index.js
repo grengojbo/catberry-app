@@ -18,7 +18,7 @@ util.inherits(PageContent, ComponentBase);
  * @constructor
  */
 function PageContent() {
-  console.log('-> module [PageContent]');
+  void 0;
   // console.log(this.$context.attributes);
   if (this.$context.attributes.slug) {
     this.slug = this.$context.attributes.slug;
