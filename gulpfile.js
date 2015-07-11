@@ -322,7 +322,7 @@ gulp.task('build-dev', function (cb) {
     'css:compile',
     'catberry:assets',
     ['copy:other', 'copy:static'],
-    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js', 'catberry:component-js-stores'],
+    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js', 'catberry:component-js-stores', 'catberry:component-js-libs'],
     // 'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [
@@ -498,7 +498,7 @@ gulp.task('default', ['build']);
 
 gulp.task('test', function (cb) {
   buildOptions.production = false;
-  runSequence(['js:check', 'js:check-stores'], cb);
+  runSequence(['js:check', 'js:check-stores', 'js:check-libs'], cb);
 });
 
 gulp.task('format', function (cb) {
@@ -508,5 +508,5 @@ gulp.task('format', function (cb) {
 
 gulp.task('work', function (cb) {
   buildOptions.production = false;
-  runSequence(['catberry:component-js-stores'], cb);
+  runSequence(['catberry:component-js-libs'], cb);
 });

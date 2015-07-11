@@ -13,7 +13,7 @@ var path = require('path');
 // var fixmyjs = require('gulp-fixmyjs');
 
 var jsPathsToLint = [
-  path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentStoresFolderName, '**', '*.js')
+  path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentLibsFolderName, '**', '*.js')
 ];
 
 /**
@@ -22,10 +22,10 @@ var jsPathsToLint = [
  */
 module.exports = function (buildOptions) {
 
-  return gulp.task('js:check-stores', function (cb) {
+  return gulp.task('js:check-libs', function (cb) {
     if (tarsConfig.useJsLintAndHint) {
       return gulp.src(jsPathsToLint)
-        .pipe(cache('hinting-stores'))
+        .pipe(cache('hinting-libs'))
         .pipe(jshint())
         // .pipe(fixmyjs())
         .pipe(jshint.reporter('jshint-stylish'))
@@ -36,7 +36,7 @@ module.exports = function (buildOptions) {
         .on('error', notify.onError(function (error) {
           return 'An error occurred while checking js.\nLook in the console for details.\n';
         }))
-        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentStoresFolderName)));
+        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentLibsFolderName)));
         // .pipe(debug({
         //   title: 'js:check'
         // }));

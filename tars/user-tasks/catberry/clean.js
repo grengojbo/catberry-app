@@ -22,6 +22,12 @@ module.exports = function (buildOptions) {
     });
   }
 
+  if (tarsConfig.catberry.excludeLibs) {
+    tarsConfig.catberry.excludeStores.split(',').forEach(function (dir) {
+      pathsToDel.push(path.join('.', tarsConfig.fs.componentLibsFolderName, dir));
+    });
+  }
+
   return gulp.task('catberry:clean', function (cb) {
     console.log(pathsToDel);
     del(pathsToDel, cb);
