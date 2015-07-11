@@ -1,3 +1,4 @@
+'use strict';
 var gulp = require('gulp');
 var cache = require('gulp-cached');
 var notify = require('gulp-notify');
@@ -13,15 +14,13 @@ var ifs = require('gulp-if');
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
-
   return gulp.task('css:dist', function (cb) {
     return gulp.src(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css', '*-*.css'))
-        .pipe(cache('css-dist'))
-            .on('error', notify.onError(function (error) {
+      .pipe(cache('css-dist'))
+      .on('error', notify.onError(function (error) {
               return '\nAn error occurred while minifying raster css.\nLook in the console for details.\n' + error;
-            })
-        )
-        .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
+            }))
+      .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
             .pipe(ifs(buildOptions.useDebug, debug({
               title: 'css-dist-debug'
             })))
