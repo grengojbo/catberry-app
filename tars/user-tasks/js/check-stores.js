@@ -13,22 +13,8 @@ var path = require('path');
 // var fixmyjs = require('gulp-fixmyjs');
 
 var jsPathsToLint = [
-  path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '*.js'),
-  path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '_*.js'),
-  path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'data', 'data.js')
+  path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentStoresFolderName, '**', '*.js')
 ];
-
-if (tarsConfig.lintJsCodeBeforeModules) {
-  tarsConfig.jsPathsToConcatBeforeModulesJs.forEach(function (path) {
-    jsPathsToLint.push(path);
-  });
-}
-
-if (tarsConfig.lintJsCodeAfterModules) {
-  tarsConfig.jsPathsToConcatAfterModulesJs.forEach(function (path) {
-    jsPathsToLint.push(path);
-  });
-}
 
 /**
  * Check JS for style and errors (optional task)
@@ -36,7 +22,7 @@ if (tarsConfig.lintJsCodeAfterModules) {
  */
 module.exports = function (buildOptions) {
 
-  return gulp.task('js:check', function (cb) {
+  return gulp.task('js:check-stores', function (cb) {
     if (tarsConfig.useJsLintAndHint) {
       return gulp.src(jsPathsToLint)
         .pipe(cache('hinting'))
@@ -50,9 +36,9 @@ module.exports = function (buildOptions) {
         .on('error', notify.onError(function (error) {
           return 'An error occurred while checking js.\nLook in the console for details.\n';
         }))
-        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName)));
+        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentStoresFolderName)));
         // .pipe(debug({
-          // title: 'js:check'
+        //   title: 'js:check'
         // }));
 
     } else {

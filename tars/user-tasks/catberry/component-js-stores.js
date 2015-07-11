@@ -17,7 +17,7 @@ var babel = require('gulp-babel');
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
-  require('../../tasks/js/check')(buildOptions);
+  require('../js/check-stores')(buildOptions);
   var distDir = tarsConfig.fs.componentStoresFolderName;
   var jsPaths = [
     path.join('.', tarsConfig.fs.srcFolderName, distDir, '**', '*.js')
@@ -27,7 +27,7 @@ module.exports = function (buildOptions) {
       jsPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, distDir, dir + '{,/**}'));
     });
   }
-  return gulp.task('catberry:component-js-stores', ['js:check'], function () {
+  return gulp.task('catberry:component-js-stores', ['js:check-stores'], function () {
     return gulp.src(jsPaths)
       .pipe(cache('catberry-component-js-stores'))
       .on('error', notify.onError(function (error) {

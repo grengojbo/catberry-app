@@ -498,7 +498,7 @@ gulp.task('default', ['build']);
 
 gulp.task('test', function (cb) {
   buildOptions.production = false;
-  runSequence(['js:check'], cb);
+  runSequence(['js:check', 'js:check-stores'], cb);
 });
 
 gulp.task('format', function (cb) {
