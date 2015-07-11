@@ -1,5 +1,0 @@
-{
-	"name": "auth-register",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}

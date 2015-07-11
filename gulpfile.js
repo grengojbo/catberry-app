@@ -68,6 +68,10 @@ if (gutil.env.release) {
   buildOptions.hash = '';
 }
 
+if (gutil.env.extrapath){
+  buildOptions.buildPath = tarsConfig.additionalBuildPath;
+}
+
 buildOptions.useDebug = useDebug;
 buildOptions.templateExtension = templateExtension;
 
@@ -318,7 +322,7 @@ gulp.task('build-dev', function (cb) {
     'css:compile',
     'catberry:assets',
     ['copy:other', 'copy:static'],
-    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js'],
+    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js', 'catberry:component-js-stores'],
     // 'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [
@@ -502,3 +506,7 @@ gulp.task('format', function (cb) {
   runSequence(['js:format'], cb);
 });
 
+gulp.task('work', function (cb) {
+  buildOptions.production = false;
+  runSequence(['catberry:component-js-stores'], cb);
+});

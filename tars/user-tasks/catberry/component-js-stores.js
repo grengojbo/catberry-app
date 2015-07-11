@@ -18,7 +18,7 @@ var babel = require('gulp-babel');
  */
 module.exports = function (buildOptions) {
   require('../../tasks/js/check')(buildOptions);
-  var distDir = tarsConfig.fs.componentFolderName;
+  var distDir = tarsConfig.fs.componentStoresFolderName;
   var jsPaths = [
     path.join('.', tarsConfig.fs.srcFolderName, distDir, '**', '*.js')
   ];
@@ -27,22 +27,22 @@ module.exports = function (buildOptions) {
       jsPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, distDir, dir + '{,/**}'));
     });
   }
-  return gulp.task('catberry:component-js', ['js:check'], function () {
+  return gulp.task('catberry:component-js-stores', ['js:check'], function () {
     return gulp.src(jsPaths)
-      .pipe(cache('catberry-component-js'))
+      .pipe(cache('catberry-component-js-stores'))
       .on('error', notify.onError(function (error) {
-        return '\nAn error occurred while concating js-files.\nLook in the console for details.\n' + error;
+        return '\nAn error occurred while concating stores js-files.\nLook in the console for details.\n' + error;
       }))
       .pipe(gulpif(tarsConfig.es6_transpile, babel()))
       .on('error', notify.onError(function (error) {
-        return '\nAn error occurred while transpiling es6 js-files.\nLook in the console for details.\n' + error;
+        return '\nAn error occurred while transpiling es6 stores js-files.\nLook in the console for details.\n' + error;
       }))
       .pipe(gulp.dest(distDir))
       .pipe(gulpif(buildOptions.useDebug, debug({
-        title: 'catberry:component-js-debug'
+        title: 'catberry:component-js-stores-debug'
       })))
       .pipe(size({
-        title: 'catberry:component-js'
+        title: 'catberry:component-js-stores'
       }))
       .pipe(
         notifier('JS\'ve been linted and concatinated')

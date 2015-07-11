@@ -14,6 +14,8 @@ var path = require('path');
 
 var jsPathsToLint = [
   path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '*.js'),
+  path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentStoresFolderName, '**', '*.js'),
+  path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentLibsFolderName, '**', '*.js'),
   path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', '_*.js'),
   path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'data', 'data.js')
 ];
@@ -50,7 +52,7 @@ module.exports = function (buildOptions) {
         .on('error', notify.onError(function (error) {
           return 'An error occurred while checking js.\nLook in the console for details.\n';
         }))
-        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName)));
+        .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName)));
         // .pipe(debug({
         //   title: 'js:check'
         // }));

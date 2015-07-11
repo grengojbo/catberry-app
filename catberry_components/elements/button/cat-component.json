@@ -1,5 +1,0 @@
-{
-	"name": "button",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}

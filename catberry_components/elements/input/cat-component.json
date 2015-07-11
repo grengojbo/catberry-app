@@ -1,5 +1,0 @@
-{
-	"name": "Input",
-	"template": "./template.hbs",
-	"errorTemplate": "./error.hbs"
-}
