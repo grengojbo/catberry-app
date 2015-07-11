@@ -1,6 +1,11 @@
 'use strict';
 module.exports = Input;
-var bh = require('../../../lib/helpers/browserHelper'), lh = require('../../../lib/helpers/l10nHelper'), elSelClass = '.js-input', isClosed = 'is-closed', errorClass = '.mess-error', typeList = {
+var bh = require('../../../lib/helpers/browserHelper'),
+  lh = require('../../../lib/helpers/l10nHelper'),
+  elSelClass = '.js-input',
+  isClosed = 'is-closed',
+  errorClass = '.mess-error',
+  typeList = {
     text: 'text',
     email: 'email',
     url: 'url',

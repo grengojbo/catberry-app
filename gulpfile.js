@@ -266,27 +266,28 @@ gulp.task('dev', ['build-dev'], function () {
   if (useLiveReload || useTunnelToWeb) {
     gulp.start('run-server');
     // gulp.watch('public/bundle.js').on('change', browserSync.reload);
+    // SYSTEM WATCHERS
+    watchers = fileLoader('./tars/watchers');
+    watchOptions.cssCompileTask = 'css:compile';
+
+    // You could uncomment the row bellow, to see all required watchers in console
+    // console.log(watchers);
+
+    // require watchers
+    watchers.forEach(function (file) {
+    require(file)(watchOptions);
+  });
+
+    // USER'S WATCHERS
+    userWatchers = fileLoader('./tars/user-watchers');
+
+    // require user-watchers
+    userWatchers.forEach(function (file) {
+    require(file)(watchOptions);
+  });
   } else {
     gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Build development has been finished successfully!'));
   }
-  // SYSTEM WATCHERS
-  // watchers = fileLoader('./tars/watchers');
-
-  // You could uncomment the row bellow, to see all required watchers in console
-  // console.log(watchers);
-
-  // require watchers
-  // watchers.forEach(function (file) {
-  //     require(file)(watchOptions);
-  // });
-
-  // USER'S WATCHERS
-  // userWatchers = fileLoader('./tars/user-watchers');
-
-  // require user-watchers
-  // userWatchers.forEach(function (file) {
-  //     require(file)(watchOptions);
-  // });
 });
 
 gulp.task('dist', ['build'], function () {
@@ -439,7 +440,7 @@ gulp.task('browsersync', function (cb) {
     // },
     // server: browserSyncConfig.server,
     // All of the following files will be watched
-    // files: ['public/**/*.*'],
+    files: [tarsConfig.fs.distFolderName + '/**/*.*'],
     proxy: browserSyncConfig.proxy,
     logConnections: true,
     debugInfo: true,
@@ -449,7 +450,7 @@ gulp.task('browsersync', function (cb) {
     browser: browserSyncConfig.browser,
     // startPath: browserSyncConfig.startUrl,
     notify: browserSyncConfig.useNotifyInBrowser,
-    watchTask: true,
+    // watchTask: true,
     tunnel: useTunnelToWeb
   });
 });

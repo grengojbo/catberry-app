@@ -4,6 +4,7 @@ https://github.com/minamarkham/sassy-starter/
 https://github.com/kachunchau/smacss-boilerplate
 https://github.com/davidrapson/scss-toolkit
 */
+/* Push animation*/
 /* line 7, src/static/scss/_helpers.scss */
 .text-center {
   text-align: center;
@@ -239,6 +240,10 @@ footer {
 /* line 47, src/static/scss/home.scss */
 .ui.huge.header {
   color: #fff;
+}
+/* line 52, src/static/scss/home.scss */
+.ui.grid {
+  margin: 0px;
 }
 
 

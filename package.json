@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.7.13",
+    "chokidar": "^1.0.3",
     "csstime-gulp-tasks": "^4.1.1",
     "download": "^4.1.2",
     "gulp-add-src": "^0.2.0",

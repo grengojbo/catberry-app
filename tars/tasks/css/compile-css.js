@@ -18,7 +18,7 @@ var mainStream;
 var ie9Stream;
 
 if (tarsConfig.autoprefixerConfig) {
-    useAutoprefixer = true;
+  useAutoprefixer = true;
 }
 
 var scssFilesToConcatinate = [
@@ -30,9 +30,9 @@ var scssFilesToConcatinate = [
     ];
 
 if (tarsConfig.useSVG) {
-    scssFilesToConcatinate.push(
-        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'sprites-scss', 'svg-sprite.scss')
-    );
+  scssFilesToConcatinate.push(
+      path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'sprites-scss', 'svg-sprite.scss')
+  );
 }
 
 scssFilesToConcatinate.push(
@@ -51,51 +51,51 @@ scssFilesToConcatinate.push(
  */
 module.exports = function (buildOptions) {
 
-    var patterns = [];
+  var patterns = [];
 
-    patterns.push(
+  patterns.push(
         {
-            match: '%=staticPrefixForCss=%',
-            replacement: tarsConfig.staticPrefixForCss()
+          match: '%=staticPrefixForCss=%',
+          replacement: tarsConfig.staticPrefixForCss()
         }
     );
 
-    return gulp.task('css:compile-css', function () {
+  return gulp.task('css:compile-css', function () {
 
-        helperStream = gulp.src(scssFilesToConcatinate);
-        mainStream = helperStream.pipe(addsrc.append(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'etc', '**', '*.scss')));
-        ie9Stream = helperStream.pipe(
-                                addsrc.append([
-                                        path.join(tarsConfig.fs.srcFolderName, 'modules', '*', 'ie', 'ie9.scss'),
-                                        path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'etc', '**', '*.scss')
-                                    ])
-                            );
+    helperStream = gulp.src(scssFilesToConcatinate);
+    mainStream = helperStream.pipe(addsrc.append(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'etc', '**', '*.scss')));
+    ie9Stream = helperStream.pipe(
+                            addsrc.append([
+                                    path.join(tarsConfig.fs.srcFolderName, 'modules', '*', 'ie', 'ie9.scss'),
+                                    path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss', 'etc', '**', '*.scss')
+                                ])
+                        );
 
-        mainStream
-            .pipe(concat('main' + buildOptions.hash + '.css'))
+    mainStream
+        .pipe(concat('main' + buildOptions.hash + '.css'))
             .pipe(replace({
-                patterns: patterns,
-                usePrefix: false
+              patterns: patterns,
+              usePrefix: false
             }))
             .pipe(sass({
-                    errLogToConsole: false,
-                    onError: function (error) {
-                        notify().write('\nAn error occurred while compiling css.\nLook in the console for details.\n');
-                        return gutil.log(gutil.colors.red(error.message + ' on line ' + error.line + ' in ' + error.file));
-                    }
-                }))
-            .pipe(
-                gulpif(useAutoprefixer,
-                    autoprefixer(
+              errLogToConsole: false,
+              onError: function (error) {
+                notify().write('\nAn error occurred while compiling css.\nLook in the console for details.\n');
+                return gutil.log(gutil.colors.red(error.message + ' on line ' + error.line + ' in ' + error.file));
+              }
+            }))
+        .pipe(
+            gulpif(useAutoprefixer,
+                autoprefixer(
                         {
-                            browsers: tarsConfig.autoprefixerConfig,
-                            cascade: true
+                          browsers: tarsConfig.autoprefixerConfig,
+                          cascade: true
                         }
                     )
                 )
             )
             .on('error', notify.onError(function (error) {
-                return '\nAn error occurred while autoprefixing css.\nLook in the console for details.\n' + error;
+              return '\nAn error occurred while autoprefixing css.\nLook in the console for details.\n' + error;
             }))
             .pipe(gulp.dest(path.join(tarsConfig.fs.devFolderName, tarsConfig.fs.staticFolderName, 'css')))
             .pipe(browserSync.reload({ stream: true }))
@@ -103,27 +103,27 @@ module.exports = function (buildOptions) {
                 notifier('Scss-files\'ve been compiled')
             );
 
-        return ie9Stream
-            .pipe(concat('main_ie9' + buildOptions.hash + '.css'))
+    return ie9Stream
+        .pipe(concat('main_ie9' + buildOptions.hash + '.css'))
             .pipe(replace({
-                patterns: patterns,
-                usePrefix: false
+              patterns: patterns,
+              usePrefix: false
             }))
             .pipe(sass({
-                errLogToConsole: false,
-                onError: function (error) {
-                    notify().write('\nAn error occurred while compiling css for ie9.\nLook in the console for details.\n');
-                    return gutil.log(gutil.colors.red(error.message + ' on line ' + error.line + ' in ' + error.file));
-                }
+              errLogToConsole: false,
+              onError: function (error) {
+                notify().write('\nAn error occurred while compiling css for ie9.\nLook in the console for details.\n');
+                return gutil.log(gutil.colors.red(error.message + ' on line ' + error.line + ' in ' + error.file));
+              }
             }))
             .pipe(autoprefixer('ie 9', { cascade: true }))
             .on('error', notify.onError(function (error) {
-                return '\nAn error occurred while autoprefixing css.\nLook in the console for details.\n' + error;
+              return '\nAn error occurred while autoprefixing css.\nLook in the console for details.\n' + error;
             }))
             .pipe(gulp.dest(path.join(tarsConfig.fs.devFolderName, tarsConfig.fs.staticFolderName, 'css')))
             .pipe(browserSync.reload({ stream: true }))
             .pipe(
                 notifier('Css-files for ie9 have been compiled')
             );
-    });
+  });
 };

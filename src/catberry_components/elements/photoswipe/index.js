@@ -108,8 +108,8 @@ Photoswipe.prototype.render = function () {
     transNext: lp.get(curLocale, 'PSWP_NEXT'),
     locale: curLocale
   };
-  this._logger.info('---- [Photoswipe] render --->');
-  this._logger.info(result);
+  console.log('---- [Photoswipe] render --->');
+  console.log(result);
   return result;
 };
 /**
@@ -133,8 +133,10 @@ Photoswipe.prototype.hide = function () {
   var el = this.$context.element.querySelector(pswpSel);
   this.removeClass(el);
   bh.removeClass(el, 'pswp--open');
-  bh.removeClass(el, 'pswp--visible');  // el.style.display = 'none';
+  bh.removeClass(el, 'pswp--visible');
+  // el.style.display = 'none';
 };
+
 /**
  * Shows in template.
  */

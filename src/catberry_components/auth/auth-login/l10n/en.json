@@ -4,7 +4,7 @@
   "PLACEHOLDER_USERNAME": "Введите Username or email",
   "PLACEHOLDER_PASSWORD": "Введите Password",
   "LOGIN": "Log in",
-  "LOGOUT": "Выйти",
+  "LOGOUT": "Exit",
   "FORGOT_PASSWORD": "Forgot your password?",
   "SIGNUP": "Need an account? Sign up free.",
   "ERROR_LOGIN": "Неправильный пароль, email или имя пользователя."

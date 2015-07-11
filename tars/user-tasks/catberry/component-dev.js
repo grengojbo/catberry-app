@@ -20,11 +20,11 @@ var cache = require('gulp-cached');
  */
 module.exports = function (buildOptions) {
   var libPaths = [
-    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.'+buildOptions.templateExtension)
+    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.' + buildOptions.templateExtension)
   ];
   if (tarsConfig.catberry.exclude) {
-    tarsConfig.catberry.exclude.split(',').forEach(function (dir){
-      libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, dir+'{,/**}'));
+    tarsConfig.catberry.exclude.split(',').forEach(function (dir) {
+      libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, dir + '{,/**}'));
     });
   }
   return gulp.task('catberry:component-dev', function () {
@@ -32,15 +32,15 @@ module.exports = function (buildOptions) {
       .pipe(cache('catberry-component-dev'))
       .on('error', notify.onError(function (error) {
         return '\nAn error occurred while copy catberry components template.\nLook in the console for details.\n' + error;
-        })
-      )
-      .pipe(gulp.dest(tarsConfig.fs.componentFolderName))
-      // .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.tmpFolderName, tarsConfig.fs.imagesFolderName)))
-      .pipe(gulpif(buildOptions.useDebug, debug({title: 'catberry:component-dev'})))
-      .pipe(size({title: 'catberry:component-dev'}))
-      .pipe(
-          notifier('Copy catberry components template!')
-      );
+      })
+    )
+    .pipe(gulp.dest(tarsConfig.fs.componentFolderName))
+    // .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.tmpFolderName, tarsConfig.fs.imagesFolderName)))
+    .pipe(gulpif(buildOptions.useDebug, debug({ title: 'catberry:component-dev' })))
+    .pipe(size({ title: 'catberry:component-dev' }))
+    .pipe(
+        notifier('Copy catberry components template!')
+    );
     // var config = catberryHelper(false, 'src/catberry_components');
     // return gutil.log(gutil.colors.red('Copy Cattberry component files'));
   });
