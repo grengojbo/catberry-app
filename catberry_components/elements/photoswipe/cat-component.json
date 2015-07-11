@@ -1,0 +1,6 @@
+{
+	"name": "photoswipe",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs",
+  "minifyHtml": true
+}

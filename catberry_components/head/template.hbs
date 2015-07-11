@@ -1,0 +1,68 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{page.title}} ::: {{page.subtitle}}</title>
+<meta name="description" content="{{l10n "DESCRIPTION"}}">
+<meta name="keywords" content="{{l10n "KEYWORDS"}}">
+
+<link rel="canonical" href="{{location}}" />
+<!--<meta name="DC.date.issued" content="2007-04-28">-->
+<meta name="application-name" content="{{page.title}}" />
+
+<!-- Begin Twitter summary card -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@jbokiev" />
+<meta name="twitter:title" content="{{page.title}}" />
+<meta name="twitter:description" content="{{l10n "DESCRIPTION"}}" />
+<meta name="twitter:image" content="{{socialLogo}}" />
+<meta name="twitter:url" content="{{location}}" />
+<!-- End Twitter summary card-->
+
+<!-- Begin Open Graph markup -->
+<meta property="og:title" content="{{page.title}}" />
+<meta property="og:description" content="{{l10n "DESCRIPTION"}}" />
+<!-- article, website -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{location}}" />
+<!-- Example: http://newrelic.com/assets/newrelic/logo_NR-fb.png -->
+<meta property="og:image" content="{{socialLogo}}" />
+<!-- End Open Graph markup -->
+
+{{!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> --}}
+{{!-- <link href="/static/css/loader.css" rel="stylesheet"> --}}
+<!--
+<meta property="fb:app_id" content="180444840287"/>
+<meta property="fb:admins" content="1360179707">
+
+<link rel="publisher" href="https://plus.google.com/113000071431138202574"/>
+<meta name="p:domain_verify" content="4f4576e6bac27d86fd926c4579b97f23"/>
+<meta name="pocket-site-verification" content="be6d97bc1f6961ce6348e7ced4f1f4" />
+
+<meta name="msapplication-TileColor" content="#008c99">
+<meta name="msapplication-TileImage" content="http://newrelic.com/assets/newrelic/logo_NR-fb.png">
+-->
+
+<link rel="stylesheet" href="/static/semantic-ui/semantic.min.css">
+{{#unless page.activePages.home}}
+<!-- Other Page -->
+<!-- build:css /static/css/main.css -->
+<link rel="stylesheet" href="/static/css/main.css" />
+<!-- endbuild -->
+{{else}}
+{{#if isMobile}}
+<!-- Mobile head -->
+<!-- build:css /static/css/mobile.css -->
+<link rel="stylesheet" href="/static/css/mobile.css" />
+<!-- endbuild -->
+{{else}}
+<!-- Home Page -->
+<!-- build:css /static/css/home.css -->
+<link rel="stylesheet" href="/static/css/home.css" />
+<!-- endbuild -->
+{{/if}}
+{{/unless}}
+
+<link rel="shortcut icon" href="/favicon.ico">
+{{#if googleSiteVerification}}
+<meta name="google-site-verification" content="{{googleSiteVerification}}">
+{{/if}}

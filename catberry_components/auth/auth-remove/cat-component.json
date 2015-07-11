@@ -1,0 +1,5 @@
+{
+	"name": "auth-remove",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

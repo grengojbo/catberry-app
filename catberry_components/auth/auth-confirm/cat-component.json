@@ -1,0 +1,5 @@
+{
+	"name": "auth-confirm",
+	"template": "./template.hbs",
+	"errorTemplate": "./error.hbs"
+}

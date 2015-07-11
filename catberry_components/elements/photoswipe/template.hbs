@@ -1,0 +1,56 @@
+<!-- render -->
+{{!-- <link rel="stylesheet" href="/static/css/photoswipe.css"> --}}
+{{#if isShow}}
+<div id="{{id}}" class="pswp pswp--open pswp--visible" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="pswp__bg" style="opacity: 0.9;"></div>
+  <div class="pswp__scroll-wrap">
+    <div class="vertical-align">
+            {{!-- <div class="pswp__item"></div> --}}
+            {{!-- <div class="pswp__item"></div> --}}
+            <div class="parent-element">ITEM :)</div>
+    </div>
+    {{#if options.controlEl}}
+      <div class="pswp__ui">
+        <div class="pswp__top-bar">
+          {{#if options.counterEl}}
+          <div class="pswp__counter"></div>
+          {{/if}}
+          {{#if options.closeEl}}
+          <button class="pswp__button pswp__button--close" title="{{transClose}}"></button>
+          {{/if}}
+          {{#if options.shareEl}}
+          <button class="pswp__button pswp__button--share" title="{{transShare}}"></button>
+          {{/if}}
+          {{#if options.fullscreenEl}}
+          <button class="pswp__button pswp__button--fs" title="{{transToggle}}"></button>
+          {{/if}}
+          {{#if options.zoomEl}}
+          <button class="pswp__button pswp__button--zoom" title="{{transZoom}}"></button>
+          {{/if}}
+          {{#if options.preloaderEl}}
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+        {{#if options.arrowEl}}
+        <button class="pswp__button pswp__button--arrow--left" title="{{transPrevious}}"></button>
+        <button class="pswp__button pswp__button--arrow--right" title="{{transNext}}"></button>
+        {{/if}}
+        {{#if options.captionEl}}
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+        {{/if}}
+      </div>
+    {{/if}}
+  </div>
+</div>
+{{/if}}
