@@ -7,7 +7,7 @@ var tarsConfig = require('../../../tars-config');
 var catberryHelper = require('../../helpers/catberry-assest');
 var path = require('path');
 var debug = require('gulp-debug');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
 
 /**
  * Catberry modify files
@@ -15,11 +15,11 @@ var rename = require("gulp-rename");
  */
 module.exports = function (buildOptions) {
   var libPaths = [
-    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.'+buildOptions.templateExtension)
+    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.' + buildOptions.templateExtension)
   ];
   if (tarsConfig.catberry.exclude) {
-    tarsConfig.catberry.exclude.split(',').forEach(function (dir){
-      libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, dir+'{,/**}'));
+    tarsConfig.catberry.exclude.split(',').forEach(function (dir) {
+      libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, dir + '{,/**}'));
     });
   }
   return gulp.task('html:build', function () {
@@ -29,10 +29,10 @@ module.exports = function (buildOptions) {
         file.dirname = '/';
       }))
       .pipe(gulp.dest('.dev'))
-      .pipe(gulpif(buildOptions.useDebug, debug({title: 'html-build'})))
-      .pipe(size({title: 'html-build'}))
-      // .pipe(
-      //     notifier('Copy catberry components template!')
-      // );
+      .pipe(gulpif(buildOptions.useDebug, debug({ title: 'html-build' })))
+      .pipe(size({ title: 'html-build' }));
+    // .pipe(
+    //     notifier('Copy catberry components template!')
+    // );
   });
 };
