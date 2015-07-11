@@ -13,5 +13,5 @@
   ],
   "supportedThemes": [ "light", "dark" ],
   "defaultTheme": "light",
-  "isRelease": true
+  "isRelease": false
 }

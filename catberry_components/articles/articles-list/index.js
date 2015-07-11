@@ -89,7 +89,7 @@ ArticlesList.prototype._handleScroll = function () {
  * @private
  */
 ArticlesList.prototype._loadMoreItems = function () {
-  void 0;
+  console.log('---> _loadMoreItems <---');
   this.$context.sendAction('load-more');
 };
 /**
