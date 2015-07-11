@@ -46,8 +46,8 @@ var ERROR_GITHUB_API_HOST = 'Github API host should be specified',
 		'/blob/master/docs/';
 
 var DOCUMENTS = {
-	'overview.html': 'getReadme',
-	'documentation.html': 'getDocumentation'
+  'overview.html': 'getReadme',
+  'documentation.html': 'getDocumentation'
 };
 
 /**
@@ -57,14 +57,14 @@ var DOCUMENTS = {
  * @param {Object} SiteApiClient Configuration.
  * @constructor
  */
-function SiteApiClient($uhr, $logger, SiteApiClient) {
-	if (!siteApiClient || !siteApiClient.host) {
-		throw new Error(ERROR_GITHUB_API_HOST);
-	}
-	this._uhr = $uhr;
-	this._logger = $logger;
-	this._config = SiteApiClient || {};
-	this._cache = {};
+function SiteApiClient($uhr, $logger, siteApiClient) {
+  if (!siteApiClient || !siteApiClient.host) {
+    throw new Error(ERROR_GITHUB_API_HOST);
+  }
+  this._uhr = $uhr;
+  this._logger = $logger;
+  this._config = SiteApiClient || {};
+  this._cache = {};
 }
 
 /**
@@ -100,26 +100,26 @@ SiteApiClient.prototype._cache = null;
  * @returns {Function} Middleware function.
  */
 SiteApiClient.prototype.getMiddleware = function () {
-	var self = this;
-	return function (request, response, next) {
-		var urlPath = request.path.toLowerCase(),
-			parts = urlPath.split('/'),
-			document = parts[parts.length - 1];
+  var self = this;
+  return function (request, response, next) {
+    var urlPath = request.path.toLowerCase(),
+    parts = urlPath.split('/'),
+    document = parts[parts.length - 1];
 
-		if (!DOCUMENTS.hasOwnProperty(document)) {
-			next();
-			return;
-		}
+    if (!DOCUMENTS.hasOwnProperty(document)) {
+      next();
+      return;
+    }
 
-		var methodName = DOCUMENTS[document];
-		self[methodName]()
+    var methodName = DOCUMENTS[document];
+    self[methodName]()
 			.then(function (content) {
-				response.send(content);
+  response.send(content);
 			})
 			.catch(function (error) {
-				response.status(503).send(error.message);
+  response.status(503).send(error.message);
 			});
-	};
+  };
 };
 
 /**
@@ -127,15 +127,15 @@ SiteApiClient.prototype.getMiddleware = function () {
  * @returns {Promise<Object>} Promise for result content.
  */
 SiteApiClient.prototype.getReadme = function () {
-	return this.request({
-		url: this._buildUrl('/repos/catberry/catberry/readme'),
-		method: 'GET',
-		headers: {
-			Accept: 'application/vnd.github.VERSION.html'
-		}
-	})
+  return this.request({
+    url: this._buildUrl('/repos/catberry/catberry/readme'),
+    method: 'GET',
+    headers: {
+      Accept: 'application/vnd.github.VERSION.html'
+    }
+  })
 		.then(function (content) {
-			return content;
+  return content;
 		});
 };
 
@@ -144,30 +144,30 @@ SiteApiClient.prototype.getReadme = function () {
  * @returns {Promise<Object>} Promise for result content.
  */
 SiteApiClient.prototype.getDocumentation = function () {
-	var self = this;
-	return self.request({
-		url: self._buildUrl(
-			'/repos/catberry/catberry/contents/docs/index.md'
-		),
-		headers: {
-			Accept: 'application/vnd.github.VERSION.html'
-		},
-		method: 'GET'
-	})
+  var self = this;
+  return self.request({
+    url: self._buildUrl(
+    '/repos/catberry/catberry/contents/docs/index.md'
+    ),
+    headers: {
+      Accept: 'application/vnd.github.VERSION.html'
+    },
+    method: 'GET'
+  })
 		.then(function (content) {
-			return content
-				// restore fragment navigation
-				.replace(/id="user-content-(.+)"/ig, 'id="$1"')
-				.replace(/<span class="octicon octicon-link">/ig, '$&#')
+  return content
+  // restore fragment navigation
+  .replace(/id="user-content-(.+)"/ig, 'id="$1"')
+  .replace(/<span class="octicon octicon-link">/ig, '$&#')
 				.replace(/(src|href)="([^#][^"]+)"/ig, function (match, p1, p2) {
-					return /^.+:\/\//.test(p2) ?
-						match :
-						p1 + '="' +
-						(p1 === 'src' ?
-							DOCUMENTATION_URL_RAW :
-							DOCUMENTATION_URL
-						) +
-						p2 + '"';
+  return /^.+:\/\//.test(p2) ?
+  match :
+  p1 + '="' +
+  (p1 === 'src' ?
+  DOCUMENTATION_URL_RAW :
+  DOCUMENTATION_URL
+  ) +
+  p2 + '"';
 				});
 		});
 };
@@ -178,48 +178,48 @@ SiteApiClient.prototype.getDocumentation = function () {
  * @returns {Promise.<Object>} Promise for result content.
  */
 SiteApiClient.prototype.request = function (parameters) {
-	if (!this._config.accessToken) {
-		return Promise.reject(new Error('No access token specified'));
-	}
+  if (!this._config.accessToken) {
+    return Promise.reject(new Error('No access token specified'));
+  }
 
-	parameters = parameters || {};
+  parameters = parameters || {};
 
-	this._logger.trace(util.format(
-		TRACE_API_REQUEST_FORMAT, parameters.method, parameters.url
-	));
-	var self = this,
-		start = Date.now();
+  this._logger.trace(util.format(
+  TRACE_API_REQUEST_FORMAT, parameters.method, parameters.url
+  ));
+  var self = this,
+  start = Date.now();
 
-	if (!parameters.data) {
-		parameters.data = {};
-	}
+  if (!parameters.data) {
+    parameters.data = {};
+  }
 
-	if (this._cache.hasOwnProperty(parameters.url)) {
-		parameters.headers['If-None-Match'] = this._cache[parameters.url].etag;
-	}
+  if (this._cache.hasOwnProperty(parameters.url)) {
+    parameters.headers['If-None-Match'] = this._cache[parameters.url].etag;
+  }
 
-	// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
-	parameters.data.access_token = this._config.accessToken;
+  // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+  parameters.data.access_token = this._config.accessToken;
 
-	return this._uhr.request(parameters)
+  return this._uhr.request(parameters)
 		.then(function (result) {
-			var duration = Date.now() - start;
-			self._logger.trace(util.format(
-				TRACE_API_RESPONSE_FORMAT,
-				parameters.method, parameters.url, duration
-			));
+  var duration = Date.now() - start;
+  self._logger.trace(util.format(
+  TRACE_API_RESPONSE_FORMAT,
+  parameters.method, parameters.url, duration
+  ));
 
-			if (result.status.code === 304) {
-				self._logger.trace(TRACE_API_USE_CACHED);
-				return self._cache[parameters.url].content;
-			}
+  if (result.status.code === 304) {
+    self._logger.trace(TRACE_API_USE_CACHED);
+    return self._cache[parameters.url].content;
+  }
 
-			checkStatus(result.status);
-			self._cache[parameters.url] = {
-				content: result.content,
-				etag: result.status.headers.etag
-			};
-			return result.content;
+  checkStatus(result.status);
+  self._cache[parameters.url] = {
+    content: result.content,
+    etag: result.status.headers.etag
+  };
+  return result.content;
 		});
 };
 
@@ -230,7 +230,7 @@ SiteApiClient.prototype.request = function (parameters) {
  * @private
  */
 SiteApiClient.prototype._buildUrl = function (path) {
-	return this._config.host + path;
+  return this._config.host + path;
 };
 
 /**
@@ -238,7 +238,7 @@ SiteApiClient.prototype._buildUrl = function (path) {
  * @param {Object} status UHR status object.
  */
 function checkStatus(status) {
-	if (status.code < 200 || status.code >= 400) {
-		throw new Error(status.text);
-	}
+  if (status.code < 200 || status.code >= 400) {
+    throw new Error(status.text);
+  }
 }
