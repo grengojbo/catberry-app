@@ -414,6 +414,7 @@ gulp.task('serve:release', function () {
   };
   options.env = process.env;
   options.env.NODE_ENV = 'production';
+  // var server = gls('./server.js', options);
   var server = gls(['./server.js', 'release'], options);
   server.start();
 });

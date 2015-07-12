@@ -84,6 +84,17 @@
     "enableCssStructureMinimization": true
   },
   "componentsGlob": "catberry_components/**/cat-component.json",
+  "logger": {
+    "appenders": [
+      {
+        "type": "console",
+        "category": "catberry"
+      }
+    ],
+    "levels": {
+      "catberry": "@@levelsServer"
+    }
+  },
   "isRelease": false,
   "isProductionEnvironment": false
 }

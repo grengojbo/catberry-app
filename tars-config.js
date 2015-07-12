@@ -267,11 +267,11 @@ var tarsConfig = {
     // excludeLibs: 'articles,elements/error-message,elements/photoswipe',
     excludeLibs: false,
     dev: {
-      levelsServer: 'error,warn',
-      levelsBrowser: 'error,warn'
+      levelsServer: 'TRACE',
+      levelsBrowser: 'debug,trace,error,warn'
     },
     prod: {
-      levelsServer: 'error,warn',
+      levelsServer: 'ERROR',
       levelsBrowser: 'error,warn'
     },
     oldIE: false,
@@ -439,4 +439,4 @@ try {
   console.log('gulp-configs: no local settings');
 }
 
-module.exports = tarsConfig
+module.exports = tarsConfig;

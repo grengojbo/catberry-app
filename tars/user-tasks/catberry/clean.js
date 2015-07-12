@@ -8,7 +8,11 @@ var tarsConfig = require('../../../tars-config');
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
-  var pathsToDel = ['./public/__csstime-tmp'];
+  var pathsToDel = [
+    path.join('.', tarsConfig.fs.distFolderName, '__csstime-tmp'),
+    // path.join('.', '__bundle.js'),
+    path.join('.', tarsConfig.fs.distFolderName, 'bundle.js')
+  ];
 
   if (tarsConfig.catberry.exclude) {
     tarsConfig.catberry.exclude.split(',').forEach(function (dir) {
