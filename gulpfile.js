@@ -354,7 +354,7 @@ gulp.task('build', function () {
     'css:compile-build',
     'catberry:assets',
     ['copy:other', 'copy:static'],
-    ['catberry:component-copy', 'catberry:strip-debug', 'html:build'],
+    ['catberry:component-copy', 'catberry:strip-debug', 'html:build', 'catberry:component-js-stores', 'catberry:component-js-libs'],
     'html:catberry',
     ['html:dist', 'css:dist'],
     ['replace:humans', 'replace:robots', 'replace:version'],
