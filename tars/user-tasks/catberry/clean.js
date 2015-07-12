@@ -10,7 +10,7 @@ var tarsConfig = require('../../../tars-config');
 module.exports = function (buildOptions) {
   var pathsToDel = [
     path.join('.', tarsConfig.fs.distFolderName, '__csstime-tmp'),
-    // path.join('.', '__bundle.js'),
+    path.join('.', '__BrowserBundle.js'),
     path.join('.', tarsConfig.fs.distFolderName, 'bundle.js')
   ];
 
