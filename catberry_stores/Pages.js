@@ -2,7 +2,7 @@
 
 module.exports = Pages;
 
-var bh = require("../lib/helpers/browserHelper");
+var bh = require('../lib/helpers/browserHelper');
 /*
  * This is a Catberry Store file.
  * More details can be found here
@@ -62,13 +62,13 @@ var PAGES = {
 };
 
 /**
- * Creates new instance of the "Pages" store.
+ * Creates new instance of the 'Pages' store.
  * @param {Object} $config Application config.
  * @constructor
  */
 function Pages($serviceLocator, $config) {
   this._config = $config;
-  this._logger = $serviceLocator.resolve("logger");
+  this._logger = $serviceLocator.resolve('logger');
   if (this.$context.isBrowser) {
     this._logger.info('----> Pages | isBrowser --------');
     this.isAuthorized();
@@ -155,11 +155,11 @@ Pages.prototype.load = function () {
   };
   Object.keys(ALLOWED_PAGES)
     .forEach(function (page) {
-  result.activePages[page] = (currentPage === page);
-  if (ALLOWED_PAGES[page]) {
-    result.isMenu[page] = true;
-    // console.log(page);
-  }
+      result.activePages[page] = (currentPage === page);
+      if (ALLOWED_PAGES[page]) {
+        result.isMenu[page] = true;
+        // console.log(page);
+      }
     });
   // console.log(result);
   return result;

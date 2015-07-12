@@ -21,5 +21,5 @@ function Main() {
  * @returns {Object} Data object.
  */
 Main.prototype.load = function () {
-	return {who: 'World'};
+  return { who: 'World' };
 };
