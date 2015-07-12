@@ -4,7 +4,7 @@
     "appenders": [
       { "type": "console" }
     ],
-    "levels": "error,warn"
+    "levels": "debug,trace,error,warn"
   },
   "supportedLanguages": [
     { "title": "Українська", "value": "uk" },
