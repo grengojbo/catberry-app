@@ -445,7 +445,11 @@ gulp.task('browsersync', function (cb) {
     // },
     // server: browserSyncConfig.server,
     // All of the following files will be watched
-    files: [tarsConfig.fs.distFolderName + '/**/*.*'],
+    files: [
+      path.join(tarsConfig.fs.distFolderName, '*.js'),
+      path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, '**', '*.*'),
+      path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.assetsFolderName, '**', '*.*')
+      ],
     proxy: browserSyncConfig.proxy,
     logConnections: true,
     debugInfo: true,
