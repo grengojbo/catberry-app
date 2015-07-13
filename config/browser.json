@@ -4,7 +4,7 @@
     "appenders": [
       { "type": "console" }
     ],
-    "levels": "debug,trace,error,warn"
+    "levels": "error,warn"
   },
   "supportedLanguages": [
     { "title": "Українська", "value": "uk" },
@@ -13,5 +13,5 @@
   ],
   "supportedThemes": [ "light", "dark" ],
   "defaultTheme": "light",
-  "isRelease": false
+  "isRelease": true
 }

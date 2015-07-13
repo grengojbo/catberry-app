@@ -108,8 +108,8 @@ Photoswipe.prototype.render = function () {
     transNext: lp.get(curLocale, 'PSWP_NEXT'),
     locale: curLocale
   };
-  console.log('---- [Photoswipe] render --->');
-  console.log(result);
+  void 0;
+  void 0;
   return result;
 };
 /**

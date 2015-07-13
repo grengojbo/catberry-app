@@ -32,41 +32,20 @@ if (tarsConfig.autoprefixerConfig) {
  */
 module.exports = function (buildOptions) {
   return gulp.task('css:compile-uncss', function () {
-    return sass(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss'),
-      {
-        sourcemap: true,
-        lineNumbers: true,
-        style: 'expanded',
-        container: 'css:compile-uncss'
-      }
-    )
-    .on('error', function (error) {
-      notify().write('\nAn error occurred while compiling css.\nLook in the console for details.\n');
-      return gutil.log(gutil.colors.red(error.message + ' on line ' + error.line + ' in ' + error.file));
-    })
+    return gulp.src(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName, 'css', 'home-*.css'))
     .pipe(
-      gulpif(useAutoprefixer,
-        autoprefixer(
-          {
-            browsers: tarsConfig.autoprefixerConfig,
-            cascade: true
-          }
-        )
-      )
+      uncss({
+        options: {
+          htmlroot: '/Users/jbo/src/catberry-app/build/',
+          report: true
+        },
+        // html: '/Users/jbo/src/catberry-app/build/index.html'
+        html: path.join(tarsConfig.fs.buildFolderName, 'index.html')
+      })
     )
-    .on('error', notify.onError(function (error) {
-      return '\nAn error occurred while autoprefixing css.\nLook in the console for details.\n' + error;
-    }))
-    .pipe(uncss({
-      html: 'http://localhost:3000'
-    }))
-    .pipe(sourcemaps.write('/', {
-      includeContent: false,
-      sourceRoot: path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, 'scss')
-    }))
-    .pipe(gulp.dest('./dev'))
+    // .pipe(gulp.dest('.dev'))
     // .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.tmpFolderName, 'css')))
-    // .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
+    .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, 'css')))
     .pipe(
       gulpif(buildOptions.useDebug,
         debug(

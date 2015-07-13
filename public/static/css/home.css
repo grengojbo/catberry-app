@@ -1,9 +1,0 @@
-TypeError: 'undefined' is not a function (evaluating 'this.debug.bind(this)')
-
-  http://localhost:3000/bundle.js:7225 in Logger
-  http://localhost:3000/bundle.js:13583
-  http://localhost:3000/bundle.js:8847
-  http://localhost:3000/bundle.js:17
-  http://localhost:3000/bundle.js:6 in s
-  http://localhost:3000/bundle.js:6 in e
-  http://localhost:3000/bundle.js:13640

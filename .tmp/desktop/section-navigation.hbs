@@ -1,0 +1,8 @@
+<nav>
+	{{#each pages}}
+		<a class="item{{#if isActive}} active{{/if}}" href="{{url}}">{{name}}</a>
+	{{/each}}
+  {{#if isUser }}
+  <a class="item" href="/logout" id="cat-logout-menu">{{{l10n "LOGOUT"}}}</a>
+  {{/if}}
+</nav>

@@ -1,0 +1,8 @@
+{
+  "report": false,
+  "media": ["(min-width: 700px) handheld and (orientation: landscape)"],
+  "ignore": [
+    ".unused",
+    "/^#js/"
+  ]
+}

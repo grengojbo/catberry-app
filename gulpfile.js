@@ -509,5 +509,5 @@ gulp.task('format', function (cb) {
 
 gulp.task('work', function (cb) {
   buildOptions.production = false;
-  runSequence(['css:compile-uncss'], cb);
+  runSequence(['copy:inline'], 'html:catberry-inline', cb);
 });
