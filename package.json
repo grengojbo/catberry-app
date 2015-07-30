@@ -16,7 +16,7 @@
     "url": "git://github.com/grengojbo/catberry-app.git"
   },
   "author": {
-    "name": "Oleg Dolya",
+    "name": "Oleg  Dolya",
     "email": "oleg.dolya@gmail.com"
   },
   "main": "./server.js",
