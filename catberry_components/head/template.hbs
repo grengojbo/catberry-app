@@ -45,14 +45,20 @@
 {{!-- <link rel="stylesheet" href="/static/semantic-ui/semantic.min.css"> --}}
 {{#unless page.activePages.home}}
 <!-- Other Page -->
-<link rel="stylesheet" href="/static/css/main-e9e8790462.css">
+<!-- build:css /static/css/main.css -->
+<link rel="stylesheet" href="/static/css/main.css" />
+<!-- endbuild -->
 {{else}}
 {{#if isMobile}}
 <!-- Mobile head -->
-<link rel="stylesheet" href="/static/css/mobile-f5a7b3caef.css">
+<!-- build:css /static/css/mobile.css -->
+<link rel="stylesheet" href="/static/css/mobile.css" />
+<!-- endbuild -->
 {{else}}
 <!-- Home Page -->
-<link rel="stylesheet" href="/static/css/home-9e7bb53b73.css">
+<!-- build:css /static/css/home.css -->
+<link rel="stylesheet" href="/static/css/home.css" />
+<!-- endbuild -->
 {{/if}}
 {{/unless}}
 
