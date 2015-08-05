@@ -19,6 +19,7 @@ Thumbs.db
 /nbproject/*
 npm-debug.log
 phantomjsdriver.log
+.tmp
 
 # Logs
 logs
