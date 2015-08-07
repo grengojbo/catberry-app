@@ -5,7 +5,7 @@ https://github.com/kachunchau/smacss-boilerplate
 https://github.com/davidrapson/scss-toolkit
 */
 @import 'settings', 'mixins', 'helpers';
-@import 'normalize', 'modules/form', 'layouts/base', 'base';
+@import 'semantic', 'modules/form', 'layouts/base', 'base';
 
 .loading
 {

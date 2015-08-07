@@ -68,6 +68,10 @@ if (gutil.env.release) {
   buildOptions.hash = '';
 }
 
+if (gutil.env.extrapath){
+  buildOptions.buildPath = tarsConfig.additionalBuildPath;
+}
+
 buildOptions.useDebug = useDebug;
 buildOptions.templateExtension = templateExtension;
 
@@ -266,27 +270,28 @@ gulp.task('dev', ['build-dev'], function () {
   if (useLiveReload || useTunnelToWeb) {
     gulp.start('run-server');
     // gulp.watch('public/bundle.js').on('change', browserSync.reload);
+    // SYSTEM WATCHERS
+    watchers = fileLoader('./tars/watchers');
+    watchOptions.cssCompileTask = 'css:compile';
+
+    // You could uncomment the row bellow, to see all required watchers in console
+    // console.log(watchers);
+
+    // require watchers
+    watchers.forEach(function (file) {
+      require(file)(watchOptions);
+    });
+
+    // USER'S WATCHERS
+    userWatchers = fileLoader('./tars/user-watchers');
+
+    // require user-watchers
+    userWatchers.forEach(function (file) {
+      require(file)(watchOptions);
+    });
   } else {
     gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Build development has been finished successfully!'));
   }
-  // SYSTEM WATCHERS
-  // watchers = fileLoader('./tars/watchers');
-
-  // You could uncomment the row bellow, to see all required watchers in console
-  // console.log(watchers);
-
-  // require watchers
-  // watchers.forEach(function (file) {
-  //     require(file)(watchOptions);
-  // });
-
-  // USER'S WATCHERS
-  // userWatchers = fileLoader('./tars/user-watchers');
-
-  // require user-watchers
-  // userWatchers.forEach(function (file) {
-  //     require(file)(watchOptions);
-  // });
 });
 
 gulp.task('dist', ['build'], function () {
@@ -313,11 +318,11 @@ gulp.task('build-dev', function (cb) {
     ['service:clean', 'catberry:clean'],
     ['replace:browser', 'replace:environment'],
     ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
-    // ['copy:tmp', 'copy:static', 'copy:dev'],
     'css:compile',
     'catberry:assets',
     ['copy:other', 'copy:static'],
-    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js'],
+    ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js', 'catberry:component-js-stores', 'catberry:component-js-libs'],
+
     // 'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [
@@ -349,7 +354,7 @@ gulp.task('build', function () {
     'css:compile-build',
     'catberry:assets',
     ['copy:other', 'copy:static'],
-    ['catberry:component-copy', 'catberry:strip-debug', 'html:build'],
+    ['catberry:component-copy', 'catberry:strip-debug', 'html:build', 'catberry:component-js-stores', 'catberry:component-js-libs'],
     'html:catberry',
     ['html:dist', 'css:dist'],
     ['replace:humans', 'replace:robots', 'replace:version'],
@@ -409,6 +414,7 @@ gulp.task('serve:release', function () {
   };
   options.env = process.env;
   options.env.NODE_ENV = 'production';
+  // var server = gls('./server.js', options);
   var server = gls(['./server.js', 'release'], options);
   server.start();
 });
@@ -439,7 +445,11 @@ gulp.task('browsersync', function (cb) {
     // },
     // server: browserSyncConfig.server,
     // All of the following files will be watched
-    // files: ['public/**/*.*'],
+    files: [
+      path.join(tarsConfig.fs.distFolderName, '*.js'),
+      path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName, '**', '*.*'),
+      path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.assetsFolderName, '**', '*.*')
+      ],
     proxy: browserSyncConfig.proxy,
     logConnections: true,
     debugInfo: true,
@@ -449,7 +459,7 @@ gulp.task('browsersync', function (cb) {
     browser: browserSyncConfig.browser,
     // startPath: browserSyncConfig.startUrl,
     notify: browserSyncConfig.useNotifyInBrowser,
-    watchTask: true,
+    // watchTask: true,
     tunnel: useTunnelToWeb
   });
 });
@@ -493,7 +503,7 @@ gulp.task('default', ['build']);
 
 gulp.task('test', function (cb) {
   buildOptions.production = false;
-  runSequence(['js:check'], cb);
+  runSequence(['js:check', 'js:check-stores', 'js:check-libs'], cb);
 });
 
 gulp.task('format', function (cb) {
@@ -501,3 +511,8 @@ gulp.task('format', function (cb) {
   runSequence(['js:format'], cb);
 });
 
+gulp.task('work', function (cb) {
+  buildOptions.production = false;
+  // runSequence(['copy:inline'], 'html:catberry-inline', cb);
+  runSequence(['copy:other'], cb);
+});

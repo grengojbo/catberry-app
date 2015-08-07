@@ -1,6 +1,11 @@
 'use strict';
+
 module.exports = ErrorMessage;
-var lh = require('../../../lib/helpers/l10nHelper'), isCosed = '.message--close', selMessage = '.message--el', setLabel = '.header', selText = 'p';
+var lh = require('../../../lib/helpers/l10nHelper'),
+  isCosed = '.message--close',
+  selMessage = '.message--el',
+  setLabel = '.header',
+  selText = 'p';
 /*
  * This is a Catberry Cat-component file.
  * More details can be found here
@@ -67,8 +72,8 @@ ErrorMessage.prototype._handleMessageClose = function (event) {
   event.stopPropagation();
   // var el=this.$context.element.querySelector(elSelClass);
   var el = this.$context;
-  void 0;
-  void 0;
+  console.log('------------------- _handleMessageClose -------------------');
+  console.log(el);
   this.hide();
 };
 /**

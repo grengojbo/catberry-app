@@ -145,15 +145,15 @@ var tarsConfig = {
   browserSyncConfig: {
 
     /**
-     * proxy url
-     * @type {String}
-     */
+ * proxy url
+ * @type {String}
+ */
     proxy: 'localhost:3000',
 
     /**
-     * dir to serve files from
-     * @type {String}
-     */
+         * dir to serve files from
+         * @type {String}
+         */
     baseDir: './dev',
 
     /**
@@ -233,7 +233,7 @@ var tarsConfig = {
    * Build version is a date ot building
    * @type {Boolean}
    */
-  useBuildVersioning: true,
+  useBuildVersioning: false,
 
   /**
    * Use archiver for your build
@@ -262,12 +262,16 @@ var tarsConfig = {
   catberry: {
     // exclude: 'articles,elements/error-message,elements/photoswipe',
     exclude: false,
+    // excludeStores: 'articles,elements/error-message,elements/photoswipe',
+    excludeStores: false,
+    // excludeLibs: 'articles,elements/error-message,elements/photoswipe',
+    excludeLibs: false,
     dev: {
-      levelsServer: 'error,warn',
-      levelsBrowser: 'error,warn'
+      levelsServer: 'TRACE',
+      levelsBrowser: 'debug,trace,error,warn'
     },
     prod: {
-      levelsServer: 'error,warn',
+      levelsServer: 'ERROR',
       levelsBrowser: 'error,warn'
     },
     oldIE: false,
@@ -373,6 +377,20 @@ var tarsConfig = {
     componentFolderName: 'catberry_components',
 
     /**
+     * Name of folder with component stores
+     * 'catberry_stores' by default
+     * @type {String}
+     */
+    componentStoresFolderName: 'catberry_stores',
+
+    /**
+     * Name of folder with component stores
+     * 'catberry_stores' by default
+     * @type {String}
+     */
+    componentLibsFolderName: 'lib',
+
+    /**
      * Name of folder with src
      * 'src' by default
      * @type {String}
@@ -421,4 +439,4 @@ try {
   console.log('gulp-configs: no local settings');
 }
 
-module.exports = tarsConfig
+module.exports = tarsConfig;

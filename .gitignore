@@ -17,7 +17,9 @@ Thumbs.db
 .tmpTemplater
 .tmpPreproc
 /nbproject/*
-.dev
+npm-debug.log
+phantomjsdriver.log
+.tmp
 
 # Logs
 logs
@@ -52,6 +54,9 @@ node_modules
 # build
 __BrowserBundle.js
 build
+builds
+.dev
+dev
 public/__csstime-tmp
 public/static/css/*.map
 src/tmp/

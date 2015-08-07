@@ -21,6 +21,7 @@ function PageContent() {
   ComponentBase.call(this);
 }
 PageContent.prototype.slug = null;
+
 /**
  * Gets data context for template engine.
  * This method is optional.

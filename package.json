@@ -16,7 +16,7 @@
     "url": "git://github.com/grengojbo/catberry-app.git"
   },
   "author": {
-    "name": "Oleg Dolya",
+    "name": "Oleg  Dolya",
     "email": "oleg.dolya@gmail.com"
   },
   "main": "./server.js",
@@ -25,7 +25,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "catberry": "^5.4.1",
+    "catberry": "^5.4.4",
     "catberry-handlebars": "^1.0.6",
     "catberry-l10n": "^4.0.2",
     "catberry-l10n-handlebars-helper": "^1.0.3",
@@ -45,10 +45,12 @@
   },
   "devDependencies": {
     "browser-sync": "^2.7.13",
+    "chokidar": "^1.0.3",
     "csstime-gulp-tasks": "^4.1.1",
     "download": "^4.1.2",
     "gulp-add-src": "^0.2.0",
     "gulp-autoprefixer": "^2.2.0",
+    "gulp-babel": "^5.1.0",
     "gulp-bg": "0.0.5",
     "gulp-bump": "^0.3.1",
     "gulp-cached": "^1.1.0",
@@ -64,6 +66,7 @@
     "gulp-htmlmin": "^1.1.3",
     "gulp-if": "^1.2.5",
     "gulp-imagemin": "^2.3.0",
+    "gulp-inline": "0.0.11",
     "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.11.2",
     "gulp-live-server": "0.0.21",
@@ -84,6 +87,7 @@
     "gulp-svg2png": "^0.3.0",
     "gulp-tag-version": "^1.2.1",
     "gulp-uglifyjs": "^0.6.2",
+    "gulp-uncss": "^1.0.2",
     "gulp-useref": "^1.1.2",
     "gulp-util": "^3.0.6",
     "gulp-wait": "0.0.2",
@@ -94,14 +98,17 @@
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "readdirp": "^1.3.0",
-    "through2": "^2.0.0"
+    "through2": "^2.0.0",
+    "uncss": "^0.12.1",
+    "underscore": "^1.8.3"
   },
   "engines": {
     "node": ">=0.12"
   },
   "scripts": {
     "start": "npm run release",
-    "release": "node ./build.js release && ./node_modules/.bin/gulp && node ./server.js release $PORT",
+    "release": "node ./build.js release && node ./server.js release $PORT",
+    "gulp-release": "node ./build.js release && ./node_modules/.bin/gulp && node ./server.js release $PORT",
     "debug": "node ./build.js & ./node_modules/.bin/gulp && node ./server.js",
     "lint": "./node_modules/.bin/jshint ./ && ./node_modules/.bin/jscs ./",
     "debug-win": "start /B node ./build.js && start /B node ./server.js",

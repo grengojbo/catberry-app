@@ -12,7 +12,7 @@ util.inherits(PageContent, ComponentBase);
  * @constructor
  */
 function PageContent() {
-  void 0;
+  console.log('-> module [PageContent]');
   // console.log(this.$context.attributes);
   if (this.$context.attributes.slug) {
     this.slug = this.$context.attributes.slug;
@@ -21,6 +21,7 @@ function PageContent() {
   ComponentBase.call(this);
 }
 PageContent.prototype.slug = null;
+
 /**
  * Gets data context for template engine.
  * This method is optional.

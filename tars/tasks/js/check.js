@@ -52,7 +52,7 @@ module.exports = function (buildOptions) {
         }))
         .pipe(gulp.dest(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName)));
         // .pipe(debug({
-        //   title: 'js:check'
+          // title: 'js:check'
         // }));
 
     } else {

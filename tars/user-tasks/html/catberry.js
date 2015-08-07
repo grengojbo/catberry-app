@@ -18,7 +18,7 @@ var csso = require('gulp-csso');
 var revReplace = require('gulp-rev-replace');
 var filter = require('gulp-filter');
 var rev = require('gulp-rev');
-var rename = require("gulp-rename");
+var rename = require('gulp-rename');
 
 /**
  * Catberry modify files
@@ -26,15 +26,15 @@ var rename = require("gulp-rename");
  */
 module.exports = function (buildOptions) {
   var libPaths = [
-    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.'+buildOptions.templateExtension)
+    path.join('.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, '**', 'template.' + buildOptions.templateExtension)
   ];
   if (tarsConfig.catberry.exclude) {
-    tarsConfig.catberry.exclude.split(',').forEach(function (dir){
-      libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, dir+'{,/**}'));
+    tarsConfig.catberry.exclude.split(',').forEach(function (dir) {
+      libPaths.push(path.join('!.', tarsConfig.fs.srcFolderName, tarsConfig.fs.componentFolderName, dir + '{,/**}'));
     });
   }
   return gulp.task('html:catberry', function () {
-    var assets = useref.assets({searchPath: '{build,static,src,public}'});
+    var assets = useref.assets({ searchPath: '{build,static,src,public}' });
     // var cssFilter = filter(tarsConfig.fs.buildFolderName+'/**/*.css');
     // var userefAssets = useref.assets();
     // console.log(cssFilter);
@@ -55,10 +55,10 @@ module.exports = function (buildOptions) {
       .pipe(useref())
       .pipe(revReplace())
       .pipe(gulp.dest(tarsConfig.fs.buildFolderName))
-      .pipe(gulpif(buildOptions.useDebug, debug({title: 'html-catberry'})))
+      .pipe(gulpif(buildOptions.useDebug, debug({ title: 'html-catberry' })))
       .pipe(rev.manifest())
       .pipe(gulp.dest(tarsConfig.fs.buildFolderName))
-      .pipe(size({title: 'html-catberry'}))
+      .pipe(size({ title: 'html-catberry' }))
       .pipe(
           notifier('Copy catberry components template!')
       );

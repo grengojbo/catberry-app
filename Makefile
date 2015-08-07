@@ -19,6 +19,8 @@ GIT_COMMIT:="$(shell git rev-parse HEAD)"
 # Check if there are uncommited changes
 GIT_DIRTY:="$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)"
 
+#HOME_CSS_REV:=$(shell node ./util.js)
+
 help:
 	@echo "..............................................................."
 	@echo "Project: $(PROJECT_NAME)"
@@ -54,10 +56,11 @@ release:
 	@gulp dist
 	@#sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
 	@#sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
-	@node ./build.js release
-	@node ./server.js release
+	@#node ./build.js release
+	@#node ./server.js release
 	@#sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
 	@#sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
+	@exit 0
 
 clean:
 	rm -rf coverage
@@ -79,7 +82,8 @@ run:
 	@#gulp build
 	@#npm run debug
 	@# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
-	@gulp dev --tunnel --lr
+	@#gulp dev --tunnel --lr
+	@gulp dev --lr
 	@exit 0
 
 install:
@@ -95,7 +99,17 @@ skeleton:
 csscomb:
 	@csscomb src/static/scss -c config/.csscomb.json
 
+# index:
+# 	@curl http://localhost:3000/ > src/index.html
+# 	@sed -i .orig -e 's/ src\="\/bundle.js"//g' src/index.html
+# 	@uncss -s ../public/tmp/css/home.css src/index.html > public/static/css/home.css
+
 index:
-	@curl http://localhost:3000/ > src/index.html
+	@mkdir -p .tmp/desktop/static/css/
+	@curl http://localhost:3000/ > build/index.html
+	@#sed -i .orig -e 's/ src\="\/bundle.js"//g' build/index.html
+	@#uncss -s ../public/tmp/css/home.css build/index.html > public/static/css/home-9e7bb53b73.css
+	@#uncss -C ./build build/index.html > public/static/css/home-9e7bb53b73.css
+	@cd build && ../node_modules/uncss/bin/uncss -H ../build index.html > ../.tmp/desktop/${HOME_CSS_REV}
 
 

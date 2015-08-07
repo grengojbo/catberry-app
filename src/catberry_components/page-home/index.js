@@ -13,6 +13,17 @@ util.inherits(PageHome, ComponentBase);
  * @constructor
  */
 function PageHome() {
+  console.log('-> module [PageContent]');
   ComponentBase.call(this);
-  return this.$context.getStoreData();
 }
+
+/**
+ * Gets data context for template engine.
+ * This method is optional.
+ * @returns {Promise<Object>|Object|null|undefined} Data context
+ * for template engine.
+ */
+PageHome.prototype.render = function () {
+  console.log('-> module [PageContent]');
+  return this.$context.getStoreData();
+};

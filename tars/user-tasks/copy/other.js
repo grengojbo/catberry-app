@@ -17,19 +17,20 @@ var ifs = require('gulp-if');
  */
 module.exports = function (buildOptions) {
 
-    return gulp.task('copy:other', function (cb) {
-        return gulp.src(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, '{font,fonts,js}**'))
-            .pipe(cache('copy-other'))
+  var srcPath = path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.staticFolderName, '{font,fonts,js}', '**');
+  return gulp.task('copy:other', function (cb) {
+    return gulp.src(srcPath)
+      .pipe(cache('copy-other'))
             .on('error', notify.onError(function (error) {
-                    return '\nAn error occurred while minifying raster images.\nLook in the console for details.\n' + error;
-                })
-            )
-            .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName)))
-            .pipe(ifs(buildOptions.production, gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName))))
-            .pipe(ifs(buildOptions.useDebug, debug({title: 'copy:other-debug'})))
-            .pipe(size({title: 'copy:other'}))
-            .pipe(
-                notifier('Copy other files')
-            );
-    });
+              return '\nAn error occurred while minifying raster images.\nLook in the console for details.\n' + error;
+            })
+        )
+        .pipe(gulp.dest(path.join(tarsConfig.fs.distFolderName, tarsConfig.fs.staticFolderName)))
+        .pipe(ifs(buildOptions.production, gulp.dest(path.join(tarsConfig.fs.buildFolderName, tarsConfig.fs.staticFolderName))))
+        .pipe(ifs(buildOptions.useDebug, debug({ title: 'copy:other-debug ' + srcPath })))
+        .pipe(size({ title: 'copy:other' }))
+        .pipe(
+            notifier('Copy other files')
+        );
+  });
 };
