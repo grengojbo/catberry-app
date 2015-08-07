@@ -279,16 +279,16 @@ gulp.task('dev', ['build-dev'], function () {
 
     // require watchers
     watchers.forEach(function (file) {
-    require(file)(watchOptions);
-  });
+      require(file)(watchOptions);
+    });
 
     // USER'S WATCHERS
     userWatchers = fileLoader('./tars/user-watchers');
 
     // require user-watchers
     userWatchers.forEach(function (file) {
-    require(file)(watchOptions);
-  });
+      require(file)(watchOptions);
+    });
   } else {
     gutil.log(gutil.colors.green('✔'), gutil.colors.green.bold('Build development has been finished successfully!'));
   }
@@ -318,11 +318,11 @@ gulp.task('build-dev', function (cb) {
     ['service:clean', 'catberry:clean'],
     ['replace:browser', 'replace:environment'],
     ['images:tmp', 'images:tmp-svg', 'images:copy-tmp'],
-    // ['copy:tmp', 'copy:static', 'copy:dev'],
     'css:compile',
     'catberry:assets',
     ['copy:other', 'copy:static'],
     ['catberry:component-copy', 'catberry:component-dev', 'catberry:component-js', 'catberry:component-js-stores', 'catberry:component-js-libs'],
+
     // 'copy:components',
         // ['images:minify-svg', 'images:raster-svg'],
         // [

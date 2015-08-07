@@ -19,7 +19,7 @@ GIT_COMMIT:="$(shell git rev-parse HEAD)"
 # Check if there are uncommited changes
 GIT_DIRTY:="$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)"
 
-HOME_CSS_REV:=$(shell node ./util.js)
+#HOME_CSS_REV:=$(shell node ./util.js)
 
 help:
 	@echo "..............................................................."
@@ -82,7 +82,8 @@ run:
 	@#gulp build
 	@#npm run debug
 	@# pid=`ps | grep build.js | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill $pid
-	@gulp dev --tunnel --lr
+	@#gulp dev --tunnel --lr
+	@gulp dev --lr
 	@exit 0
 
 install:
