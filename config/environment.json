@@ -95,6 +95,6 @@
       "catberry": "@@levelsServer"
     }
   },
-  "isRelease": false,
-  "isProductionEnvironment": false
+  "isRelease": true,
+  "isProductionEnvironment": true
 }
