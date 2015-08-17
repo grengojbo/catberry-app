@@ -13,7 +13,7 @@ util.inherits(PageHome, ComponentBase);
  * @constructor
  */
 function PageHome() {
-  console.log('-> module [PageContent]');
+  void 0;
   ComponentBase.call(this);
 }
 
@@ -24,6 +24,6 @@ function PageHome() {
  * for template engine.
  */
 PageHome.prototype.render = function () {
-  console.log('-> module [PageContent]');
+  void 0;
   return this.$context.getStoreData();
 };

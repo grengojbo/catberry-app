@@ -3,7 +3,7 @@
 
 # TEAM
 
-    Chef: Oleg Dolya
+    Chef: Oleg  Dolya
     Contact: oleg.dolya [at] gmail.com
     Twitter: @jbokiev
     From: Kiev, Ukraine
