@@ -15,6 +15,7 @@ var tagVersion = require('gulp-tag-version');
 var browserSync = require('browser-sync').create();
 var wait = require('gulp-wait');
 var gls = require('gulp-live-server');
+var git = require('gulp-git');
 var $ = require('gulp-load-plugins')();
 
 // Flags
@@ -108,7 +109,7 @@ function inc(importance) {
     // save it back to filesystem
     .pipe(gulp.dest('./'))
     // commit the changed version number
-    .pipe($.git.commit('bumps package version', { args: '-a --amend -s' }))
+    .pipe(git.commit('bumps package version'))
 
     // read only one file to get the version number
     .pipe($.filter('package.json'))
@@ -124,6 +125,10 @@ function inc(importance) {
 /* TASKS */
 /*********/
 
+gulp.task('commit', function () {
+  return gulp.src('./*')
+    .pipe(git.commit('Release version', { args: '-a --amend -s' }));
+});
 //clean temporary directories
 gulp.task('clean', del.bind(null, [config.tmp, 'build']));
 
@@ -383,8 +388,8 @@ gulp.task('inc:release', function () {
   return inc('major');
 });
 
-gulp.task('patch', function (cb) {
-  runSequence(['inc:patch'], 'replace:version', cb);
+gulp.task('patch', ['inc:patch'], function (cb) {
+  runSequence('replace:version', 'commit', cb);
 });
 gulp.task('feature', function (cb) {
   runSequence(['inc:feature'], 'replace:version', cb);

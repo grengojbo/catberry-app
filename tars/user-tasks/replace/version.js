@@ -7,7 +7,6 @@ var path = require('path');
 var debug = require('gulp-debug');
 var gulpif = require('gulp-if');
 var replace = require('gulp-replace-task');
-var pkg = require('../../../package');
 
 /**
  * Minify png and jpg images
@@ -16,6 +15,7 @@ var pkg = require('../../../package');
 module.exports = function (buildOptions) {
   return gulp.task('replace:version', function (cb) {
     var file = 'VERSION';
+    var pkg = require('../../../package');
     return gulp.src(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.templatesFolderName, file))
             .pipe(replace({
               patterns: [
