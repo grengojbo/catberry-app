@@ -1,6 +1,7 @@
 NAME:=example
 ACCOUNT="grengojbo"
 ANSIBLE_DIR="../../ansible"
+APP_PORT=5001
 
 CURRENT_DIR:=$(CURDIR)
 
@@ -30,6 +31,7 @@ help:
 	@echo "make lint    - Run jshint and jscs"
 	@echo "make csscomb - CSScomb > CSS coding style formatter"
 	@echo "make run     - Run project debug mode"
+	@echo "make dist    - Run project production mode"
 	@echo "make index   - Optimize index page"
 	@echo "make release - Build and run release project"
 	@echo "make deploy  - Deploy current project (git push and ansible deploy)"
@@ -51,13 +53,20 @@ builds:
 	@#sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
 	@node ./build.js release
 
+dist:
+	@echo Release $(PROJECT_NAME) version: $(VERSION)
+	@#NODE_ENV=production gulp dist --lr
+	@gulp dist --lr
+	@exit 0
+
 release:
 	@echo Release $(PROJECT_NAME) version: $(VERSION)
-	@gulp dist --lr
+	@echo Run Browser http://localhost:$(APP_PORT)/
+	@#gulp dist --lr
 	@#sed -i .orig -e 's/"isProductionEnvironment": false/"isProductionEnvironment": true/g' config/environment.json
 	@#sed -i .orig -e 's/"isRelease": false/"isRelease": true/g' config/environment.json
-	@#node ./build.js release
-	@#node ./server.js release
+	@NODE_ENV=production node ./build.js release
+	@NODE_ENV=production node ./server.js release $(APP_PORT)
 	@#sed -i .orig -e 's/"isProductionEnvironment": true/"isProductionEnvironment": false/g' config/environment.json
 	@#sed -i .orig -e 's/"isRelease": true/"isRelease": false/g' config/environment.json
 	@exit 0
@@ -106,10 +115,18 @@ csscomb:
 
 index:
 	@mkdir -p .tmp/desktop/static/css/
+	@#curl http://localhost:3000/ > build/index.html && export HOME_CSS_REV=`node ./util.js` && cd build && ../node_modules/uncss/bin/uncss -H ../build index.html > ../.tmp/desktop/${HOME_CSS_REV}
 	@curl http://localhost:3000/ > build/index.html
+	@export HOME_CSS_REV=`node ./util.js`
+	@cd build && ../node_modules/uncss/bin/uncss -H ../build index.html > ../.tmp/desktop/${HOME_CSS_REV}
+	@##curl http://localhost:3000/ > build/index.html
+	@#pid=`ps | grep server.js | grep -v grep | awk 'NR==1{print $1}' | cut -d' ' -f1`; kill -s QUIT $pid
+	@echo Replace: public/$(HOME_CSS_REV)
+	@cp .tmp/desktop/$(HOME_CSS_REV) public/$(HOME_CSS_REV)
 	@#sed -i .orig -e 's/ src\="\/bundle.js"//g' build/index.html
 	@#uncss -s ../public/tmp/css/home.css build/index.html > public/static/css/home-9e7bb53b73.css
 	@#uncss -C ./build build/index.html > public/static/css/home-9e7bb53b73.css
-	@cd build && ../node_modules/uncss/bin/uncss -H ../build index.html > ../.tmp/desktop/${HOME_CSS_REV}
+	@##cd build && ../node_modules/uncss/bin/uncss -H ../build index.html > ../.tmp/desktop/${HOME_CSS_REV}
+	@exit 0
 
 

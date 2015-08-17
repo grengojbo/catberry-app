@@ -14,23 +14,22 @@ var pkg = require('../../../package');
  * @param  {object} buildOptions
  */
 module.exports = function (buildOptions) {
-
-    return gulp.task('replace:version', function (cb) {
-        var file = 'VERSION';
-        return gulp.src(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.templatesFolderName, file))
+  return gulp.task('replace:version', function (cb) {
+    var file = 'VERSION';
+    return gulp.src(path.join(tarsConfig.fs.srcFolderName, tarsConfig.fs.templatesFolderName, file))
             .pipe(replace({
-                patterns: [
+              patterns: [
                     {
-                        match: 'version',
-                        replacement: pkg.version
+                      match: 'version',
+                      replacement: pkg.version
                     }
                 ]
             }))
             .pipe(gulp.dest('./'))
-            .pipe(gulpif(buildOptions.useDebug, debug({title: 'replace-' + file + '-debug'})))
-            .pipe(size({title: 'replace: ' + file + ' | version: '+ pkg.version}));
-            // .pipe(
-            //     notifier('Copy css files.')
-            // );
-    });
+            .pipe(gulpif(buildOptions.useDebug, debug({ title: 'replace-' + file + '-debug' })))
+            .pipe(size({ title: 'replace: ' + file + ' | version: ' + pkg.version }));
+    // .pipe(
+    //     notifier('Copy css files.')
+    // );
+  });
 };

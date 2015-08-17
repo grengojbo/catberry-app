@@ -108,7 +108,7 @@ function inc(importance) {
     // save it back to filesystem
     .pipe(gulp.dest('./'))
     // commit the changed version number
-    .pipe($.git.commit('bumps package version'))
+    .pipe($.git.commit('bumps package version', { args: '-a --amend -s' }))
 
     // read only one file to get the version number
     .pipe($.filter('package.json'))
@@ -373,15 +373,24 @@ gulp.task('build', function () {
     }
   );
 });
-
-gulp.task('patch', function () {
+gulp.task('inc:patch', function () {
   return inc('patch');
 });
-gulp.task('feature', function () {
+gulp.task('inc:feature', function () {
   return inc('minor');
 });
-gulp.task('release', function () {
+gulp.task('inc:release', function () {
   return inc('major');
+});
+
+gulp.task('patch', function (cb) {
+  runSequence(['inc:patch'], 'replace:version', cb);
+});
+gulp.task('feature', function (cb) {
+  runSequence(['inc:feature'], 'replace:version', cb);
+});
+gulp.task('release', function (cb) {
+  runSequence(['inc:release'], 'replace:version', cb);
 });
 
 /******************/
