@@ -97,7 +97,7 @@ npm install newrelic --save
 }
 ```
 
-Редактируем настройки для сборки проэкта [build.config.js](./config/build.config.js).
+Редактируем настройки для сборки проэкта **local_tars_config.js** пример [local_tars_config_example.js](./local_tars_config_example.js).
 
 Редактиркем настройки проэкта [environment.json](./config/environment.json), [browser.json](./config/browser.json)
 
@@ -115,9 +115,15 @@ npm install newrelic --save
   - [footer.hbs](./src/templates/footer/footer.hbs)
   - [](.)
 
-В терминале запустите задачу **gult** и работайте в вашем любимом редакторе например [SublimeText3](http://www.sublimetext.com/3).
+В терминале запустите задачу **make** или **gult** и работайте в вашем любимом редакторе например [SublimeText3](http://www.sublimetext.com/3).
 ```
-gulp build
+make run
+```
+
+или
+
+```
+gulp dev --lr
 ...
 [20:39:39] Starting 'serve'...
 [20:39:42] Finished 'serve' after 2.51 s
@@ -131,28 +137,41 @@ gulp build
 ...
 ```
 
-При этом [откроется](http://localhost:3000) страничка в броузере, а если открыть *External URL* ```http://192.168.1.129:3000``` в броузерах на других компьютерах то изменените scss, html, js файл и можно в реальном времент смотрить результат на всех гаджетах (при настройке tunnel, xio) даже заказчик с может смотреть.
+Опиции при запуске **gult**:
 
+  - **--lr** автоматически перезагрузка страницы при изменении в /src/static
+  - **--debug** выводит дополнительную информацию для отладки gulp
 
+При этом откроется [localhost:3004](http://localhost:3004) страница в броузере, а если открыть *External URL* ```http://ExternalIP:3004``` в броузерах на других компьютерах то изменените scss, html, js файлах можно в реальном времент смотрить результат на всех гаджетах (при настройке tunnel, xio) даже заказчик с может смотреть.
 
-Then to start in `debug` mode without script minification and with file watching:
+## Выпуск релиза
 
-```
-npm run debug
-```
-
-To start in `release` mode:
-
-```
-npm start
-```
-
-Bumping version number and tagging the repository with it. 
+В первом окне терминала запускаем команду
 
 ```
-$ gulp patch     # makes v0.1.0 → v0.1.1
-$ gulp feature   # makes v0.1.1 → v0.2.0
-$ gulp release   # makes v0.2.1 → v1.0.0
+make dist
+```
+
+Во втором терминала запускаем команду
+
+```
+make index
+```
+
+Если хотите оставить только те стили которые используются в домашней странице.
+
+Что-бы просмотреть окончательную версию перед отправкой на рабочий сервер, остановите в перврм терминале `make dist` и запустите в нем
+
+```
+make release
+```
+
+Изменяем номер версии и теги репозитория. 
+
+```
+$ gulp patch     # v0.1.0 → v0.1.1
+$ gulp feature   # v0.1.1 → v0.2.0
+$ gulp release   # v0.2.1 → v1.0.0
 ```
 
 ## Используем Handlebars
